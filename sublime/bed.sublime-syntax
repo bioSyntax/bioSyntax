@@ -1,0 +1,91 @@
+%YAML 1.2
+---
+# Bed syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: bed
+file_extensions: [bed]
+scope: source.bed
+
+
+contexts:
+  main:
+    #Handle UCSC track line
+    - match: '^track.*'
+      scope: comment.bed
+    
+    # Column 1: Reference Sequence Name
+    - match: '^[\S]*\t'
+      scope: chr.bed
+      push: start
+  
+  # Column 2: Start coordinate
+  start:
+    - match: ([0-9|\.]+)\b
+      scope: chrStart.bed
+    - match: \t
+      push: end
+    - match: $
+      pop: true
+
+  # Column 3: End Coordinate
+  end:
+    - match: ([0-9|\.]+)\b
+      scope: chrEnd.bed
+    - match: \t
+      push: name
+    - match: $
+      pop: true
+
+  # Column 4: Description / Name
+  name:
+    - match: '[\S]*'
+      scope: string.bed
+    - match: \t
+      push: score
+    - match: $
+      pop: true
+
+  # Column 5: Score (0-1000 scale)
+  score:
+    - match: \.\b
+      scope: comment.bed
+    - match: ([0-9])\b
+      scope: grad1.bed  
+    - match: ([1-9][0-9])\b
+      scope: grad1.bed
+    - match: 1[0-9][0-9]\b
+      scope: grad2.bed
+    - match: 2[0-9][0-9]\b
+      scope: grad3.bed
+    - match: 3[0-9][0-9]\b
+      scope: grad4.bed
+    - match: 4[0-9][0-9]\b
+      scope: grad5.bed
+    - match: 5[0-9][0-9]\b
+      scope: grad6.bed
+    - match: 6[0-9][0-9]\b
+      scope: grad7.bed
+    - match: 7[0-9][0-9]\b
+      scope: grad8.bed
+    - match: 8[0-9][0-9]\b
+      scope: grad9.bed
+    - match: 9[0-9][0-9]\b
+      scope: grad10.bed  
+    - match: ([0-9][0-9][0-9][0-9])\b
+      scope: grad10.bed                
+    - match: \t
+      push: strand
+    - match: $
+      pop: true
+
+  # Column 6: Feature Strand
+  strand:
+    - match: \+
+      scope: strandPlus.bed
+    - match: \-
+      scope: strandMinus.bed
+    - match: \.
+      scope: strandNone.bed
+    - match: $
+      pop: true

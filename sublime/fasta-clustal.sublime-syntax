@@ -1,0 +1,119 @@
+%YAML 1.2
+---
+# Fasta-Clustal syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: fasta-clustal
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions: [fastaa,faa]
+scope: text.fasta-clustal
+
+
+contexts:
+  main:
+
+    #positive lookbehind to match a + and a new line to any characters right after it
+    #pushes it to quality
+    - match: "^>.*"
+      scope: string
+
+    # match amino acids
+    # Alanine (ALA)
+    - match: "[Aa]"
+      scope: aaA
+
+    # Aspartate/Asparagine (ASX)
+    - match: "[Bb]"
+      scope: aaB
+
+    # Cysteine (CYS)
+    - match: "[Cc]"
+      scope: aaC
+
+    # Aspartate (ASP)
+    - match: "[Dd]"
+      scope: aaD
+
+    # Glutamate (GLU)
+    - match: "[Ee]"
+      scope: aaE
+
+    # Phenylalanine (PHE)
+    - match: "[Ff]"
+      scope: aaF
+
+    # Glycine (GLY)
+    - match: "[Gg]"
+      scope: aaG
+
+    # Histidine (HIS)
+    - match: "[Hh]"
+      scope: aaH
+
+    # Isoleucine (ILE)
+    - match: "[Ii]"
+      scope: aaI
+
+    # Lysine (LYS)
+    - match: "[Kk]"
+      scope: aaK
+
+    # Leucine (LEU)
+    - match: "[Ll]"
+      scope: aaL
+
+    # Methionine (MET)
+    - match: "[Mm]"
+      scope: aaM
+
+    # Asparagine (ASN)
+    - match: "[Nn]"
+      scope: aaN
+
+    # Proline (PRO)
+    - match: "[Pp]"
+      scope: aaP
+
+    # Glutamine (GLN)
+    - match: "[Qq]"
+      scope: aaQ
+
+    # Arginine (ARG)
+    - match: "[Rr]"
+      scope: aaR
+
+    # Serine (SER)
+    - match: "[Ss]"
+      scope: aaS
+
+    # Threonine (THE)
+    - match: "[Tt]"
+      scope: aaT
+
+    # Valine (VAL)
+    - match: "[Vv]"
+      scope: aaV
+
+    # Tryptophan (TRP)
+    - match: "[Ww]"
+      scope: aaW
+
+    # Tyrosine (TYR)
+    - match: "[Yy]"
+      scope: aaY
+
+    # Glutamate or Glutamine (GLX)
+    - match: "[Zz]"
+      scope: aaZ
+
+    # any/unknown (X)
+    - match: "[Xx]"
+      scope: zappo.X
+
+    # translation stop
+    - match: "\\*"
+      scope: comment
+
+    # indel
+    - match: "[-]"
+      scope: comment

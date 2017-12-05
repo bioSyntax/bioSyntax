@@ -1,0 +1,393 @@
+%YAML 1.2
+---
+# SAM syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: sam
+file_extensions:
+  - sam
+scope: source.sam
+contexts:
+  main:
+    - match: '^@HD'
+      scope: header.sam
+      push: header_entry_hd
+
+    - match: '^@SQ'
+      scope: header.sam
+      push: header_entry_sq
+
+    - match: '^@RG'
+      scope: header.sam
+      push: header_entry_rg
+
+    - match: '^@PG'
+      scope: header.sam
+      push: header_entry_pg
+
+    - match: '^@CO'
+      scope: header.sam
+      push: header_entry_co
+
+    # entering sequence alignment section
+    # column 1 of sequence alignment: QNAME
+    - match: '^[\S]*\t'
+      scope: keyword.sam
+      push: flag_column
+
+
+  # header entries
+
+  header_entry_hd:
+    - meta_scope: string.sam
+    - match: '(?<=[A-Z]{2}:)"'
+      scope: invalid.sam
+      push: header_entry_quote
+    - match: '(?<=VN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: numeric.sam
+
+    # Sort Order for sam file
+    # Distinguishes sorted from unsorted files
+    - match: '(?<=SO:)(coordinate|queryname(?=\s+[A-Z]{2}:)|.+$)'
+      scope: bon.sam
+    - match: '(?<=SO:)(unsorted|unknown(?=\s+[A-Z]{2}:)|.+$)'
+      scope: mal.sam
+    - match: '(?<=SO:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+
+    - match: '(?<=GO:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '$'
+      pop: true
+
+  header_entry_sq:
+    - meta_scope: string.sam
+    - match: '(?<=[A-Z]{2}:)"'
+      scope: invalid.sam
+      push: header_entry_quote
+    - match: '(?<=SN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: chr.sam
+    - match: '(?<=LN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: chrStart.sam
+    - match: '(?<=AH:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=AN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=AS:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=M5:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=SP:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=UR:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: $
+      pop: true
+
+  header_entry_rg:
+    - meta_scope: string.sam
+    - match: '(?<=[A-Z]{2}:)"'
+      scope: invalid.sam
+      push: header_entry_quote
+    - match: '(?<=ID:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: library.sam
+    - match: '(?<=LB:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: library.sam
+    - match: '(?<=CN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=DS:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=DT:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=FO:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=KS:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=PG:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: platform.sam
+    - match: '(?<=PI:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=PL:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: platform.sam
+    - match: '(?<=PM:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: keyword.sam
+    - match: '(?<=PU:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: platform.sam
+    - match: '(?<=SM:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: library.sam
+    - match: $
+      pop: true
+
+  header_entry_pg:
+    - meta_scope: string.sam
+    - match: '(?<=[A-Z]{2}:)"'
+      scope: variable.parameter.sam
+      push: header_entry_quote
+    - match: '(?<=ID:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: software.sam
+    - match: '(?<=PN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: software.sam
+    - match: '(?<=CL:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: command.sam
+    - match: '(?<=PP:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: software.sam
+    - match: '(?<=DS:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: string.sam
+    - match: '(?<=VN:)(.+?(?=\s+[A-Z]{2}:)|.+$)'
+      scope: numeric.sam
+    - match: $
+      pop: true
+
+  header_entry_co:
+    - meta_scope: string.sam
+    - match: '(?<=[A-Z]{2}:)"'
+      scope: comment.am
+      push: header_entry_quote
+    - match: $
+      pop: true
+
+  header_entry_quote:
+    - meta_scope: variable.parameter.sam
+    - match: '"'
+      pop: true
+
+
+  # sequence alignment columns
+
+  # column 2: FLAG
+  flag_column:
+    # Read Flag
+    # If flag > 512
+    #   read is QC-fail | PCRdup | 2' alignment
+    - match: '[0-9]{1,2}(?=\t)'
+      scope: numeric.sam
+    - match: '[1-4][0-9]{1,2}(?=\t)'
+      scope: numeric.sam
+    - match: '[5][0][0-9](?=\t)'
+      scope: numeric.sam
+    - match: '[5][1][01](?=\t)'
+      scope: numeric.sam
+
+    - match: '[5][1][01]'
+      scope: ntC.sam
+    - match: '[\S]*'
+      scope: ntC.sam
+
+    - match: \t
+      push: rname_column
+    - match: $
+      pop: true
+
+  # column 3: RNAME: usually a chromosome id
+  rname_column:
+    - match: '[\S]*'
+      scope: chr.sam
+    - match: \t
+      push: pos_column
+    - match: $
+      pop: true
+
+  # column 4: POS: 1-based leftmost mapping POSition of the first CIGAR operation that “consumes” a reference base
+  pos_column:
+    - match: '[\S]*'
+      scope: chrStart.sam
+    - match: \t
+      push: mapq_column
+    - match: $
+      pop: true
+
+  # column 5: MAPQ: MAPping Quality. 
+  mapq_column:
+    - match: '(255|[0-9])(?=\t)'
+      scope: gradbw1
+    - match: '1[0-9](?=\t)'
+      scope: gradbw3
+    - match: '2[0-9](?=\t)'
+      scope: gradbw5
+    - match: '3[0-9](?=\t)'
+      scope: gradbw7
+    - match: '4[0-9](?=\t)'
+      scope: gradbw9
+    - match: '[\S]*'
+      scope: gradbw9
+
+    - match: \t
+      push: cigar_column
+    - match: $
+      pop: true
+
+
+  # column 6: CIGAR: Alignment details
+  cigar_column:
+      # CIGAR Strings
+      # M: Alignment match
+      # I: Insertion
+      # D: Deletion
+      # N: Skipped region (intron)
+      # S: Soft Clip
+      # H: Hard Clip
+      # P: Padding
+      # =: Sequence Match
+      # X: Sequence Mismatch
+      # *: String Absent
+
+    - match: '\d+[NSHP]'
+      scope: cigClip.sam
+    - match: '\d+[M=]'
+      scope: cigMat.sam
+    - match: '\d+[X]'
+      scope: cigMis.sam
+    - match: '\d+[D]'
+      scope: cigDel.sam
+    - match: '\d+[I]'
+      scope: cigIns.sam
+    - match: '[\S]*'
+      scope: comment.sam
+    - match: \t
+      push: rnext_column
+    - match: $
+      pop: true
+
+  # column 7: RNEXT Reference sequence name of the primary alignment of the NEXT read in the template.
+  rnext_column:
+    - match: "="
+      scope: chr.sam
+      push: pnext_column_gateway
+    - match: "[0-9]*(?=\t)"
+      scope: chrStart.sam
+      push: pnext_column_gateway
+    - match: "\\*"
+      scope: keyword.sam
+      push: pnext_alt_seq_column_gateway
+    - match: '[\S]*(?=\t)'
+      scope: keyword.Start
+      push: pnext_alt_seq_column_gateway
+    - match: $
+      pop: true
+
+  # column 8: PNEXT: Position of the primary alignment of the NEXT read in the template. 
+  
+  pnext_column_gateway:
+    - match: \t
+      push: pnext_column
+    - match: $
+      pop: true
+
+  pnext_column:
+    # - meta_scope: invalid.sam
+    - match: '[\S]*'
+      scope: chrStart.sam
+    - match: \t
+      push: tlen_column
+    - match: $
+      pop: true
+
+  pnext_alt_seq_column_gateway:
+    - match: \t
+      push: pnext_alt_seq_column
+    - match: $
+      pop: true
+
+  pnext_alt_seq_column:
+    # - meta_scope: invalid.sam
+    - match: '[\S]*'
+      scope: keyword.Start
+    - match: \t
+      push: tlen_column
+    - match: $
+      pop: true
+
+  # column 9: TLEN:  signed  observed  Template  LENgth.   
+  tlen_column:
+    - match: '[\S]*'
+      scope: comment.sam
+    - match: \t
+      push: seq_column
+    - match: $
+      pop: true
+
+  # column 10: SEQ: segment SEQuence.
+  seq_column:
+    - match: "A"
+      scope: ntA.sam
+    - match: "C"
+      scope: ntC.sam
+    - match: "G"
+      scope: ntG.sam
+    - match: "T"
+      scope: ntT.sam
+    - match: "N"
+      scope: ntN.sam
+    - match: \t
+      push: qual_column
+    - match: $
+      pop: true
+
+  # column 11: QUAL: ASCII of base QUALity plus 33 (same as the
+  # quality string in the Sanger FASTQ format).
+  # Complete Phred Scale
+  #!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+
+  # Illumina 1.8 Scale (IMPLEMENTED)
+  # 0.2.......................26...31.......41     
+  # !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKL
+  # |   |   |   |   |   |   |   |   |   |   | ...
+
+  qual_column:
+    - match: "[\\!\\#\\$]"
+      scope: gradbw0
+    - match: "[%\\&\\'\\(]"
+      scope: gradbw1
+    - match: "[\\)\\*\\+\\,]"
+      scope: gradbw2
+    - match: "[\\-\\.\\/0]"
+      scope: gradbw3
+    - match: "[1-4]"
+      scope: gradbw4
+    - match: "[5-8]"
+      scope: gradbw5
+    - match: "[9\\:\\;\\<]"
+      scope: gradbw6
+    - match: "[\\=\\>\\?\\@]"
+      scope: gradbw7
+    - match: "[ABCD]"
+      scope: gradbw8
+    - match: "[EFGHIJ]"
+      scope: gradbw9
+    - match: "[K-Z\\[\\\\]"
+      scope: gradbw10
+    - match: "[\\]\\^\\_\\`a-f]"
+      scope: gradbw10
+    - match: "[g-p]"
+      scope: gradbw10
+    - match: "[q-z]"
+      scope: gradbw10
+    - match: "[\\{\\|\\}\\~]"
+      scope: gradbw10
+    - match: \t
+      push: data_tag_entry
+    - match: $
+      pop: true
+
+  data_tag_entry: 
+    - meta_scope: string.sam
+      # Data Classes: numeric / string / class
+      # A Printable
+      # i signed integer
+      # f floating point
+      # Z string with spaces
+      # H byte array hex
+      # B Integer/Numeric Array
+    - match: "[A-Z]{2}(?=:)"
+      scope: string.sam
+    - match: "(?<=:)[AifZHB]:"
+      scope: comment.sam
+
+    - match: "(?<=[ifH]:)(.+?(?=\t)|.+$)"
+      scope: numeric.sam
+    - match: "(?<=[AZB]:)(.+?(?=\t)|.+$)"
+      scope: numeric2.sam
+
+    - match: "$"
+      pop: true

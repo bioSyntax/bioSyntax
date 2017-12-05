@@ -1,0 +1,46 @@
+%YAML 1.2
+---
+# Fasta Index (faidx) syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: faidx
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions: [fai,fai]
+scope: source.faidx
+
+# Fasta Index Filetype Description
+# NAME  Name of this reference sequence
+# LENGTH  Total length of this reference sequence, in bases
+# OFFSET  Offset within the FASTA file of this sequence's first base
+# LINEBASES The number of bases on each line
+# LINEWIDTH The number of bytes in each line, including the newline
+
+contexts:
+  main:
+    # COLUMN 1
+    - match: '^[\S]*\t'
+      scope: chr.faidx
+      push: contig.length
+
+    # COLUMN 3
+    - match: '(?<=\t)[\S]*\t'
+      scope: numeric.faidx
+      push: genomic.offset
+
+    # COLUMN 5
+    - match: '[\S]*$'
+      scope: comment.faidx
+
+  contig.length:
+    # COLUMN 2
+    - match: '[\S]*'
+      scope: chrStart.faidx
+    - match: \t
+      pop: true
+
+  genomic.offset:
+    # COLUMN 4
+    - match: '[\S]*'
+      scope: comment.faidx
+    - match: \t
+      pop: true

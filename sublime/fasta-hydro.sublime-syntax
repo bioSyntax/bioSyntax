@@ -1,0 +1,119 @@
+%YAML 1.2
+---
+# Fasta-Hydrophobicity syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: fasta-hydro
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions: [fastahydro]
+scope: text.fasta-hydro
+
+
+contexts:
+  main:
+
+    #positive lookbehind to match a + and a new line to any characters right after it
+    #pushes it to quality
+    - match: "^>.*"
+      scope: string
+
+    # match amino acids
+    # Alanine (ALA)
+    - match: "[Aa]"
+      scope: hydroA
+
+    # Aspartate/Asparagine (ASX)
+    - match: "[Bb]"
+      scope: hydroB
+
+    # Cysteine (CYS)
+    - match: "[Cc]"
+      scope: hydroC
+
+    # Aspartate (ASP)
+    - match: "[Dd]"
+      scope: hydroD
+
+    # Glutamate (GLU)
+    - match: "[Ee]"
+      scope: hydroE
+
+    # Phenylalanine (PHE)
+    - match: "[Ff]"
+      scope: hydroF
+
+    # Glycine (GLY)
+    - match: "[Gg]"
+      scope: hydroG
+
+    # Histidine (HIS)
+    - match: "[Hh]"
+      scope: hydroH
+
+    # Isoleucine (ILE)
+    - match: "[Ii]"
+      scope: hydroI
+
+    # Lysine (LYS)
+    - match: "[Kk]"
+      scope: hydroK
+
+    # Leucine (LEU)
+    - match: "[Ll]"
+      scope: hydroL
+
+    # Methionine (MET)
+    - match: "[Mm]"
+      scope: hydroM
+
+    # Asparagine (ASN)
+    - match: "[Nn]"
+      scope: hydroN
+
+    # Proline (PRO)
+    - match: "[Pp]"
+      scope: hydroP
+
+    # Glutamine (GLN)
+    - match: "[Qq]"
+      scope: hydroQ
+
+    # Arginine (ARG)
+    - match: "[Rr]"
+      scope: hydroR
+
+    # Serine (SER)
+    - match: "[Ss]"
+      scope: hydroS
+
+    # Threonine (THE)
+    - match: "[Tt]"
+      scope: hydroT
+
+    # Valine (VAL)
+    - match: "[Vv]"
+      scope: hydroV
+
+    # Tryptophan (TRP)
+    - match: "[Ww]"
+      scope: hydroW
+
+    # Tyrosine (TYR)
+    - match: "[Yy]"
+      scope: hydroY
+
+    # Glutamate or Glutamine (GLX)
+    - match: "[Zz]"
+      scope: hydroZ
+
+    # any/unknown (X)
+    - match: "[Xx]"
+      scope: hydroX
+
+    # translation stop
+    - match: "\\*"
+      scope: comment
+
+    # indel
+    - match: "[-]"
+      scope: comment

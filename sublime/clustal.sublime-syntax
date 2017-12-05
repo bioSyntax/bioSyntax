@@ -1,0 +1,41 @@
+%YAML 1.2
+---
+# Clustal syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: clustal
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions: [clustal]
+scope: text.clustal
+
+contexts:
+  main:
+    # Main Identifier
+    - match: "^CLUSTAL.*"
+      scope: comment
+
+    # Sequence Identifier
+    - match: "/[0-9]*-[0-9]*" #Optional sequence range
+      scope: chrStart
+
+    - match: "^[\\w\\.\\-\\_ ]*(?=[/ ])"
+      scope: string
+
+  # match Adenosine
+    - match: "[Aa]++"
+      scope: ntA
+  # match Cytidine
+    - match: "[Cc]++"
+      scope: ntC
+  # match Guanine
+    - match: "[Gg]++"
+      scope: ntG
+  # match Thymidine/Uridine
+    - match: "[TtUu]++"
+      scope: ntT
+  # aNy or unknown (X)
+    - match: "[NnXx]++"
+      scope: ntN
+  # indel
+    - match: "-"
+      scope: ntGap

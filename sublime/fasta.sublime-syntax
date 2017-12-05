@@ -1,0 +1,239 @@
+%YAML 1.2
+---
+# Fasta syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: fasta
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions: [fasta, fa, mfa, fas]
+scope: text.fasta
+
+
+contexts:
+  main:
+    # match identifiers
+    - match: "^>.*$"
+      scope: header
+      push: id
+
+    # match amino acids (have equivalents in nucleotides so need to differentiate them)
+    - match: "^[Aa](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))"
+      scope: aaA
+      push: aa
+    - match: "^[Gg](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))"
+      scope: aaG
+      push: aa
+    - match: "^[Cc](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))"
+      scope: aaC
+      push: aa
+    - match: "^[Tt](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))"
+      scope: aaT
+      push: aa
+    - match: "^[Nn](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))"
+      scope: aaN
+      push: aa
+    - match: "^[Xx](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))"
+      scope: aaX
+      push: aa
+    - match: "^[Bb]"
+      scope: aaB
+      push: aa
+    - match: "^[Dd]"
+      scope: aaD
+      push: aa
+    - match: "^[Ee]"
+      scope: aaE
+      push: aa
+    - match: "^[Ff]"
+      scope: aaF
+      push: aa
+    - match: "^[Hh]"
+      scope: aaH
+      push: aa
+    - match: "^[Ii]"
+      scope: aaI
+      push: aa
+    - match: "^[Kk]"
+      scope: aaK
+      push: aa
+    - match: "^[Ll]"
+      scope: aaL
+      push: aa
+    - match: "^[Mm]"
+      scope: aaM
+      push: aa
+    - match: "^[Pp]"
+      scope: aaP
+      push: aa
+    - match: "^[Qq]"
+      scope: aaQ
+      push: aa
+    - match: "^[Rr]"
+      scope: aaR
+      push: aa
+    - match: "^[Ss]"
+      scope: aaS
+      push: aa
+    - match: "^[Vv]"
+      scope: aaV
+      push: aa
+    - match: "^[Ww]"
+      scope: aaW
+      push: aa
+    - match: "^[Yy]"
+      scope: aaY
+      push: aa
+    - match: "^[Zz]"
+      scope: aaZ
+      push: aa
+    - match: "^\\*"
+      scope: comment
+      push: aa
+    - match: "-"
+      scope: comment
+      push: aa
+    # pushes any lines with only amino acids to aa
+    - match: "^[^>\\s][^AaGgCcTtUuNnXx-].*$"
+      scope: variable
+      push: aa
+
+    # match nucleotides (have equivalents in amino acids so need to differentiate them)
+    - match: "^[Aa](?=[AaGgCcTtUuNnXx-])"
+      scope: ntA
+      push: nt
+    - match: "^[Gg](?=[AaGgCcTtUuNnXx-])"
+      scope: ntG
+      push: nt
+    - match: "^[Cc](?=[AaGgCcTtUuNnXx-])"
+      scope: ntC
+      push: nt
+    - match: "^[TtUu](?=[AaGgCcTtUuNnXx-])"
+      scope: ntT
+      push: nt
+    - match: "^[Gg](?=[AaGgCcTtUuNnXx-])"
+      scope: ntG
+      push: nt
+    - match: "^[NnXx](?=[AaGgCcTtUuNnXx-])"
+      scope: ntN
+      push: nt
+    - match: "-(?=[AaGgCcTtUuNnXx-])"
+      scope: comment
+      push: nt
+    # pushes any lines with only nucleotides to nt
+    - match: "^[AaGgTtCcUuNnXx-]$"
+      scope: entity.name
+      push: nt
+
+    - include: aa
+    - include: nt
+
+  id:
+    - meta_scope: name.id
+    - match: $
+      scope: constant.character.escape
+      pop: true
+
+  nt:
+  # match Adenosine
+    - match: "[Aa]"
+      scope: ntA
+  # match Cytidine
+    - match: "[Cc]"
+      scope: ntC
+  # match Guanine
+    - match: "[Gg]"
+      scope: ntG
+  # match Thymidine/Uridine
+    - match: "[TtUu]"
+      scope: ntT
+  # aNy or unknown (X)
+    - match: "[NnXx]"
+      scope: ntN
+  # indel
+    - match: "-"
+      scope: ntGap
+  # endline
+    - match: $
+      scope: constant.character.escape
+      pop: true
+
+  aa:
+  # Alanine (ALA)
+    - match: "[Aa]"
+      scope: aaA
+  # Aspartate/Asparagine (ASX)
+    - match: "[Bb]"
+      scope: aaB
+  # Cysteine (CYS)
+    - match: "[Cc]"
+      scope: aaC
+  # Aspartate (ASP)
+    - match: "[Dd]"
+      scope: aaD
+  # Glutamate (GLU)
+    - match: "[Ee]"
+      scope: aaE
+  # Phenylalanine (PHE)
+    - match: "[Ff]"
+      scope: aaF
+   # Glycine (GLY)
+    - match: "[Gg]"
+      scope: aaG
+  # Histidine (HIS)
+    - match: "[Hh]"
+      scope: aaH
+  # Isoleucine (ILE)
+    - match: "[Ii]"
+      scope: aaI
+  # Lysine (LYS)
+    - match: "[Kk]"
+      scope: aaK
+  # Leucine (LEU)
+    - match: "[Ll]"
+      scope: aaL
+  # Methionine (MET)
+    - match: "[Mm]"
+      scope: aaM
+  # Asparagine (ASN)
+    - match: "[Nn]"
+      scope: aaN
+  # Proline (PRO)
+    - match: "[Pp]"
+      scope: aaP
+  # Glutamine (GLN)
+    - match: "[Qq]"
+      scope: aaQ
+  # Arginine (ARG)
+    - match: "[Rr]"
+      scope: aaR
+  # Serine (SER)
+    - match: "[Ss]"
+      scope: aaS
+  # Threonine (THE)
+    - match: "[Tt]"
+      scope: aaT
+  # Valine (VAL)
+    - match: "[Vv]"
+      scope: aaV
+  # Tryptophan (TRP)
+    - match: "[Ww]"
+      scope: aaW
+  # Tyrosine (TYR)
+    - match: "[Yy]"
+      scope: aaY
+  # Any amino acid
+    - match: "[Xx]"
+      scope: aaX
+  # Glutamate or Glutamine (GLX)
+    - match: "[Zz]"
+      scope: aaZ
+  # translation stop
+    - match: "\\*"
+      scope: comment
+  # gap of indeterminate length
+    - match: "-"
+      scope: comment
+  # endline
+    - match: $
+      scope: constant.character.escape
+      pop: true

@@ -1,0 +1,126 @@
+%YAML 1.2
+---
+# Flagstat syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: gtf
+file_extensions: [gtf]
+scope: source.gtf
+# Specification: http://mblab.wustl.edu/GTF22.html
+
+contexts:
+  main:
+    - match: '^[\S]*\t'
+      scope: chr.gtf
+      push: source
+
+  source:
+    - match: '[\S]*'
+      scope: variable.parameter.gtf
+    - match: \t
+      push: feature
+    - match: $
+      pop: true
+
+  feature:
+    - match: 'exon'
+      scope: exonLevel.gtf
+    - match: 'transcript'
+      scope: transcriptLevel.gtf
+    - match: 'CDS'
+      scope: cds.gtf
+    - match: 'start_codon'
+      scope: start_codon.gtf
+    - match: 'stop_codon'
+      scope: stop_codon.gtf
+    - match: \t
+      push: start
+    - match: $
+      pop: true
+
+  start:
+    - match: ([0-9|\.]+)\b
+      scope: chrStart.gtf
+    - match: \t
+      push: end
+    - match: $
+      pop: true
+
+  end:
+    - match: ([0-9|\.]+)\b
+      scope: chrEnd.gtf
+    - match: \t
+      push: score
+    - match: $
+      pop: true
+
+  score:
+    - match: \.\b
+      scope: comment.gtf
+    - match: ([1-9])\b
+      scope: grad1.gtf  
+    - match: ([1-9][0-9])\b
+      scope: grad1.gtf
+    - match: 1[0-9][0-9]\b
+      scope: grad2.gtf
+    - match: 2[0-9][0-9]\b
+      scope: grad3.gtf
+    - match: 3[0-9][0-9]\b
+      scope: grad4.gtf
+    - match: 4[0-9][0-9]\b
+      scope: grad5.gtf
+    - match: 5[0-9][0-9]\b
+      scope: grad6.gtf
+    - match: 6[0-9][0-9]\b
+      scope: grad7.gtf
+    - match: 7[0-9][0-9]\b
+      scope: grad8.gtf
+    - match: 8[0-9][0-9]\b
+      scope: grad9.gtf
+    - match: 9[0-9][0-9]\b
+      scope: grad10.gtf  
+    - match: ([0-9][0-9][0-9][0-9])\b
+      scope: grad10.gtf                
+    - match: \t
+      push: strand
+    - match: $
+      pop: true
+
+  strand:
+    - match: \+
+      scope: strandPlus.gtf
+    - match: \-
+      scope: strandMinus.gtf
+    - match: \.
+      scope: strandNone.gtf
+    - match: \t
+      push: frame
+    - match: $
+      pop: true
+
+  frame:
+    - match: ([0-2])\b
+      scope: numeric.gtf
+    - match: \.
+      scope: comment.gtf
+    - match: \t
+      push: attribute
+    - match: $
+      pop: true
+
+  attribute:
+    - match: \b[^\s;]+(?=\s"[\w|\W|\_|\.]*")
+      scope: gradbw5.attributeName.gtf
+    - match: (?="[\w|\d|\.]+";)"[\d|\.]+"
+      scope: numeric.attributeNumbers.gtf
+    - match: (?="[\w|\d|\.|\-|\_|\:]+";)"[\w|\d|\.|\-|\_|\:]+"
+      scope: grad4.attributeString.gtf
+    - match: \b[^\s;]+(?=\s[\w|\W|\_|\.])
+      scope: gradbw5.attributeName.gtf
+    - match: (?=\d+;)\d+
+      scope: numeric.attributeNumbers.gtf
+    - match: \t
+      push: attribute
+    - match: $
+      pop: true
+

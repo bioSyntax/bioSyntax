@@ -1,0 +1,246 @@
+%YAML 1.2
+---
+# PDB syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: pdb
+# YAML for PDB files
+file_extensions: [pdb]
+scope: source.pdb
+contexts:
+  main:
+    #Header line
+    - match: '^HEADER.*$'
+      scope: invalid.pdb
+
+    #Title line
+    - match: '^TITLE.*$'
+      scope: constant.character.pdb
+
+    #COMPND line
+    - match: '^COMPND.*$'
+      scope: markup.deleted.pdb
+
+    #SOURCE line
+    - match: '^SOURCE.*$'
+      scope: constant.language.pdb
+
+    #KEYWDS line
+    - match: '^KEYWDS.*$'
+      scope: entity.name.pdb
+
+    #EXPDTA line
+    - match: '^EXPDTA.*$'
+      scope: storage.type.pdb
+
+    #AUTHOR line
+    - match: '^AUTHOR.*$'
+      scope: string.pdb
+
+    #REVDAT line
+    - match: "^REVDAT.*$"
+      scope: constant.character.pdb
+
+    #JRNL section
+    - match: '^JRNL.*$'
+      push: journal
+
+    #REMARK section
+    - match: '^REMARK[\s\t]+[0-9]+'
+      push: remark
+
+    #SEQRES section
+    - match: '^SEQRES'
+      #scope: storage.type.pdb
+      push: seqres
+
+    #HELIX section
+    - match: "^HELIX.*$"
+      scope: storage.type.pdb
+
+    #HELIX section
+    - match: "^SHEET.*$"
+      scope: entity.name.tag.pdb
+
+    #SITE section
+    - match: "^SITE.*$"
+      scope: string.pdb
+
+    #ATOM section
+    - match: '^(ATOM|ANISOU)[\s\t]+[0-9]+[\s\t]+[A-Z0-9]+'
+      #scope: constant.character.pdb
+      push: atom
+
+    #HETATM section
+    - match: "^HETATM.*$"
+      scope: markup.deleted.pdb
+
+  journal:
+    - meta_scope: string.pdb #colour everything in this section
+    - match: '[\s\t]+TITL\b.*'
+      scope: entity.name.pdb #colour the title of the paper
+    - match: '(?!JRNL\b)\b.*' #when new string starts with no JRNL header, go out
+      pop: true  
+
+  remark:
+    - meta_scope: constant.character.pdb #meta.structure.dictionary.json.pdb
+    - match: '[\s\t]+RESOLUTION.*$' #'[\s\t]+(?=RESOLUTION).*'
+      scope: entity.name.pdb #string.unquoted.yaml.pdb
+    - match: '.*(?=:)'
+      push: remark_value
+    - match: '((?!REMARK).)*$' #'(?!REMARK\b)\b.*'
+      pop: true
+
+  remark_value:
+    - meta_scope: constant.character.pdb
+    - match:  ':[\s\t]+NULL' #':([\s\t]+NULL[\s\t]+.*)+'
+      #scope:  markup.deleted.pdb
+      push: semicolon_NULL
+    - match: ':'
+      #scope: entity.name.pdb
+      push: semicolon
+    - match: '$'
+      pop: true
+  
+  semicolon:
+    - meta_scope: entity.name.pdb
+    - match: '[\s\t]?;[\s\t]?'
+      scope: constant.language.pdb
+    - match: '$'
+      pop: true
+
+  semicolon_NULL:
+    - meta_scope: markup.deleted.pdb
+    - match: '[\s\t]?;[\s\t]?'
+      scope: constant.language.pdb
+    - match: '$'
+      pop: true
+
+  seqres:
+    #different chanes should be coloured differently (focus on A-H)
+    #don't care about colours for now, but they should be different
+    - meta_scope: constant.character.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[AP].*'
+      scope: ntA.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[BQ].*'
+      scope: ntT.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[CR].*'
+      scope: ntG.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[DS].*'
+      scope: ntC.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[ET].*'
+      scope: ntU.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[FU].*'
+      scope: ntR.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[GV].*'
+      scope: ntY.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[HW].*'
+      scope: ntS.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[IX].*'
+      scope: ntW.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[JY].*'
+      scope: ntM.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[KZ].*'
+      scope: ntK.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[L].*'
+      scope: ntD.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[M].*'
+      scope: ntB.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[N].*'
+      scope: ntV.pdb
+    - match: '[\s\t]+[0-9]+[\s\t]+[O].*'
+      scope: ntH.pdb                
+    - match: '$'
+      pop: true
+
+  atom:
+    - meta_scope: constant.character.pdb
+    #residue number
+    - match: '(?<=[A-Z])[\s\t]+[0-9]+'
+      scope: storage.type.pdb
+    #amino acids
+    - match: '[\s\t]+ALA'
+      scope: aaA
+    - match: '[\s\t]+ARG'
+      scope: aaR
+    - match: '[\s\t]+ASN'
+      scope: aaN
+    - match: '[\s\t]+ASP'
+      scope: aaD
+    - match: '[\s\t]+CYS'
+      scope: aaC
+    - match: '[\s\t]+GLN'
+      scope: aaQ
+    - match: '[\s\t]+GLU'
+      scope: aaE
+    - match: '[\s\t]+GLY'
+      scope: aaG
+    - match: '[\s\t]+HIS'
+      scope: aaH
+    - match: '[\s\t]+ILE'
+      scope: aaI
+    - match: '[\s\t]+LEU'
+      scope: aaL
+    - match: '[\s\t]+LYS'
+      scope: aaK
+    - match: '[\s\t]+MET'
+      scope: aaM
+    - match: '[\s\t]+PHE'
+      scope: aaF
+    - match: '[\s\t]+PRO'
+      scope: aaP
+    - match: '[\s\t]+SER'
+      scope: aaS
+    - match: '[\s\t]+THR'
+      scope: aaT
+    - match: '[\s\t]+TRP'
+      scope: aaW
+    - match: '[\s\t]+TYR'
+      scope: aaY
+    - match: '[\s\t]+VAL'
+      scope: aaV                                          
+    #define chains (different colours for different chains from A-H)
+    - match: '(?<=[\s\t])[AP](?=[\s\t]+[0-9])'
+      scope: ntA.pdb
+    - match: '(?<=[\s\t])[BQ](?=[\s\t]+[0-9])'
+      scope: ntT.pdb
+    - match: '(?<=[\s\t])[CR](?=[\s\t]+[0-9])'
+      scope: ntG.pdb
+    - match: '(?<=[\s\t])[DS](?=[\s\t]+[0-9])'
+      scope: ntC.pdb
+    - match: '(?<=[\s\t])[ET](?=[\s\t]+[0-9])'
+      scope: ntU.pdb
+    - match: '(?<=[\s\t])[FU](?=[\s\t]+[0-9])'
+      scope: ntR.pdb
+    - match: '(?<=[\s\t])[GV](?=[\s\t]+[0-9])'
+      scope: ntY.pdb
+    - match: '(?<=[\s\t])[HW](?=[\s\t]+[0-9])'
+      scope: ntS.pdb
+    - match: '(?<=[\s\t])[IX](?=[\s\t]+[0-9])'
+      scope: ntW.pdb
+    - match: '(?<=[\s\t])[JY](?=[\s\t]+[0-9])'
+      scope: ntM.pdb
+    - match: '(?<=[\s\t])[KZ](?=[\s\t]+[0-9])'
+      scope: ntK.pdb
+    - match: '(?<=[\s\t])L(?=[\s\t]+[0-9])'
+      scope: ntD.pdb
+    - match: '(?<=[\s\t])M(?=[\s\t]+[0-9])'
+      scope: ntB.pdb
+    - match: '(?<=[\s\t])N(?=[\s\t]+[0-9])'
+      scope: ntV.pdb
+    - match: '(?<=[\s\t])O(?=[\s\t]+[0-9])'
+      scope: ntH.pdb
+    - match: '$'
+      pop: true
+
+  
+  #aa_chain_resnumber:
+    #- meta_scope: string.pdb
+    #- match: '[A-Z]{3}'
+      #scope: storage.type.pdb'
+    #- match: '[\s\t]+'
+      #pop: true
+
+
+
+

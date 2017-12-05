@@ -1,0 +1,105 @@
+%YAML 1.2
+---
+# Wig syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: wig
+file_extensions: [wig]
+scope: source.wig
+
+contexts:
+  main:
+    #find declaration line
+    #declared as fixedStep
+    - match: fixedStep\s
+      scope: chr.wig
+      push: fchrom
+      
+    #declared as varibleStep
+    - match: variableStep\s
+      scope: keyword.wig
+      push: vchrom
+
+    #color data value for variableStep format
+    - match: (?=([0-9]+\s\d+\s))([0-9]+\s)
+      scope: numeric.wig
+      push: colorData
+    
+    #color data value for fixedStep format
+    - match: (?=\d+\s)
+      scope: numeric.wig
+      push: colorData  
+    
+  #fixedStep chromosome name 
+  fchrom:
+    - match: chrom
+      scope: chr.wig
+    - match: \=
+      scope: comment.wig  
+    - match: \s
+      push: fstart
+    - match: $
+      pop: true
+
+  #fixedStep start position
+  fstart:
+    - match: start
+      scope: chrStart.wig
+    - match: \s
+      push: fstep
+    - match: $
+      pop: true
+
+  #fixedStep step interval
+  fstep:
+    - match: step
+      scope: numeric.wig
+    - match: $
+      pop: true
+
+  #variableStep chromosome name
+  vchrom:
+    - match: chrom
+      scope: chr.wig
+    - match: \s
+      push: vspan
+    - match: $
+      pop: true
+
+  #variableStep span
+  vspan:
+    - match: span
+      scope: numeric.wig
+    - match: $
+      pop: true
+
+  #data values will be passed to here and be painted
+  colorData:
+    - match: \.\b
+      scope: comment.gtf
+    - match: ([1-9]|[1-9].\d+)\b
+      scope: grad1.gtf  
+    - match: ([1-9])([0-9]|[0-9].\d+)\b
+      scope: grad1.gtf
+    - match: 1([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad2.gtf
+    - match: 2([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad3.gtf
+    - match: 3([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad4.gtf
+    - match: 4([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad5.gtf
+    - match: 5([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad6.gtf
+    - match: 6([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad7.gtf
+    - match: 7([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad8.gtf
+    - match: 8([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad9.gtf
+    - match: 9([0-9]{2}|[0-9]{2}.\d+)\b
+      scope: grad10.gtf  
+    - match: ([1-9])([0-9]{2,}|[0-9]{2,}.\d+)\b
+      scope: grad10.gtf                
+    - match: $
+      pop: true

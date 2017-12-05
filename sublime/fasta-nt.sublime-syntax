@@ -1,0 +1,47 @@
+%YAML 1.2
+---
+# Fasta-Nucleotides syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: fasta-nt
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions: []
+scope: text.fasta-nt
+
+
+contexts:
+  main:
+
+    #positive lookbehind to match a + and a new line to any characters right after it
+    #pushes it to quality
+    - match: "^>.*"
+      scope: string
+
+    # Match basic Nucleotides
+    # match Adenosine
+    - match: "[Aa]"
+      scope: ntA
+
+    # match Cytidine
+    - match: "[Cc]"
+      scope: ntC
+
+    # match Guanine
+    - match: "[Gg]"
+      scope: ntG
+
+    # match Thymidine
+    - match: "[Tt]"
+      scope: ntT
+
+    # match Uridine
+    - match: "[Uu]"
+      scope: ntU
+
+    # match aNy or unknown (X)
+    - match: "[NnXx]"
+      scope: ntN
+
+    # indel
+    - match: "[-]"
+      scope: ntGap

@@ -1,0 +1,311 @@
+%YAML 1.2
+---
+# VCF syntax highlighting file
+# Maintainer: bioSyntax.org
+# Version: v0.1
+name: vcf
+file_extensions: [vcf]
+scope: source.vcf
+
+variables:
+  ident: '\w+'
+  
+contexts:
+  main:
+    # Comments begin with a '##' and finish at the end of the line
+    #- match: '\#\#'
+      #scope: comment
+      #push: line_comment
+    - match: '^##'
+      push: header
+      
+    # Header for the 8 columns begins with a '#' and finishes at the end of the line
+    - match: '(\#CHROM)(\s+\w*)+$'
+      scope: entity.name
+
+
+    #- match: "\t"
+      #scope: invalid
+
+    # - match: '(?<=\s).+?(?==)'
+    #   scope: ntC
+
+
+
+    # Numbers
+    # - match: \b(-)?[0-9.]+\b
+    # - match: \b/(?:\D+\s+){1}(\D+)/\b
+    #   scope: invalid
+
+    # CHROM
+    - match: '^[\w]+'
+      scope: chr.vcf
+
+    # POS
+    - match: '(?<=\s)(-)?[0-9.]+(?=\s)'
+      scope: chrStart.vcf
+
+    #TEST
+    #- match: (?<=[\s\t])[A-Z](?={{ident}})
+      #scope: invalid.vcf
+      #push: nt
+  
+    #ref and alt
+    - match: '(?<=[\s\t])A(?=[A-Z,]+[\s\t])'
+      scope: ntA
+      push: nt
+
+    - match: '(?<=[\s\t])C(?=[A-Z,]+[\s\t])'
+      scope: ntC
+      push: nt
+
+    - match: '(?<=[\s\t])G(?=[A-Z,]+[\s\t])'
+      scope: ntG
+      push: nt
+
+    - match: '(?<=[\s\t])(T|U)(?=[A-Z,]+[\s\t])'
+      scope: ntT
+      push: nt
+
+    - match: '(?<=[\s\t])A(?=[\s\t])'
+      scope: ntA
+    - match: '(?<=[\s\t])G(?=[\s\t])'
+      scope: ntG
+    - match: '(?<=[\s\t])C(?=[\s\t])'
+      scope: ntC
+    - match: '(?<=[\s\t])(U|T)(?=[\s\t])'
+      scope: ntT
+
+    - match: '(?<=[\s\t;])[A-Za-z0-9]+='
+      push: tags
+
+    #info
+    # - match: .
+    #   scope: invalid
+      #push: info
+
+    # # Nucleotides
+    # # A
+    # - match: (?<=\s)[A](?=\s)
+    #   scope: ntA
+
+    # # T
+    # - match: (?<=\s)[T](?=\s)
+    #   scope: ntT
+
+    # # G
+    # - match: (?<=\s)[G](?=\s)
+    #   scope: ntG
+
+    # # C
+    # - match: (?<=\s)[C](?=\s)
+    #   scope: ntC
+
+    # # U
+    # - match: (?<=\s)[U](?=\s)
+    #   scope: ntT
+
+    # # ACGTU
+    # - match: "[AGCTU\\,]++"
+    #   push: nt
+
+
+    # CHROM ID
+
+
+    # ID
+    # - match: (?<=\s)[0-9]*(?=\s)
+    #   scope: invalid
+    #   push: ID
+
+    # REF
+    #- match:
+    #  scope: 
+
+    # ALT
+    #- match:
+    #  scope: 
+
+    # QUAL
+    #- match:
+    #  scope:
+
+    # FILTER
+    #- match:
+    #  scope: 
+
+    # INFO
+    # - match: '[\s][\S]+$'
+    #   scope: entity.name
+
+  tags:
+    - meta_scope: string.vcf
+    - match: (?<=)[A-Za-z0-9\-\.,]+(?=[;\t\s])
+      scope: storage.type.vcf
+    - match: '[\t\s;]'
+      pop: true
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.example-c
+    - match: '\\.'
+      scope: constant.character.escape.example-c
+    - match: '"'
+      scope: punctuation.definition.string.end.example-c
+      pop: true
+
+  #line_comment:
+    #- meta_scope: comment.line.example-c
+    #- match: "<.*>"
+      #scope: ntG
+    #- match: $
+      #pop: true
+
+  ID:
+    - match: \b[0-9]\b
+      scope: invalid
+      pop: true
+
+  nt:
+    - meta_content_scope: string.vcf
+    - match: 'A'
+      scope: ntA
+    - match: 'G'
+      scope: ntG
+    - match: 'C'
+      scope: ntC
+    - match: '(U|T)'
+      scope: ntT
+    - match: '[\s\t]'
+      #scope: constant.character
+      pop: true
+
+  info:
+    - match: \s.\;
+      scope: invalid
+      pop: true
+
+  header:
+    - meta_scope: comment.vcf
+    - match: 'INFO=<'
+      push: header_info
+    - match: 'FILTER=<'
+      push: header_filter
+    - match: 'FORMAT=<'
+      push: header_format
+    - match: 'ALT=<'
+      push: header_alt
+    - match: 'assembly=.*$'
+      scope: string.vcf
+    - match: 'contig=<'
+      push: header_contig
+    - match: 'SAMPLE=<'
+      push: header_sample
+    - match: 'PEDIGREE=.*$'
+      scope: aaY 
+    - match: 'pedigreeDB=.*$'
+      scope: aaY
+    - match: 'reference=.*$'
+      scope: string.vcf       
+    - match: '(?<=fileformat=)[A-Za-z0-9\.]+'
+      scope: numeric.vcf
+    - match: '(?<=##)[A-Za-z]+='
+      scope: string.vcf
+    - match: '(?<==)[A-Za-z0-9\-\.]+'
+      scope: storage.type.vcf
+    - match: '$'
+      pop: true
+
+  header_info:
+    - meta_scope: entity.name.vcf
+    #ID section
+    - match: '(?<=ID=).*?(?=,)'
+      scope: markup.deleted.vcf
+    #different types - different colours
+    - match: '(?<=Type=)Integer'
+      scope: constant.numeric.vcf
+    - match: '(?<=Type=)Float'
+      scope: markup.deleted.vcf
+    - match: '(?<=Type=)Flag'
+      scope: storage.type.vcf
+    - match: '(?<=Type=)Character'
+      scope: chr.vcf
+    - match: '(?<=Type=)String'
+      scope: name.id.vcf
+    #description
+    - match: '(?<=Description=)".*"'
+      scope: chrStart.vcf
+    - match: '(?<=Description=).*?(?=[,>])'
+      scope: markup.deleted.vcf
+    - match: '$'
+      pop: true
+
+  header_filter:
+    - meta_scope: aaC.vcf
+    #ID section
+    - match: '(?<=ID=).*?(?=,)'
+      scope: markup.deleted.vcf
+    #description
+    - match: '(?<=Description=)".*"'
+      scope: chrStart.vcf
+    - match: '(?<=Description=).*?(?=[,>])'
+      scope: markup.deleted.vcf
+    - match: '$'
+      pop: true
+
+  header_format:
+    - meta_scope: aaG
+    - match: '(?<=ID=).*?(?=,)'
+      scope: markup.deleted.vcf
+    #different types - different colours
+    - match: '(?<=Type=)Integer'
+      scope: constant.numeric.vcf
+    - match: '(?<=Type=)Float'
+      scope: markup.deleted.vcf
+    - match: '(?<=Type=)Character'
+      scope: chr.vcf
+    - match: '(?<=Type=)String'
+      scope: name.id.vcf
+    #description
+    - match: '(?<=Description=)".*"'
+      scope: chrStart.vcf
+    - match: '(?<=Description=).*?(?=[,>])'
+      scope: markup.deleted.vcf
+    - match: '$'
+      pop: true
+
+  header_alt:
+    - meta_scope: aaI.vcf
+    #ID section
+    - match: '(?<=ID=).*?(?=,)'
+      scope: markup.deleted.vcf
+    #description
+    - match: '(?<=Description=)".*"'
+      scope: chrStart.vcf
+    - match: '(?<=Description=).*?(?=[,>])'
+      scope: markup.deleted.vcf
+    - match: '$'
+      pop: true
+
+  header_contig:
+    - meta_scope: aaH.vcf
+    #ID section
+    - match: '(?<=ID=).*?(?=,)'
+      scope: markup.deleted.vcf
+    #description
+    - match: '(?<=URL=).*?(?=[\,>])'
+      scope: aaL.vcf
+    - match: '$'
+      pop: true
+
+  header_sample:
+    - meta_scope: aaM.vcf
+    #ID section
+    - match: '(?<=ID=).*?(?=,)'
+      scope: markup.deleted.vcf
+    #description
+    - match: '(?<=Description=).*?(?=[,>])'
+      scope: markup.deleted.vcf
+    - match: '(?<=Description=).*?(?=[,>])'
+      scope: markup.deleted.vcf
+    - match: '$'
+      pop: true
