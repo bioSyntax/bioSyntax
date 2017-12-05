@@ -1,0 +1,14 @@
+fixedStep chrom=chr3 start=400601 step=100
+11
+22
+33
+33
+333
+variableStep chrom=chrX start=9001 step=1
+33
+324
+35334
+34333
+0
+0
+0

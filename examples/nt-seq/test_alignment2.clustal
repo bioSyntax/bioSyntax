@@ -1,0 +1,9 @@
+CLUSTAL W (1.82) multiple sequence alignment
+
+abc   GCAUGCAUCUGCAUACGUACGUACGCAUGCAUCA
+def   ----------------------------------
+xyz   ----------------------------------
+
+abc   GUCGAUACAUACGUACGUCGUACGUACGU-CGAC
+def   ---------------CGCGAUGCAUGCAU-CGAU
+xyz   -----------CAUGCAUCGUACGUACGCAUGAC
