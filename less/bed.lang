@@ -1,0 +1,59 @@
+# Bed language definition file for less pipe
+# bioSyntax v0.1
+# Depends on sam.style + bioSyntax.outlang
+
+# Comment or UCSC Track information
+# is lines beginning with "#""
+comment start "#"
+#environment comment = "#" begin
+#  drop = '$' exitall #drop at end of line
+#  comment = "[.]+"
+#end
+
+# Bed Data
+# Column 1: chr name
+environment push1 start '^(?=[A-Za-z])' begin
+  drop = '$' exitall # stops multi-line searching
+  chr = '^\S+'
+
+  # Column 2: chr start
+  environment push2 = '\t?' begin
+    drop = '(?=$)' exitall
+    chrStart = '\A\d+'
+
+    # Column 3: chr end
+    environment push3 = '\t?' begin
+      drop = '(?=$)' exitall
+      chrStart = '\A\d+'
+
+      # Column 4: entry name
+      environment push4 = '\t?' begin
+        drop = '(?=$)' exitall
+        null = '\A\S+'
+
+        # Column 5: score (0-1000)
+        # TODO make full range; currently 0-100 by ~200s
+        environment push5 = '\t?' begin
+          drop = '(?=$)' exitall
+          gradbw1 = '\A0(?=\t)'
+          gradbw3 = '\A[1-9](?=\t)'
+          gradbw3 = '\A[1-9][0-9](?=\t)'
+          gradbw6 = '\A[12][0-9][0-9](?=\t)'
+          gradbw8 = '\A[34][0-9][0-9](?=\t)'
+          grad3bw10 = '\A[56][0-9][0-9](?=\t)'
+          gradbw10b = '\A[78][0-9][0-9](?=\t)'
+          gradbw10i = '\A\d+(?=\t)'
+
+          # Column 6: Feature Strand
+          environment push6 = '\t?' begin
+            drop = '(?=$)' exitall
+            ntT = '\A\+'
+            ntG = '\A\-'
+            ntN = '\A\S'
+
+          end #col6
+        end # col5
+      end # col4
+    end # col3
+  end # col2
+end # bed data section

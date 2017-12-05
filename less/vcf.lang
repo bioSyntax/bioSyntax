@@ -1,0 +1,277 @@
+# VCF language definition file for less pipe
+# bioSyntax v0.1
+# Depends on vcf.style + bioSyntax-vcf.outlang
+
+# Variables ----------------------------------
+vardef NUCLEOTIDE = '[ATCGNXatcgnxRYSWKMBVDH]'
+vardef PHRED = '[!-K]' #PHRED 1.8
+
+vardef NUMERICTAG = '(Number=|Type=|Date=|Version=)'
+vardef QUOTETAG = '(Description=)'
+vardef STRINGTAG = '(\w+=)' # all others
+
+# Header Area -------------------------------
+state comment start '^#[#]?' begin
+  endline = '$' exit
+ 
+  # fileformat
+  state header = 'fileformat=' begin
+   header = '\S++' exitall
+  end
+
+  state null = 'fileDate=' begin
+    numeric = '\S++' exitall
+  end
+
+  state null = 'source=' begin
+    software = '\S*' exitall
+  end
+
+  # header line
+  state header = 'CHROM' begin
+    drop = '(?=$)' exitall
+    header = '[\S\t]+'
+  end
+
+  # FILTER
+  state keywordi4 = 'FILTER=' begin
+    drop = '(?=$)' exitall
+    quoteString delim '"' '"'
+    string = '(?<==)\S+?(?=[,>])'
+    string = '(?<=,)\S+?(?=[,>])'
+    keywordi4 = '[<>]'
+    keyword4 = '[A-Za-z0-9]+(?==)'
+  end
+
+  # FORMAT
+  state keywordi5 = 'FORMAT=<' begin
+    drop = '(?=$)' exitall
+    keywordi5 = '>'
+
+    state keyword5 = '(Number=|Type=)' begin
+      numeric = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+
+    state keyword5 = '\w+=' begin
+      string = '\w+'
+      quoteString delim '"' '"'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+  end
+
+  # INFO
+  state keywordi6 = 'INFO=<' begin
+    drop = '(?=$)' exitall
+    keywordi5 = '>'
+
+    state keyword6= '(Number=|Type=)' begin
+      numeric = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+
+    state keyword6= '\w+=' begin
+      string = '\w+'
+      quoteString delim '"' '"'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+  end
+
+  # ALT SAMPLE PEDIGREE
+  state keyword3i = '(ALT|SAMPLE|PEDIGREE)=<' begin
+    drop = '(?=$)' exitall
+    keyword3i = '>'
+
+    state keyword3 = '(Number=|Type=)' begin
+      numeric = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+
+    state keyword3 = '\w+=' begin
+      string = '\w+'
+      quoteString delim '"' '"'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+  end
+
+  # contig
+  state keywordi5 = 'contig=<' begin
+    drop = '(?=$)' exitall
+    keywordi6 = '>' exit
+
+    state chr = '(ID=)' begin
+      chr = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+
+    state url = '(URL=)' begin
+      chr = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+
+    state chrStart = '\w+=' begin
+      chrStart = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+  end
+
+  # reference
+  state null = '(reference=|assembly=)' begin
+    drop = '(?=$)' exitall
+    keyword3 = '\S+'
+  end
+
+
+  # Other
+  state keywordi6 = '[\w\\.]+=<' begin
+    drop = '(?=$)' exit
+    keywordi5 = '>'
+
+    # Numeric Descriptors
+    state keyword6= '(Number=|Type=|Date=|Version=)' begin
+      numeric = '\w+'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+
+    # String Descriptors
+    state keyword6= '\w+=' begin
+      string = '\w+'
+      quoteString delim '"' '"'
+      drop = ',' exit
+      drop = '(?=>)' exit
+    end
+  end
+end
+
+# Data -------------------------------------
+
+state chr = '^[^#]' begin
+  drop = '$' exitall
+
+  # Column 1: CHROM
+  chr = '\A\S+'
+
+  # Column 2: POS
+  state push2 = '\t' begin
+    drop = '(?=$)' exitall
+    chrStart = '\d+'
+
+    # Column 3: ID
+    state push3 = '\t' begin
+      drop = '(?=$)' exitall
+      comment = "."
+      string = 'rs[0-9]+'
+
+      # Column 4,5: REF
+      # weird... no tab between 4 and 5 in data
+      state push45 = '\t' begin
+        drop = '(?=$)' exitall
+        ntA = '[Aa]'
+        ntT = '[Tt]'
+        ntG = '[Gg]'
+        ntC = '[Cc]'
+        ntN = '[Nn]'
+
+        # Column 6: QUAL
+        state push6 = '\t' begin
+          drop = '(?=$)' exitall
+          #Quality below 10
+          comment = ".(?=\t)"
+          string = '[0-9](?=\t)'
+
+          #Quality above 10
+          numeric = '[\d]++'
+            #numeric = '[\d\.\-]+'
+
+
+          # Column 7: FILTER
+          state push7 = '\t' begin
+            drop = '(?=$)' exitall
+            bon = "PASS"
+            mal = "FAIL"
+            comment = "."
+
+            # Column 8: INFO
+            state push8 = '\t' begin
+              drop = '(?=$)' exitall
+              keyword6= '\A\w+='
+              numeric = '\A[\d\\.\\-]+(?=(;|\t))'
+              string = '\A[\w]+(?=(;|\t))'
+              null = '\A;'
+
+              # Column 9: FORMAT
+              state push9 = '\t' begin
+                drop = '(?=$)' exitall
+                keyword5 = '\A[A-Za-z]+'
+                null = ":"
+
+                # Column 10+: DATA
+                # the \A matches start of string
+                # and prevents backtracking
+                # otherwise read times are exponential+
+                # with column width
+                state ntA = '\A(?=\t?)' begin
+                  drop = '\A(?=$)' exitall
+
+                  # To prevent DATA highlighting
+                  # uncomment next line
+                  #null = '\A.++'
+
+                  # Simple highlighting (digit / punct.)
+                  null = '\A\t\./\.' # no data
+                  null = '\A(\:\,)'  # punctuation
+
+                  string = '\A\/' # Phased
+                  keyword3 = '\A\|' # Unphased
+                  numeric = '[0-9\-]++' # numeric
+
+
+                   # No data split/data
+                  #null = '\A\t\./\.'
+                  #null = ":"
+                  #null = ","
+
+                  # # Genotype Field (GT)
+                  # # handles upto 5-ploidy
+                  # # " 0/0 ... 0|1|5"
+                  # # This substantially slows down VCF
+                  # state GT = '\A\t(?=[0-9](\/|\|))' begin
+                  #   drop = '\A(?=[$:\t])' exit
+                  #   #drop = '\A(?=:)' exit
+                  #   #drop = '\A(?=\t)' exit
+
+                  #   ntN = '\A0'
+                  #   ntC = '\A1'
+                  #   ntA = '\A2'
+                  #   ntG = '\A3'
+                  #   ntT = '\A4'
+                  #   header = '\A[5-9]'
+
+                  #   string = '\A\/' # unphased
+                  #   keyword3 = '\A\|' # phased
+                  # end
+                  #
+                  ## Remaining Fields
+                  #numeric = '[0-9]++'
+
+                end #col10+
+              end #col9
+            end #col8
+          end #col7
+        end #col6
+      end #col45
+    end #col3
+  end #col2
+end #data / col1
+
+

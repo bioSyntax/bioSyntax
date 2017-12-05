@@ -1,0 +1,46 @@
+// SAM Style File -- less
+// bioSyntax v0.1
+
+// Header ID
+header black b ;
+
+// Nucleotide Coloring
+ntA darkgreen ;
+ntC darkred ;
+ntG brown ;
+ntT darkblue ;
+ntN gray ;
+
+// Switch (Good / Bad)
+bon darkblue ;
+mal darkred ;
+
+// CIGAR String
+// match default ;
+mismatch red ;
+clip gray i ;
+deletion yellow ;
+insertion purple ;
+
+// Class
+numeric blue ;
+numeric2 yellow ;
+string red ;
+comment gray i ;
+keyword purple ;
+
+// Keywords
+sample purple ;
+software yellow i ;
+commandline yellow ;
+chr green b ;
+chrStart green ;
+
+// Gradient
+gradbw1 teal ;
+gradbw3 teal b ;
+gradbw6 pink ;
+gradbw8 orange ;
+gradbw10 brightorange ;
+gradbw10b brightgreen b ;
+gradbw10i brightgreen i ;

@@ -1,0 +1,78 @@
+extension "bioSyntax"
+version 0.1
+styletemplate "\x1b[$stylem$text\x1b[m"
+styleseparator ";"
+
+bold "01$style"
+underline "07$style"
+italics "03$style"
+color "$style"
+
+colormap
+# Nucleotide Colors
+"black" "30;48:5:253"      # header
+"darkgreen" "30;48:5:10"   # A
+"darkred" "30;48:5:09"     # C, mal
+"darkblue" "30;48:5:33"    # T, bon
+"brown" "30;48:5:214"      # G
+"teal" "38:5:0;48:5:15"        # N / REF
+#
+#
+# Text Class
+"gray" "38:5:240;48:5:255" # Comment
+"blue" "38:5:62"           # Numeric, Version
+"yellow" "38:5:208"        # Numeric2, Keyword4, software
+#
+#
+# Keyword
+"red" "38:5:160"           # Keyword, string, quoteString
+"green" "38:5:28"          # Keyword2, chr, chrStart 
+"purple" "38:5:39"         # Keyword3, url, library
+"cyan" "38:5:54"           # Keyword5
+"pink" "38:5:136"          # Keyword6
+"orange" "38:5:166"        # Keyword7
+"brightgreen" "38:5:22"    # Keyword8
+"brightorange" "38:5:18"   # Keyword9
+default "30;"
+end
+
+####################
+# Code color help
+#####################
+
+# 256 code color control template:
+# Code            : \033[AA;FF;BBm
+# AA (attributes) : 00|01|03|04|05|07|22|23|24|25|27
+# FF (foreground) : 38;05;color
+# BB (background) : 48;05;color
+# color           : 000-255
+# see: http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+#
+
+# True-color (24 bit) - bioSyntax should be using 256-colors
+# FF (foreground) : 38:2:r:g:b
+# BB (background) : 48:2:r:g:b
+
+# Attributes meaning
+# 00  Reset
+# 01  Bold
+# 03  Italic
+# 04  Underline
+# 05  Blink (doesn't work when a background is set)
+# 07  Reverse (swap foreground and background)
+# 22  No Bold
+# 23  No Italic
+# 24  No Underline
+# 25  No Blink
+# 27  No Reverse
+
+# Any of AA,FF,BB may be omited.
+# Reset code (default color/attribute): \033[m
+
+# Examples:
+# -> Hello world in color 226 (=> yellow):
+#    echo -e "\033[38;05;226mHello, World"
+# -> Hello world in bold blanking yellow:
+#    echo -e "\033[01;05;38;05;226mHello, World"
+# -> Hello world in bold yellow with a red background:
+#    echo -e "\033[01;38;05;226;48;05;196mHello, World"

@@ -1,0 +1,102 @@
+# GTF language definition file for less pipe
+# bioSyntax v0.1
+# Depends on vcf.style + bioSyntax-vcf.outlang
+
+# Comment or UCSC Track information
+# is lines beginning with "#""
+comment start "#"
+
+
+# GTF Data
+# Column 1: chr or seqname
+environment push1 start '^(?=[A-Za-z])' begin
+  drop = '$' exitall # stops multi-line searching
+  chr = '^\S++'
+
+  # Column 2: source of annotation
+  environment push2 = '\t?' begin
+    drop = '(?=$)' exitall
+    software = '\A\S++'
+
+    # Column 3: feature type
+    environment push3 = '\t?' begin
+      drop = '(?=$)' exitall
+      # GTF Specification Types
+      ## CDS, start_codon, stop_codon
+      ## 5UTR, 3UTR, inter, inter_CNS, intron_CNS, exon
+      # Other used types (non-specification)
+      # gene, transcript
+
+      keyword2b = 'gene'
+      keyword2i = 'transcript'
+      keyword5 = 'exon'
+
+      nob = 'CDS'
+      bon = 'start_codon'
+      mal = 'stop_codon'
+      comment = '[35]?UTR'
+      comment = 'inter'
+      comment = 'inter_CNS'
+      comment = 'intron_CNS'
+
+      comment = '\A\S+' # Non-standard Catch-all
+
+      # Column 4: chr Start
+      environment push4 = '\t?' begin
+        drop = '(?=$)' exitall
+        chrStart = '\A\d+'
+
+        # Column 5: chr End
+        environment push5 = '\t?' begin
+          drop = '(?=$)' exitall
+          chrStart = '\A\d+'
+
+          # Column 6: Feature Score (0-1000)
+          environment push6 = '\t?' begin
+            drop = '(?=$)' exitall
+            numeric = '\A[.\d]+'
+
+            # Column 7: Feature Strand
+            environment push7 = '\t?' begin
+              drop = '(?=$)' exitall
+              ntT = '\A\+'
+              ntG = '\A\-'
+              ntN = '\A\S'
+
+              # Column 8: Feature Frame (.,0,1,2)
+              # TODO: possibly add strand-detection here
+              # and merge column 7+8
+              environment push8 = '\t?' begin
+                drop = '(?=$)' exitall
+                keyword6 = '\A\.'
+                keyword6 = '\A0'
+                keyword4 = '\A1'
+                keyword = '\A2'
+
+                # Column 9: Attributes
+                environment push9 = '\t?' begin
+                  drop = '(?=$)' exitall
+
+                  # gene_id / transcript_id special
+                  environment push10 = '(gene_id |transcript_id |gene_name )' begin
+                    drop = '(?=$)' exitall
+                    drop = '(?=;)' exit
+                    keywordi2 delim "\"" "\""
+                  end
+
+                  # Generic Numeric
+                  numeric = '"[\d\.e]++"' #quoted
+                  numeric = '\b\d++;' #unquoted
+
+                  # Generic String Quoted
+                  quoteString = '"\S+"'
+
+                end #col8
+              end #col8
+            end #col7
+          end #col6
+        end # col5
+      end # col4
+    end # col3
+  end # col2
+end # bed data section
