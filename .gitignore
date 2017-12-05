@@ -1,0 +1,7 @@
+local/*
+*.Rproj
+*.Rproj.user
+.Rhistory
+.swp
+*.swp
+examples/vcf/test_1000genomes.vcf
