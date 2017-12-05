@@ -1,0 +1,1 @@
+au BufRead,BufNewFile *.clustal set filetype=clustal
