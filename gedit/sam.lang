@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ebedthan - 2017 10 22
+
+Color Scheme for SAM Files
+Associates with fasta files (.sam)
+
+Using 'bioKate color theme'
+-->
+
+<language id="sam" _name="SAM" version="2.0" _section="Scientific">
+
+  <metadata>
+    <property name="mimetypes">text/sam</property>
+    <property name="globs">*.sam</property>
+  </metadata>
+
+  <styles>
+    <style id="header_HD" _name="Header_HD" />
+    <style id="header_SQ" _name="Header_SQ" />
+    <style id="header_RG" _name="Header_RG" />
+    <style id="header_PG" _name="Header_PG" />
+    <style id="header_CO" _name="Header_CO" />
+    <style id="header_s" _name="Header_s" />
+    <style id="A"      _name="A_"      />
+    <style id="B"      _name="B_"      />
+    <style id="C"      _name="C_"      />
+    <style id="D"      _name="D_"      />
+    <style id="E"      _name="E_"      />
+    <style id="F"      _name="F_"      />
+    <style id="G"      _name="G_"      />
+    <style id="H"      _name="H_"      />
+    <style id="I"      _name="I_"      />
+    <style id="K"      _name="K_"      />
+    <style id="L"      _name="L_"      />
+    <style id="M"      _name="M_"      />
+    <style id="N"      _name="N_"      />
+    <style id="P"      _name="P_"      />
+    <style id="Q"      _name="Q_"      />
+    <style id="R"      _name="R_"      />
+    <style id="S"      _name="S_"      />
+    <style id="T"      _name="T_"      />
+    <style id="V"      _name="V_"      />
+    <style id="W"      _name="W_"      />
+    <style id="Y"      _name="Y_"      />
+    <style id="Z"      _name="Z_"      />
+    <style id="X"      _name="X_"      />
+    <style id="Stop"      _name="stop_"    />
+    <style id="Indel"      _name="indel_"  />
+  </styles>
+
+  <definitions>
+    <context id="sam">
+      <include>
+
+       <context id="Header_1" style-ref="header_HD">
+         <start>^@HD</start>
+         <end>$</end>
+       </context>
+       
+       <context id="Header_2" style-ref="header_SQ">
+         <start>^@SQ</start>
+       </context>
+       
+       <context id="Header_3" style-ref="header_RG">
+         <match>^@RG</match>
+       </context>
+       
+       <context id="Header_4" style-ref="header_PG">
+         <match>^@PG</match>
+       </context>
+       
+       <context id="Header_5" style-ref="header_CO">
+         <match>^@CO</match>
+       </context>
+       
+       <context id="Header_6" style-ref="header_s">
+         <match>^</match>
+       </context>
+       
+       <context id="keywords" style-ref="keywords">
+         <keyword>VN</keyword>
+         <keyword>SN</keyword>
+         <keyword>ID</keyword>
+         <keyword>LN</keyword>
+         <keyword>SM</keyword>
+         <keyword>PL</keyword>
+         <keyword>PU</keyword>
+         <keyword>CL</keyword>
+         <keyword>SO</keyword>
+         <keyword>SB</keyword>
+       </context>
+       
+       <context id="invalid" style-ref="invalid">
+         <match>(?<=[A-Z]{2}:)</match>
+       </context>
+       
+       <context id="constant_numeric" style-ref="header_eq">
+         <match>(?<=VN:)(.+?(?=\s+[A-Z]{2}:)|.+$)</match>
+       </context>
+       
+       <context id="" style-ref="constant_numeric">
+         <match>(?<=SO:)(.+?(?=\s+[A-Z]{2}:)|.+$)</match>
+       </context>
+       
+       <context id="c" style-ref="C">
+         <match>[Cc]*</match>
+       </context>
+       
+       <context id="d" style-ref="D">
+         <match>[Dd]*</match>
+       </context>
+       
+       <context id="e" style-ref="E">
+         <match>[Ee]*</match>
+       </context>
+       
+       <context id="f" style-ref="F">
+         <match>[Ff]*</match>
+       </context>
+       
+       <context id="g" style-ref="G">
+         <match>[Gg]*</match>
+       </context>
+       
+       <context id="h" style-ref="H">
+         <match>[Hh]*</match>
+       </context>
+       
+       <context id="i" style-ref="I">
+         <match>[Ii]*</match>
+       </context>
+       
+       <context id="k" style-ref="K">
+         <match>[Kk]*</match>
+       </context>
+       
+       <context id="l" style-ref="L">
+         <match>[Ll]*</match>
+       </context>
+       
+       <context id="m" style-ref="M">
+         <match>[Mm]*</match>
+       </context>
+       
+       <context id="n" style-ref="N">
+         <match>[Nn]*</match>
+       </context>
+       
+       <context id="p" style-ref="P">
+         <match>[Pp]*</match>
+       </context>
+       
+       <context id="q" style-ref="Q">
+         <match>[Qq]*</match>
+       </context>
+       
+       <context id="r" style-ref="R">
+         <match>[Rr]*</match>
+       </context>
+       
+       <context id="s" style-ref="S">
+         <match>[Ss]*</match>
+       </context>
+       
+       <context id="t" style-ref="T">
+         <match>[Tt]*</match>
+       </context>
+       
+       <context id="v" style-ref="V">
+         <match>[Vv]*</match>
+       </context>
+       
+       <context id="w" style-ref="W">
+         <match>[Ww]*</match>
+       </context>
+       
+       <context id="y" style-ref="Y">
+         <match>[Yy]*</match>
+       </context>
+       
+       <context id="z" style-ref="Z">
+         <match>[Zz]*</match>
+       </context>
+       
+       <context id="x" style-ref="X">
+         <match>[Xx]*</match>
+       </context>
+       
+       <context id="stop" style-ref="Stop">
+         <match>\*</match>
+       </context>
+       
+       <context id="indel" style-ref="Indel">
+         <match>\-</match>
+       </context>
+       
+      </include>
+    </context>
+  </definitions>
+</language>

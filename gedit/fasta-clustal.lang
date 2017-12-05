@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ebedthan - 2017 10 22
+
+Color Scheme for DNA/RNA Sequences-Clustal colors
+Associates with fasta files (.fa; .fasta)
+
+Using 'bioKate color theme'
+
+A   - Dark Green
+T\U - Red
+G   - Brown
+C   - Blue
+-->
+
+<language id="fast" _name="Fasta-clustal" version="2.0" _section="Scientific">
+
+  <metadata>
+    <property name="mimetypes">text/fastza</property>
+    <property name="globs">*.faa</property>
+  </metadata>
+
+  <styles>
+    <style id="header" _name="Header_" />
+    <style id="clA"      _name="A_"      />
+    <style id="clB"      _name="B_"      />
+    <style id="clC"      _name="C_"      />
+    <style id="clD"      _name="D_"      />
+    <style id="clE"      _name="E_"      />
+    <style id="clF"      _name="F_"      />
+    <style id="clG"      _name="G_"      />
+    <style id="clH"      _name="H_"      />
+    <style id="clI"      _name="I_"      />
+    <style id="clK"      _name="K_"      />
+    <style id="clL"      _name="L_"      />
+    <style id="clM"      _name="M_"      />
+    <style id="clN"      _name="N_"      />
+    <style id="clP"      _name="P_"      />
+    <style id="clQ"      _name="Q_"      />
+    <style id="clR"      _name="R_"      />
+    <style id="clS"      _name="S_"      />
+    <style id="clT"      _name="T_"      />
+    <style id="clV"      _name="V_"      />
+    <style id="clW"      _name="W_"      />
+    <style id="clY"      _name="Y_"      />
+    <style id="clZ"      _name="Z_"      />
+    <style id="clX"      _name="X_"      />
+    <style id="Stop"      _name="stop_"    />
+    <style id="Indel"      _name="indel_"  />
+  </styles>
+
+  <definitions>
+    <context id="fast">
+      <include>
+
+       <context id="Header" style-ref="header">
+         <start>^\></start>
+         <end>$</end>
+       </context>
+       
+       <context id="a" style-ref="clA">
+         <match>[Aa]*</match>
+       </context>
+       
+       <context id="b" style-ref="clB">
+         <match>[Bb]*</match>
+       </context>
+       
+       <context id="c" style-ref="clC">
+         <match>[Cc]*</match>
+       </context>
+       
+       <context id="d" style-ref="clD">
+         <match>[Dd]*</match>
+       </context>
+       
+       <context id="e" style-ref="clE">
+         <match>[Ee]*</match>
+       </context>
+       
+       <context id="f" style-ref="clF">
+         <match>[Ff]*</match>
+       </context>
+       
+       <context id="g" style-ref="clG">
+         <match>[Gg]*</match>
+       </context>
+       
+       <context id="h" style-ref="clH">
+         <match>[Hh]*</match>
+       </context>
+       
+       <context id="i" style-ref="clI">
+         <match>[Ii]*</match>
+       </context>
+       
+       <context id="k" style-ref="clK">
+         <match>[Kk]*</match>
+       </context>
+       
+       <context id="l" style-ref="clL">
+         <match>[Ll]*</match>
+       </context>
+       
+       <context id="m" style-ref="clM">
+         <match>[Mm]*</match>
+       </context>
+       
+       <context id="n" style-ref="clN">
+         <match>[Nn]*</match>
+       </context>
+       
+       <context id="p" style-ref="clP">
+         <match>[Pp]*</match>
+       </context>
+       
+       <context id="q" style-ref="clQ">
+         <match>[Qq]*</match>
+       </context>
+       
+       <context id="r" style-ref="clR">
+         <match>[Rr]*</match>
+       </context>
+       
+       <context id="s" style-ref="clS">
+         <match>[Ss]*</match>
+       </context>
+       
+       <context id="t" style-ref="clT">
+         <match>[Tt]*</match>
+       </context>
+       
+       <context id="v" style-ref="clV">
+         <match>[Vv]*</match>
+       </context>
+       
+       <context id="w" style-ref="clW">
+         <match>[Ww]*</match>
+       </context>
+       
+       <context id="y" style-ref="clY">
+         <match>[Yy]*</match>
+       </context>
+       
+       <context id="z" style-ref="clZ">
+         <match>[Zz]*</match>
+       </context>
+       
+       <context id="x" style-ref="clX">
+         <match>[Xx]*</match>
+       </context>
+       
+       <context id="stop" style-ref="Stop">
+         <match>\*</match>
+       </context>
+       
+       <context id="indel" style-ref="Indel">
+         <match>\-</match>
+       </context>
+       
+      </include>
+    </context>
+  </definitions>
+</language>

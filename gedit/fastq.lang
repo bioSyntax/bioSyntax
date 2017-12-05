@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ababaian - 2017 01 26
+
+Color Scheme for DNA/RNA Sequences
+Associates with fasta files (.fa; .fasta)
+
+Using 'Kate color theme'
+
+A   - Dark Green
+T\U - Red
+G   - Brown
+C   - Blue
+-->
+<language id="fq" _name="Fastq" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/fasta</property>
+    <property name="globs">*.fq;*.fastq</property>
+  </metadata>
+
+  <styles>
+    <style id="header"  _name="Header_"  map-to="def:statement" />
+    <style id="mid"     _name="MidSign" map-to="def:comment" />
+    <style id="A"      _name="A_"       map-to="fq:A" />
+    <style id="T"      _name="T_"       map-to="fq:T" />
+    <style id="G"      _name="G_"       map-to="fq:G" />
+    <style id="C"      _name="C_"       map-to="fq:C" />
+  </styles>
+
+  <definitions>
+    <context id="fq">
+      <include>
+
+	<context id="Headers" style-ref="header">
+          <start>(?&lt;=^)@</start>
+	  <end>$</end>
+        </context>
+
+	<context id="Mid" style-ref="mid">
+          <match>^\+(?=$)</match>
+        </context>
+
+        <context id="a" style-ref="A">
+          <match>[Aa]*</match>
+        </context>
+
+        <context id="t" style-ref="T">
+          <match>[TtUu]*</match>
+        </context>
+
+        <context id="g" style-ref="G">
+          <match>[Gg]*</match>
+        </context>
+
+        <context id="c" style-ref="C">
+          <match>[Cc]*</match>          
+        </context>
+
+      </include>
+    </context>
+  </definitions>
+</language>

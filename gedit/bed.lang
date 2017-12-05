@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: bed
+Filetypes: .bed
+Maintainer: bioSyntax
+Version: v0
+
+Color Scheme for multiple sequence alignment
+in BED format
+
+-->
+<language id="bed" _name="Bed" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/bed</property>
+    <property name="globs">*.bed</property>
+  </metadata>
+
+  <styles>
+
+    <style id="chrom"        _name="Chrom"    />
+    <style id="coords"       _name="Chrom"    />
+    <style id="strand"       _name="Coords"   />
+    <style id="bedName"      _name="BedName" />
+
+  </styles>
+
+  <definitions>
+    <context id="bed">
+      <include>
+
+	<context id="1_chr" style-ref="chrom">
+	  <match extended="true">
+            ^\w+
+	  </match>
+        </context>
+
+	<context id="2_coords" style-ref="coords">
+	  <match extended="true">
+            (?&lt;=\t)[0-9]+\t[0-9]+(?=\t)
+	  </match>
+        </context>
+
+	<context id="3_bedName" style-ref="bedName">
+	  <match extended="true">
+	    (?&lt;=\t)[A-Za-z()][^\s\t]+(?=\t)
+	  </match>
+        </context>
+
+	<context id="end_bedName" style-ref="bedName">
+	  <match extended="true">
+	    (?&lt;=\t)[A-Za-z()][^\s\t]+$
+	  </match>
+        </context>
+
+	<context id="6_strand" style-ref="strandplus">
+	  <match extended="true">
+            \t[+]\t
+	  </match>
+        </context>
+
+	<context id="6_end_strand" style-ref="strandplus">
+	  <match extended="true">
+            \t[+]$
+	  </match>
+        </context>
+        
+        <context id="7_strand" style-ref="strandminus">
+	  <match extended="true">
+            \t[-]\t
+	  </match>
+        </context>
+
+	<context id="7_end_strand" style-ref="strandminus">
+	  <match extended="true">
+            \t[-]$
+	  </match>
+        </context>
+        
+        <context id="8_strand" style-ref="strandnone">
+	  <match extended="true">
+            \t[.]\t
+	  </match>
+        </context>
+
+	<context id="8_end_strand" style-ref="strandnone">
+	  <match extended="true">
+            \t[.]$
+	  </match>
+        </context>
+
+      </include>
+    </context>
+  </definitions>
+</language>
