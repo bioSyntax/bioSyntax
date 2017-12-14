@@ -51,8 +51,11 @@ if  [ "$(uname)" == "Darwin" ]; then
 		TPATH=/usr/local/bin/
 		if ! grep -q "bioSyntax" ~/.bash_profile; then sudo cat /bioSyntax/less/bp_append.txt >> ~/.bash_profile; fi
 		sudo cp "/bioSyntax/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
+		sudo chmod 0644 "${TPATH}/src-hilite-lesspipe.sh"
 		sudo cp "/bioSyntax/less/biosyntax.outlang" "${TPATH}"
+		sudo chmod 0644 "${TPATH}/biosyntax.outlang"
 		sudo cp "/bioSyntax/less/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo chmod 0644 "${TPATH}/biosyntax-vcf.outlang"
 	else
 		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$1"
 		exit 1
