@@ -87,7 +87,13 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		sudo apt-get install source-highlight
 		FPATH=/usr/share/source-highlight/
 		TPATH=/usr/share/source-highlight/
-		if ! grep -q "bioSyntax" ~/.bashrc; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc; fi
+		if [ `echo $SHELL` == "/bin/bash" ]; then
+			if ! grep -q "bioSyntax" ~/.bashrc; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc; fi
+		elif [ `echo $SHELL` == "/bin/zsh" ]; then
+			if ! grep -q "bioSyntax" ~/.zshrc; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zshrc; fi
+		else
+			if ! grep -q "bioSyntax" ~/.profile; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.profile; fi
+		fi
 		sudo cp "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
 		chmod 755 "${TPATH}/src-hilite-lesspipe.sh"
 		sudo cp "/less/biosyntax.outlang" "${TPATH}"
