@@ -98,16 +98,13 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 else
 	if [ "$1" == "sublime" ]; then
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Windows Sublime Text 3.\\n" "$2"
-		FPATH=%APPDATA%/Roaming/Sublime Text 3/Packages/User/bioSyntax/
+		FPATH=%APPDATA%/Roaming/Sublime\ Text\ 3/Packages/User/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then mkdir "${FPATH}"; fi
 		TPATH=C:/Program Files/Sublime Text 3/Packages/
 	elif [ "$1" == "gedit" ]; then
 		printf "Setting up %s lang file(s) and bioKate theme for Windows Gedit.\\n" "$2"
-		# !!! GET THE WINDOWS PATHS FOR THE SYNTAX FILES AND THEME
-		#C:\Program Files\gedit\share\gtksourceview-2.0\language-specs\
-		#C:\Program Files\gedit\share\gtksourceview-2.0\styles\
-		FPATH=/
-		TPATH=/
+		FPATH=C:/Program Files/gedit/share/gtksourceview-2.0/styles/
+		TPATH=C:/Program Files/gedit/share/gtksourceview-2.0/styles/
 	elif [ "$1" == "vim" ]; then
 		printf "Setting up %s syntax file(s) and style file(s) for Windows vim.\\n" "$2"
 		if [ ! -e "$HOME/.vimrc" ]; then touch "$HOME/.vimrc"; fi
