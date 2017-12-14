@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: PDB Place-holder file (non-working)
+Filetypes: .pdb
+Maintainer: bioSyntax.org
+Version: v0.1ALPHA
+
+-->
+<language id="pdb" _name="PDB" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/pdb</property>
+    <property name="globs">*.pdb</property>
+  </metadata>
+
+  <styles>
+    <style id="chr"       _name="RefName"  map-to="biosyntax:chr"        />
+    <style id="chrStart"  _name="Coords"   map-to="biosyntax:chrStart"   />
+    <style id="numeric"   _name="Numeric"  map-to="biosyntax:numeric"    />
+    <style id="comment"   _name="Comment"  map-to="biosyntax:comment"    />
+  </styles>
+
+  <definitions>
+    <context id="faidx">
+      <include>
+        <context id="Column1" end-at-line-end="true" style-ref="chr">
+        <start>^</start>
+	<end>$</end>
+
+        <include>
+          <context id="Column2" style-ref="chrStart">
+            <start>\t</start>
+            <end>(?=$)</end>
+
+            <include>
+              <context id="Column3" style-ref="numeric">
+                <start>\t</start>
+                <end>(?=$)</end>
+
+                <include>
+                  <context id="Column45" style-ref="comment">
+                    <start>\t</start>
+                    <end>(?=$)</end>
+                  </context>
+                </include>
+
+              </context>
+            </include>
+
+          </context>
+        </include>
+
+      </context>
+      </include>
+    </context>
+  </definitions>
+</language>
