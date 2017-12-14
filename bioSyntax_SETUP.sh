@@ -38,7 +38,6 @@ if  [ "$(uname)" == "Darwin" ]; then
 		printf "Installing/updating brew and source-highlight for Less and setting up %s lang file(s) and style file(s) for Mac OSX Less.\\n" "$2"
 		which -s brew
 		if [[ $? != 0 ]] ; then
-   		#Install Homebrew
     		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		else
     		brew update
@@ -51,9 +50,9 @@ if  [ "$(uname)" == "Darwin" ]; then
 		FPATH=/usr/local/bin/
 		TPATH=/usr/local/bin/
 		if ! grep -q "bioSyntax" ~/.bash_profile; then sudo cat /less/bp_append.txt >> ~/.bash_profile; fi
-		sudo mv "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
-		sudo mv "/less/biosyntax.outlang" "${TPATH}"
-		sudo mv "/less/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo cp "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
+		sudo cp "/less/biosyntax.outlang" "${TPATH}"
+		sudo cp "/less/bioSyntax-vcf.outlang" "${TPATH}"
 	else
 		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$1"
 		exit 1
@@ -86,9 +85,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		FPATH=/usr/share/source-highlight/
 		TPATH=/usr/share/source-highlight/
 		if ! grep -q "bioSyntax" ~/.bashrc; then sudo cat /less/rc_append.txt >> ~/.bashrc; fi
-		sudo mv "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
-		sudo mv "/less/biosyntax.outlang" "${TPATH}"
-		sudo mv "/less/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo cp "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
+		sudo cp "/less/biosyntax.outlang" "${TPATH}"
+		sudo cp "/less/bioSyntax-vcf.outlang" "${TPATH}"
 	else
 		printf "ERROR: %s is not a valid/supported editor for Linux Ubuntu. Currently, bioSyntax is available for sublime, gedit, vim, and less for Linux Ubuntu.\\n" "$1"
 		exit 1
@@ -130,44 +129,43 @@ if [ "$1" == "sublime" ]; then
 	SOURCE="/sublime/"
 	THEME="Color Scheme - bioSyntax.sublime-package"
 	sudo chmod 0644 "${SOURCE}/${THEME}"
-	sudo mv "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+	sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+	FILES=("/sublime/*.sublime-syntax")
 	FILE=".sublime-syntax"
-	FILES=("bed" "clustal" "faidx" "fasta" "fasta-clustal" "fasta-hydro" "fasta-nt" "fasta-taylor" "fasta-zappo" "fastq" "flagstat" "gtf" "pdb" "sam" "vcf" "wig")
 elif [ "$1" == "gedit" ]; then
 	SOURCE="/gedit/"
 	THEME="bioKate.xml"
 	sudo chmod 0644 "${SOURCE}/${THEME}"
-	sudo mv "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+	sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+	FILES=("/gedit/*.lang")
 	FILE=".lang"
-	FILES=("bed" "clustal" "faidx" "fasta" "fasta-clustal" "fasta-cysteine" "fasta-hydrophobicity" "fasta-taylor" "fasta-zappo" "fastq" "gtf" "sam" "wig")
 elif [ "$1" == "vim" ]; then
 	SOURCE="/vim/"
-	THMFOLDER="${SOURCE}/ftdetect/" 
-	THEME=".vim"
+	THEMES=("/vim/ftdetect/*.vim")
+	FILES=("/vim/*.vim")
 	FILE=".vim"
-	FILES=("bed" "clustal" "faidx" "fasta" "fastq" "gtf" "pdb" "sam" "vcf")
 	if [ -z "$2" ]; then
-		for ((f=0; f<${#FILES[@]}; f++)); do
-			sudo chmod 0644 "${THMFOLDER}/${FILES[${f}]}${THEME}"
-			sudo mv "${THMFOLDER}/${FILES[${f}]}${THEME}" "${TPATH}"
+		for ((t=0; t<${#THEMES[@]}; t++)); do
+			sudo chmod 0644 "${THEMES[${t}]}"
+			sudo cp "${THEMES[${t}]}" "${TPATH}"
 		done
 	else
-		sudo chmod 0644 "${THMFOLDER}/${2}${THEME}"
-		sudo mv "${THMFOLDER}/${2}${THEME}" "${TPATH}"
+		sudo chmod 0644 "/vim/ftdetect/{$2}.vim"
+		sudo cp "/vim/ftdetect/{$2}.vim" "${TPATH}"
 	fi
 elif [ "$1" == "less" ]; then
 	SOURCE="/less/"
-	THEME=".style"
+	THEMES=("/less/*.style")
+	FILES=("/less/*.lang")
 	FILE=".lang"
-	FILES=("bed" "clustal" "faidx" "fasta" "fastq" "flagstat" "gtf" "pdb" "sam" "vcf")
 	if [ -z "$2" ]; then
-		for ((f=0; f<${#FILES[@]}; f++)); do
-			sudo chmod 0644 "${SOURCE}/${FILES[${f}]}${THEME}"
-			sudo mv "$${SOURCE}/{FILES[${f}]}${THEME}" "${TPATH}"
+		for ((t=0; t<${#THEMES[@]}; t++)); do
+			sudo chmod 0644 "${THEMES[${t}]}"
+			sudo cp "${THEMES[${t}]}" "${TPATH}"
 		done
 	else
-		sudo chmod 0644 "${SOURCE}/${2}${THEME}"
-		sudo mv "${SOURCE}/${2}${THEME}" "${TPATH}"
+		sudo chmod 0644 "/less/${2}.style"
+		sudo cp "/less/${2}.style" "${TPATH}"
 	fi
 else
 	 printf "ERROR: %s is not a valid/supported editor. Currently, bioSyntax is available for sublime, gedit, vim, and less.\\n" "$1"
@@ -177,12 +175,12 @@ fi
 # DOWNLOAD SYNTAX FILE(S), PLACE IN RIGHT DIRECTORY, CHANGE TO READ-ONLY
 if [ -z "$2" ]; then
 	for ((f=0; f<${#FILES[@]}; f++)); do
-		sudo chmod 0644 "${SOURCE}/${FILES[${f}]}${FILE}"
-		sudo mv "${SOURCE}/${FILES[${f}]}${FILE}" "${FPATH}"
+		sudo chmod 0644 "${FILES[${f}]}"
+		sudo cp "${FILES[${f}]}" "${FPATH}"
 	done
 else
 	sudo chmod 0644 "${SOURCE}/${2}${FILE}"
-	sudo mv "${SOURCE}/${2}${FILE}" "${FPATH}"
+	sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 fi
 
 printf "Installation successful. Restart %s and you will now have pretty %s formats! Thank you for your support!\\n" "$1" "$2"
