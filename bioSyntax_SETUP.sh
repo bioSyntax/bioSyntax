@@ -9,8 +9,8 @@
 # SYNTAX FILES FORMATS:
 #	- Sublime Text 3: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt, fasta-taylor, fasta-zappo, fastq, flagstat, gtf, pdb, sam, vcf, wig
 #	- Gedit: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt, fasta-taylor, fasta-zappo, fastq, gtf, pdb, sam, wig
-#	- Vim: bed, clustal, faidx, clustal, fasta, fastq, gtf, pdb, sam, vcf
-#	- Less: bed, clustal, faidx, clustal, fasta, fastq, flagstat, gtf, pdb, sam, vcf
+#	- Vim: bed, clustal, faidx, fasta, fastq, gtf, pdb, sam, vcf
+#	- Less: bed, clustal, faidx, fasta, fastq, flagstat, gtf, pdb, sam, vcf
 printf "bioSyntax is a syntax highlighting tool for computational biology. For more information, visit biosyntax.org.\\n"
 #cd -- "$(dirname "$BASH_SOURCE")"
 
@@ -148,7 +148,7 @@ elif [ "$1" == "vim" ]; then
 	THMFOLDER="${SOURCE}/ftdetect/" 
 	THEME=".vim"
 	FILE=".vim"
-	FILES=("bed" "clustal" "faidx" "clustal" "fasta" "fastq" "gtf" "pdb" "sam" "vcf")
+	FILES=("bed" "clustal" "faidx" "fasta" "fastq" "gtf" "pdb" "sam" "vcf")
 	if [ -z "$2" ]; then
 		for ((f=0; f<${#FILES[@]}; f++)); do
 			sudo chmod 0644 "${THMFOLDER}/${FILES[${f}]}${THEME}"
@@ -162,7 +162,7 @@ elif [ "$1" == "less" ]; then
 	SOURCE="/less/"
 	THEME=".style"
 	FILE=".lang"
-	FILES=("bed" "clustal" "faidx" "clustal" "fasta" "fastq" "flagstat" "gtf" "pdb" "sam" "vcf")
+	FILES=("bed" "clustal" "faidx" "fasta" "fastq" "flagstat" "gtf" "pdb" "sam" "vcf")
 	if [ -z "$2" ]; then
 		for ((f=0; f<${#FILES[@]}; f++)); do
 			sudo chmod 0644 "${SOURCE}/${FILES[${f}]}${THEME}"
