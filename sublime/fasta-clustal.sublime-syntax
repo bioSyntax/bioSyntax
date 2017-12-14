@@ -19,95 +19,95 @@ contexts:
 
     # match amino acids
     # Alanine (ALA)
-    - match: "[Aa]"
+    - match: "[Aa]++"
       scope: aaA
 
     # Aspartate/Asparagine (ASX)
-    - match: "[Bb]"
+    - match: "[Bb]++"
       scope: aaB
 
     # Cysteine (CYS)
-    - match: "[Cc]"
+    - match: "[Cc]++"
       scope: aaC
 
     # Aspartate (ASP)
-    - match: "[Dd]"
+    - match: "[Dd]++"
       scope: aaD
 
     # Glutamate (GLU)
-    - match: "[Ee]"
+    - match: "[Ee]++"
       scope: aaE
 
     # Phenylalanine (PHE)
-    - match: "[Ff]"
+    - match: "[Ff]++"
       scope: aaF
 
     # Glycine (GLY)
-    - match: "[Gg]"
+    - match: "[Gg]++"
       scope: aaG
 
     # Histidine (HIS)
-    - match: "[Hh]"
+    - match: "[Hh]++"
       scope: aaH
 
     # Isoleucine (ILE)
-    - match: "[Ii]"
+    - match: "[Ii]++"
       scope: aaI
 
     # Lysine (LYS)
-    - match: "[Kk]"
+    - match: "[Kk]++"
       scope: aaK
 
     # Leucine (LEU)
-    - match: "[Ll]"
+    - match: "[Ll]++"
       scope: aaL
 
     # Methionine (MET)
-    - match: "[Mm]"
+    - match: "[Mm]++"
       scope: aaM
 
     # Asparagine (ASN)
-    - match: "[Nn]"
+    - match: "[Nn]++"
       scope: aaN
 
     # Proline (PRO)
-    - match: "[Pp]"
+    - match: "[Pp]++"
       scope: aaP
 
     # Glutamine (GLN)
-    - match: "[Qq]"
+    - match: "[Qq]++"
       scope: aaQ
 
     # Arginine (ARG)
-    - match: "[Rr]"
+    - match: "[Rr]++"
       scope: aaR
 
     # Serine (SER)
-    - match: "[Ss]"
+    - match: "[Ss]++"
       scope: aaS
 
     # Threonine (THE)
-    - match: "[Tt]"
+    - match: "[Tt]++"
       scope: aaT
 
     # Valine (VAL)
-    - match: "[Vv]"
+    - match: "[Vv]++"
       scope: aaV
 
     # Tryptophan (TRP)
-    - match: "[Ww]"
+    - match: "[Ww]++"
       scope: aaW
 
     # Tyrosine (TYR)
-    - match: "[Yy]"
+    - match: "[Yy]++"
       scope: aaY
 
     # Glutamate or Glutamine (GLX)
-    - match: "[Zz]"
+    - match: "[Zz]++"
       scope: aaZ
 
     # any/unknown (X)
-    - match: "[Xx]"
+    - match: "[Xx]++"
       scope: zappo.X
 
     # translation stop
@@ -115,5 +115,5 @@ contexts:
       scope: comment
 
     # indel
-    - match: "[-]"
+    - match: "[-]++"
       scope: comment

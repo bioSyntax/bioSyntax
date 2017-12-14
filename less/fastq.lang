@@ -4,26 +4,23 @@
 
 # Row 1: Header
 # Entry header start with @
-environment header = '^(?=@)' begin 
-  faheader = '@.+'
+environment header = '^.+' begin # Header line
 
   # Row 2: nt Seq
   environment ntSeq = '^(?=[ATCG])' begin
-    ntA = '[Aa]+'
-    ntT = '[Tt]+'
-    ntG = '[Gg]+'
-    ntC = '[Cc]+'
-    ntT = '[Uu]+'
-
-    ntN = '[NnXx]+'
+    ntA = '[Aa]++'
+    ntT = '[Tt]++'
+    ntG = '[Gg]++'
+    ntC = '[Cc]++'
+    ntT = '[Uu]++'
+    ntN = '[NnXx]++'
 
     # Row 3: Comment Line
-      environment commentLine = '^(?=[+])' begin
-      comment = '^\+.*'
+      environment comment = '^\+' begin # Comment line
 
       #Row 4: PHRED score
       environment phred = '^' begin
-        drop = '(?=$)' exitall
+        drop = '$' exitall
         # Illumina 1.8 Scale
         # !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJ...j
         # |   |   |   |   |   |   |   |   |   |...
@@ -34,7 +31,6 @@ environment header = '^(?=@)' begin
         gradbw10 = '\A[9-@]++'
         gradbw10b = '\A[A-D]++'
         gradbw10i = '\A[E-j]++'
-
       end
     end
   end

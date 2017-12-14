@@ -1,5 +1,7 @@
 if exists("syntax_on")
         syntax reset
+	colorscheme bioSyntax
+	set nowrap
 endif
 
 " Robust Column Selection in Vim Syntax
@@ -70,44 +72,44 @@ syntax match havName '"\<[0-9A-Za-z.-]*\>"' contained
 "
 " " Highlighting / Theme Control
 " =========================================================
-highlight Col1 ctermfg=28 cterm=bold
-highlight Col2 ctermfg=10
-highlight Col3 ctermfg=100
-highlight Col4 ctermfg=150
-highlight Col5 ctermfg=150
+highlight link Col1 chr 
+highlight link Col2 keyword
+highlight link Col3 normal
+highlight link Col4 chrStart
+highlight link Col5 chrEnd
 highlight Col6 ctermfg=100
-highlight Col7 ctermfg=50
+highlight link Col7 strandNone
 highlight Col8 ctermfg=100
 highlight Col9 ctermfg=7
 
-highlight strg ctermfg=67
-highlight ident ctermfg=180
+highlight link strg quoteString
+highlight link ident keyword3
 highlight ens ctermfg=172
 highlight na ctermfg=59
-highlight gene_type ctermfg=10
-highlight gene_id ctermfg=11
-highlight name ctermfg=118
-highlight gene_name ctermfg=226
-highlight havName ctermfg=125
-highlight ont_name ctermfg=58
+highlight link gene_type geneSymbol
+highlight link gene_id geneSymbol
+"highlight name ctermfg=118
+highlight link gene_name keyword
+highlight link havName keyword4
+highlight link ont_name keyword6
 
-highlight num ctermfg=130
-highlight num2 ctermfg=130
+highlight link num numeric
+highlight link num2 numeric2
 
-highlight s ctermfg=28
-highlight s2 ctermfg=56
-highlight s3 ctermfg=84
-highlight s4 ctermbg=34
-highlight s5 ctermbg=160
-highlight s6 ctermbg=18
-highlight s7 ctermfg=59
-highlight s8 ctermfg=60
-highlight s9 ctermfg=61
+highlight link s exonLevel
+highlight link s2 transcriptLevel
+highlight link s3 geneLevel
+highlight link s4 start_codon
+highlight link s5 stop_codon
+highlight link s6 cds
+highlight link s7 utr
+highlight link s8 utr
+highlight link s9 utr
 
-highlight plus ctermfg=20
-highlight minus ctermfg=200
+highlight link plus strandPlus
+highlight link minus strandMinus
 
-highlight zero ctermfg=36
-highlight one ctermfg=40
-highlight two ctermfg=45
+highlight link zero keyword4
+highlight link one keyword5
+highlight link two keyword6
 

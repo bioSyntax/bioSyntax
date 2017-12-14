@@ -1,184 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 gedit Syntax File
-Language: Fasta
+Language: Fasta (nt)
 Filetypes: .fa
-Maintainer: bioSyntax
-Version: v0
+Maintainer: bioSyntax.org
+Version: v0.1
 
 Color Scheme for multiple sequence alignment
-in Fasta format
+in Fasta format. IUPAC Nucleotides.
+
+To set as fasta default as high contrast
+change `map-to="biosyntax:nt*"` to `map-to="biosyntax:hc*"` 
 
 -->
-<language id="fasta" _name="Fasta" version="2.0" _section="Scientific">
+<language id="fasta" _name="Fasta-nt" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/fasta</property>
-    <property name="globs">*.faa</property>
+    <property name="globs">*.fa,*.fasta,*.mfa,*.fas</property>
   </metadata>
 
   <styles>
-    <style id="header" _name="Header_"  map-to="def:statement" />
-    <style id="ntA"   _name="ntA_"      />
-    <style id="ntT"   _name="ntT_"      />
-    <style id="ntG"   _name="ntG_"      />
-    <style id="ntC"   _name="ntC_"      />
-    <style id="ntXN"  _name="ntXN_"     />
-    <style id="clA"      _name="A_"      />
-    <style id="clB"      _name="B_"      />
-    <style id="clC"      _name="C_"      />
-    <style id="clD"      _name="D_"      />
-    <style id="clE"      _name="E_"      />
-    <style id="clF"      _name="F_"      />
-    <style id="clG"      _name="G_"      />
-    <style id="clH"      _name="H_"      />
-    <style id="clI"      _name="I_"      />
-    <style id="clK"      _name="K_"      />
-    <style id="clL"      _name="L_"      />
-    <style id="clM"      _name="M_"      />
-    <style id="clN"      _name="N_"      />
-    <style id="clP"      _name="P_"      />
-    <style id="clQ"      _name="Q_"      />
-    <style id="clR"      _name="R_"      />
-    <style id="clS"      _name="S_"      />
-    <style id="clT"      _name="T_"      />
-    <style id="clV"      _name="V_"      />
-    <style id="clW"      _name="W_"      />
-    <style id="clY"      _name="Y_"      />
-    <style id="clZ"      _name="Z_"      />
-    <style id="clX"      _name="X_"      />
-    <style id="Indel"  _name="Indel_"   />
-    <style id="Stop"   _name="Stop_"    />
+    <style id="header"  _name="Header"   map-to="biosyntax:header"  />
+    <style id="comment" _name="Comment"  map-to="biosyntax:comment" />
+
+    <!-- bioSyntax Nucleotides -->
+    <style id="ntA"     _name="ntA_"     map-to="biosyntax:ntA"     />
+    <style id="ntG"     _name="ntG_"     map-to="biosyntax:ntG"     />
+    <style id="ntC"     _name="ntC_"     map-to="biosyntax:ntC"     />
+    <style id="ntT"     _name="ntT_"     map-to="biosyntax:ntT"     />
+    <style id="ntU"     _name="ntU_"     map-to="biosyntax:ntU"     />
+    <style id="ntR"     _name="ntR_"     map-to="biosyntax:ntR"     />
+    <style id="ntY"     _name="ntY_"     map-to="biosyntax:ntY"     />
+    <style id="ntS"     _name="ntS_"     map-to="biosyntax:ntS"     />
+    <style id="ntW"     _name="ntW_"     map-to="biosyntax:ntW"     />
+    <style id="ntM"     _name="ntM_"     map-to="biosyntax:ntM"     />
+    <style id="ntK"     _name="ntK_"     map-to="biosyntax:ntK"     />
+    <style id="ntD"     _name="ntD_"     map-to="biosyntax:ntD"     />
+    <style id="ntB"     _name="ntB_"     map-to="biosyntax:ntB"     />
+    <style id="ntV"     _name="ntV_"     map-to="biosyntax:ntV"     />
+    <style id="ntH"     _name="ntH_"     map-to="biosyntax:ntH"     />
+    <style id="ntN"     _name="ntN_"     map-to="biosyntax:ntN"     />
+    <style id="ntX"     _name="ntX_"     map-to="biosyntax:ntX"     />
+    <style id="ntGap"   _name="ntGap_"   map-to="biosyntax:ntGap"   />
+
   </styles>
 
   <definitions>
     <context id="fasta">
       <include>
 
-	<context id="Header" style-ref="header">
+        <context id="Header" style-ref="header">
           <start>^\></start>
-	  <end>$</end>
+          <end>$</end>
         </context>
-        
-        <context id="a" style-ref="clA">
-         <match>^[Aa](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
-       </context>
        
-       <context id="b" style-ref="clB">
-         <match>[Bb]*</match>
-       </context>
-       
-       <context id="c" style-ref="clC">
-         <match>^[Cc](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
-       </context>
-       
-       <context id="d" style-ref="clD">
-         <match>[Dd]*</match>
-       </context>
-       
-       <context id="e" style-ref="clE">
-         <match>[Ee]*</match>
-       </context>
-       
-       <context id="f" style-ref="clF">
-         <match>[Ff]*</match>
-       </context>
-       
-       <context id="g" style-ref="clG">
-         <match>^[Gg](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
-       </context>
-       
-       <context id="h" style-ref="clH">
-         <match>[Hh]*</match>
-       </context>
-       
-       <context id="i" style-ref="clI">
-         <match>[Ii]*</match>
-       </context>
-       
-       <context id="k" style-ref="clK">
-         <match>[Kk]*</match>
-       </context>
-       
-       <context id="l" style-ref="clL">
-         <match>[Ll]*</match>
-       </context>
-       
-       <context id="m" style-ref="clM">
-         <match>[Mm]*</match>
-       </context>
-       
-       <context id="n" style-ref="clN">
-         <match>^[Nn](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
-       </context>
-       
-       <context id="p" style-ref="clP">
-         <match>[Pp]*</match>
-       </context>
-       
-       <context id="q" style-ref="clQ">
-         <match>[Qq]*</match>
-       </context>
-       
-       <context id="r" style-ref="clR">
-         <match>[Rr]*</match>
-       </context>
-       
-       <context id="s" style-ref="clS">
-         <match>[Ss]*</match>
-       </context>
-       
-       <context id="t" style-ref="clT">
-         <match>^[Tt](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
-       </context>
-       
-       <context id="v" style-ref="clV">
-         <match>[Vv]*</match>
-       </context>
-       
-       <context id="w" style-ref="clW">
-         <match>[Ww]*</match>
-       </context>
-       
-       <context id="y" style-ref="clY">
-         <match>[Yy]*</match>
-       </context>
-       
-       <context id="z" style-ref="clZ">
-         <match>[Zz]*</match>
-       </context>
-       
-       <context id="x" style-ref="clX">
-         <match>^[Xx](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
-       </context>
-       
-       <context id="stop" style-ref="Stop">
-         <match>\*</match>
-       </context>
-       
-       <context id="indel" style-ref="Indel">
-         <match>\-</match>
-       </context>
-       
+       <!-- Core Nucleotides -->        
        <context id="nta" style-ref="ntA">
-         <match>[Aa](?=[AaGgCcTtUuNnXx-]*)</match>
+         <match>[Aa]++</match>
        </context>
-
        <context id="ntt" style-ref="ntT">
-         <match>[TtUu](?=[AaGgCcTtUuNnXx-]*)</match>
+         <match>[Tt]++</match>
+       </context>
+       <context id="ntg" style-ref="ntG">
+         <match>[Gg]++</match>
+       </context>
+       <context id="ntc" style-ref="ntC">
+         <match>[Cc]++</match>          
+       </context>
+       <context id="ntu" style-ref="ntU">
+         <match>[Uu]++</match>
+       </context>
+       <context id="ntn" style-ref="ntN">
+         <match>[XxNn]++</match>          
+       </context>
+       <context id="ntgap" style-ref="ntGap">
+         <match>[\-\.]++</match>          
        </context>
 
-       <context id="ntg" style-ref="ntG">
-         <match>[Gg](?=[AaGgCcTtUuNnXx-]*)</match>
+       <!-- Extended IUPAC Nucleotides -->
+       <context id="ntr" style-ref="ntR">
+         <match>[Rr]++</match>
+       </context>
+       <context id="nty" style-ref="ntY">
+         <match>[Yy]++</match>
+       </context>
+       <context id="nts" style-ref="ntS">
+         <match>[Ss]++</match>
+       </context>
+       <context id="ntw" style-ref="ntW">
+         <match>[Ww]++</match>          
+       </context>
+       <context id="ntm" style-ref="ntM">
+         <match>[Mm]++</match>
+       </context>
+       <context id="ntk" style-ref="ntK">
+         <match>[Kk]++</match>          
+       </context>
+      <context id="ntd" style-ref="ntD">
+         <match>[Dd]++</match>
+       </context>
+       <context id="ntb" style-ref="ntB">
+         <match>[Bb]++</match>
+       </context>
+       <context id="ntv" style-ref="ntV">
+         <match>[Vv]++</match>
+       </context>
+       <context id="nth" style-ref="ntH">
+         <match>[Hh]++</match>          
        </context>
        
-       <context id="ntc" style-ref="ntC">
-         <match>[Cc](?=[AaGgCcTtUuNnXx-]*)</match>          
-       </context>
-        
-       <context id="ntxn" style-ref="ntXN">
-         <match>[XxNn](?=[AaGgCcTtUuNnXx-]*)</match>          
-       </context>
-
       </include>
     </context>
   </definitions>

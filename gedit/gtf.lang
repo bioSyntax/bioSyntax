@@ -1,52 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 gedit Syntax File
-Language: gtf
+Language: Gene Transfer Format
 Filetypes: .gtf
-Maintainer: bioSyntax
-Version: v0
+Maintainer: bioSyntax.org
+Version: v0.1
 
 Color Scheme for multiple sequence alignment
-in GTF format
+in CLUSTAL format
 
 -->
-
 <language id="gtf" _name="GTF" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/gtf</property>
     <property name="globs">*.gtf</property>
   </metadata>
+
   <styles>
-    <style id="chrom"             _name="Chrom" />
-    <style id="software"          _name="Software" />
-    <style id="featureExon"       _name="FeatureExon" />
-    <style id="featureTranscript" _name="FeatureTranscript" />
-    <style id="featureCDS"        _name="FeatureCDS" />
-    <style id="featureStartCodon" _name="FeatureStartCodon" />
-    <style id="featureStopCodon"  _name="FeatureStopCodon" />
-    <style id="coord"            _name="Coord" />
-    <style id="score0"            _name="Score0" />
-    <style id="score1"            _name="Score1" />
-    <style id="score2"            _name="Score2" />
-    <style id="score3"            _name="Score3" />
-    <style id="score4"            _name="Score4" />
-    <style id="score5"            _name="Score5" />
-    <style id="score6"            _name="Score6" />
-    <style id="score7"            _name="Score7" />
-    <style id="score8"            _name="Score8" />
-    <style id="score9"            _name="Score9" />
-    <style id="score10"           _name="Score10" />
-    <style id="score11"           _name="Score11" />
-    <style id="strandminus"       _name="StrandMinus" />
-    <style id="strandplus"        _name="StrandPlus" />
-    <style id="stranddot"         _name="StrandDot" />
-    <style id="framenum"          _name="FrameNum" />
-    <style id="framedot"          _name="FrameDot" />
-    <style id="attributeName"     _name="AttName" />
-    <style id="attributeValueString"  _name="AttString" />
-    <style id="attributeValueNumber"  _name="AttNum" />
-    <style id="attributeSemiColon" _name="AttSemiColon"/>
+    <style id="chrom"             _name="Chrom"             map-to="biosyntax:chr"/>
+    <style id="coord"             _name="Coord"             map-to="biosyntax:chrStart"/>
+    <style id="software"          _name="Software"          map-to="biosyntax:software"/>
+    
+    <!-- Gene Model -->
+    <style id="featureExon"       _name="FeatureExon"       map-to="biosyntax:exonLevel"/>
+    <style id="featureTranscript" _name="FeatureTranscript" map-to="biosyntax:transcriptLevel"/>
+    <style id="featureCDS"        _name="FeatureCDS"        map-to="biosyntax:cds"/>
+    <style id="featureStartCodon" _name="FeatureStartCodon" map-to="biosyntax:start_codon"/>
+    <style id="featureStopCodon"  _name="FeatureStopCodon"  map-to="biosyntax:stop_codon"/>
+    <style id="strandminus"       _name="StrandMinus"       map-to="biosyntax:strandMinus"/>
+    <style id="strandplus"        _name="StrandPlus"        map-to="biosyntax:strandPlus"/>
+    <style id="stranddot"         _name="StrandDot"         map-to="biosyntax:strandNone"/>
+    <style id="framenum"          _name="FrameNum"          map-to="biosyntax:numeric"/>
+    <style id="framedot"          _name="FrameDot"          map-to="biosyntax:comment"/>
+    
+    <!-- Gene Features -->
+    <style id="attributeName"     _name="AttName"           map-to="biosyntax:string"/>
+    <style id="attributeValueString"  _name="AttString"     map-to="biosyntax:string"/>
+    <style id="attributeValueNumber"  _name="AttNum"        map-to="biosyntax:numeric"/>
+    <style id="attributeSemiColon"    _name="AttSemiColon"  map-to="biosyntax:comment"/>
+
+    <!-- Color Gradient -->
+    <style id="score0"            _name="Score0"            map-to="biosyntax:grad0"/>
+    <style id="score1"            _name="Score1"            map-to="biosyntax:grad1"/>
+    <style id="score2"            _name="Score2"            map-to="biosyntax:grad2"/>
+    <style id="score3"            _name="Score3"            map-to="biosyntax:grad3"/>
+    <style id="score4"            _name="Score4"            map-to="biosyntax:grad4"/>
+    <style id="score5"            _name="Score5"            map-to="biosyntax:grad5"/>
+    <style id="score6"            _name="Score6"            map-to="biosyntax:grad6"/>
+    <style id="score7"            _name="Score7"            map-to="biosyntax:grad7"/>
+    <style id="score8"            _name="Score8"            map-to="biosyntax:grad8"/>
+    <style id="score9"            _name="Score9"            map-to="biosyntax:grad9"/>
+    <style id="score10"           _name="Score10"           map-to="biosyntax:grad10"/>
+    <style id="score11"           _name="Score11"           map-to="biosyntax:grad10"/>
   </styles>
+
   <definitions>
     <context id="gtf">
       <include>

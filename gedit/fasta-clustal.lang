@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-ebedthan - 2017 10 22
+gedit Syntax File
+Language: Fasta AA Clustal
+Filetypes: .faa
+Maintainer: bioSyntax.org
+Version: v0.1
 
-Color Scheme for DNA/RNA Sequences-Clustal colors
-Associates with fasta files (.fa; .fasta)
-
-Using 'bioKate color theme'
-
-A   - Dark Green
-T\U - Red
-G   - Brown
-C   - Blue
+Color Scheme for amino acid fasta files
+with Clustal color theme
 -->
 
-<language id="fast" _name="Fasta-clustal" version="2.0" _section="Scientific">
+<language id="fast"  _name="Fasta-clustal" version="2.0" _section="Scientific">
 
   <metadata>
     <property name="mimetypes">text/fastza</property>
@@ -22,32 +18,32 @@ C   - Blue
   </metadata>
 
   <styles>
-    <style id="header" _name="Header_" />
-    <style id="clA"      _name="A_"      />
-    <style id="clB"      _name="B_"      />
-    <style id="clC"      _name="C_"      />
-    <style id="clD"      _name="D_"      />
-    <style id="clE"      _name="E_"      />
-    <style id="clF"      _name="F_"      />
-    <style id="clG"      _name="G_"      />
-    <style id="clH"      _name="H_"      />
-    <style id="clI"      _name="I_"      />
-    <style id="clK"      _name="K_"      />
-    <style id="clL"      _name="L_"      />
-    <style id="clM"      _name="M_"      />
-    <style id="clN"      _name="N_"      />
-    <style id="clP"      _name="P_"      />
-    <style id="clQ"      _name="Q_"      />
-    <style id="clR"      _name="R_"      />
-    <style id="clS"      _name="S_"      />
-    <style id="clT"      _name="T_"      />
-    <style id="clV"      _name="V_"      />
-    <style id="clW"      _name="W_"      />
-    <style id="clY"      _name="Y_"      />
-    <style id="clZ"      _name="Z_"      />
-    <style id="clX"      _name="X_"      />
-    <style id="Stop"      _name="stop_"    />
-    <style id="Indel"      _name="indel_"  />
+    <style id="header"   _name="Header_" map-to="biosyntax:header" />
+    <style id="clA"      _name="A_"     map-to="biosyntax:aaA" />
+    <style id="clB"      _name="B_"     map-to="biosyntax:aaB"    />
+    <style id="clC"      _name="C_"     map-to="biosyntax:aaC"    />
+    <style id="clD"      _name="D_"     map-to="biosyntax:aaD"    />
+    <style id="clE"      _name="E_"     map-to="biosyntax:aaE"    />
+    <style id="clF"      _name="F_"     map-to="biosyntax:aaF"    />
+    <style id="clG"      _name="G_"     map-to="biosyntax:aaG"    />
+    <style id="clH"      _name="H_"     map-to="biosyntax:aaH"    />
+    <style id="clI"      _name="I_"     map-to="biosyntax:aaI"    />
+    <style id="clK"      _name="K_"     map-to="biosyntax:aaK"    />
+    <style id="clL"      _name="L_"     map-to="biosyntax:aaL"    />
+    <style id="clM"      _name="M_"     map-to="biosyntax:aaM"    />
+    <style id="clN"      _name="N_"     map-to="biosyntax:aaN"    />
+    <style id="clP"      _name="P_"     map-to="biosyntax:aaP"    />
+    <style id="clQ"      _name="Q_"     map-to="biosyntax:aaQ"    />
+    <style id="clR"      _name="R_"     map-to="biosyntax:aaR"    />
+    <style id="clS"      _name="S_"     map-to="biosyntax:aaS"    />
+    <style id="clT"      _name="T_"     map-to="biosyntax:aaT"    />
+    <style id="clV"      _name="V_"     map-to="biosyntax:aaV"    />
+    <style id="clW"      _name="W_"     map-to="biosyntax:aaW"    />
+    <style id="clY"      _name="Y_"     map-to="biosyntax:aaY"    />
+    <style id="clZ"      _name="Z_"     map-to="biosyntax:aaZ"    />
+    <style id="clX"      _name="X_"     map-to="biosyntax:aaX"    />
+    <style id="Stop"     _name="stop"   map-to="biosyntax:aaX"    />
+    <style id="Indel"    _name="indel"  map-to="biosyntax:ntGap"  />
   </styles>
 
   <definitions>
@@ -60,95 +56,95 @@ C   - Blue
        </context>
        
        <context id="a" style-ref="clA">
-         <match>[Aa]*</match>
+         <match>[Aa]++</match>
        </context>
        
        <context id="b" style-ref="clB">
-         <match>[Bb]*</match>
+         <match>[Bb]++</match>
        </context>
        
        <context id="c" style-ref="clC">
-         <match>[Cc]*</match>
+         <match>[Cc]++</match>
        </context>
        
        <context id="d" style-ref="clD">
-         <match>[Dd]*</match>
+         <match>[Dd]++</match>
        </context>
        
        <context id="e" style-ref="clE">
-         <match>[Ee]*</match>
+         <match>[Ee]++</match>
        </context>
        
        <context id="f" style-ref="clF">
-         <match>[Ff]*</match>
+         <match>[Ff]++</match>
        </context>
        
        <context id="g" style-ref="clG">
-         <match>[Gg]*</match>
+         <match>[Gg]++</match>
        </context>
        
        <context id="h" style-ref="clH">
-         <match>[Hh]*</match>
+         <match>[Hh]++</match>
        </context>
        
        <context id="i" style-ref="clI">
-         <match>[Ii]*</match>
+         <match>[Ii]++</match>
        </context>
        
        <context id="k" style-ref="clK">
-         <match>[Kk]*</match>
+         <match>[Kk]++</match>
        </context>
        
        <context id="l" style-ref="clL">
-         <match>[Ll]*</match>
+         <match>[Ll]++</match>
        </context>
        
        <context id="m" style-ref="clM">
-         <match>[Mm]*</match>
+         <match>[Mm]++</match>
        </context>
        
        <context id="n" style-ref="clN">
-         <match>[Nn]*</match>
+         <match>[Nn]++</match>
        </context>
        
        <context id="p" style-ref="clP">
-         <match>[Pp]*</match>
+         <match>[Pp]++</match>
        </context>
        
        <context id="q" style-ref="clQ">
-         <match>[Qq]*</match>
+         <match>[Qq]++</match>
        </context>
        
        <context id="r" style-ref="clR">
-         <match>[Rr]*</match>
+         <match>[Rr]++</match>
        </context>
        
        <context id="s" style-ref="clS">
-         <match>[Ss]*</match>
+         <match>[Ss]++</match>
        </context>
        
        <context id="t" style-ref="clT">
-         <match>[Tt]*</match>
+         <match>[Tt]++</match>
        </context>
        
        <context id="v" style-ref="clV">
-         <match>[Vv]*</match>
+         <match>[Vv]++</match>
        </context>
        
        <context id="w" style-ref="clW">
-         <match>[Ww]*</match>
+         <match>[Ww]++</match>
        </context>
        
        <context id="y" style-ref="clY">
-         <match>[Yy]*</match>
+         <match>[Yy]++</match>
        </context>
        
        <context id="z" style-ref="clZ">
-         <match>[Zz]*</match>
+         <match>[Zz]++</match>
        </context>
        
        <context id="x" style-ref="clX">
-         <match>[Xx]*</match>
+         <match>[Xx]++</match>
        </context>
        
        <context id="stop" style-ref="Stop">
@@ -156,7 +152,7 @@ C   - Blue
        </context>
        
        <context id="indel" style-ref="Indel">
-         <match>\-</match>
+         <match>[\-\.]</match>
        </context>
        
       </include>

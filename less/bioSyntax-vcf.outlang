@@ -1,5 +1,5 @@
 extension "bioSyntax"
-version 0.1
+#version 0.1
 styletemplate "\x1b[$stylem$text\x1b[m"
 styleseparator ";"
 

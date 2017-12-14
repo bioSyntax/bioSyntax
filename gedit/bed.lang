@@ -3,8 +3,8 @@
 gedit Syntax File
 Language: bed
 Filetypes: .bed
-Maintainer: bioSyntax
-Version: v0
+Maintainer: bioSyntax.org
+Version: v0.1
 
 Color Scheme for multiple sequence alignment
 in BED format
@@ -17,12 +17,13 @@ in BED format
   </metadata>
 
   <styles>
+    <style id="chrom"   _name="Chrom"    map-to="biosyntax:chr"       />
+    <style id="coords"  _name="Chrom"    map-to="biosyntax:chrStart"  />
+    <style id="bedID"   _name="BedID"    map-to="biosyntax:string"    />
 
-    <style id="chrom"        _name="Chrom"    />
-    <style id="coords"       _name="Chrom"    />
-    <style id="strand"       _name="Coords"   />
-    <style id="bedName"      _name="BedName" />
-
+    <style id="strandPlus"   _name="StrandPlus"  map-to="biosyntax:strandPlus"    />
+    <style id="strandMinus"  _name="StrandMinus" map-to="biosyntax:strandMinus"   />
+    <style id="strandNone"   _name="StrandNone"  map-to="biosyntax:strandNone"    />
   </styles>
 
   <definitions>
@@ -41,49 +42,49 @@ in BED format
 	  </match>
         </context>
 
-	<context id="3_bedName" style-ref="bedName">
+	<context id="3_bedID" style-ref="bedID">
 	  <match extended="true">
 	    (?&lt;=\t)[A-Za-z()][^\s\t]+(?=\t)
 	  </match>
         </context>
 
-	<context id="end_bedName" style-ref="bedName">
+	<context id="end_bedID" style-ref="bedID">
 	  <match extended="true">
 	    (?&lt;=\t)[A-Za-z()][^\s\t]+$
 	  </match>
         </context>
 
-	<context id="6_strand" style-ref="strandplus">
+	<context id="6_strand" style-ref="strandPlus">
 	  <match extended="true">
             \t[+]\t
 	  </match>
         </context>
 
-	<context id="6_end_strand" style-ref="strandplus">
+	<context id="6_end_strand" style-ref="strandPlus">
 	  <match extended="true">
             \t[+]$
 	  </match>
         </context>
         
-        <context id="7_strand" style-ref="strandminus">
+        <context id="7_strand" style-ref="strandMinus">
 	  <match extended="true">
             \t[-]\t
 	  </match>
         </context>
 
-	<context id="7_end_strand" style-ref="strandminus">
+	<context id="7_end_strand" style-ref="strandMinus">
 	  <match extended="true">
             \t[-]$
 	  </match>
         </context>
         
-        <context id="8_strand" style-ref="strandnone">
+        <context id="8_strand" style-ref="strandNone">
 	  <match extended="true">
             \t[.]\t
 	  </match>
         </context>
 
-	<context id="8_end_strand" style-ref="strandnone">
+	<context id="8_end_strand" style-ref="strandNone">
 	  <match extended="true">
             \t[.]$
 	  </match>

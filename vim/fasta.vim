@@ -1,15 +1,28 @@
 if exists("syntax_on")
 	syntax reset
+	colorscheme bioSyntax
+	set nowrap
 endif
 
-syntax match comment ">.*$"
-syntax match ntA "A"
-syntax match ntG "G"
-syntax match ntC "C"
-syntax match ntT "T"
+" In the future, implement 'context-aware' fasta
+" in which Nucleotides vs. Amino Acid sequences are detected
+" and colored accordingly
 
-hi def link comment Identifier
-highlight ntA ctermfg=Black ctermbg=Green guibg=#272822
-highlight ntG ctermfg=Black ctermbg=Yellow guibg=#FF8C00
-highlight ntC ctermfg=Black ctermbg=Blue guibg=#2A0AFD
-highlight ntT ctermfg=Black ctermbg=Red guibg=#FD0A0A
+syntax match headerbw ">.*$"
+syntax match ntA "[Aa]"
+syntax match ntG "[Gg]" 
+syntax match ntC "[Cc]" 
+syntax match ntT "[Tt]" 
+syntax match ntU "[Uu]" 
+syntax match ntR "[Rr]" 
+syntax match ntY "[Yy]" 
+syntax match ntS "[Ss]" 
+syntax match ntW "[Ww]" 
+syntax match ntM "[Mm]" 
+syntax match ntK "[Kk]" 
+syntax match ntD "[Dd]" 
+syntax match ntB "[Bb]" 
+syntax match ntV "[Vv]" 
+syntax match ntH "[Hh]" 
+syntax match ntN "[Nn]" 
+syntax match ntGap "[/\-/\.]" 

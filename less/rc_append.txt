@@ -1,6 +1,15 @@
-## Append this to your ~/.zshrc & ~/.bashrc
+##   __     __   __           ___          
+##  |__) | /  \ /__` \ / |\ |  |   /\  \_/ 
+##  |__) | \__/ .__/  |  | \|  |  /~~\ / \ 
+##  =======================================
 ##
-## Syntax Highlighting for less
+## Syntax Highlighting for computational biology rc.append
+## v0.1
+##
+## Append this to your ~/.zshrc & ~/.bashrc
+## to enable source-highlight for less and add
+## bioSyntax pipe capability on your command line
+##
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
@@ -8,8 +17,7 @@ alias less='less -NSi -# 10'
 # -N: add line numbers
 # -S: don't wrap lines (force to single line)
 # -# 10: Horizontal scroll distance
-
-alias more='less'
+# alias more='less'
 
 # Explicit call of  <file format>-less for piping data
 # i.e:  samtools view -h aligned_hits.bam | sam-less
@@ -22,7 +30,6 @@ alias gtf-less='source-highlight -f esc --lang-def=gtf.lang --outlang-def=bioSyn
 alias pdb-less='source-highlight -f esc --lang-def=pdb.lang --outlang-def=bioSyntax-vcf.outlang --style-file=pdb.style | less'
 alias sam-less='source-highlight -f esc --lang-def=sam.lang --outlang-def=bioSyntax.outlang --style-file=sam.style | less'
 alias vcf-less='source-highlight -f esc --lang-def=vcf.lang --outlang-def=bioSyntax-vcf.outlang --style-file=vcf.style | less'
-
 
 # Auxillary syntaxes (uncomment to activate)
 #alias fai-less='source-highlight -f esc --lang-def=faidx.lang --outlang-def=bioSyntax.outlang --style-file=sam.style | less'

@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 gedit Syntax File
-Language: clustal
-Filetypes: .clustal
+Language: Fasta (nt High Contrast)
+Filetypes: .fa
 Maintainer: bioSyntax.org
 Version: v0.1
 
 Color Scheme for multiple sequence alignment
-in CLUSTAL format
+in Fasta format. IUPAC Nucleotides.
+
+To set as fasta default as high contrast
+change `map-to="biosyntax:nt*"` to `map-to="biosyntax:hc*"` 
 
 -->
-<language id="clustal" _name="Clustal" version="2.0" _section="Scientific">
+<language id="fastahc" _name="Fasta-nt (HC)" version="2.0" _section="Scientific">
   <metadata>
-    <property name="mimetypes">text/clustal</property>
-    <property name="globs">*.clustal</property>
+    <property name="mimetypes">text/fastahc</property>
+    <property name="globs"></property>
   </metadata>
 
   <styles>
     <style id="header"  _name="Header"   map-to="biosyntax:header"  />
     <style id="comment" _name="Comment"  map-to="biosyntax:comment" />
+
     <!-- bioSyntax Nucleotides -->
-    <style id="ntA"     _name="ntA_"     map-to="biosyntax:ntA"     />
-    <style id="ntG"     _name="ntG_"     map-to="biosyntax:ntG"     />
-    <style id="ntC"     _name="ntC_"     map-to="biosyntax:ntC"     />
-    <style id="ntT"     _name="ntT_"     map-to="biosyntax:ntT"     />
-    <style id="ntU"     _name="ntU_"     map-to="biosyntax:ntU"     />
-    <style id="ntR"     _name="ntR_"     map-to="biosyntax:ntR"     />
-    <style id="ntY"     _name="ntY_"     map-to="biosyntax:ntY"     />
-    <style id="ntS"     _name="ntS_"     map-to="biosyntax:ntS"     />
-    <style id="ntW"     _name="ntW_"     map-to="biosyntax:ntW"     />
-    <style id="ntM"     _name="ntM_"     map-to="biosyntax:ntM"     />
-    <style id="ntK"     _name="ntK_"     map-to="biosyntax:ntK"     />
-    <style id="ntD"     _name="ntD_"     map-to="biosyntax:ntD"     />
-    <style id="ntB"     _name="ntB_"     map-to="biosyntax:ntB"     />
-    <style id="ntV"     _name="ntV_"     map-to="biosyntax:ntV"     />
-    <style id="ntH"     _name="ntH_"     map-to="biosyntax:ntH"     />
-    <style id="ntN"     _name="ntN_"     map-to="biosyntax:ntN"     />
-    <style id="ntX"     _name="ntX_"     map-to="biosyntax:ntX"     />
-    <style id="ntGap"   _name="ntGap_"   map-to="biosyntax:ntGap"   />
+    <style id="ntA"     _name="ntA_"     map-to="biosyntax:hcA"     />
+    <style id="ntG"     _name="ntG_"     map-to="biosyntax:hcG"     />
+    <style id="ntC"     _name="ntC_"     map-to="biosyntax:hcC"     />
+    <style id="ntT"     _name="ntT_"     map-to="biosyntax:hcT"     />
+    <style id="ntU"     _name="ntU_"     map-to="biosyntax:hcU"     />
+    <style id="ntR"     _name="ntR_"     map-to="biosyntax:hcR"     />
+    <style id="ntY"     _name="ntY_"     map-to="biosyntax:hcY"     />
+    <style id="ntS"     _name="ntS_"     map-to="biosyntax:hcS"     />
+    <style id="ntW"     _name="ntW_"     map-to="biosyntax:hcW"     />
+    <style id="ntM"     _name="ntM_"     map-to="biosyntax:hcM"     />
+    <style id="ntK"     _name="ntK_"     map-to="biosyntax:hcK"     />
+    <style id="ntD"     _name="ntD_"     map-to="biosyntax:hcD"     />
+    <style id="ntB"     _name="ntB_"     map-to="biosyntax:hcB"     />
+    <style id="ntV"     _name="ntV_"     map-to="biosyntax:hcV"     />
+    <style id="ntH"     _name="ntH_"     map-to="biosyntax:hcH"     />
+    <style id="ntN"     _name="ntN_"     map-to="biosyntax:hcN"     />
+    <style id="ntX"     _name="ntX_"     map-to="biosyntax:hcX"     />
+    <style id="ntGap"   _name="ntGap_"   map-to="biosyntax:hcGap"   />
+
   </styles>
 
   <definitions>
-    <context id="clustal">
+    <context id="fastahc">
       <include>
 
-	    <context id="headerline" style-ref="comment">
-        <start>^CLUSTAL</start>
+        <context id="Header" style-ref="header">
+          <start>^\></start>
           <end>$</end>
         </context>
-
-       <context id="seqname" style-ref="comment">
-         <match>\S++(?=\s)</match>
-       </context>
        
        <!-- Core Nucleotides -->        
        <context id="nta" style-ref="ntA">
@@ -107,7 +108,7 @@ in CLUSTAL format
        <context id="nth" style-ref="ntH">
          <match>[Hh]++</match>          
        </context>
-
+       
       </include>
     </context>
   </definitions>

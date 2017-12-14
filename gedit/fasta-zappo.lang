@@ -1,58 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-ebedthan - 2017 10 22
+gedit Syntax File
+Language: Fasta AA Zappo
+Filetypes: .faa
+Maintainer: bioSyntax.org
+Version: v0.1
 
-Color Scheme for DNA/RNA Sequences-Zappo colors
-Associates with fasta files (.fa; .fasta)
-
-Using 'bioKate color theme'
-
-A   - Dark Green
-T\U - Red
-G   - Brown
-C   - Blue
+Color Scheme for amino acid fasta files
+with Zappo color theme
 -->
-
 
 <language id="fastza" _name="Fasta-zappo" version="2.0" _section="Scientific">
 
   <metadata>
     <property name="mimetypes">text/fastza</property>
-    <property name="globs">*.faa</property>
+    <property name="globs"></property>
   </metadata>
 
   <styles>
-    <style id="header" _name="Header_" />
-    <style id="A"      _name="A_"      />
-    <style id="B"      _name="B_"      />
-    <style id="C"      _name="C_"      />
-    <style id="D"      _name="D_"      />
-    <style id="E"      _name="E_"      />
-    <style id="F"      _name="F_"      />
-    <style id="G"      _name="G_"      />
-    <style id="H"      _name="H_"      />
-    <style id="I"      _name="I_"      />
-    <style id="K"      _name="K_"      />
-    <style id="L"      _name="L_"      />
-    <style id="M"      _name="M_"      />
-    <style id="N"      _name="N_"      />
-    <style id="P"      _name="P_"      />
-    <style id="Q"      _name="Q_"      />
-    <style id="R"      _name="R_"      />
-    <style id="S"      _name="S_"      />
-    <style id="T"      _name="T_"      />
-    <style id="V"      _name="V_"      />
-    <style id="W"      _name="W_"      />
-    <style id="Y"      _name="Y_"      />
-    <style id="Z"      _name="Z_"      />
-    <style id="X"      _name="X_"      />
-    <style id="Stop"      _name="stop_"    />
-    <style id="Indel"      _name="indel_"  />
+    <style id="header"   _name="Header_" map-to="biosyntax:header"   />
+    <style id="zaA"      _name="A_"     map-to="biosyntax:zappoA"    />
+    <style id="zaB"      _name="B_"     map-to="biosyntax:zappoB"    />
+    <style id="zaC"      _name="C_"     map-to="biosyntax:zappoC"    />
+    <style id="zaD"      _name="D_"     map-to="biosyntax:zappoD"    />
+    <style id="zaE"      _name="E_"     map-to="biosyntax:zappoE"    />
+    <style id="zaF"      _name="F_"     map-to="biosyntax:zappoF"    />
+    <style id="zaG"      _name="G_"     map-to="biosyntax:zappoG"    />
+    <style id="zaH"      _name="H_"     map-to="biosyntax:zappoH"    />
+    <style id="zaI"      _name="I_"     map-to="biosyntax:zappoI"    />
+    <style id="zaK"      _name="K_"     map-to="biosyntax:zappoK"    />
+    <style id="zaL"      _name="L_"     map-to="biosyntax:zappoL"    />
+    <style id="zaM"      _name="M_"     map-to="biosyntax:zappoM"    />
+    <style id="zaN"      _name="N_"     map-to="biosyntax:zappoN"    />
+    <style id="zaP"      _name="P_"     map-to="biosyntax:zappoP"    />
+    <style id="zaQ"      _name="Q_"     map-to="biosyntax:zappoQ"    />
+    <style id="zaR"      _name="R_"     map-to="biosyntax:zappoR"    />
+    <style id="zaS"      _name="S_"     map-to="biosyntax:zappoS"    />
+    <style id="zaT"      _name="T_"     map-to="biosyntax:zappoT"    />
+    <style id="zaV"      _name="V_"     map-to="biosyntax:zappoV"    />
+    <style id="zaW"      _name="W_"     map-to="biosyntax:zappoW"    />
+    <style id="zaY"      _name="Y_"     map-to="biosyntax:zappoY"    />
+    <style id="zaZ"      _name="Z_"     map-to="biosyntax:zappoZ"    />
+    <style id="zaX"      _name="X_"     map-to="biosyntax:zappoX"    />
+    <style id="Stop"     _name="stop"   map-to="biosyntax:zappoX"    />
+    <style id="Indel"    _name="indel"  map-to="biosyntax:ntGap"     />
   </styles>
 
   <definitions>
-    <context id="fastza">
+    <context id="fast">
       <include>
 
        <context id="Header" style-ref="header">
@@ -60,96 +55,96 @@ C   - Blue
          <end>$</end>
        </context>
        
-       <context id="a" style-ref="A">
-         <match>[Aa]*</match>
+       <context id="a" style-ref="zaA">
+         <match>[Aa]++</match>
        </context>
        
-       <context id="b" style-ref="B">
-         <match>[Bb]*</match>
+       <context id="b" style-ref="zaB">
+         <match>[Bb]++</match>
        </context>
        
-       <context id="c" style-ref="C">
-         <match>[Cc]*</match>
+       <context id="c" style-ref="zaC">
+         <match>[Cc]++</match>
        </context>
        
-       <context id="d" style-ref="D">
-         <match>[Dd]*</match>
+       <context id="d" style-ref="zaD">
+         <match>[Dd]++</match>
        </context>
        
-       <context id="e" style-ref="E">
-         <match>[Ee]*</match>
+       <context id="e" style-ref="zaE">
+         <match>[Ee]++</match>
        </context>
        
-       <context id="f" style-ref="F">
-         <match>[Ff]*</match>
+       <context id="f" style-ref="zaF">
+         <match>[Ff]++</match>
        </context>
        
-       <context id="g" style-ref="G">
-         <match>[Gg]*</match>
+       <context id="g" style-ref="zaG">
+         <match>[Gg]++</match>
        </context>
        
-       <context id="h" style-ref="H">
-         <match>[Hh]*</match>
+       <context id="h" style-ref="zaH">
+         <match>[Hh]++</match>
        </context>
        
-       <context id="i" style-ref="I">
-         <match>[Ii]*</match>
+       <context id="i" style-ref="zaI">
+         <match>[Ii]++</match>
        </context>
        
-       <context id="k" style-ref="K">
-         <match>[Kk]*</match>
+       <context id="k" style-ref="zaK">
+         <match>[Kk]++</match>
        </context>
        
-       <context id="l" style-ref="L">
-         <match>[Ll]*</match>
+       <context id="l" style-ref="zaL">
+         <match>[Ll]++</match>
        </context>
        
-       <context id="m" style-ref="M">
-         <match>[Mm]*</match>
+       <context id="m" style-ref="zaM">
+         <match>[Mm]++</match>
        </context>
        
-       <context id="n" style-ref="N">
-         <match>[Nn]*</match>
+       <context id="n" style-ref="zaN">
+         <match>[Nn]++</match>
        </context>
        
-       <context id="p" style-ref="P">
-         <match>[Pp]*</match>
+       <context id="p" style-ref="zaP">
+         <match>[Pp]++</match>
        </context>
        
-       <context id="q" style-ref="Q">
-         <match>[Qq]*</match>
+       <context id="q" style-ref="zaQ">
+         <match>[Qq]++</match>
        </context>
        
-       <context id="r" style-ref="R">
-         <match>[Rr]*</match>
+       <context id="r" style-ref="zaR">
+         <match>[Rr]++</match>
        </context>
        
-       <context id="s" style-ref="S">
-         <match>[Ss]*</match>
+       <context id="s" style-ref="zaS">
+         <match>[Ss]++</match>
        </context>
        
-       <context id="t" style-ref="T">
-         <match>[Tt]*</match>
+       <context id="t" style-ref="zaT">
+         <match>[Tt]++</match>
        </context>
        
-       <context id="v" style-ref="V">
-         <match>[Vv]*</match>
+       <context id="v" style-ref="zaV">
+         <match>[Vv]++</match>
        </context>
        
-       <context id="w" style-ref="W">
-         <match>[Ww]*</match>
+       <context id="w" style-ref="zaW">
+         <match>[Ww]++</match>
        </context>
        
-       <context id="y" style-ref="Y">
-         <match>[Yy]*</match>
+       <context id="y" style-ref="zaY">
+         <match>[Yy]++</match>
        </context>
        
-       <context id="z" style-ref="Z">
-         <match>[Zz]*</match>
+       <context id="z" style-ref="zaZ">
+         <match>[Zz]++</match>
        </context>
        
-       <context id="x" style-ref="X">
-         <match>[Xx]*</match>
+       <context id="x" style-ref="zaX">
+         <match>[Xx]++</match>
        </context>
        
        <context id="stop" style-ref="Stop">
@@ -157,7 +152,7 @@ C   - Blue
        </context>
        
        <context id="indel" style-ref="Indel">
-         <match>\-</match>
+         <match>[\-\.]</match>
        </context>
        
       </include>

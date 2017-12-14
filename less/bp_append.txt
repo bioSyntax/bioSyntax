@@ -1,6 +1,16 @@
-## Append this to your ~/.bashprofile in MacOS
+##   __     __   __           ___          
+##  |__) | /  \ /__` \ / |\ |  |   /\  \_/ 
+##  |__) | \__/ .__/  |  | \|  |  /~~\ / \ 
+##  =======================================
 ##
-## Syntax Highlighting for less
+## Syntax Highlighting for computational biology rc.append
+## v0.1
+##
+## Append this to your ~/.bashprofile in MacOS
+## to enable source-highlight for less and add
+## bioSyntax pipe capability on your command line
+##
+
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 

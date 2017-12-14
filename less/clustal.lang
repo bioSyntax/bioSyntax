@@ -3,7 +3,7 @@
 # Depends on fasta.style + bioSyntax.outlang
 
 # Start of file CLUSTAL Header
-faheader start '^CLUSTAL'
+header start '^CLUSTAL'
 
 # Data Name
 comment = '\S++(?=\s)'

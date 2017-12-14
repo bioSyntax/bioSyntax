@@ -41,9 +41,7 @@ environment header start '^(?=@)' begin
     software = '(?<=PP:)\S*'
     string = '(?<=DS:)\S*'
     #numeric = '(?<=VN:)\S*'
-
   end
-
 
   # Readgroup Header
   environment header_co delim '(?=@RG)' '$' begin
@@ -89,13 +87,13 @@ environment align start '(?=^[^$])' begin
     # If flag > 512
     #   read is QC-fail | PCRdup | 2'
 
-      numeric = '[0-9]{1,2}'
-      numeric = '[1-4][0-9]{1,2}'
-      numeric = '[5][0][0-9]'
-      numeric = '[5][1][01]'
+      numeric = '\A[0-9]{1,2}(?=\t)'
+      numeric = '\A[1-4][0-9]{1,2}(?=\t)'
+      numeric = '\A[5][0][0-9](?=\t)'
+      numeric = '\A[5][1][01](?=\t)'
 
       # Flag
-      numeric2 = '[5][1][01]'
+      string = '\d+'
 
     # Column 3: RNAME
     environment push3 = '\t?' begin
@@ -131,27 +129,27 @@ environment align start '(?=^[^$])' begin
             drop = '(?=$)' exitall
 
 
-	    # CIGAR Strings
-	    # M: Alignment match
-	    # I: Insertion
-	    # D: Deletion
-	    # N: Skipped region (intron)
-	    # S: Soft Clip
-	    # H: Hard Clip
-	    # P: Padding
-	    # =: Sequence Match
-	    # X: Sequence Mismatch
-	    # *: String Absent
+            # CIGAR Strings
+            # M: Alignment match
+            # I: Insertion
+            # D: Deletion
+            # N: Skipped region (intron)
+            # S: Soft Clip
+            # H: Hard Clip
+            # P: Padding
+            # =: Sequence Match
+            # X: Sequence Mismatch
+            # *: String Absent
 
-	    clip      = '\A\d++[NSHP]' # clips
-	    default   = '\A\d++[M=]'  # match
-	    mismatch  = '\A\d++[X]'   # mismatch
-	    insertion =  '\A\d++[I]'  # insertion
-	    deletion  = '\A\d++[D]'   # deletion
+            clip      = '\A\d++[NSHP]' # clips
+            default   = '\A\d++[M=]'  # match
+            mismatch  = '\A\d++[X]'   # mismatch
+            insertion =  '\A\d++[I]'  # insertion
+            deletion  = '\A\d++[D]'   # deletion
 
-	    comment = '\A\S++'      # else
+            comment = '\A\S++'      # else
 
-	    
+            
             # Column 7: RNEXT & PNEXT
             environment push7 = '\t?' begin
               drop = '(?=$)' exitall
@@ -191,7 +189,7 @@ environment align start '(?=^[^$])' begin
                     # |   |   |   |   |   |   |   |   |   |...
                     gradbw1 = '\A[!-%]++'
                     gradbw3 = '\A[!-(]++'
-                    grasbw6 = '\A[)-0]++'
+                    gradbw6 = '\A[)-0]++'
                     gradbw8 = '\A[1-8]++'
                     gradbw10 = '\A[9-@]++'
                     gradbw10b = '\A[A-D]++'

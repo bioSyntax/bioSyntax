@@ -11,7 +11,7 @@ if exists("syntax_on")
 	syntax reset
 	" VCF syntax is per-line so restrict context to one line
     syntax sync minlines=1
-
+	colorscheme bioSyntax
     " VCF are wide files; remove word-wrapping
     set nowrap
 endif
@@ -58,7 +58,7 @@ endif
   syntax region QUAL start='\t\@<=[0-9]' end='[\n\t]\@=' oneline containedin=COL6
 
 " Column 7: FILTER
-  syntax region COL7  matchgroup=COL7 start='\t' end='\n\@=' oneline contained contains=COL8,PASS,FAIL,nt_
+  syntax region COL7  matchgroup=COL7 start='\t' end='\n\@=' oneline contained contains=COL8,bon,mal,nt_
 
 " Column 8: INFO
   syntax region COL8  matchgroup=COL8 start='\t' end='\n\@=' oneline contained contains=COL9
@@ -117,28 +117,30 @@ highlight link FORMAT    keyword2
 highlight link INFO      keyword3
 highlight link reference chrStart
 
+highlight link nt_ ntX
+highlight link stringQuote quoteString
 
 " Highlighting / Global Theme Control
 " =========================================================
 " (TO CHANGE THEME COLORS, MODIFY VALUES BELOW ONLY) 
 "
-highlight numeric     ctermfg=31
-highlight string      ctermfg=160
-highlight stringQuote ctermfg=160 cterm=italic
-highlight comment     ctermfg=08
+"highlight numeric     ctermfg=31
+"highlight string      ctermfg=160
+"highlight stringQuote ctermfg=160 cterm=italic
+"highlight comment     ctermfg=08
 
-highlight header   ctermfg=08 ctermbg=250 cterm=bold
+"highlight header   ctermfg=08 ctermbg=250 cterm=bold
 
-highlight keyword1 ctermfg=130 " Orange
-highlight keyword2 ctermfg=89  " Purple Dark
-highlight keyword3 ctermfg=172 " Yellow
+"highlight keyword1 ctermfg=130 " Orange
+"highlight keyword2 ctermfg=89  " Purple Dark
+"highlight keyword3 ctermfg=172 " Yellow
 
-highlight chr      ctermfg=28 cterm=bold
-highlight chrStart ctermfg=28
+"highlight chr      ctermfg=28 cterm=bold
+"highlight chrStart ctermfg=28
 
-highlight ntA ctermfg=Black ctermbg=10  guibg=#272822
-highlight ntG ctermfg=Black ctermbg=214 guibg=#FF8C00
-highlight ntC ctermfg=Black ctermbg=9   guibg=#2A0AFD
-highlight ntT ctermfg=Black ctermbg=33  guibg=#FD0A0A
-highlight ntN ctermfg=Black ctermbg=255 guibg=#FD0A0A
-highlight nt_ ctermfg=Black ctermbg=255 guibg=#000000
+"highlight ntA ctermfg=Black ctermbg=10  guibg=#272822
+"highlight ntG ctermfg=Black ctermbg=214 guibg=#FF8C00
+"highlight ntC ctermfg=Black ctermbg=9   guibg=#2A0AFD
+"highlight ntT ctermfg=Black ctermbg=33  guibg=#FD0A0A
+"highlight ntN ctermfg=Black ctermbg=255 guibg=#FD0A0A
+"highlight nt_ ctermfg=Black ctermbg=255 guibg=#000000

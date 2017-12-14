@@ -9,6 +9,7 @@ if exists("syntax_on")
 	" sam syntax is per-line so restrict context to one line
     syntax sync minlines=1
   " sam are wide files; remove word-wrapping
+	colorscheme bioSyntax
     set nowrap
 endif
 
@@ -206,7 +207,7 @@ highlight link headerTag header
  highlight link headerPG headerTag
  highlight link headerCO comment
 
-highlight link headerText default
+highlight link headerText normal
  highlight link VN headerText
  highlight link SO headerText
  highlight link SN headerText
@@ -229,40 +230,40 @@ highlight link platform string
 " =========================================================
 " (TO CHANGE THEME COLORS, MODIFY VALUES BELOW ONLY) 
 "
-highlight header   ctermfg=08 ctermbg=250 cterm=bold
+"highlight header   ctermfg=08 ctermbg=250 cterm=bold
 
-highlight numeric     ctermfg=31
-highlight numeric2    ctermfg=61
-highlight string      ctermfg=160
-highlight stringQuote ctermfg=160
-highlight comment2    ctermfg=245 cterm=italic
+"highlight numeric     ctermfg=31
+"highlight numeric2    ctermfg=61
+"highlight string      ctermfg=160
+"highlight stringQuote ctermfg=160 cterm=italic
+"highlight comment2    ctermfg=245 cterm=italic
 
-highlight keyword1 ctermfg=130 " Orange
-highlight keyword2 ctermfg=89  " Purple Dark
-highlight keyword3 ctermfg=172 " Yellow
-highlight keyword4 ctermfg=33  " L.blue
+"highlight keyword1 ctermfg=130 " Orange
+"highlight keyword2 ctermfg=89  " Purple Dark
+"highlight keyword3 ctermfg=172 " Yellow
+"highlight keyword4 ctermfg=33  " L.blue
 
-highlight software ctermfg=166
+"highlight software ctermfg=166
 
-highlight chr      ctermfg=28 cterm=bold
-highlight chrStart ctermfg=28
+"highlight chr      ctermfg=28 cterm=bold
+"highlight chrStart ctermfg=28
 
-highlight ntA ctermfg=Black ctermbg=10  guibg=#272822
-highlight ntG ctermfg=Black ctermbg=214 guibg=#FF8C00
-highlight ntC ctermfg=Black ctermbg=9   guibg=#2A0AFD
-highlight ntT ctermfg=Black ctermbg=33  guibg=#FD0A0A
-highlight ntN ctermfg=Black ctermbg=255 guibg=#FD0A0A
-highlight nt_ ctermfg=Black ctermbg=255 guibg=#000000
+"highlight ntA ctermfg=Black ctermbg=10  guibg=#272822
+"highlight ntG ctermfg=Black ctermbg=214 guibg=#FF8C00
+"highlight ntC ctermfg=Black ctermbg=9   guibg=#2A0AFD
+"highlight ntT ctermfg=Black ctermbg=33  guibg=#FD0A0A
+"highlight ntN ctermfg=Black ctermbg=255 guibg=#FD0A0A
+"highlight nt_ ctermfg=Black ctermbg=255 guibg=#000000
 
-highlight gradbw00 ctermfg=243 ctermbg=0
-highlight gradbw0  ctermfg=245 ctermbg=0
-highlight gradbw1  ctermfg=0 ctermbg=246
-highlight gradbw2  ctermfg=0 ctermbg=247
-highlight gradbw3  ctermfg=0 ctermbg=248
-highlight gradbw4  ctermfg=235 ctermbg=249
-highlight gradbw5  ctermfg=235 ctermbg=250
-highlight gradbw6  ctermfg=241 ctermbg=251
-highlight gradbw7  ctermfg=241 ctermbg=252
-highlight gradbw8  ctermfg=241 ctermbg=253
-highlight gradbw9  ctermfg=250 ctermbg=255
-highlight gradbw10 ctermfg=250 ctermbg=15
+"highlight gradbw00 ctermfg=243 ctermbg=0
+"highlight gradbw0  ctermfg=245 ctermbg=0
+"highlight gradbw1  ctermfg=0 ctermbg=246
+"highlight gradbw2  ctermfg=0 ctermbg=247
+"highlight gradbw3  ctermfg=0 ctermbg=248
+"highlight gradbw4  ctermfg=235 ctermbg=249
+"highlight gradbw5  ctermfg=235 ctermbg=250
+"highlight gradbw6  ctermfg=241 ctermbg=251
+"highlight gradbw7  ctermfg=241 ctermbg=252
+"highlight gradbw8  ctermfg=241 ctermbg=253
+"highlight gradbw9  ctermfg=250 ctermbg=255
+"highlight gradbw10 ctermfg=250 ctermbg=15

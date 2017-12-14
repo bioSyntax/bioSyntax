@@ -4,11 +4,11 @@
 
 faheader start ">"
 
-ntA = '[Aa]+'
-ntT = '[Tt]+'
-ntG = '[Gg]+'
-ntC = '[Cc]+'
-ntU = '[Uu]+'
+ntA = '[Aa]++'
+ntT = '[Tt]++'
+ntG = '[Gg]++'
+ntC = '[Cc]++'
+ntU = '[Uu]++'
 
-ntN = '[NnXx]+'
-#ntGap = '[.-]+' #no highlight
+ntN = '[NnXx]++'
+#ntGap = '[.-]++' #no highlight

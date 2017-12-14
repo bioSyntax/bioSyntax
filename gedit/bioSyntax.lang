@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-gedit Syntax File
-Language: Fasta Index
-Filetypes: .faidx, .fa.fai
-Maintainer: bioSyntax.org
-Version: v0.1
+bioSyntax - 2017 11 19
 
-Color Scheme for htslib faidx format 
-(fasta index).
+Place holder syntax - not in use
+
 -->
-<language id="faidx" _name="Faidx" version="2.0" _section="Scientific">
+<language id="biosyntax" _name="bioSyntax" version="2.0" _section="Scientific">
   <metadata>
-    <property name="mimetypes">text/faidx</property>
-    <property name="globs">*.fai</property>
+    <property name="mimetypes">text/biosyntax</property>
+    <property name="globs">*.biosyntax</property>
   </metadata>
 
   <styles>
-    <style id="chr"       _name="RefName"  map-to="biosyntax:chr"        />
-    <style id="chrStart"  _name="Coords"   map-to="biosyntax:chrStart"   />
-    <style id="numeric"   _name="Numeric"  map-to="biosyntax:numeric"    />
-    <style id="comment"   _name="Comment"  map-to="biosyntax:comment"    />
+    <style id="chr"       _name="RefName"  map-to="bed:chrom"      />
+    <style id="chrStart"  _name="Coords"   map-to="bed:coords"   />
+    <style id="numeric"   _name="Numeric"  map-to="def:constant"    />
+    <style id="comment"   _name="Comment"  map-to="def:comment"    />
   </styles>
 
   <definitions>
@@ -54,6 +50,19 @@ Color Scheme for htslib faidx format
         </include>
 
       </context>
+       <!-- 
+        <context id="a" style-ref="clA">
+         <match>^[Aa](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
+       </context>
+       
+       <context id="b" style-ref="clB">
+         <match>[Bb]*</match>
+       </context>
+       
+       <context id="c" style-ref="clC">
+         <match>^[Cc](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
+       </context>
+       -->
       </include>
     </context>
   </definitions>

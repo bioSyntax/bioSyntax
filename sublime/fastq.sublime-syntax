@@ -4,82 +4,43 @@
 # Maintainer: bioSyntax.org
 # Version: v0.1
 name: fastq
-# See http://www.sublimetext.com/docs/3/syntax.html
 file_extensions: [fastq, fq]
 scope: source.fastq
-
+# See http://www.sublimetext.com/docs/3/syntax.html
 
 contexts:
   main:
-    # Match the comment line "+"
-    #this doesn't work if there is text after the + sign
-    #turns the 3rd line of FASTQ into a commment shade
-    - match: "^\\+$"
-      scope: comment
-
-    #positive lookbehind to match a + and a new line to any characters right after it
-    #pushes it to quality
-    - match: "(?<=\\+\n).*"
-      scope: entity.name
-      push: quality
-
-    - match: "^A"
-      scope: ntA
-      push: nt
-
-    - match: "^C"
-      scope: ntC
-      push: nt
-
-    - match: "^G"
-      scope: ntG
-      push: nt
-
-    - match: "^T"
-      scope: ntT
-      push: nt
-
-    #takes any lines with only ACGT and pushes it to nt
-    - match: "[ACGT]"
-      scope: entity.name
-      push: nt
-
-    #takes any lines that start with @ and pushes it to id
-    #- match: ^@.*\s\b
-    - match: "^@{1,2}.*"
+    # Lines which start with "@" are headers
+    - match: "^@.*$"
       scope: header
-      push: id
+      push: nt
 
+  nt:
+    # Nucleotide sequence highlighting
+    - clear_scopes: true
+    - match: "[Aa]+"
+      scope: ntA
+    - match: "[Gg]+"
+      scope: ntG
+    - match: "[Cc]+"
+      scope: ntC
+    - match: "[Tt]+"
+      scope: ntT
+    - match: "[Uu]+"
+      scope: ntU
+    - match: '^(?=\+)'
+      set: commentLine
 
-  # prototype:
-  #   - include: nt
-
-
-  #takes anything that starts with @ and until the end of the line, turns it green
-  id:
-    - meta_scope: name.id
-    - match: "@"
-      scope: invalid
-    - match: "[@]"
-      scope: invalid
-    - match: $
-      scope: constant.character.escape
-      pop: true
-
-
-  #anything that is pushed here will all be turned one colour
-  # Complete Phred Scale
-  #!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-
-  # PHRED - Illumina 1.8 Scale
-  # 0.2.......................26...31.......41     
-  # !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKL
-  # |   |   |   |   |   |   |   |   |   |   | ...
+  commentLine:
+    # Match the comment line "+"
+    - clear_scopes: true
+    - meta_scope: comment
+    - match: "\n"
+      set: quality
 
   quality:
-    # - clear_scopes: true
-    #- meta_include_prototype: false
-    - meta_scope: comment.line
+    # Match PHRED-quality and graident-color
+    - clear_scopes: true
     - match: "[\\!\\#\\$\"]"
       scope: gradbw0
     - match: "[%\\&\\'\\(]"
@@ -110,21 +71,13 @@ contexts:
       scope: gradbw10
     - match: "[\\{\\|\\}\\~]"
       scope: gradbw10
-    - match: $
-      scope: constant.character.escape
-      pop: true
+    - match: "\n"
+      set: main
 
-  #nt takes the lines from only ACGT and then assigns a colour to each letter #the last match is to see if it ends at the line, if so, then pop.
-  nt:
-    #- meta_content_scope: entity.name
-    - match: "[Aa]"
-      scope: ntA
-    - match: "[Gg]"
-      scope: ntG
-    - match: "[Cc]"
-      scope: ntC
-    - match: "[Tt]"
-      scope: ntT
-    - match: $
-      scope: constant.character.escape
-      pop: true
+# # Complete Phred Scale
+# #!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+# #
+# # PHRED Scale - Illumina 1.8 Scale (Implemented)
+# # 0.2.......................26...31.......41     [Score]
+# # !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKL   [ASCII]
+# # |   |   |   |   |   |   |   |   |   |   | ...

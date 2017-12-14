@@ -1,8 +1,10 @@
 " Vim syntax file
 " Language: biomolecule structure files
 
-if exists("b:current_syntax")
-  finish
+if exists("syntax_on")
+	syntax reset
+	colorscheme bioSyntax
+	set nowrap
 endif
 
 " to match the following string with keywords
@@ -165,14 +167,13 @@ highlight pdbSeqresBg ctermfg=White ctermbg=Red guifg=White guibg=Red
 
 highlight pdbDigitValues ctermfg=Green guifg=Green
 highlight pdbString ctermfg=Green guifg=Green
-"highlight pdbStringValues ctermfg=Green guifg=Green
 highlight pdbNull ctermfg=Red guifg=Red
 highlight pdbSemiValues ctermfg=Green guifg=Green
 highlight pdbSemiString ctermfg=Green guifg=Green
 highlight pdbSemiNull ctermfg=Red guifg=Red
 
 "different chains in SEQRES
-highlight pdbSeqresABg ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
+highlight link pdbSeqresABg zappoA " ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
 highlight pdbSeqresBBg ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF 
 highlight pdbSeqresCBg ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000 
 highlight pdbSeqresDBg ctermfg=White ctermbg=76 guifg=White guibg=#FF4641  
@@ -205,56 +206,56 @@ highlight pdbSite ctermfg=Yellow guifg=Yellow
 highlight pdbSsbond ctermfg=Green guifg=Green
 
 "higlight aminoacids
-highlight pdbAminoacidGly ctermfg=1 guifg=#F09048
-highlight pdbAminoacidAla ctermfg=2 guifg=#80A0F0
-highlight pdbAminoacidVal ctermfg=3 guifg=#80A0F0
-highlight pdbAminoacidLeu ctermfg=4 guifg=#80A0F0
-highlight pdbAminoacidIle ctermfg=5 guifg=#80A0F0
-highlight pdbAminoacidMet ctermfg=6 guifg=#80A0F0
-highlight pdbAminoacidPro ctermfg=7 guifg=#FFFF00
-highlight pdbAminoacidPhe ctermfg=8 guifg=#80A0F0
-highlight pdbAminoacidTrp ctermfg=9 guifg=#80A0F0
-highlight pdbAminoacidSer ctermfg=10 guifg=#00FF00
-highlight pdbAminoacidThr ctermfg=11 guifg=#00FF00
-highlight pdbAminoacidCys ctermfg=12 guifg=#F08080
-highlight pdbAminoacidTyr ctermfg=13 guifg=#15A4A4
-highlight pdbAminoacidAsn ctermfg=14 guifg=#00FF00
-highlight pdbAminoacidGln ctermfg=15 guifg=#00FF00
-highlight pdbAminoacidAsp ctermfg=16 guifg=#C048C0
-highlight pdbAminoacidGlu ctermfg=17 guifg=#C048C0
-highlight pdbAminoacidLys ctermfg=18 guifg=#F01505
-highlight pdbAminoacidArg ctermfg=19 guifg=#F01505
-highlight pdbAminoacidHis ctermfg=20 guifg=#15A4A4
+highlight link pdbAminoacidGly aaG
+highlight link pdbAminoacidAla aaA
+highlight link pdbAminoacidVal aaV
+highlight link pdbAminoacidLeu aaL
+highlight link pdbAminoacidIle aaI
+highlight link pdbAminoacidMet aaM
+highlight link pdbAminoacidPro aaP
+highlight link pdbAminoacidPhe aaF
+highlight link pdbAminoacidTrp aaW
+highlight link pdbAminoacidSer aaS
+highlight link pdbAminoacidThr aaT
+highlight link pdbAminoacidCys aaC
+highlight link pdbAminoacidTyr aaY
+highlight link pdbAminoacidAsn aaN
+highlight link pdbAminoacidGln aaQ
+highlight link pdbAminoacidAsp aaD
+highlight link pdbAminoacidGlu aaE
+highlight link pdbAminoacidLys aaK
+highlight link pdbAminoacidArg aaR
+highlight link pdbAminoacidHis aaH
 
 "highlight chains
-highlight pdbChainA ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainB ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
-highlight pdbChainC ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000
-highlight pdbChainD ctermfg=White ctermbg=76 guifg=White guibg=#FF4641
-highlight pdbChainE ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainF ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
-highlight pdbChainG ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000
-highlight pdbChainH ctermfg=Black ctermbg=76 guifg=White guibg=#FF4641
-highlight pdbChainI ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainJ ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
-highlight pdbChainK ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000
-highlight pdbChainL ctermfg=Black ctermbg=76 guifg=White guibg=#FF4641
-highlight pdbChainM ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainN ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
-highlight pdbChainO ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000
-highlight pdbChainP ctermfg=Black ctermbg=76 guifg=White guibg=#FF4641
-highlight pdbChainQ ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainR ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
-highlight pdbChainS ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000
-highlight pdbChainT ctermfg=Black ctermbg=76 guifg=White guibg=#FF4641
-highlight pdbChainU ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainV ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
-highlight pdbChainW ctermfg=Black ctermbg=94 guifg=Black guibg=#F09000
-highlight pdbChainX ctermfg=Black ctermbg=76 guifg=White guibg=#FF4641
-highlight pdbChainY ctermfg=Black ctermbg=10 guifg=Black guibg=#47FF19
-highlight pdbChainZ ctermfg=Black ctermbg=75 guifg=Black guibg=#4192FF
+highlight link pdbChainA aaA 
+highlight link pdbChainB aaB 
+highlight link pdbChainC aaC 
+highlight link pdbChainD aaD 
+highlight link pdbChainE aaE 
+highlight link pdbChainF aaF 
+highlight link pdbChainG aaG 
+highlight link pdbChainH aaH 
+highlight link pdbChainI aaI 
+highlight link pdbChainJ aaJ 
+highlight link pdbChainK aaK 
+highlight link pdbChainL aaL 
+highlight link pdbChainM aaM 
+highlight link pdbChainN aaN 
+highlight link pdbChainO aaO 
+highlight link pdbChainP aaP 
+highlight link pdbChainQ aaQ 
+highlight link pdbChainR aaR 
+highlight link pdbChainS aaS 
+highlight link pdbChainT aaT 
+highlight link pdbChainU aaU 
+highlight link pdbChainV aaV 
+highlight link pdbChainW aaW 
+highlight link pdbChainX aaX 
+highlight link pdbChainY aaY 
+highlight link pdbChainZ aaZ 
 
-highlight pdbNumber ctermfg=Cyan guifg=Cyan
+highlight link pdbNumber numeric2
 
 hi def link pdbRemarkRegion Keyword
 hi def link pdbJournalRegion String
