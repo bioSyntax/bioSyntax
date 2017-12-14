@@ -42,17 +42,17 @@ if  [ "$(uname)" == "Darwin" ]; then
 		else
     		brew update
 		fi
-		if brew ls --versions "source-highlight" > dev/null; then
-			brew install source-highlight
-		else
+		if [[ ! -z `brew ls --versions "source-highlight"` ]]; then
 			brew upgrade source-highlight
+		else
+			brew install source-highlight
 		fi
 		FPATH=/usr/local/bin/
 		TPATH=/usr/local/bin/
-		if ! grep -q "bioSyntax" ~/.bash_profile; then sudo cat /less/bp_append.txt >> ~/.bash_profile; fi
-		sudo cp "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
-		sudo cp "/less/biosyntax.outlang" "${TPATH}"
-		sudo cp "/less/bioSyntax-vcf.outlang" "${TPATH}"
+		if ! grep -q "bioSyntax" ~/.bash_profile; then sudo cat /bioSyntax/less/bp_append.txt >> ~/.bash_profile; fi
+		sudo cp "/bioSyntax/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
+		sudo cp "/bioSyntax/less/biosyntax.outlang" "${TPATH}"
+		sudo cp "/bioSyntax/less/bioSyntax-vcf.outlang" "${TPATH}"
 	else
 		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$1"
 		exit 1
@@ -126,23 +126,23 @@ fi
 ## FILE AND URL FORMATTING, DOWNLOAD THEME/STYLE FILE, PLACE IT IN RIGHT DIRECTORY, CHANGE TO READ-ONLY
 
 if [ "$1" == "sublime" ]; then
-	SOURCE="/sublime/"
+	SOURCE="/bioSyntax/sublime/"
 	THEME="Color Scheme - bioSyntax.sublime-package"
 	sudo chmod 0644 "${SOURCE}/${THEME}"
 	sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
-	FILES=("/sublime/*.sublime-syntax")
+	FILES=(`find "/bioSyntax/sublime/" -name "*.sublime-syntax" -print`)
 	FILE=".sublime-syntax"
 elif [ "$1" == "gedit" ]; then
-	SOURCE="/gedit/"
+	SOURCE="/bioSyntax/gedit/"
 	THEME="bioKate.xml"
 	sudo chmod 0644 "${SOURCE}/${THEME}"
 	sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
-	FILES=("/gedit/*.lang")
+	FILES=(`find "/bioSyntax/gedit/" -name "*.lang" -print`)
 	FILE=".lang"
 elif [ "$1" == "vim" ]; then
-	SOURCE="/vim/"
-	THEMES=("/vim/ftdetect/*.vim")
-	FILES=("/vim/*.vim")
+	SOURCE="/bioSyntax/vim/"
+	FILES=(`find "/bioSyntax/vim/ftdetect/" -name "*.vim" -print`)
+	FILES=(`find "/bioSyntax/vim/" -name "*.vim" -print`)
 	FILE=".vim"
 	if [ -z "$2" ]; then
 		for ((t=0; t<${#THEMES[@]}; t++)); do
@@ -150,13 +150,13 @@ elif [ "$1" == "vim" ]; then
 			sudo cp "${THEMES[${t}]}" "${TPATH}"
 		done
 	else
-		sudo chmod 0644 "/vim/ftdetect/{$2}.vim"
-		sudo cp "/vim/ftdetect/{$2}.vim" "${TPATH}"
+		sudo chmod 0644 "/bioSyntax/vim/ftdetect/{$2}.vim"
+		sudo cp "/bioSyntax/vim/ftdetect/{$2}.vim" "${TPATH}"
 	fi
 elif [ "$1" == "less" ]; then
-	SOURCE="/less/"
-	THEMES=("/less/*.style")
-	FILES=("/less/*.lang")
+	SOURCE="/bioSyntax/less/"
+	FILES=(`find "/bioSyntax/less/" -name "*.style" -print`)
+	FILES=(`find "/bioSyntax/less/" -name "*.lang" -print`)
 	FILE=".lang"
 	if [ -z "$2" ]; then
 		for ((t=0; t<${#THEMES[@]}; t++)); do
@@ -164,8 +164,8 @@ elif [ "$1" == "less" ]; then
 			sudo cp "${THEMES[${t}]}" "${TPATH}"
 		done
 	else
-		sudo chmod 0644 "/less/${2}.style"
-		sudo cp "/less/${2}.style" "${TPATH}"
+		sudo chmod 0644 "/bioSyntax/less/${2}.style"
+		sudo cp "/bioSyntax/less/${2}.style" "${TPATH}"
 	fi
 else
 	 printf "ERROR: %s is not a valid/supported editor. Currently, bioSyntax is available for sublime, gedit, vim, and less.\\n" "$1"
