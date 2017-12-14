@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # General Cross-Platform Installer Script for bioSyntax files
 # MUST BE EXECUTED FROM ROOT AS ADMIN
 # Takes 2 trailing arguments, $1 is mandatory. $1 = text editor, $2 = syntax format
@@ -12,7 +12,7 @@
 #	- Vim: bed, clustal, faidx, fasta, fastq, gtf, pdb, sam, vcf
 #	- Less: bed, clustal, faidx, fasta, fastq, flagstat, gtf, pdb, sam, vcf
 printf "bioSyntax is a syntax highlighting tool for computational biology. For more information, visit biosyntax.org.\\n"
-#cd -- "$(dirname "$BASH_SOURCE")"
+BIOSYNTAX="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Mac OSX - Available for: Sublime Text 3, Vim
 if  [ "$(uname)" == "Darwin" ]; then
@@ -31,9 +31,9 @@ if  [ "$(uname)" == "Darwin" ]; then
 		TPATH=~/.vim/ftdetect/
 		if [ ! -d "${TPATH}" ]; then sudo mkdir "${TPATH}"; fi
 		if [ ! -d ~/.vim/colors ]; then sudo mkdir ~/.vim/colors; fi
-		sudo cp "/biosyntax/vim/colors/bioSyntax.vim" ~/.vim/colors
+		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors
 	#elif [ "$1" == "gedit" ]; then
-	#	printf "Setting up %s lang file(s) and bioKate theme for Mac OSX Gedit.\\n" "$2"
+	#	printf "Setting up %s lang file(s) and bioSyntax theme for Mac OSX Gedit.\\n" "$2"
 	#	FPATH=/
 	#	TPATH=/
 	elif [ "$1" == "less" ]; then
@@ -52,12 +52,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 		FPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight
 		TPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight
 		if ! grep -q "bioSyntax" ~/.bash_profile; then sudo cat /bioSyntax/less/bp_append.txt >> ~/.bash_profile; fi
-		sudo cp "/bioSyntax/less/src-hilite-lesspipe_BIO.sh" "/usr/local/bin/"
+		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe_BIO.sh" "/usr/local/bin/"
 		sudo chmod 755 "/usr/local/bin/src-hilite-lesspipe.sh"
-		sudo cp "/bioSyntax/less/biosyntax.outlang" "${TPATH}"
-		sudo chmod 755 "${TPATH}/biosyntax.outlang"
-		sudo cp "/bioSyntax/less/bioSyntax-vcf.outlang" "${TPATH}"
-		sudo chmod 755 "${TPATH}/biosyntax-vcf.outlang"
+		sudo cp "${BIOSYNTAX}/less/biosyntax.outlang" "${TPATH}"
+		sudo cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
 	else
 		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$1"
 		exit 1
@@ -69,9 +67,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Linux Sublime Text 3.\\n" "$2"
 		FPATH=~/.config/sublime-text-3/Packages/User/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then mkdir "${FPATH}"; fi
-		TPATH=../sublime_text_3/Packages/
+		TPATH=/opt/sublime_text/Packages/
 	elif [ "$1" == "gedit" ]; then
-		printf "Setting up %s lang file(s) and bioKate theme for Linux Gedit.\\n" "$2"
+		printf "Setting up %s lang file(s) and bioSyntax theme for Linux Gedit.\\n" "$2"
 		FPATH=/usr/share/gtksourceview-3.0/language-specs/
 		TPATH=/usr/share/gtksourceview-3.0/styles/
 	elif [ "$1" == "vim" ]; then
@@ -85,12 +83,13 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ ! -d "${TPATH}" ]; then sudo mkdir "${TPATH}"; fi
 	elif [ "$1" == "less" ]; then
 		printf "Installing/updating source-highlight for Less and setting up %s lang file(s) and style file(s) for Linux Less.\\n" "$2"
-		apt-get update
-	apt-get install source-highlight
+		sudo apt-get update
+		sudo apt-get install source-highlight
 		FPATH=/usr/share/source-highlight/
 		TPATH=/usr/share/source-highlight/
-		if ! grep -q "bioSyntax" ~/.bashrc; then sudo cat /less/rc_append.txt >> ~/.bashrc; fi
+		if ! grep -q "bioSyntax" ~/.bashrc; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc; fi
 		sudo cp "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
+		chmod 755 "${TPATH}/src-hilite-lesspipe.sh"
 		sudo cp "/less/biosyntax.outlang" "${TPATH}"
 		sudo cp "/less/bioSyntax-vcf.outlang" "${TPATH}"
 	else
@@ -106,7 +105,7 @@ else
 		if [ ! -d "${FPATH}" ]; then mkdir "${FPATH}"; fi
 		TPATH=C:/Program Files/Sublime Text 3/Packages/
 	elif [ "$1" == "gedit" ]; then
-		printf "Setting up %s lang file(s) and bioKate theme for Windows Gedit.\\n" "$2"
+		printf "Setting up %s lang file(s) and bioSyntax theme for Windows Gedit.\\n" "$2"
 		FPATH=C:/Program Files/gedit/share/gtksourceview-2.0/styles/
 		TPATH=C:/Program Files/gedit/share/gtksourceview-2.0/styles/
 	elif [ "$1" == "vim" ]; then
@@ -128,26 +127,29 @@ else
 	fi
 fi
 
-## FILE AND URL FORMATTING, DOWNLOAD THEME/STYLE FILE, PLACE IT IN RIGHT DIRECTORY, CHANGE TO READ-ONLY
+## FILE AND URL FORMATTING, PLACE IT IN RIGHT DIRECTORY, CHANGE TO READ-ONLY
 
-if [ "$1" == "sublime" ]; then
-	SOURCE="/bioSyntax/sublime/"
+if [ -z "$1" ]; then
+	printf "Please enter the editor you are installing bioSyntax to as a trailing argument i.e. one of the following: sublime, gedit, vim, less\\n"
+	exit 1
+elif [ "$1" == "sublime" ]; then
+	SOURCE="${BIOSYNTAX}/sublime/"
 	THEME="Color Scheme - bioSyntax.sublime-package"
 	sudo chmod 0644 "${SOURCE}/${THEME}"
 	sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
-	FILES=(`find "/bioSyntax/sublime/" -name "*.sublime-syntax" -print`)
+	FILES=(`find "${BIOSYNTAX}/sublime/" -name "*.sublime-syntax" -print`)
 	FILE=".sublime-syntax"
 elif [ "$1" == "gedit" ]; then
-	SOURCE="/bioSyntax/gedit/"
-	THEME="bioKate.xml"
+	SOURCE="${BIOSYNTAX}/gedit/"
+	THEME="bioSyntax.xml"
 	sudo chmod 0644 "${SOURCE}/${THEME}"
 	sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
-	FILES=(`find "/bioSyntax/gedit/" -name "*.lang" -print`)
+	FILES=(`find "${BIOSYNTAX}/gedit/" -name "*.lang" -print`)
 	FILE=".lang"
 elif [ "$1" == "vim" ]; then
-	SOURCE="/bioSyntax/vim/"
-	THEMES=(`find "/bioSyntax/vim/ftdetect/" -name "*.vim" -print`)
-	FILES=(`find "/bioSyntax/vim/" -name "*.vim" -print`)
+	SOURCE="${BIOSYNTAX}/vim/"
+	THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
+	FILES=(`find "${BIOSYNTAX}/vim/" -name "*.vim" -print`)
 	FILE=".vim"
 	if [ -z "$2" ]; then
 		for ((t=0; t<${#THEMES[@]}; t++)); do
@@ -155,13 +157,13 @@ elif [ "$1" == "vim" ]; then
 			sudo cp "${THEMES[${t}]}" "${TPATH}"
 		done
 	else
-		sudo chmod 0644 "/bioSyntax/vim/ftdetect/{$2}.vim"
-		sudo cp "/bioSyntax/vim/ftdetect/{$2}.vim" "${TPATH}"
+		sudo chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
+		sudo cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
 	fi
 elif [ "$1" == "less" ]; then
-	SOURCE="/bioSyntax/less/"
-	THEMES=(`find "/bioSyntax/less/" -name "*.style" -print`)
-	FILES=(`find "/bioSyntax/less/" -name "*.lang" -print`)
+	SOURCE="${BIOSYNTAX}/less/"
+	THEMES=(`find "${BIOSYNTAX}/less/" -name "*.style" -print`)
+	FILES=(`find "${BIOSYNTAX}/less/" -name "*.lang" -print`)
 	FILE=".lang"
 	if [ -z "$2" ]; then
 		for ((t=0; t<${#THEMES[@]}; t++)); do
@@ -169,8 +171,8 @@ elif [ "$1" == "less" ]; then
 			sudo cp "${THEMES[${t}]}" "${TPATH}"
 		done
 	else
-		sudo chmod 0644 "/bioSyntax/less/${2}.style"
-		sudo cp "/bioSyntax/less/${2}.style" "${TPATH}"
+		sudo chmod 0644 "${BIOSYNTAX}/less/${2}.style"
+		sudo cp "${BIOSYNTAX}/less/${2}.style" "${TPATH}"
 	fi
 else
 	 printf "ERROR: %s is not a valid/supported editor. Currently, bioSyntax is available for sublime, gedit, vim, and less.\\n" "$1"
