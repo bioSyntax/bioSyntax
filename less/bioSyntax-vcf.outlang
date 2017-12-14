@@ -10,29 +10,29 @@ color "$style"
 
 colormap
 # Nucleotide Colors
-"black" "30;48:5:253"      # header
-"darkgreen" "30;48:5:10"   # A
-"darkred" "30;48:5:09"     # C, mal
-"darkblue" "30;48:5:33"    # T, bon
-"brown" "30;48:5:214"      # G
-"teal" "38:5:0;48:5:15"        # N / REF
+"black" "30;48;5;253"      # header
+"darkgreen" "30;48;5;10"   # A
+"darkred" "30;48;5;09"     # C, mal
+"darkblue" "30;48;5;33"    # T, bon
+"brown" "30;48;5;214"      # G
+"teal" "38;5;0;48;5;15"        # N / REF
 #
 #
 # Text Class
-"gray" "38:5:240;48:5:255" # Comment
-"blue" "38:5:62"           # Numeric, Version
-"yellow" "38:5:208"        # Numeric2, Keyword4, software
+"gray" "38;5;240;48;5;255" # Comment
+"blue" "38;5;62"           # Numeric, Version
+"yellow" "38;5;208"        # Numeric2, Keyword4, software
 #
 #
 # Keyword
-"red" "38:5:160"           # Keyword, string, quoteString
-"green" "38:5:28"          # Keyword2, chr, chrStart 
-"purple" "38:5:39"         # Keyword3, url, library
-"cyan" "38:5:54"           # Keyword5
-"pink" "38:5:136"          # Keyword6
-"orange" "38:5:166"        # Keyword7
-"brightgreen" "38:5:22"    # Keyword8
-"brightorange" "38:5:18"   # Keyword9
+"red" "38;5;160"           # Keyword, string, quoteString
+"green" "38;5;28"          # Keyword2, chr, chrStart 
+"purple" "38;5;39"         # Keyword3, url, library
+"cyan" "38;5;54"           # Keyword5
+"pink" "38;5;136"          # Keyword6
+"orange" "38;5;166"        # Keyword7
+"brightgreen" "38;5;22"    # Keyword8
+"brightorange" "38;5;18"   # Keyword9
 default "30;"
 end
 

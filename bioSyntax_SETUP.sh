@@ -30,6 +30,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if [ ! -d "${FPATH}" ]; then sudo mkdir "${FPATH}"; fi
 		TPATH=~/.vim/ftdetect/
 		if [ ! -d "${TPATH}" ]; then sudo mkdir "${TPATH}"; fi
+		if [ ! -d ~/.vim/colors ]; then sudo mkdir ~/.vim/colors; fi
+		sudo cp "/biosyntax/vim/colors/bioSyntax.vim" ~/.vim/colors
 	#elif [ "$1" == "gedit" ]; then
 	#	printf "Setting up %s lang file(s) and bioKate theme for Mac OSX Gedit.\\n" "$2"
 	#	FPATH=/
@@ -47,15 +49,15 @@ if  [ "$(uname)" == "Darwin" ]; then
 		else
 			brew install source-highlight
 		fi
-		FPATH=/usr/local/bin/
-		TPATH=/usr/local/bin/
+		FPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight
+		TPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight
 		if ! grep -q "bioSyntax" ~/.bash_profile; then sudo cat /bioSyntax/less/bp_append.txt >> ~/.bash_profile; fi
-		sudo cp "/bioSyntax/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
-		sudo chmod 0644 "${TPATH}/src-hilite-lesspipe.sh"
+		sudo cp "/bioSyntax/less/src-hilite-lesspipe_BIO.sh" "/usr/local/bin/"
+		sudo chmod 755 "/usr/local/bin/src-hilite-lesspipe.sh"
 		sudo cp "/bioSyntax/less/biosyntax.outlang" "${TPATH}"
-		sudo chmod 0644 "${TPATH}/biosyntax.outlang"
+		sudo chmod 755 "${TPATH}/biosyntax.outlang"
 		sudo cp "/bioSyntax/less/bioSyntax-vcf.outlang" "${TPATH}"
-		sudo chmod 0644 "${TPATH}/biosyntax-vcf.outlang"
+		sudo chmod 755 "${TPATH}/biosyntax-vcf.outlang"
 	else
 		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$1"
 		exit 1
@@ -144,7 +146,7 @@ elif [ "$1" == "gedit" ]; then
 	FILE=".lang"
 elif [ "$1" == "vim" ]; then
 	SOURCE="/bioSyntax/vim/"
-	FILES=(`find "/bioSyntax/vim/ftdetect/" -name "*.vim" -print`)
+	THEMES=(`find "/bioSyntax/vim/ftdetect/" -name "*.vim" -print`)
 	FILES=(`find "/bioSyntax/vim/" -name "*.vim" -print`)
 	FILE=".vim"
 	if [ -z "$2" ]; then
@@ -158,7 +160,7 @@ elif [ "$1" == "vim" ]; then
 	fi
 elif [ "$1" == "less" ]; then
 	SOURCE="/bioSyntax/less/"
-	FILES=(`find "/bioSyntax/less/" -name "*.style" -print`)
+	THEMES=(`find "/bioSyntax/less/" -name "*.style" -print`)
 	FILES=(`find "/bioSyntax/less/" -name "*.lang" -print`)
 	FILE=".lang"
 	if [ -z "$2" ]; then
