@@ -1,0 +1,16 @@
+		<dict>
+			<key>name</key>
+			<string>NAME</string>
+			<key>scope</key>
+			<string>SCOPE</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>FONTSTYLE</string>
+				<key>background</key>
+				<string>BACKGROUND</string>
+				<key>foreground</key>
+				<string>FOREGROUND</string>
+			</dict>
+		</dict>
+
