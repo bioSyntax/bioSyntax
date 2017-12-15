@@ -28,13 +28,13 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
 		FPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/bioSyntax/
-		if [ ! -d "${FPATH}" ];
-			then sudo mkdir "${FPATH}";
+		if [ ! -d "${FPATH}" ]; then
+			sudo mkdir "${FPATH}";
 		fi
 		TPATH=/Applications/Sublime\ Text.app/Contents/MacOS/Packages
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
-		THEME="Color Scheme - bioSyntax.sublime-packae"
+		THEME="Color Scheme - bioSyntax.sublime-package"
 		sudo chmod 0644 "${SOURCE}/${THEME}"
 		sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
@@ -68,8 +68,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 
 		# COPIES COLOR SCHEME TO RIGHT PATH AND CHANGES IT TO READ-ONLY
-		if [ ! -d ~/.vim/colors ];
-			then sudo mkdir ~/.vim/colors;
+		if [ ! -d ~/.vim/colors ]; then
+			sudo mkdir ~/.vim/colors;
 		fi
 		sudo chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
 		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors
@@ -267,11 +267,17 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
 		if [ `echo $SHELL` == "/bin/bash" ]; then
-			if ! grep -q "bioSyntax" ~/.bashrc; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc; fi
+			if ! grep -q "bioSyntax" ~/.bashrc; then
+				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc;
+			fi
 		elif [ `echo $SHELL` == "/bin/zsh" ]; then
-			if ! grep -q "bioSyntax" ~/.zshrc; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zshrc; fi
+			if ! grep -q "bioSyntax" ~/.zshrc; then
+				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zshrc;
+			fi
 		else
-			if ! grep -q "bioSyntax" ~/.profile; then sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.profile; fi
+			if ! grep -q "bioSyntax" ~/.profile; then
+				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.profile;
+			fi
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
@@ -324,8 +330,8 @@ else
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
 		FPATH=/c/Users/carol/AppData/Roaming/Sublime\ Text\ 3/Packages/User/bioSyntax
-		if [ ! -d "${FPATH}" ];
-			then mkdir "${FPATH}";
+		if [ ! -d "${FPATH}" ]; then
+			mkdir "${FPATH}";
 		fi
 		TPATH=/c/Program\ Files/Sublime\ Text\ 3/Packages
 
