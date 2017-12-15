@@ -125,7 +125,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe_BIO.sh" "/usr/local/bin/"
+		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe_BIO.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
 		sudo chmod 755 "/usr/local/bin/src-hilite-lesspipe.sh"
 		sudo cp "${BIOSYNTAX}/less/biosyntax.outlang" "${TPATH}"
 		sudo cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
