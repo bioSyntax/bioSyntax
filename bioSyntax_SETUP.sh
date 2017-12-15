@@ -31,7 +31,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if [ ! -d "${FPATH}" ]; then
 			sudo mkdir "${FPATH}";
 		fi
-		TPATH=/Applications/Sublime\ Text.app/Contents/MacOS/Packages
+		TPATH=/Applications/Sublime\ Text.app/Contents/MacOS/Packages/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="Color Scheme - bioSyntax.sublime-package"
@@ -58,7 +58,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if [ ! -d ~/.vim/ ]; then
 			mkdir ~/.vim/;
 		fi
-		FPATH=~/.vim/syntax
+		FPATH=~/.vim/syntax/
 		if [ ! -d "${FPATH}" ]; then
 			sudo mkdir "${FPATH}";
 		fi
@@ -68,11 +68,11 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 
 		# COPIES COLOR SCHEME TO RIGHT PATH AND CHANGES IT TO READ-ONLY
-		if [ ! -d ~/.vim/colors ]; then
-			sudo mkdir ~/.vim/colors;
+		if [ ! -d ~/.vim/colors/ ]; then
+			sudo mkdir ~/.vim/colors/;
 		fi
 		sudo chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors
+		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
@@ -116,8 +116,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME FILE(S), LESSPIPE SCRIPT AND SYNTAX FILE(S)
 		SOURCE="${BIOSYNTAX}/less/"
-		FPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight
-		TPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight
+		FPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight/
+		TPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight/
 
 		# APPENDS LESS PIPE TO BASH PROFILE TO ENABLE AUTOMATIC SYNTAX HIGHLIGHTING
 		if ! grep -q "bioSyntax" ~/.bash_profile; then
@@ -221,7 +221,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/vim/"
-		FPATH=~/.vim/syntax
+		FPATH=~/.vim/syntax/
 		if [ ! -d "${FPATH}" ]; then
 			sudo mkdir "${FPATH}";
 		fi
@@ -231,11 +231,11 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 		# COPIES COLOR SCHEME TO RIGHT PATH AND CHANGES IT TO READ-ONLY
-		if [ ! -d ~/.vim/colors ]; then
-			sudo mkdir ~/.vim/colors;
+		if [ ! -d ~/.vim/colors/ ]; then
+			sudo mkdir ~/.vim/colors/;
 		fi
 		sudo chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors
+		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
@@ -329,11 +329,11 @@ else
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Windows Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
-		FPATH=/c/Users/carol/AppData/Roaming/Sublime\ Text\ 3/Packages/User/bioSyntax
+		FPATH=~/AppData/Roaming/Sublime\ Text\ 3/Packages/User/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then
 			mkdir "${FPATH}";
 		fi
-		TPATH=/c/Program\ Files/Sublime\ Text\ 3/Packages
+		TPATH=/c/Program\ Files/Sublime\ Text\ 3/Packages/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="Color Scheme - bioSyntax.sublime-package"
@@ -349,8 +349,8 @@ else
 		printf "Setting up %s lang file(s) and bioSyntax theme for Windows Gedit.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/gedit/"
-		FPATH=/c/Program Files/gedit/share/gtksourceview-3.0/language-specs
-		TPATH=/c/Program Files/gedit/share/gtksourceview-3.0/styles
+		FPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/language-specs/
+		TPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/styles/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.xml"
@@ -387,11 +387,11 @@ else
 		fi
 
 		# COPIES COLOR SCHEME TO RIGHT PATH AND CHANGES IT TO READ-ONLY
-		if [ ! -d ~/.vim/colors ]; then
+		if [ ! -d ~/.vim/colors/ ]; then
 			mkdir ~/.vim/colors;
 		fi
 		chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors
+		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
