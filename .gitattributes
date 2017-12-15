@@ -1,0 +1,14 @@
+# .gitattributes file
+# 
+# Folders and files listed here are EXCLUDED from deployment
+# when using `git archive` or github release
+#
+# Git Files
+.gitattributes export-ignore
+.gitignore export-ignore
+#
+# Development Folder
+dev/* export-ignore
+#
+# Images
+bioSyntax_logo.png export-ignore

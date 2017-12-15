@@ -47,7 +47,7 @@ with Zappo color theme
   </styles>
 
   <definitions>
-    <context id="fast">
+    <context id="fastza">
       <include>
 
        <context id="Header" style-ref="header">

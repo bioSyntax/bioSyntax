@@ -8,14 +8,14 @@ Maintainer: bioSyntax.org
 Version: v0.1
 -->
 
-<language id="biosyntax" _name="SAM" version="2.0" _section="Scientific">
+<language id="sam" _name="SAM" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/sam</property>
     <property name="globs">*.sam</property>
   </metadata>
 
   <definitions>
-    <context id="biosyntax">
+    <context id="sam">
       <include>
 
         <!-- Header Section -->

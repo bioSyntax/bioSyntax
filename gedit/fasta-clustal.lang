@@ -10,10 +10,10 @@ Color Scheme for amino acid fasta files
 with Clustal color theme
 -->
 
-<language id="fast"  _name="Fasta-clustal" version="2.0" _section="Scientific">
+<language id="fastcl"  _name="Fasta-clustal" version="2.0" _section="Scientific">
 
   <metadata>
-    <property name="mimetypes">text/fastza</property>
+    <property name="mimetypes">text/fastcl</property>
     <property name="globs">*.faa</property>
   </metadata>
 
@@ -47,7 +47,7 @@ with Clustal color theme
   </styles>
 
   <definitions>
-    <context id="fast">
+    <context id="fastcl">
       <include>
 
        <context id="Header" style-ref="header">

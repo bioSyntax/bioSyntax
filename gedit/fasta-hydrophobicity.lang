@@ -47,7 +47,7 @@ with Hydrophobicity color theme
   </styles>
 
   <definitions>
-    <context id="fast">
+    <context id="fasthy">
       <include>
 
        <context id="Header" style-ref="header">
