@@ -1,21 +1,48 @@
 #!/bin/bash
 # General Cross-Platform Installer Script for bioSyntax files
 # MUST BE EXECUTED FROM ROOT AS ADMIN
-# Takes 2 trailing arguments, $1 is mandatory. $1 = text editor, $2 = syntax format
+#
+# Usage:
+# bash bioSyntax_SETUP.sh <text_editor> (<file format>)
+#
 # AVAILABLE FOR:
 #	- Linux Ubuntu: sublime, gedit, vim, less
 #	- Windows: sublime, gedit, vim
 #	- MacOSX: sublime, vim, less
+#
 # SYNTAX FILES FORMATS:
 #	- Sublime Text 3: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt, fasta-taylor, fasta-zappo, fastq, flagstat, gtf, pdb, sam, vcf, wig
 #	- Gedit: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt, fasta-taylor, fasta-zappo, fastq, gtf, pdb, sam, wig
 #	- Vim: bed, clustal, faidx, fasta, fastq, gtf, pdb, sam, vcf
 #	- Less: bed, clustal, faidx, fasta, fastq, flagstat, gtf, pdb, sam, vcf
-printf "bioSyntax is a syntax highlighting tool for computational biology. For more information, visit biosyntax.org.\\n"
+#
+
+printf "bioSyntax: Syntax Highlighting for Computational Biology.\\n"
+printf "           For more information, visit bioSyntax.org.\\n"
+
+# Script needs to be run from main bioSyntax directory.
 BIOSYNTAX="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -z "$1" ]; then
-	printf "Please enter the editor you are installing bioSyntax to as a trailing argument i.e. one of the following: sublime, gedit, vim, less\\n"
+	printf "\\n"
+	printf " \x1b[31mbio\x1b[32mSyntax\x1b[30m:\x1b[m v0.1-beta \\n"
+	printf " ---------------------------------\\n"
+	printf " install script -- v0.1-beta\\n"
+	printf "\\n"
+	printf " Usage: \\n"
+	printf " bash bioSyntax_SETUP.sh <text_editor> <file_format (optional)> \\n"
+	printf "\\n"
+	printf " <text_editor> = vim || less || gedit || sublime \\n"
+	printf "\\n"
+	printf " <file_format> = (blank for all) || fasta || fastq || sam || vcf || pdb ... \\n"
+	printf "\\n"
+	printf " Notes: \\n "
+	printf "   -- auto-installation requires some commands to be run as root \\n"
+	printf "   -- less installation will install 'source-highlight' to function \\n"
+	printf "\\n"
+	printf "\\n"
+	printf " For more information, visit bioSyntax.org \\n"
+	printf "\\n"
 	exit 1
 fi
 
@@ -161,7 +188,6 @@ if  [ "$(uname)" == "Darwin" ]; then
 		sudo chmod 0644 "${SOURCE}/${2}${FILE}"
 		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	fi
-
 
 
 
@@ -439,7 +465,4 @@ fi
 
 printf "Installation successful. Restart %s and you will now have pretty %s formats! Thank you for your support!\\n" "$1" "$2"
 exit 0
-
-
-
 
