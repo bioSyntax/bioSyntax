@@ -77,7 +77,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 			touch ~/.vimrc;
 		fi
 		if ! grep -q ":syntax enable" ~/.vimrc; then
-			echo ":syntax enable\\n" > ~/.vimrc;
+			echo ":syntax enable" >> ~/.vimrc;
 		fi
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
@@ -239,7 +239,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 			touch ~/.vimrc;
 		fi
 		if ! grep -q ":syntax enable" ~/.vimrc; then
-			echo ":syntax enable\\n" > ~/.vimrc;
+			echo ":syntax enable" >> ~/.vimrc;
 		fi
 		if [ ! -d ~/.vim/ ]; then
 			mkdir ~/.vim/;
@@ -249,30 +249,30 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		SOURCE="${BIOSYNTAX}/vim/"
 		FPATH=~/.vim/syntax/
 		if [ ! -d "${FPATH}" ]; then
-			sudo mkdir "${FPATH}";
+			mkdir "${FPATH}";
 		fi
 		TPATH=~/.vim/ftdetect/
 		if [ ! -d "${TPATH}" ]; then
-			sudo mkdir "${TPATH}";
+			mkdir "${TPATH}";
 		fi
 
 		# COPIES COLOR SCHEME TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		if [ ! -d ~/.vim/colors/ ]; then
-			sudo mkdir ~/.vim/colors/;
+			mkdir ~/.vim/colors/;
 		fi
-		sudo chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
+		chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
+		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo chmod 0644 "${THEMES[${t}]}"
-				sudo cp "${THEMES[${t}]}" "${TPATH}"
+				chmod 0644 "${THEMES[${t}]}"
+				cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
-			sudo cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
+			chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
+			cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -395,7 +395,7 @@ else
 			touch ~/.vimrc;
 		fi
 		if ! grep -q ":syntax enable" ~/.vimrc; then
-			echo ":syntax enable\\n" > ~/.vimrc;
+			echo ":syntax enable" >> ~/.vimrc;
 		fi
 		if [ ! -d ~/.vim/ ]; then
 			mkdir ~/.vim/;
