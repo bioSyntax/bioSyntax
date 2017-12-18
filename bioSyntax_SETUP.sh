@@ -25,7 +25,7 @@ BIOSYNTAX="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -z "$1" ]; then
 	printf "\\n"
-	printf " \x1b[31mbio\x1b[32mSyntax\x1b[30m:\x1b[m v0.1-beta \\n"
+	printf " $(tput setaf 2)bio$(tput setaf 1)Syntax$(tput setaf 0):$(tput sgr0) v0.1-beta \\n"
 	printf " ---------------------------------\\n"
 	printf " install script -- v0.1-beta\\n"
 	printf "\\n"
@@ -238,8 +238,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ ! -e ~/.vimrc ]; then
 			touch ~/.vimrc;
 		fi
-		if ! grep -q ":syntax enable" ~/.vimrc; then
-			echo ":syntax enable" >> ~/.vimrc;
+		if ! grep -q "syntax enable" ~/.vimrc; then
+			echo "syntax enable" >> ~/.vimrc;
 		fi
 		if [ ! -d ~/.vim/ ]; then
 			mkdir ~/.vim/;
