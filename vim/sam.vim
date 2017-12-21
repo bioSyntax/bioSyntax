@@ -17,7 +17,7 @@ endif
 " =========================================================
 "
 " Column 1: CHROM
-  syntax region readname start='^[^@]' end='$' keepend contains=COL2
+  syntax region readname start='^[^@]' end='\n' keepend contains=COL2
 
 " Column 2: POS
   syntax region COL2  matchgroup=COL2 start='\t' end='\n\@=' keepend contained contains=COL3
@@ -34,7 +34,7 @@ endif
 
 " Column 5: MAPQ
   syntax region COL5  matchgroup=COL5 start='\t' end='\n\@=' keepend contained contains=COL6,mapq
-  syntax match mapq00 '\t\@<=\(0\|255\)\t\@=' containedin=COL5
+  syntax match mapq0 '\t\@<=\(0\|255\)\t\@=' containedin=COL5
   syntax match mapq0 '\t\@<=[1-9]\t\@=' containedin=COL5
   syntax match mapq1 '\t\@<=1[0-9]\t\@=' containedin=COL5
   syntax match mapq2 '\t\@<=2[0-9]\t\@=' containedin=COL5
@@ -44,12 +44,12 @@ endif
 
 " Column 6: CIGAR
   syntax region COL6  matchgroup=COL6 start='\t' end='\n\@=' keepend contained contains=COL7 
-  "syntax match cigMat  '[0-9]*[M=]' containedin=COL6
-  syntax match cigClpS  '\t\@<=[0-9]*[NSHP]' containedin=COL6
-  syntax match cigClpE  '[0-9]*[NSHP]\t\@=' containedin=COL6
-  syntax match cigMis  '[0-9]*X' containedin=COL6
-  syntax match cigIns  '[0-9]*I' containedin=COL6
-  syntax match cigDel  '[0-9]*D' containedin=COL6
+  syntax match cigMat  '\A[0-9]*[M=]' containedin=COL6
+  "syntax match cigClpS '\t\@<=[0-9]*[NSHP]' containedin=COL6
+  syntax match cigClpE '\A[0-9]*[NSHP]' containedin=COL6
+  syntax match cigMis  '\A[0-9]*X' containedin=COL6
+  syntax match cigIns  '\A[0-9]*I' containedin=COL6
+  syntax match cigDel  '\A[0-9]*D' containedin=COL6
 
 " Column 7: RNEXT + Column 8: PNEXT
   syntax region COL7  matchgroup=COL7 start='\t' end='\n\@=' keepend contained contains=COL9
@@ -60,14 +60,15 @@ endif
 
 " Column 9: TLEN
   syntax region COL9  matchgroup=COL9 start='\t' end='\n\@=' keepend contained contains=COL10
-  syntax match tlen '\t\@<=[0-9]\+' containedin=COL9
+  syntax match tlen '\t\@<=[\-0-9]\+' containedin=COL9
 
 " Column 10: NT SEQ
   syntax region COL10  matchgroup=COL10 start='\t' end='\n\@=' keepend contained contains=COL11,nt
-  syntax match ntA '[Aa]\+' containedin=COL10
-  syntax match ntT '[Tt]\+' containedin=COL10
-  syntax match ntG '[Gg]\+' containedin=COL10
-  syntax match ntC '[Cc]\+' containedin=COL10
+  syntax match ntA '[Aa]\+' containedin=COL10 contained
+  syntax match ntT '[Tt]\+' containedin=COL10 contained
+  syntax match ntG '[Gg]\+' containedin=COL10 contained
+  syntax match ntC '[Cc]\+' containedin=COL10 contained
+  syntax match ntN '[Nn]\+' containedin=COL10 contained
 
 " Column 11: PHRED SCORE
   syntax region COL11  matchgroup=COL11 start='\t' end='\n\@=' keepend contained contains=COL12,phred
@@ -78,22 +79,22 @@ endif
   " 0.2.......................26...31.......41     
   " !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKL
   " |   |   |   |   |   |   |   |   |   |   | ...
-  syntax match phred00 '[!-$]\+'  containedin=COL11
-  syntax match phred0  '[%-(]\+'  containedin=COL11
-  syntax match phred1  '[)-,]\+'  containedin=COL11
-  syntax match phred2  '[\--0]\+' containedin=COL11
-  syntax match phred3  '[1-4]\+'  containedin=COL11
-  syntax match phred4  '[5-8]\+'  containedin=COL11
-  syntax match phred5  '[9-<]\+'  containedin=COL11
-  syntax match phred6  '[=-@]\+'  containedin=COL11
-  syntax match phred7  '[A-D]\+'  containedin=COL11
-  syntax match phred9  '[E-H]\+'  containedin=COL11
-  syntax match phred10 '[I-L]\+'  containedin=COL11
+  syntax match phred0  '[!-$]\+'  containedin=COL11 contained
+  syntax match phred0  '[%-(]\+'  containedin=COL11 contained
+  syntax match phred1  '[)-,]\+'  containedin=COL11 contained
+  syntax match phred2  '[\--0]\+' containedin=COL11 contained
+  syntax match phred3  '[1-4]\+'  containedin=COL11 contained
+  syntax match phred4  '[5-8]\+'  containedin=COL11 contained
+  syntax match phred5  '[9-<]\+'  containedin=COL11 contained
+  syntax match phred6  '[=-@]\+'  containedin=COL11 contained
+  syntax match phred7  '[A-D]\+'  containedin=COL11 contained
+  syntax match phred9  '[E-H]\+'  containedin=COL11 contained
+  syntax match phred10 '[I-L]\+'  containedin=COL11 contained
 
 " Column 12: Tags
   syntax region COL12  matchgroup=COL12 start='\t' end='\n\@=' keepend contained contains=ENDLINE
 
-  syntax region endtag start='\t\@<=[A-Z][A-Z]:' end='\t' containedin=COL12 contains=ENDLINE
+  syntax region endtag start='\t\@<=[A-Z0-9][A-Z0-9]:' end='\t' containedin=COL12 contains=ENDLINE
     syntax region numtag matchgroup=numtag start='[ifH]:' end='\t' containedin=endtag
     syntax match ifh ':\@<=\S\+' containedin=numtag
 
@@ -144,9 +145,9 @@ syntax region header start='@\@=' end='\n' keepend contains=headerHD,headerSQ,he
         syntax match platform ':\@<=\S*[\t\n]\@=' containedin=PL
 
   " PG Program Group Header
-  syntax region headerRG start='@PG' end='\n' keepend contains=PN,VN,CL,XX,TAB
+  syntax region headerPG start='@PG' end='\n' keepend contains=PN,VN,CL,XX,TAB
     syntax region PN start='\(ID\|PN\|SM\|CL\):' end='[\t\n]' keepend containedin=headerPG
-        syntax match software ':\@<=.*[\t\n]\@=' containedin=PN
+        syntax match software ':\@<=\S*[\t\n]\@=' containedin=PN
 
   " CO Comment Header
   syntax region headerCO start='@CO' end='\n' keepend
@@ -170,7 +171,7 @@ highlight link mapq5 gradbw10
 
 highlight link cigClpE comment2
 highlight link cigClpS comment2
-highlight link cigMat default
+highlight link cigMat normal
 highlight link cigMis string
 highlight link cigIns numeric
 highlight link cigDel keyword1

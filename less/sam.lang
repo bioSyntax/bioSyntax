@@ -92,8 +92,8 @@ environment align start '(?=^[^$])' begin
       numeric = '\A[5][0][0-9](?=\t)'
       numeric = '\A[5][1][01](?=\t)'
 
-      # Flag
-      string = '\d+'
+      # Flag > 512 (QC fail / PCR dup / Supp Read)
+      string = '\A\d\d\d+'
 
     # Column 3: RNAME
     environment push3 = '\t?' begin
