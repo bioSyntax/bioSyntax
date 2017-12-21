@@ -143,12 +143,12 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME FILE(S), LESSPIPE SCRIPT AND SYNTAX FILE(S)
 		SOURCE="${BIOSYNTAX}/less/"
-		FPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight/
-		TPATH=/usr/local/Cellar/source-highlight/3.1.8_7/share/source-highlight/
+		FPATH=/usr/local/opt/source-highlight/share/source-highlight/
+		TPATH=/usr/local/opt/source-highlight/share/source-highlight/
 
 		# APPENDS LESS PIPE TO BASH PROFILE TO ENABLE AUTOMATIC SYNTAX HIGHLIGHTING
 		if ! grep -q "bioSyntax" ~/.bash_profile; then
-			sudo cat /bioSyntax/less/bp_append.txt >> ~/.bash_profile;
+			sudo cat ./less/bp_append.txt >> ~/.bash_profile;
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
