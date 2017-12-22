@@ -148,7 +148,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# APPENDS LESS PIPE TO BASH PROFILE TO ENABLE AUTOMATIC SYNTAX HIGHLIGHTING
 		if ! grep -q "bioSyntax" ~/.bash_profile; then
-			sudo cat ./less/bp_append.txt >> ~/.bash_profile;
+			sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.bash_profile;
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
