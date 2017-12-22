@@ -10,13 +10,13 @@ bioSyntax comes with a handy installation script. Simply run:
 
 	'<editors> = vim || less || gedit || sublime'
 
-**Note**: The installation script should be run from root and requires super-user commands at the moment. If you don't have permissions or don't like this; simply follow the Manual Installation instructions below, but some files will need to be placed in paths accessed via root as well.
+**Note**: The installation script should be run from root and requires super-user commands at the moment. If you don't have permissions or don't like this; simply follow the Manual Installation instructions below, but some files will need to be placed in paths accessed via root as well. (Also: sudo commands do not work in Windows so just run the commands without sudo in your command line as an adminstrator).
 
 # Manual Installations
 
 1. [sublime](#sublime)
 2. [gedit](#gedit)
-3. [vim](#vim)
+3. [vim](#vim) (easiest installation)
 4. [less](#less)
 
 ## sublime
@@ -26,15 +26,18 @@ bioSyntax comes with a handy installation script. Simply run:
 1. Unzip the downloaded bioSyntax release to your root.
 
 	`sudo unzip bioSyntax-<release>.<zip/tar.gz> -d <insert-path>/bioSyntax/`
+
 2. In the bioSyntax/sublime folder rename the `Color%20Scheme%20-%20bioSyntax.sublime-package` file to `Color Scheme - bioSyntax.sublime-package`.
 
 	`mv Color%20Scheme%20-%20bioSyntax.sublime-package Color\ Scheme\ -\ bioSyntax.sublime-package`
+
 3. Copy it to your Sublime Text application packages folder:
 - **Linux**: `/opt/sublime_text/Packages/`
 - **Windows**: `~/AppData/Roaming/Sublime\ Text\ 3/Packages/User/bioSyntax/`
 - **Mac**: `/Applications/Sublime\ Text.app/Contents/MacOS/Packages/`
 
 	`sudo cp Color\ Scheme\ -\ bioSyntax.sublime-package <insert-path>`
+
 4. The easiest method to manually install the syntax definitions then is via Package Control.
 - Install [Package Control for Sublime](https://packagecontrol.io/installation).
 - Once installed, in Sublime, go to `Preferences > Package Control > Package Control: Install Package` and search for `BioSyntax`, and click on it. Package Control will install the syntax files for you. 
@@ -48,6 +51,7 @@ Alternatively, You can also copy your desired `*.sublime-syntax` files from the 
 You can also clone [this repository](https://github.com/bioSyntax/bioSyntax-sublime.git) into the appropriate paths above.
 
 	`sudo git clone https://github.com/bioSyntax/bioSyntax-sublime.git <insert-path>/bioSyntax/`.
+
 5. Restart `Sublime` and go select the bioSyntax (bioMonokai) theme
 `Preferences > Color Scheme > bioMonokai`
 6. Formats should auto-detect; you can select a specific syntax at the drop-menu at the bottom-right corner of the window (e.g. Plain Text)
@@ -148,6 +152,7 @@ You can also clone [this repository](https://github.com/bioSyntax/bioSyntax-subl
 	`sudo chmod 755 <insert-path</src-hilite-lesspipe.sh`
 
 6. In the `/bioSyntax-<release>/less/` folder, append the appropriate `*_append.txt` file to the correct rc file based on the default shell you use.
+
 - **Linux**:
 
 	```

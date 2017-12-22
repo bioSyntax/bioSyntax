@@ -71,7 +71,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 	elif [ "$1" == "vim" ]; then
 
-		printf "Settng up %s syntax file(s) and style file(s) for Mac OSX Vim.\\n" "$2"
+		printf "Setting up %s syntax file(s) and style file(s) for Mac OSX Vim.\\n" "$2"
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
 		if [ ! -e ~/.vimrc ]; then
 			touch ~/.vimrc;
@@ -87,30 +87,30 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 		FPATH=~/.vim/syntax/
 		if [ ! -d "${FPATH}" ]; then
-			sudo mkdir "${FPATH}";
+			mkdir "${FPATH}";
 		fi
 		TPATH=~/.vim/ftdetect/
 		if [ ! -d "${TPATH}" ]; then
-			sudo mkdir "${TPATH}";
+			mkdir "${TPATH}";
 		fi
 
 		# COPIES COLOR SCHEME TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		if [ ! -d ~/.vim/colors/ ]; then
-			sudo mkdir ~/.vim/colors/;
+			mkdir ~/.vim/colors/;
 		fi
-		sudo chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
+		chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
+		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo chmod 0644 "${THEMES[${t}]}"
-				sudo cp "${THEMES[${t}]}" "${TPATH}"
+				chmod 0644 "${THEMES[${t}]}"
+				cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
-			sudo cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
+			chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
+			cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -146,9 +146,25 @@ if  [ "$(uname)" == "Darwin" ]; then
 		FPATH=/usr/local/opt/source-highlight/share/source-highlight/
 		TPATH=/usr/local/opt/source-highlight/share/source-highlight/
 
-		# APPENDS LESS PIPE TO BASH PROFILE TO ENABLE AUTOMATIC SYNTAX HIGHLIGHTING
-		if ! grep -q "bioSyntax" ~/.bash_profile; then
-			sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.bash_profile;
+		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
+		if [ `echo $SHELL` == "/bin/bash" ]; then
+			if ! grep -q "bioSyntax" ~/.bash_profile; then
+				sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.bash_profile;
+			fi
+			if ! grep -q "bioSyntax" ~/.bashrc; then
+				sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.bashrc;
+			fi
+		elif [ `echo $SHELL` == "/bin/zsh" ]; then
+			if ! grep -q "bioSyntax" ~/.zprofile; then
+				sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.zprofile;
+			fi
+			if ! grep -q "bioSyntax" ~/.zshrc; then
+				sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.zshrc;
+			fi
+		else
+			if ! grep -q "bioSyntax" ~/.profile; then
+				sudo cat ${BIOSYNTAX}/less/bp_append.txt >> ~/.profile;
+			fi
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
@@ -233,7 +249,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 	elif [ "$1" == "vim" ]; then
 
-		printf "Setting up %s syntax file(s) and style file(s) for Linuxvim.\\n" "$2"
+		printf "Setting up %s syntax file(s) and style file(s) for Linux vim.\\n" "$2"
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
 		if [ ! -e ~/.vimrc ]; then
 			touch ~/.vimrc;
@@ -293,10 +309,16 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
 		if [ `echo $SHELL` == "/bin/bash" ]; then
+			if ! grep -q "bioSyntax" ~/.bash_profile; then
+				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bash_profile;
+			fi
 			if ! grep -q "bioSyntax" ~/.bashrc; then
 				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc;
 			fi
 		elif [ `echo $SHELL` == "/bin/zsh" ]; then
+			if ! grep -q "bioSyntax" ~/.zprofile; then
+				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zprofile;
+			fi
 			if ! grep -q "bioSyntax" ~/.zshrc; then
 				sudo cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zshrc;
 			fi
@@ -442,8 +464,7 @@ else
 		#	TPATH=/
 
 	else
-		printf "ERROR: %s is not a valid/supported editor for Windows. Currently, bioSyntax is available for sublime, gedit, and vim for Windows.\\n" "$1"
-		exit 1
+.
 	fi
 
 
