@@ -4,31 +4,32 @@
 # Maintainer: bioSyntax.org
 # Version: v0.1
 name: flagstat
-# See http://www.sublimetext.com/docs/3/syntax.html
 file_extensions: [flagstat]
 scope: text.flagstat
 
 contexts:
   main:
+    # QC-passed Reads
+    - match: 'QC-passed reads'
+      scope: numeric
+    - match: '^\d+' 
+      scope: numeric
+    - match: '[\d\.]+%(?=:)'
+      scope: numeric
+    - match: '-?nan%(?=:)'
+      scope: numeric
+
+    # QC-failed Reads
+    - match: 'QC-failed reads'
+      scope: numeric2
+    - match: '(?<=\+) \d+'
+      scope: numeric2
+    - match: '(?<=:)[\d\.]+%'
+      scope: numeric2
+    - match: '(?<=:)-?nan%'
+      scope: numeric2
+
     # Match Keywords
-    - match: 'mapQ'
+    - match: 'mapQ>=\d+'
       scope: string
 
-    - match: '[\\+\\>\\=\\%\\:]'
-      scope: keyword3
-
-    # Match numbers
-    - match: '-nan'
-      scope: numeric
-    - match: '^[0-9]*\b'
-      scope: numeric
-    - match: '[0-9]*'
-      scope: numeric
-
-    # Match Descriptor
-    - match: '\b[A-Za-z]+[12]*\b'
-      scope: string
-
-    # Match Brackets
-    - match: '[()]'
-      scope: comment

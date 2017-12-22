@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: Flagstat
+Filetypes: .flagstat
+Maintainer: bioSyntax.org
+Version: v0.1
+
+Flagstat (samtools flagstat) output
+Colors QC-passed / QC-failed reads and info
+-->
+<language id="flagstat" _name="Flagstat" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/flagstat</property>
+    <property name="globs">*.flagstat</property>
+  </metadata>
+
+  <styles>
+    <style id="numeric"  _name="Numeric"   map-to="biosyntax:numeric"  />
+    <style id="numeric2" _name="Numeric2"  map-to="biosyntax:numeric2" />
+    <style id="string"   _name="String"    map-to="biosyntax:string"   />
+
+  </styles>
+
+  <definitions>
+    <context id="flagstat">
+      <include>
+		<!-- QC-passed Reads -->
+        <context id="QC-Passed1" style-ref="numeric">
+				<match>^\d+</match>	
+		</context>
+        <context id="QC-Passed" style-ref="numeric">
+				<match>QC-passed reads</match>	
+		</context>
+        <context id="QC-Passed2" style-ref="numeric">
+				<match>(?&lt;=\()[\d\.%]+</match>	
+		</context>
+        <context id="QC-Passed3" style-ref="numeric">
+				<match>(?&lt;=\()-?nan%</match>	
+		</context>
+
+	    <!-- QC-failed reads -->	
+        <context id="QC-Failed1" style-ref="numeric2">
+				<match> \d+</match>	
+		</context>
+        <context id="QC-Failed" style-ref="numeric2">
+				<match>QC-failed reads</match>	
+		</context>
+        <context id="QC-Failed2" style-ref="numeric2">
+				<match>(?&lt;=\:)[\d\.%]+</match>	
+		</context>
+        <context id="QC-Failed3" style-ref="numeric2">
+				<match>(?&lt;=\:)-?nan%</match>	
+		</context>
+
+		<!-- mapQ String -->
+		<context id="mapQ" style-ref="string">
+				<match>mapQ.=\d+</match>
+		</context>
+
+      </include>
+    </context>
+  </definitions>
+</language>
