@@ -129,16 +129,38 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# CHECKS IF BREW IS INSTALLED. IF IT IS, UPDATES IT, IF NOT, INSTALLS IT
 		which -s brew
 		if [[ $? != 0 ]] ; then
-    		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Homebrew is not currently installed on your system. Install brew now?\\n"
+    		read ans
+    		if echo "$ans" | grep -iq "^y"; then
+				ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+			else
+				printf "bioSyntax installation cancelled.\\n"
+				exit 0
+			fi
 		else
-    		brew update
+			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Update brew now?\\n"
+    		read ans
+    		if echo "$ans" | grep -iq "^y"; then
+				brew update
+			fi
 		fi
 
 		# CHECKS IF SOURCE-HIGHLIGHT PACKAGE IS INSTALLED. IF IT IS, UPDATES IT, IF NOT, INSTALLS IT
 		if [[ ! -z `brew ls --versions "source-highlight"` ]]; then
-			brew upgrade source-highlight
+			printf "source-highlight is installed in your system. Update now?\\n"
+			read ans
+    		if echo "$ans" | grep -iq "^y"; then
+				brew upgrade source-highlight
+			fi
 		else
-			brew install source-highlight
+			printf "source-highlight needs to be installed in your system for bioSyntax to function. Install now?\\n"
+			read ans
+    		if echo "$ans" | grep -iq "^y"; then
+				brew install source-highlight
+			else
+				printf "bioSyntax installation cancelled.\\n"
+				exit 0
+			fi
 		fi
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME FILE(S), LESSPIPE SCRIPT AND SYNTAX FILE(S)
@@ -299,8 +321,19 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		printf "Installing/updating source-highlight for Less and setting up %s lang file(s) and style file(s) for Linux Less.\\n" "$2"
 		# UPDATES APPS AND UPDATES/INSTALLS SOURCE-HIGHLIGHT
-		sudo apt-get update
-		sudo apt-get install source-highlight
+		printf "Update your applications?\\n"
+		read ans
+		if echo "$ans" | grep -iq "^y"; then
+			sudo apt-get update
+		fi
+		
+		printf "bioSyntax requires the source-highlight package to work. Install/update now?\\n"
+		if echo "$ans" | grep -iq "^y"; then
+			sudo apt-get install source-highlight
+		else
+			printf "bioSyntax installation cancelled.\\n"
+			exit 0
+		fi
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/less/"
