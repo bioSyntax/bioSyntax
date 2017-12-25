@@ -237,7 +237,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Linux Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
-		FPATH=~/.config/sublime-text-3/Packages/User/bioSyntax/
+		FPATH=~/.config/sublime-text-3/Packages/User/
 		if [ ! -d "${FPATH}" ]; then
 			mkdir "${FPATH}";
 		fi
