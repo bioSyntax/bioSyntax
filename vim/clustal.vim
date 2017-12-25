@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: clustal
-" Filetypes: .clustal
+" Filetypes: .clustal .aln
 " Maintainer: bioSyntax
 " Version: v0
 
@@ -32,7 +32,7 @@ syntax match ntN "[Nn]"
 syntax match ntGap "[/\-/\.]"
 
 " Sequence Name
-syntax match comment '\S*\s' 
+syntax match comment '^\S*\s' 
 
 " Header starts with CLUSTAL
 syntax match header "CLUSTAL.*"

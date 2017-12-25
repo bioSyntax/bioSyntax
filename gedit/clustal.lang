@@ -2,7 +2,7 @@
 <!--
 gedit Syntax File
 Language: clustal
-Filetypes: .clustal
+Filetypes: .clustal .aln
 Maintainer: bioSyntax.org
 Version: v0.1
 
@@ -13,7 +13,7 @@ in CLUSTAL format
 <language id="clustal" _name="Clustal" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/clustal</property>
-    <property name="globs">*.clustal</property>
+    <property name="globs">*.clustal,*.aln</property>
   </metadata>
 
   <styles>
@@ -50,7 +50,7 @@ in CLUSTAL format
         </context>
 
        <context id="seqname" style-ref="comment">
-         <match>\S++(?=\s)</match>
+         <match>^\S++(?=\s)</match>
        </context>
        
        <!-- Core Nucleotides -->        
