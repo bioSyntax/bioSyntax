@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-gedit Syntax File
-Language: PDB Place-holder file (non-working)
-Filetypes: .pdb
-Maintainer: bioSyntax.org
-Version: v0.1ALPHA
+Team bioSyntax, info <at> biosyntax.org
+
+Syntax highlighting for PDB Files (.pdb)
+
+Built for use with 'bioKate color theme'
 
 -->
+
 <language id="pdb" _name="PDB" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/pdb</property>
@@ -14,43 +15,295 @@ Version: v0.1ALPHA
   </metadata>
 
   <styles>
-    <style id="chr"       _name="RefName"  map-to="biosyntax:chr"        />
-    <style id="chrStart"  _name="Coords"   map-to="biosyntax:chrStart"   />
-    <style id="numeric"   _name="Numeric"  map-to="biosyntax:numeric"    />
-    <style id="comment"   _name="Comment"  map-to="biosyntax:comment"    />
+
+    <style id="header"         _name="header_"   />
+    <style id="title"          _name="title_"    />
+    <style id="compnd"         _name="compnd_"   />
+    <style id="source"         _name="source_"   />
+    <style id="keywords"       _name="keywords_" />
+    <style id="expdta"         _name="expdta_"   />
+    <style id="author"         _name="author_"   />
+    <style id="revdat"         _name="revdat_"   />
+    <style id="jrnl"           _name="jrnl_"     />
+    <style id="remark1"         _name="remark1_"   />
+    <style id="remark2"         _name="remark2_"   />
+    <style id="null"           _name="null_"     />
+    <style id="seqres"         _name="seqres_"   />
+    <style id="helix"          _name="helix_"    />
+    <style id="sheet"          _name="sheet_"    />
+    <style id="site"           _name="site_"     />
+    <style id="form"           _name="form_"     />
+    <style id="jrnltitle"      _name="jrnltitle_"/>
+    <style id="residue"        _name="residue_"  />
+    <style id="atom"           _name="atom_"     />
+    <style id="heta"           _name="heta_"     />
+    <style id="resol"          _name="resol_"    />
+    <style id="colon"          _name="colon_"    />
+    <style id="semicolon"      _name="semicolon_"/>
+    <style id="master"         _name="master_"   />
+    <style id="digit"          _name="digit_"    />
+    <style id="conect"         _name="conect_"   />
+    <style id="end"            _name="end_"      />
+    <style id="ala"            _name="ala_"      />
+    <style id="arg"            _name="arg_"      />
+    <style id="asn"            _name="asn_"      />
+    <style id="asp"            _name="asp_"      />
+    <style id="cys"            _name="cys_"      />
+    <style id="gln"            _name="gln_"      />
+    <style id="glu"            _name="glu_"      />
+    <style id="gly"            _name="gly_"      />
+    <style id="his"            _name="his_"      />
+    <style id="ile"            _name="ile_"      />
+    <style id="leu"            _name="leu_"      />
+    <style id="lys"            _name="lys_"      />
+    <style id="met"            _name="met_"      />
+    <style id="phe"            _name="phe_"      />
+    <style id="pro"            _name="pro_"      />
+    <style id="ser"            _name="ser_"      />
+    <style id="thr"            _name="thr_"      />
+    <style id="trp"            _name="trp_"      />
+    <style id="tyr"            _name="tyr_"      />
+    <style id="val"            _name="val_"      />
+    <style id="app"            _name="app_"      />
+    <style id="bqp"            _name="bqp_"      />
+    <style id="crp"            _name="crp_"      />
+    <style id="dsp"            _name="dsp_"      />
+    <style id="etp"            _name="etp_"      />
+    <style id="fup"            _name="fup_"      />
+    <style id="gvp"            _name="gvp_"      />
+    <style id="hwp"            _name="hwp_"      />
+    <style id="ixp"            _name="ixp_"      />
+    <style id="jyp"            _name="jyp_"      />
+    <style id="kzp"            _name="kzp_"      />
+    <style id="lp"             _name="lp_"       />
+    <style id="mp"             _name="mp_"       />
+    <style id="np"             _name="np_"       />
+    <style id="op"             _name="op_"       />
+    <style id="ap"             _name="ap_"       />
+    <style id="bq"             _name="bq_"       />
+    <style id="cr"             _name="cr_"       />
+    <style id="ds"             _name="ds_"       />
+    <style id="et"             _name="et_"       />
+    <style id="fu"             _name="fu_"       />
+    <style id="gv"             _name="gv_"       />
+    <style id="hw"             _name="hw_"       />
+    <style id="ix"             _name="ix_"       />
+    <style id="jy"             _name="jy_"       />
+    <style id="kz"             _name="kz_"       />
+    <style id="l"              _name="l_"        />
+    <style id="m"              _name="m_"        />
+    <style id="n"              _name="n_"        />
+    <style id="o"              _name="o_"        />
+
   </styles>
-
+  
+  
+  
+  
   <definitions>
-    <context id="faidx">
+    <context id="pdb">
       <include>
-        <context id="Column1" end-at-line-end="true" style-ref="chr">
-        <start>^</start>
-	<end>$</end>
 
-        <include>
-          <context id="Column2" style-ref="chrStart">
-            <start>\t</start>
-            <end>(?=$)</end>
+	<context id="Header" style-ref="header">
+          <start>^HEADER.*</start>
+	  <end>$</end>
+        </context>
+        
+        <context id="Title" style-ref="title">
+         <match>^TITLE.*$</match>
+       </context>
 
-            <include>
-              <context id="Column3" style-ref="numeric">
-                <start>\t</start>
-                <end>(?=$)</end>
+       <context id="Compnd" style-ref="compnd">
+         <match>^COMPND.*$</match>
+       </context>
 
-                <include>
-                  <context id="Column45" style-ref="comment">
-                    <start>\t</start>
-                    <end>(?=$)</end>
-                  </context>
-                </include>
+       <context id="Source" style-ref="source">
+         <match>^SOURCE.*$</match>
+       </context>
+       
+       <context id="Keywords" style-ref="keywords">
+         <match>^KEYWDS.*$</match>          
+       </context>
+        
+       <context id="Expdta" style-ref="expdta">
+         <match>^EXPDTA.*$</match>          
+       </context>
+        
+        <context id="Author" style-ref="author"> <!-- Match the AUTHOR section -->
+         <match>^AUTHOR.*$</match>
+       </context>
+       
+       <context id="Revdat" style-ref="revdat"> <!-- Match the REVDAT section -->
+         <match>^REVDAT.*$</match>
+       </context>
+       
+ <!--      <context id="Jrnl" style-ref="jrnl">  Match the JRNL section without the TITL 
+         <match>(?!.*?TITL)^.*$</match>
+       </context> -->
+       
+       <context id="Jrnltitle" style-ref="jrnltitle"> <!-- Match the chains from TITL to the end in the JRNL section of pdb file-->
+         <match>(?&lt;=[\s\t])+TITL.*$</match>
+       </context>
+       
+       <context id="Jrnl" style-ref="jrnl"> <!-- Match the section Jrnl-->
+         <match>^JRNL[\s\t]+((?!TITL).)*</match>
+       </context>
+       
+       <context id="Remark1" style-ref="remark1"> <!-- Match any sentence beginning with REMARK that doesn't contains the words RESOLUTION and NULL -->
+         <match>^REMARK[\s\t]+.[\s\t]+(?!.*?RESOLUTION)+(?!.*?NULL).* | ^REMARK.+?(?=\sRESOLUTION) </match>
+       </context>
+       
+       <context id="Remark2" style-ref="remark2"> <!-- Match any sentence beginning with REMARK until a colon and the chain NULL -->
+         <match>^REMARK.+?(?=:\sNULL)</match>
+       </context>
+       
+       <context id="Resol" style-ref="resol"> <!-- Match the sentences don't covered by remark1 and remark2 and that contains RESOLUTION -->
+         <match>[\s\t]+RESOLUTION.*$</match>
+       </context>
+       
+  <!--    This section is not needed to be colored yet <context id="Master" style-ref="master">
+         <match>^MASTER.*$</match>
+       </context>
+       
+       <context id="Conect" style-ref="conect">
+         <match>^CONECT.*$</match>
+       </context> -->
+       
+       <context id="Seqres" style-ref="seqres">
+         <match>^SEQRES</match>
+       </context>
+       
+       <context id="Helix" style-ref="helix">
+         <match>^HELIX</match>
+       </context>
+       
+       <context id="Sheet" style-ref="sheet">
+         <match>^SHEET</match>
+       </context>
+       
+       <context id="Site" style-ref="site">
+         <match>^SITE</match>
+       </context>
+       
+       <context id="Form" style-ref="form">
+         <match>^FORMUL.*$|^CONECT.*$|^MASTER.*$|^CRYST1.*$|^ORIGX1.*$|^ORIGX2.*$|^ORIGX3.*$|^SCALE1.*$|^SCALE2.*$|^SCALE3.*$|^TER.*$|^HET.*$|^HETNAM.*$|^HETSYN.*$|^DBREF.*$</match>
+       </context>
+       
+       <context id="Atom" style-ref="atom">
+         <match>^(ATOM|ANISOU|REMARK)</match>
+       </context>
+       
+       <context id="Heta" style-ref="heta">
+         <match>^HETATM.*$</match>
+       </context>
+       
+       <context id="Null" style-ref="null"> <!-- Match the NULL chain from the colon to the end -->
+         <match>:[\s\t]+NULL|NULL</match>
+       </context>
+       
+       <context id="Colon" style-ref="colon">
+         <match>(?&lt;=[\s\t])(:)(?![\s\t]NULL).*$</match>
+       </context>
+       
+       <context id="Semicolon" style-ref="semicolon">
+         <match>[\s\t]?;[\s\t]?</match>
+       </context>
+       
+       <context id="Residue" style-ref="residue">
+         <match>(?&lt;=[A-Z])[\s\t]+[0-9]+</match>
+       </context>
+       
+       <context id="End" style-ref="end">
+          <start>^END.*</start>
+	  <end>$</end>
+        </context>
+        
+       <context id="Digit" style-ref="digit">
+         <match>(?&lt;=[AB][\s\t])[-?\d]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d.?]+[\s\t]|(?&lt;=[AB][\s\t])[-?\d]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d.?]+[\s\t]+[-?\d]+[\s\t]+[\d]+</match>
+       </context>
+        
+       <context id="Ala" style-ref="ala">
+         <match>(?&lt;=[\s])(ALA)(?=[\s])</match>
+       </context>
+       
+       <context id="Arg" style-ref="arg">
+         <match>\b(ARG)\b</match>
+       </context>
+       
+       <context id="Asn" style-ref="asn">
+         <match>\b(ASN)\b</match>
+       </context>
+       
+       <context id="Asp" style-ref="asp">
+         <match>\b(ASP)\b</match>
+       </context>
+       
+       <context id="Cys" style-ref="cys">
+         <match>\b(CYS)\b</match>
+       </context>
+       
+       <context id="Gln" style-ref="gln">
+         <match>\b(GLN)\b</match>
+       </context>
+       
+       <context id="Glu" style-ref="glu">
+         <match>\b(GLU)\b</match>
+       </context>
+       
+       <context id="Gly" style-ref="gly">
+         <match>\b(GLY)\b</match>
+       </context>
+       
+       <context id="His" style-ref="his">
+         <match>\b(HIS)\b</match>
+       </context>
+       
+       <context id="Ile" style-ref="ile">
+         <match>\b(ILE)\b</match>
+       </context>
+       
+       <context id="Leu" style-ref="leu">
+         <match>\b(LEU)\b</match>
+       </context>
+       
+       <context id="Lys" style-ref="lys">
+         <match>\b(LYS)\b</match>
+       </context>
+       
+       <context id="Met" style-ref="met">
+         <match>\b(MET)\b</match>
+       </context>
+       
+       <context id="Phe" style-ref="phe">
+         <match>\b(PHE)\b</match>
+       </context>
+       
+       <context id="Pro" style-ref="pro">
+         <match>\b(PRO)\b</match>
+       </context>
 
-              </context>
-            </include>
+       <context id="Ser" style-ref="ser">
+         <match>\b(SER)\b</match>
+       </context>
+       
+       <context id="Thr" style-ref="thr">
+         <match>\b(THR)\b</match>
+       </context>
+       
+       <context id="Trp" style-ref="trp">
+         <match>\b(TRP)\b</match>
+       </context>
+       
+       <context id="Tyr" style-ref="tyr">
+         <match>\b(TYR)\b</match>
+       </context>
+       
+       <context id="Val" style-ref="val">
+         <match>\b(VAL)\b</match>
+       </context>
+       
 
-          </context>
-        </include>
-
-      </context>
+       
       </include>
     </context>
   </definitions>

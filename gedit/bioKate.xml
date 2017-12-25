@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<style-scheme id="biokate" _name="bioKate" version="1.0">
+  <author>bioSyntax</author>
+  <_description>Color scheme used in the bioKate text editor</_description>
+
+  <color name="red"                         value="#FF0000"/>
+  <color name="blue"                        value="#0000FF"/>
+  <color name="dark-blue"                   value="#0057AE"/>
+  <color name="dark-red"                    value="#800000"/>
+  <color name="dark-green"                  value="#008000"/>
+  <color name="grey"                        value="#808080"/>
+  <color name="yellow"                      value="#FFFF00"/>
+  <color name="white"                       value="#FFFFFF"/>
+  <color name="brown"                       value="#B07E00"/>
+  <color name="black"                       value="#000000"/>
+
+  <!-- Global Settings -->
+  <style name="text"                        foreground="black" background="white"/>
+  <style name="selection"                   foreground="white" background="#43ace8"/>
+  <style name="current-line"                background="#EEF6FF"/>
+  <style name="line-numbers"                foreground="black" background="#d6d2d0"/>
+  <style name="right-margin"                foreground="black" background="black"/>
+  <style name="bracket-match"               bold="true"/>
+  <style name="bracket-mismatch"            background="red" bold="true"/>
+  <style name="draw-spaces"                 foreground="#d3d7cf"/>
+  <style name="background-pattern"          background="#f3f3f3"/>
+
+  <!-- Search Matching -->
+  <style name="search-match"                background="yellow"/>
+
+  <!-- Bookmarks -->
+  <style name="bookmark"                    background="#E5E5FF"/>
+
+  <!-- legacy styles for old lang files -->
+  <style name="Others"                      foreground="dark-red"/>
+  <style name="Others 2"                    bold="true"/>
+  <style name="Others 3"                    foreground="dark-green"/>
+
+  <!-- Comments -->
+  <style name="def:comment"                 foreground="grey" italic="true" bold="false"/>
+  <style name="def:shebang"                 foreground="grey" bold="true"/>
+  <style name="def:doc-comment"             foreground="blue"/>
+  <style name="def:doc-comment-element"     bold="true"/>
+
+  <!-- Types -->
+  <style name="def:type"                    foreground="dark-blue"/>
+
+  <!-- Constants -->
+  <style name="def:constant"                foreground="dark-blue"/>
+  <style name="def:decimal"                 foreground="brown"/>
+  <style name="def:base-n-integer"          foreground="brown"/>
+  <style name="def:floating-point"          foreground="brown"/>
+  <style name="def:complex"                 use-style="def:base-n-integer"/>
+  <style name="def:character"               foreground="#FF80E0"/>
+  <style name="def:string"                  foreground="#DD0000"/>
+  <style name="def:special-char"            foreground="#FF00FF"/>
+  <style name="def:builtin"                 use-style="def:type"/>
+
+  <!-- Identifiers -->
+  <style name="def:identifier"              foreground="dark-blue"/>
+  <style name="def:function"                use-style="def:identifier"/>
+
+  <!-- Statements -->
+  <style name="def:statement"               bold="true"/>
+
+  <!-- Others -->
+  <style name="def:preprocessor"            bold="true"/>
+  <style name="def:note"                    foreground="#BF0303" background="#F7E7E7" bold="true" italic="false"/>
+  <style name="def:error"                   foreground="red" underline="true"/>
+  <style name="def:warning"                 foreground="brown" underline="true"/>
+  <style name="def:underlined"              underline="single"/>
+
+  <!-- Heading styles, uncomment to enable -->
+  <!--
+  <style name="def:heading0"                scale="5.0"/>
+  <style name="def:heading1"                scale="2.5"/>
+  <style name="def:heading2"                scale="2.0"/>
+  <style name="def:heading3"                scale="1.7"/>
+  <style name="def:heading4"                scale="1.5"/>
+  <style name="def:heading5"                scale="1.3"/>
+  <style name="def:heading6"                scale="1.2"/>
+  -->
+
+  <!-- Language specific styles -->
+  <style name="c:preprocessor"              foreground="dark-green"/>
+  <style name="c:included-file"             use-style="c:preprocessor"/>
+  <style name="c:common-defines"            foreground="#0095FF" bold="true"/>
+
+  <style name="diff:diff-file"              use-style="def:statement"/>
+  <style name="diff:added-line"             use-style="def:decimal"/>
+  <style name="diff:removed-line"           use-style="def:string"/>
+  <style name="diff:changed-line"           use-style="c:preprocessor"/>
+  <style name="diff:special-case"/>
+  <style name="diff:location"               use-style="def:type"/>
+
+  <style name="xml:attribute-name"          foreground="dark-green"/>
+  <style name="xml:element-name"            bold="true"/>
+  <style name="xml:entity"                  foreground="blue"/>
+  <style name="xml:cdata-delim"             foreground="#008080" bold="true"/>
+  <style name="xml:processing-instruction"  bold="true"/>
+  <style name="xml:doctype"                 foreground="dark-red" bold="true"/>
+
+  <style name="docbook-element"             foreground="#004141" bold="true"/>
+  <style name="docbook:header-elements"     use-style="docbook-element"/>
+  <style name="docbook:formatting-elements" use-style="docbook-element"/>
+  <style name="docbook:gui-elements"        use-style="docbook-element"/>
+  <style name="docbook:structural-elements" use-style="docbook-element"/>
+
+  <style name="js:object"                   foreground="dark-green"/>
+  <style name="js:constructors"             bold="true"/>
+
+  <style name="mooscript:special-vars"      use-style="c:preprocessor"/>
+
+  <style name="latex:display-math"          background="#C0FFC0"/>
+  <style name="latex:inline-math"           foreground="#006400"/>
+  <style name="latex:math-bound"            bold="true"/>
+  <style name="latex:common-commands"       foreground="dark-red"/>
+  <style name="latex:command"               foreground="#7000DF"/>
+  <style name="latex:include"               use-style="latex:common-commands"/>
+
+  <style name="changelog:date"              use-style="def:type"/>
+  <style name="changelog:email"             use-style="c:preprocessor"/>
+  <style name="changelog:file"              use-style="def:function"/>
+  <style name="changelog:bullet"            use-style="changelog:file"/>
+  <style name="changelog:release"           foreground="#0095FF" bold="true"/>
+
+  <style name="perl:pod"                    foreground="grey"/>
+
+  <style name="python:string-conversion"    background="#BEBEBE"/>
+  <style name="python:module-handler"       use-style="def:character"/>
+  <style name="python:special-variable"     use-style="def:type"/>
+  <style name="python:builtin-constant"     use-style="def:type"/>
+  <style name="python:builtin-object"       use-style="def:type"/>
+  <style name="python:builtin-function"     use-style="def:type"/>
+  <style name="python:boolean"              use-style="def:type"/>
+
+  <style name="scheme:parens"               use-style="def:statement"/>
+  <style name="scheme:any-function"         use-style="def:statement"/>
+
+  <style name="sh:dollar"                   foreground="dark-green" bold="true"/>
+
+  <style name="makefile:trailing-tab"       background="#FFC0CB"/>
+
+  <style name="t2t:italic"                  italic="true"/>
+  <style name="t2t:bold"                    bold="true"/>
+  <style name="t2t:verbatim"                background="#lightgrey"/>
+  <style name="t2t:verbatim-block"          line-background="#lightgrey"/>
+  <style name="t2t:comment"                 foreground="dark-green"/>
+  <style name="t2t:option"                  foreground="dark-green"/>
+
+  <!-- Bio specific styles -->
+  <!-- ====================================================== -->
+
+  <!--Nucleotide Coloring -->
+  <style name="fasta:ntA"                       foreground="#000000" background="#47ff19"/>
+  <style name="fasta:ntC"                       foreground="#000000" background="#ff4641"/>
+  <style name="fasta:ntG"                       foreground="#000000" background="#f09000"/>
+  <style name="fasta:ntT"                       foreground="#000000" background="#4192ff"/>
+  <style name="fasta:ntU"                       foreground="#000000" background="#8a89ff"/>
+  <style name="fasta:ntN"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fasta:ntX"                       foreground="#000000" background="#e6e6e6"/>
+  <style name="fasta:ntGap"                     foreground="#000000" />
+  <style name="fasta:ntR"                       foreground="#000000" background="#fffe80"/>
+  <style name="fasta:ntY"                       foreground="#000000" background="#e180ff"/>
+  <style name="fasta:ntS"                       foreground="#000000" background="#ff9b80"/>
+  <style name="fasta:ntW"                       foreground="#000000" background="#80fff2"/>
+  <style name="fasta:ntM"                       foreground="#000000" background="#83831f"/>
+  <style name="fasta:ntK"                       foreground="#000000" background="#8b4915"/>
+  <style name="fasta:ntD"                       foreground="#000000" background="#c7ffb9"/>
+  <style name="fasta:ntB"                       foreground="#000000" background="#f8c1c0"/>
+  <style name="fasta:ntV"                       foreground="#000000" background="#ffe3b9"/>
+  <style name="fasta:ntH"                       foreground="#000000" background="#bfd8f9"/>
+
+
+  <!-- Amino Acid Coloring -->  
+  <style name="fasta:header"                    foreground="black" background="#FFFFFF"/>
+  <style name="fasta:clA"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clI"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clV"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clL"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clM"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clF"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clW"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fasta:clY"                       foreground="#000000" background="#15A4A4"/>
+  <style name="fasta:clK"                       foreground="#000000" background="#F01505"/>
+  <style name="fasta:clR"                       foreground="#000000" background="#F01505"/>
+  <style name="fasta:clH"                       foreground="#000000" background="#15A4A4"/>
+  <style name="fasta:clD"                       foreground="#000000" background="#C048C0"/>
+  <style name="fasta:clE"                       foreground="#000000" background="#C048C0"/>
+  <style name="fasta:clS"                       foreground="#000000" background="#15C015"/>
+  <style name="fasta:clT"                       foreground="#000000" background="#15C015"/>
+  <style name="fasta:clN"                       foreground="#000000" background="#15C015"/>
+  <style name="fasta:clQ"                       foreground="#000000" background="#15C015"/>
+  <style name="fasta:clP"                       foreground="#000000" background="#C0C000"/>
+  <style name="fasta:clG"                       foreground="#000000" background="#F09048"/>
+  <style name="fasta:clC"                       foreground="#000000" background="#F08080"/>
+  <style name="fasta:clX"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fasta:clZ"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fasta:clB"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fasta:Stop"                      foreground="#000000" background="#FFFFFF"/>
+  <style name="fasta:Indel"                     foreground="#000000" background="#FFFFFF"/>
+  
+  <!-- fasta-Zappo styles -->
+  <style name="fastza:header"                  foreground="black" background="#FFFFFF"/>
+  <style name="fastza:A"                       foreground="#000000" background="#FFAFAF"/>
+  <style name="fastza:I"                       foreground="#000000" background="#FFAFAF"/>
+  <style name="fastza:V"                       foreground="#000000" background="#FFAFAF"/>
+  <style name="fastza:L"                       foreground="#000000" background="#FFAFAF"/>
+  <style name="fastza:M"                       foreground="#000000" background="#FFAFAF"/>
+  <style name="fastza:F"                       foreground="#000000" background="#FFC800"/>
+  <style name="fastza:W"                       foreground="#000000" background="#FFC800"/>
+  <style name="fastza:Y"                       foreground="#000000" background="#FFC800"/>
+  <style name="fastza:K"                       foreground="#000000" background="#6464FF"/>
+  <style name="fastza:R"                       foreground="#000000" background="#6464FF"/>
+  <style name="fastza:H"                       foreground="#000000" background="#6464FF"/>
+  <style name="fastza:D"                       foreground="#000000" background="#FF0000"/>
+  <style name="fastza:E"                       foreground="#000000" background="#FF0000"/>
+  <style name="fastza:S"                       foreground="#000000" background="#00FF00"/>
+  <style name="fastza:T"                       foreground="#000000" background="#00FF00"/>
+  <style name="fastza:N"                       foreground="#000000" background="#00FF00"/>
+  <style name="fastza:Q"                       foreground="#000000" background="#00FF00"/>
+  <style name="fastza:P"                       foreground="#000000" background="#FF00FF"/>
+  <style name="fastza:G"                       foreground="#000000" background="#FF00FF"/>
+  <style name="fastza:C"                       foreground="#000000" background="#FFFF00"/>
+  <style name="fastza:X"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fastza:Z"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fastza:B"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fastza:Stop"                    foreground="#000000" background="#FFFFFF"/>
+  <style name="fastza:Indel"                   foreground="#000000" background="#FFFFFF"/>
+  
+  
+  <!-- fasta-Clustal styles -->
+  <style name="fast:header"                    foreground="black" background="#FFFFFF"/>
+  <style name="fast:clA"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clI"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clV"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clL"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clM"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clF"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clW"                       foreground="#000000" background="#80A0F0"/>
+  <style name="fast:clY"                       foreground="#000000" background="#15A4A4"/>
+  <style name="fast:clK"                       foreground="#000000" background="#F01505"/>
+  <style name="fast:clR"                       foreground="#000000" background="#F01505"/>
+  <style name="fast:clH"                       foreground="#000000" background="#15A4A4"/>
+  <style name="fast:clD"                       foreground="#000000" background="#C048C0"/>
+  <style name="fast:clE"                       foreground="#000000" background="#C048C0"/>
+  <style name="fast:clS"                       foreground="#000000" background="#15C015"/>
+  <style name="fast:clT"                       foreground="#000000" background="#15C015"/>
+  <style name="fast:clN"                       foreground="#000000" background="#15C015"/>
+  <style name="fast:clQ"                       foreground="#000000" background="#15C015"/>
+  <style name="fast:clP"                       foreground="#000000" background="#C0C000"/>
+  <style name="fast:clG"                       foreground="#000000" background="#F09048"/>
+  <style name="fast:clC"                       foreground="#000000" background="#F08080"/>
+  <style name="fast:clX"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fast:clZ"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fast:clB"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fast:Stop"                      foreground="#000000" background="#FFFFFF"/>
+  <style name="fast:Indel"                     foreground="#000000" background="#FFFFFF"/>
+ 
+ 
+  <!-- fasta-Taylor styles -->
+  <style name="fastay:header"                  foreground="black"  background="#FFFFFF"/>
+  <style name="fastay:A"                       foreground="#000000" background="#CCFF00"/>
+  <style name="fastay:I"                       foreground="#000000" background="#66FF00"/>
+  <style name="fastay:V"                       foreground="#000000" background="#99FF00"/>
+  <style name="fastay:L"                       foreground="#000000" background="#33FF00"/>
+  <style name="fastay:M"                       foreground="#000000" background="#00FF00"/>
+  <style name="fastay:F"                       foreground="#000000" background="#00FF66"/>
+  <style name="fastay:W"                       foreground="#000000" background="#00CCFF"/>
+  <style name="fastay:Y"                       foreground="#000000" background="#00FFCC"/>
+  <style name="fastay:K"                       foreground="#000000" background="#6600FF"/>
+  <style name="fastay:R"                       foreground="#000000" background="#0000FF"/>
+  <style name="fastay:H"                       foreground="#000000" background="#0066FF"/>
+  <style name="fastay:D"                       foreground="#000000" background="#FF0000"/>
+  <style name="fastay:E"                       foreground="#000000" background="#FF0066"/>
+  <style name="fastay:S"                       foreground="#000000" background="#FF3300"/>
+  <style name="fastay:T"                       foreground="#000000" background="#FF6600"/>
+  <style name="fastay:N"                       foreground="#000000" background="#CC00FF"/>
+  <style name="fastay:Q"                       foreground="#000000" background="#FF00CC"/>
+  <style name="fastay:P"                       foreground="#000000" background="#FFCC00"/>
+  <style name="fastay:G"                       foreground="#000000" background="#FF9900"/>
+  <style name="fastay:C"                       foreground="#000000" background="#FFFF00"/>
+  <style name="fastay:X"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fastay:Z"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fastay:B"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="fastay:Stop"                    foreground="#000000" background="#FFFFFF"/>
+  <style name="fastay:Indel"                   foreground="#000000" background="#FFFFFF"/>
+  
+  
+  <!-- fasta-hydrophocity styles -->
+  <style name="fasthy:header"                  foreground="black"   background="#FFFFFF"/>
+  <style name="fasthy:A"                       foreground="#000000" background="#AD0052"/>
+  <style name="fasthy:I"                       foreground="#000000" background="#FF0000"/>
+  <style name="fasthy:V"                       foreground="#000000" background="#F60009"/>
+  <style name="fasthy:L"                       foreground="#000000" background="#EA0015"/>
+  <style name="fasthy:M"                       foreground="#000000" background="#B0004F"/>
+  <style name="fasthy:F"                       foreground="#000000" background="#CB0034"/>
+  <style name="fasthy:W"                       foreground="#000000" background="#5B00A4"/>
+  <style name="fasthy:Y"                       foreground="#000000" background="#4F00B0"/>
+  <style name="fasthy:K"                       foreground="#000000" background="#0000FF"/>
+  <style name="fasthy:R"                       foreground="#000000" background="#0000FF"/>
+  <style name="fasthy:H"                       foreground="#000000" background="#1500EA"/>
+  <style name="fasthy:D"                       foreground="#000000" background="#0C00F3"/>
+  <style name="fasthy:E"                       foreground="#000000" background="#0C00F3"/>
+  <style name="fasthy:S"                       foreground="#000000" background="#5E00A1"/>
+  <style name="fasthy:T"                       foreground="#000000" background="#61009E"/>
+  <style name="fasthy:N"                       foreground="#000000" background="#0C00F3"/>
+  <style name="fasthy:Q"                       foreground="#000000" background="#0C00F3"/>
+  <style name="fasthy:P"                       foreground="#000000" background="#4600B9"/>
+  <style name="fasthy:G"                       foreground="#000000" background="#6A0095"/>
+  <style name="fasthy:C"                       foreground="#000000" background="#C2003D"/>
+  <style name="fasthy:X"                       foreground="#000000" background="#680097"/>
+  <style name="fasthy:Z"                       foreground="#000000" background="#0C00F3"/>
+  <style name="fasthy:B"                       foreground="#000000" background="#0C00F3"/>
+  <style name="fasthy:Stop"                    foreground="#000000" background="#FFFFFF"/>
+  <style name="fasthy:Indel"                   foreground="#000000" background="#FFFFFF"/>
+  
+  <!-- Fastq styles -->
+  <style name="fq:A"                       foreground="#64f73f"/>
+  <style name="fq:T"                       foreground="#eb413c"/>
+  <style name="fq:G"                       foreground="#ffb340"/>
+  <style name="fq:C"                       foreground="#3c88ee"/>
+  
+  <!-- bed styles -->
+  <style name="bed:chrom"                  foreground="dark-green" bold="true"/>
+  <style name="bed:coords"                 foreground="dark-green"/>
+  <style name="bed:bedName"                foreground="brown"/>
+  <style name="bed:strandplus"             foreground="#F92672" background="white" bold="true"/>
+  <style name="bed:strandminus"            foreground="#A6E22E" background="white" bold="true"/>
+  <style name="bed:strandnone"             foreground="#66D9EF" background="white" bold="true"/>
+  
+  <!-- GTF styles -->
+  <style name="gtf:chrom"                  foreground="dark-green" bold="true"/>
+  <style name="gtf:coord"                  foreground="dark-green"/>
+  <style name="gtf:software"               foreground="#fd971f"/>
+  <style name="gtf:featureGene"            foreground="dark-green" bold="true"/>
+  <style name="gtf:featureTranscript"      foreground="#4192ff"/>
+  <style name="gtf:featureExon"            foreground="#8a89ff"/>
+  <style name="gtf:featureCDS"             foreground="#47ff19" background="black"/>
+  <style name="gtf:featureStartCodon"      foreground="black"   background="#4192ff"/>
+  <style name="gtf:featureStopCodon"       foreground="black"   background="#ff4641"/>
+  <style name="gtf:featureUTR"             foreground="#e6e6e6" />
+  <style name="gtf:score0"                 foreground="#FFE7FD"/>
+  <style name="gtf:score1"                 foreground="#FFE7FD"/>
+  <style name="gtf:score2"                 foreground="#FFCFFB"/>
+  <style name="gtf:score3"                 foreground="#FFB7F9"/>
+  <style name="gtf:score4"                 foreground="#FF9FF7"/>
+  <style name="gtf:score5"                 foreground="#FF88F6"/>
+  <style name="gtf:score6"                 foreground="#FF70F4"/>
+  <style name="gtf:score7"                 foreground="#FF58F2"/>
+  <style name="gtf:score8"                 foreground="#FF40F0"/>
+  <style name="gtf:score9"                 foreground="#FF29EF"/>
+  <style name="gtf:score10"                foreground="#ff00eb"/>
+  <style name="gtf:score11"                foreground="#ff00eb"/>
+  <style name="gtf:strandminus"            foreground="#A6E22E"/>
+  <style name="gtf:strandplus"             foreground="#F92672"/>
+  <style name="gtf:stranddot"              foreground="#66D9EF"/>
+  <style name="gtf:framedot"               foreground="#75715E"/>
+  <style name="gtf:framenum"               foreground="#0099ff"/>
+  <style name="gtf:attributeName"          foreground="#9D9E9B"/>
+  <style name="gtf:attributeValueString"   foreground="#FF9FF7"/>
+  <style name="gtf:attributeValueNumber"   foreground="#0099ff"/>
+
+  <!-- WIG styles -->
+  <style name="wig:fixedStep"              foreground="dark-green" bold="true"/>
+  <style name="wig:variableStep"           foreground="dark-green"/>
+  <style name="wig:chrom"                  foreground="dark-green" bold="true"/>
+  <style name="wig:start"                  foreground="dark-green"/>
+  <style name="wig:step"                   foreground="#fd971f"/>
+  <style name="wig:span"                   foreground="#ffcffb"/>
+  <style name="wig:variableCStart"         foreground="#0099ff"/>
+  <style name="wig:fixedColor"             foreground="#F92672"/>
+  <style name="wig:variableColor"          foreground="#F92672"/>
+  <style name="wig:color0"                 foreground="#FFE7FD"/>
+  <style name="wig:color1"                 foreground="#FFE7FD"/>
+  <style name="wig:color2"                 foreground="#FFCFFB"/>
+  <style name="wig:color3"                 foreground="#FFB7F9"/>
+  <style name="wig:color4"                 foreground="#FF9FF7"/>
+  <style name="wig:color5"                 foreground="#FF88F6"/>
+  <style name="wig:color6"                 foreground="#FF70F4"/>
+  <style name="wig:color7"                 foreground="#FF58F2"/>
+  <style name="wig:color8"                 foreground="#FF40F0"/>
+  <style name="wig:color9"                 foreground="#FF29EF"/>
+  <style name="wig:color10"                foreground="#ff00eb"/>
+  <style name="wig:color11"                foreground="#ff00eb"/>
+  
+  <!-- PDB styles -->
+  
+  <style name="pdb:header"                    foreground="white" background="#FD6C9E"/>
+  <style name="pdb:title"                     foreground="#7D26CD" />
+  <style name="pdb:compnd"                    foreground="#FD6C9E" />
+  <style name="pdb:source"                    foreground="#7D26CD" />
+  <style name="pdb:keywords"                  foreground="#ADFF2F" />
+  <style name="pdb:expdta"                    foreground="#97DFC6" italic="true" />
+  <style name="pdb:author"                    foreground="#F0E36B" />
+  <style name="pdb:revdat"                    foreground="#7D26CD" />
+  <style name="pdb:jrnl"                      foreground="#F0E36B" />
+  <style name="pdb:remark1"                   foreground="#7D26CD" />
+  <style name="pdb:remark2"                   foreground="#7D26CD" />
+  <style name="pdb:null"                      foreground="#FD6C9E" />
+  <style name="pdb:seqres"                    foreground="#FD6C9E" />
+  <style name="pdb:sheet"                     foreground="#FD6C9E" />
+  <style name="pdb:site"                      foreground="#F01505" />
+  <style name="pdb:jrnltitle"                 foreground="#ADFF2F" />
+  <style name="pdb:residue"                   foreground="#7D26CD" />
+  <style name="pdb:atom"                      foreground="#7D26CD" />
+  <style name="pdb:heta"                      foreground="#FD6C9E" />
+  <style name="pdb:resol"                     foreground="#ADFF2F" />
+  <style name="pdb:colon"                     foreground="#7D26CD" />
+  <style name="pdb:semicolon"                 foreground="#7D26CD" />
+  <style name="pdb:form"                      foreground="black" />
+  <style name="pdb:end"                       foreground="white" background="#FD6C9E" />
+  <style name="pdb:digit"                     foreground="#7D26CD" />
+  <style name="pdb:ala"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:arg"                       foreground="#000000" background="#F01505"/>
+  <style name="pdb:asn"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:asp"                       foreground="#000000" background="#C048C0"/>
+  <style name="pdb:cys"                       foreground="#000000" background="#F08080"/>
+  <style name="pdb:gln"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:glu"                       foreground="#000000" background="#C048C0"/>
+  <style name="pdb:gly"                       foreground="#000000" background="#F09048"/>
+  <style name="pdb:his"                       foreground="#000000" background="#15A4A4"/>
+  <style name="pdb:ile"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:leu"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:lys"                       foreground="#000000" background="#F01505"/>
+  <style name="pdb:met"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:phe"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:pro"                       foreground="#000000" background="#C0C000"/>
+  <style name="pdb:ser"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:thr"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:trp"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:tyr"                       foreground="#000000" background="#15A4A4"/>
+  <style name="pdb:val"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:app"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:bqp"                       foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:crp"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:dsp"                       foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:etp"                       foreground="#000000" background="##80A0F0"/>
+  <style name="pdb:fup"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:gvp"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:hwp"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:ixp"                       foreground="#000000" background="#15C015"/>
+  <style name="pdb:jyp"                       foreground="#000000" background="#C0C000"/>
+  <style name="pdb:kzp"                       foreground="#000000" background="#F09048"/>
+  <style name="pdb:lp"                        foreground="#000000" background="#F08080"/>
+  <style name="pdb:mp"                        foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:np"                        foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:op"                        foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:ap"                        foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:bq"                        foreground="#000000" background="#80A0F0"/>
+  <style name="pdb:cr"                        foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:ds"                        foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:et"                        foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:fu"                        foreground="#000000" background="#15C015"/>
+  <style name="pdb:gv"                        foreground="#000000" background="#15C015"/>
+  <style name="pdb:hw"                        foreground="#000000" background="#15C015"/>
+  <style name="pdb:ix"                        foreground="#000000" background="#15C015"/>
+  <style name="pdb:jy"                        foreground="#000000" background="#C0C000"/>
+  <style name="pdb:kz"                        foreground="#000000" background="#F09048"/>
+  <style name="pdb:l"                         foreground="#000000" background="#F08080"/>
+  <style name="pdb:m"                         foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:n"                         foreground="#000000" background="#FFFFFF"/>
+  <style name="pdb:o"                         foreground="#000000" background="#FFFFFF"/>
+  
+  
+</style-scheme>
