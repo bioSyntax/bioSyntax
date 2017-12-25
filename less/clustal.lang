@@ -6,7 +6,7 @@
 header start '^CLUSTAL'
 
 # Data Name
-comment = '\S++(?=\s)'
+comment = '^\S++(?=\s)'
 
 ntA = '[Aa]+'
 ntT = '[Tt]+'
