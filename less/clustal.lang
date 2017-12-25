@@ -15,4 +15,7 @@ ntC = '[Cc]+'
 ntN = '[NnXx]+'
 ntT = '[Uu]+'
 
-#ntGap = '[.-]+' #no highlight
+# No Highlight --
+# ntGap = '[.-]+' #Gap sequence
+# numeric = '[0-9]+$' # Trailing Number
+#

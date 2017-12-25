@@ -13,12 +13,14 @@ in CLUSTAL format
 <language id="clustal" _name="Clustal" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/clustal</property>
-    <property name="globs">*.clustal,*.aln</property>
+    <property name="globs">*.clustal;*.aln</property>
   </metadata>
 
   <styles>
-    <style id="header"  _name="Header"   map-to="biosyntax:header"  />
-    <style id="comment" _name="Comment"  map-to="biosyntax:comment" />
+    <style id="header"   _name="Header"   map-to="biosyntax:header"   />
+    <style id="comment"  _name="Comment"  map-to="biosyntax:comment"  />
+    <style id="chrStart" _name="ChrStart" map-to="biosyntax:chrStart" />
+
     <!-- bioSyntax Nucleotides -->
     <style id="ntA"     _name="ntA_"     map-to="biosyntax:ntA"     />
     <style id="ntG"     _name="ntG_"     map-to="biosyntax:ntG"     />
@@ -52,7 +54,11 @@ in CLUSTAL format
        <context id="seqname" style-ref="comment">
          <match>^\S++(?=\s)</match>
        </context>
-       
+
+	   <context id="trailNum" style-ref="chrStart">
+		   <match>[0-9]++$</match>
+	   </context>
+	   
        <!-- Core Nucleotides -->        
        <context id="nta" style-ref="ntA">
          <match>[Aa]++</match>
@@ -72,9 +78,10 @@ in CLUSTAL format
        <context id="ntn" style-ref="ntN">
          <match>[XxNn]++</match>          
        </context>
-       <context id="ntgap" style-ref="ntGap">
+       <!-- No highlight for gap 
+	   <context id="ntgap" style-ref="ntGap">
          <match>[\-\.]++</match>          
-       </context>
+	   </context> -->
 
        <!-- Extended IUPAC Nucleotides -->
        <context id="ntr" style-ref="ntR">

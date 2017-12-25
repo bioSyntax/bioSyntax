@@ -16,7 +16,7 @@ change `map-to="biosyntax:nt*"` to `map-to="biosyntax:hc*"`
 <language id="fasta" _name="Fasta-nt" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/fasta</property>
-    <property name="globs">*.fa,*.fasta,*.mfa,*.fas</property>
+    <property name="globs">*.fa;*.fasta;*.mfa;*.fas</property>
   </metadata>
 
   <styles>

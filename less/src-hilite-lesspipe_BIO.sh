@@ -9,7 +9,7 @@ for source in "$@"; do
         source-highlight --failsafe -f esc --lang-def=makefile.lang --style-file=esc.style -i "$source" ;;
 	*.tar|*.tgz|*.gz|*.bz2|*.xz)
         lesspipe "$source" ;;
-	*.clustal)
+	*.clustal|*.aln)
 	source-highlight -f esc --lang-def=clustal.lang --outlang-def=bioSyntax.outlang --style-file=fasta.style -i "$source" ;;
 	*.bed)
 	source-highlight -f esc --lang-def=bed.lang --outlang-def=bioSyntax.outlang --style-file=sam.style -i "$source" ;;
