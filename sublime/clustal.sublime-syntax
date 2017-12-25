@@ -5,7 +5,7 @@
 # Version: v0.1
 name: clustal
 # See http://www.sublimetext.com/docs/3/syntax.html
-file_extensions: [clustal]
+file_extensions: [clustal,aln]
 scope: text.clustal
 
 contexts:
@@ -18,24 +18,61 @@ contexts:
     - match: "/[0-9]*-[0-9]*" #Optional sequence range
       scope: chrStart
 
-    - match: "^[\\w\\.\\-\\_ ]*(?=[/ ])"
+    - match: "^[\\w\\.\\-\\_]*(?=[/ ])" #Spaces not allowed in seqname
       scope: string
 
-  # match Adenosine
+    # Optional trailing numeric
+    - match: "[0-9]+$"
+      scope: chrStart
+
+    # Optional: Conservation
+    - match: "\\*++"
+      scope: null
+
+    - match: "\\:++"
+      scope: gradbw5
+
+    - match: "\\.++"
+      scope: gradbw5
+
+
+    # match Adenosine
     - match: "[Aa]++"
       scope: ntA
-  # match Cytidine
+    # match Cytidine
     - match: "[Cc]++"
       scope: ntC
-  # match Guanine
+    # match Guanine
     - match: "[Gg]++"
       scope: ntG
-  # match Thymidine/Uridine
+    # match Thymidine/Uridine
     - match: "[TtUu]++"
       scope: ntT
-  # aNy or unknown (X)
+    # aNy or unknown (X)
     - match: "[NnXx]++"
       scope: ntN
-  # indel
-    - match: "-"
+    # indel
+    - match: "[-]++"
       scope: ntGap
+
+    # Match Extended Nucleotides
+    - match: "[Rr]++"
+      scope: ntR
+    - match: "[Yy]++"
+      scope: ntY
+    - match: "[Ss]++"
+      scope: ntS
+    - match: "[Ww]++"
+      scope: ntW
+    - match: "[Mm]++"
+      scope: ntM
+    - match: "[Kk]++"
+      scope: ntK
+    - match: "[Dd]++"
+      scope: ntD
+    - match: "[Bb]++"
+      scope: ntB
+    - match: "[Vv]++"
+      scope: ntV
+    - match: "[Hh]++"
+      scope: ntH
