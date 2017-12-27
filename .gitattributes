@@ -9,7 +9,6 @@
 #
 # Development Folder
 dev/* export-ignore
-gedit/pdb.lang export-ignore
 #
 # Images
 bioSyntax_logo.png export-ignore
