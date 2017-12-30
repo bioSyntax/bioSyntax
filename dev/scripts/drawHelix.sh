@@ -9,7 +9,8 @@
 ###  |__) | /  \ /__` \ / |\ |  |   /\  \_/ 
 #### |__) | \__/ .__/  |  | \|  |  /~~\ / \ 
 #####=======================================
-##                                      v0.1
+##   biosyntax.org                      v0.1
+#
 #    ABabaian -- artem@rRNA.ca
 #
 #    Props to @darokin for the gif-spiration
@@ -31,29 +32,29 @@ IDX=1 # Initialize print index
 # Terminal Color Palette
 if [[ $(tput colors) == '256' ]]; then
 	# Color Definitions (ANSI_256 Supported)
-	colA='\e[1;38:5:10m'
-	colT='\e[1;38:5:33m'
-	colG='\e[1;38:5:214m'
-	colC='\e[1;38:5:9m'
-	colN1='\e[1;36m'
-	colN2='\e[1;35m'
-	colHelix='\e[1;38:5:250m'
+	colA="$(tput setaf 10)"
+	colT="$(tput setaf 33)"
+	colG="$(tput setaf 214)"
+	colC="$(tput setaf 9)"
+	colN1="$(tput setaf 87)"
+	colN2="$(tput setaf 205)"
+	colHelix=$(tput setaf 250)
 	#colBond1=$colHelix
-	colBond2='\e[1;30m'
-	colBg='\e[38:5:17m'
+	colBond2="$(tput setaf 0)"
+	colBg="$(tput setaf 17)"
 
 else # use System colors
 	# Color Definitions (System Colors)
-	colA='\e[1;32m'
-	colT='\e[1;34m'
-	colG='\e[1;33m'
-	colC='\e[1;31m'
-	colN1='\e[1;36m'
-	colN2='\e[1;35m'
-	colHelix='\e[1;37m'
+	colA="$(tput setaf 2)"
+	colT="$(tput setaf 4)"
+	colG="$(tput setaf 3)"
+	colC="$(tput setaf 1)"
+	colN1="$(tput setaf 6)"
+	colN2="$(tput setaf 5)"
+	colHelix="$(tput setaf 7)"
 	#colBond1=$colHelix
-	colBond2='\e[1;30m'
-	colBg='\e[0m'
+	colBond2="$(tput setaf 0)"
+	colBg="$(tput setaf 0)"
 fi
 
 # DRAW DNA ------------------------------------------------
@@ -119,4 +120,3 @@ do
 		done # BASE
 	fi #N
 done #SEQ
-#

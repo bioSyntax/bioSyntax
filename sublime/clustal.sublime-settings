@@ -1,0 +1,17 @@
+// GENERIC SYNTAX
+// bioSyntax Settings File
+// These settings override both User and Default settings
+// for this syntax
+{
+	// Sets the colors used within the text area
+    "color_scheme": "Packages/User/bioSyntax.tmTheme",
+
+    // Word Wrapping
+    "word_wrap": "auto",
+
+    // Line Number / Gutter -- User controlled
+    //"line_numbers": true,
+    //"gutter": true,
+    //"margin": 4,
+    
+}
