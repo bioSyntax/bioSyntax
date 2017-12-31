@@ -1,1 +1,0 @@
-au BufRead,BufNewFile *.sam set filetype=sam
