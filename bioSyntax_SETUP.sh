@@ -11,14 +11,17 @@
 #	- MacOSX: sublime, vim, less
 #
 # SYNTAX FILES FORMATS:
-#	- Sublime Text 3: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt, fasta-taylor, fasta-zappo, fastq, flagstat, gtf, pdb, sam, vcf, wig
-#	- Gedit: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt, fasta-taylor, fasta-zappo, fastq, gtf, pdb, sam, wig
+#	- Sublime Text 3: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro,
+#	  fasta-nt, fasta-taylor, fasta-zappo, fastq, flagstat, gtf, pdb, sam,
+#	  vcf, wig
+#	- Gedit: bed, clustal, faidx, fasta, fasta-clustal, fasta-hydro, fasta-nt,
+#	  fasta-taylor, fasta-zappo, fastq, gtf, pdb, sam, wig
 #	- Vim: bed, clustal, faidx, fasta, fastq, gtf, pdb, sam, vcf
 #	- Less: bed, clustal, faidx, fasta, fastq, flagstat, gtf, pdb, sam, vcf
 #
 
 printf "bioSyntax: Syntax Highlighting for Computational Biology.\\n"
-printf "           For more information, visit bioSyntax.org.\\n"
+printf "		   For more information, visit bioSyntax.org.\\n"
 
 # Script needs to be run from main bioSyntax directory.
 BIOSYNTAX="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -46,9 +49,64 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+
+# Status message for Sublime / Vim
+printf "\n"
+
+if [ "$1" == "sublime" ]; then
+
+	printf " Installing sublime-bioSyntax...\n\n"
+	printf "  (Y): Install manually with script.\n"
+	printf "  (N): Install via sublime Package Control.\n"
+	printf "\n"
+	printf "\t- Open Sublime.\n"
+	printf "\t- Open command line: ctrl+shift+p\n"
+	printf "\t- 'Package Control:bioSyntax'\n"
+	printf ""
+
+	read -p "  Enter: " yn
+	case $yn in
+		[Yy]*)
+			printf "\n" # continue
+			;;
+		[Nn]*)
+			exit 1
+			;;
+	esac
+
+else [ "$1" == "vim" ];
+
+	printf " Installing vim-bioSyntax...\n\n"
+	printf "  (1): Install manually with script.\n"
+	printf "  (2): Install via Pathogen (if installed).\n"
+	printf "\n"
+	printf "\tcd ~/.vim/bundle &&\n"
+	printf "\tgit clone https://github.com/bioSyntax/bioSyntax-vim.git\n"
+	printf "\n"
+	printf "  (3): exit\n"
+	printf "\n"
+
+	read -p "  Enter: " yn
+	case $yn in
+		[1]*)
+			printf "\n" # continue
+			;;
+		[2]*)
+			cd ~/.vim/bundle &&
+			git clone https://github.com/bioSyntax/bioSyntax-vim.git &&
+			exit 0
+			;;
+		*)
+			exit 1
+			;;
+	esac
+fi
+
+
 # Mac OSX - Available for: Sublime Text 3, Vim
 if  [ "$(uname)" == "Darwin" ]; then
 
+	printf " "
 	if [ "$1" == "sublime" ]; then
 
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Mac OSX Sublime Text 3.\\n" "$2"
@@ -130,8 +188,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 		which -s brew
 		if [[ $? != 0 ]] ; then
 			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Homebrew is not currently installed on your system. Install brew now?\\n"
-    		read ans
-    		if echo "$ans" | grep -iq "^y"; then
+			read ans
+			if echo "$ans" | grep -iq "^y"; then
 				ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 			else
 				printf "bioSyntax installation cancelled.\\n"
@@ -139,8 +197,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 			fi
 		else
 			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Update brew now?\\n"
-    		read ans
-    		if echo "$ans" | grep -iq "^y"; then
+			read ans
+			if echo "$ans" | grep -iq "^y"; then
 				brew update
 			fi
 		fi
@@ -149,13 +207,13 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if [[ ! -z `brew ls --versions "source-highlight"` ]]; then
 			printf "source-highlight is installed in your system. Update now?\\n"
 			read ans
-    		if echo "$ans" | grep -iq "^y"; then
+			if echo "$ans" | grep -iq "^y"; then
 				brew upgrade source-highlight
 			fi
 		else
 			printf "source-highlight needs to be installed in your system for bioSyntax to function. Install now?\\n"
 			read ans
-    		if echo "$ans" | grep -iq "^y"; then
+			if echo "$ans" | grep -iq "^y"; then
 				brew install source-highlight
 			else
 				printf "bioSyntax installation cancelled.\\n"
@@ -326,7 +384,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if echo "$ans" | grep -iq "^y"; then
 			sudo apt-get update
 		fi
-		
+
 		printf "bioSyntax requires the source-highlight package to work. Install/update now?\\n"
 		if echo "$ans" | grep -iq "^y"; then
 			sudo apt-get install source-highlight
