@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-gedit Syntax File
+<!-- 
+gedit Syntax Definition File
 Language: Sequence Alignment Map
-Filetypes: .sam
-Maintainer: bioSyntax.org
+Filetypes: .sam / .bam 
+Maintainer: bioSyntax (info@bioSyntax.org)
 Version: v0.1
+   
+* Requires use of "bioSyntax" theme   
 -->
 
 <language id="biosyntax" _name="SAM" version="2.0" _section="Scientific">
