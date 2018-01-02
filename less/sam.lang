@@ -99,7 +99,7 @@ environment align start '(?=^[^$])' begin
     environment push3 = '\t?' begin
       drop = '(?=$)' exitall
 
-      chr = '\A\w+'
+      chr = '\A\S+'
 
       # Column 4: POSition
       environment push4 = '\t?' begin
