@@ -1,0 +1,9 @@
+[submodule "bioSyntax-vim"]
+	path = vim/
+	url = https://github.com/bioSyntax/bioSyntax-vim.git
+[submodule "sublime"]
+	path = sublime
+	url = https://github.com/bioSyntax/bioSyntax-sublime.git
+[submodule "vim"]
+	path = vim
+	url = https://github.com/bioSyntax/bioSyntax-vim.git
