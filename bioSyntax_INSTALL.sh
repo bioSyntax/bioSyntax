@@ -20,15 +20,16 @@
 #	- Less: bed, clustal, faidx, fasta, fastq, flagstat, gtf, pdb, sam, vcf
 #
 
-printf "bioSyntax: Syntax Highlighting for Computational Biology.\\n"
-printf "		   For more information, visit bioSyntax.org.\\n"
+LOGO="$(tput setaf 2)bio$(tput setaf 1)Syntax$(tput setaf 0):$(tput sgr0)"
+printf "$LOGO Syntax Highlighting for Computational Biology.\\n"
+printf "\tFor more information, visit bioSyntax.org.\\n"
 
 # Script needs to be run from main bioSyntax directory.
 BIOSYNTAX="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -z "$1" ]; then
 	printf "\\n"
-	printf " $(tput setaf 2)bio$(tput setaf 1)Syntax$(tput setaf 0):$(tput sgr0) v0.1-beta \\n"
+	printf " $LOGO version 0.1-beta3 \\n"
 	printf " ---------------------------------\\n"
 	printf " install script -- v0.1-beta\\n"
 	printf "\\n"
@@ -36,24 +37,47 @@ if [ -z "$1" ]; then
 	printf " bash bioSyntax_SETUP.sh <text_editor> <file_format (optional)> \\n"
 	printf "\\n"
 	printf " <text_editor> = vim || less || gedit || sublime \\n"
-	printf "\\n"
 	printf " <file_format> = (blank for all) || fasta || fastq || sam || vcf || pdb ... \\n"
 	printf "\\n"
+	printf " OR\\n"
+	printf "\\n"
+	printf " Enter: (1) vim. (2) less. (3) gedit. (4) sublime. (Q) quit\\n"
 	printf " Notes: \\n "
 	printf "   -- auto-installation requires some commands to be run as root \\n"
-	printf "   -- less installation will install 'source-highlight' to function \\n"
+	printf "   -- installer script requires bash/zsh \\n"
 	printf "\\n"
+	printf " For detailed install instructions, visit bioSyntax.org/install \\n"
 	printf "\\n"
-	printf " For more information, visit bioSyntax.org \\n"
-	printf "\\n"
-	exit 1
+
+	# Allow user to enter which port to install
+	read -p "  Enter: " yn
+	case $yn in
+		[1]*)
+			port='vim'
+			;;
+		[2]*)
+			port='less'
+			;;
+		[3]*)
+			port='gedit'
+			;;
+		[4]*)
+			port='sublime'
+			;;
+		*)
+			exit 1
+			;;
+	esac
+
+else
+	port=$1
 fi
 
 
 # Status message for Sublime / Vim
 printf "\n"
 
-if [ "$1" == "sublime" ]; then
+if [ "$port" == "sublime" ]; then
 
 	printf " Installing sublime-bioSyntax...\n\n"
 	printf "  (Y): Install manually with script.\n"
@@ -74,7 +98,7 @@ if [ "$1" == "sublime" ]; then
 			;;
 	esac
 
-elif [ "$1" == "vim" ]; then
+elif [ "$port" == "vim" ]; then
 
 	printf " Installing vim-bioSyntax...\n\n"
 	printf "  (1): Install manually with script.\n"
@@ -100,7 +124,7 @@ elif [ "$1" == "vim" ]; then
 			exit 1
 			;;
 	esac
-elif [ "$1" == "less" ]; then
+elif [ "$port" == "less" ]; then
 
 	printf " Installing less-bioSyntax...\n\n"
 	printf "  (y): Install source highlight + bioSyntax\n"
@@ -120,14 +144,35 @@ elif [ "$1" == "less" ]; then
 			exit 0
 			;;
 	esac
+elif [ "$port" == "gedit" ]; then
+
+	printf " Installing gedit-bioSyntax...\n\n"
+	printf "  (y): Install bioSyntax for gedit / GTK sourceview 3.0\n"
+	printf "  (n): exit\n"
+	printf "\n"
+	printf " Note:\n"
+	printf "\t- gedit installation requires sudo commands to add syntax\n"
+	printf "\t  files to the gtk-sourceview folder\n"
+	read -p "  Enter: " yn
+	case $yn in
+		[Yy]*)
+			printf "\n" # continue
+			;;
+		*)
+			exit 0
+			;;
+	esac
+else
+	printf " I don't know which port of bioSyntax you would like to install.\n"
+	printf " try \`bash bioSyntax_INSTALL.sh\' for usage\n\n"
+	exit 3 # exit with incorrect port declared
 fi
-### Gedit prompt
 
 # Mac OSX - Available for: Sublime Text 3, Vim
 if  [ "$(uname)" == "Darwin" ]; then
 
 	printf " "
-	if [ "$1" == "sublime" ]; then
+	if [ "$port" == "sublime" ]; then
 
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Mac OSX Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
@@ -147,7 +192,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		FILES=(`find "${BIOSYNTAX}/sublime/" -name "*.sublime-syntax" -print`)
 		FILE=".sublime-syntax"
 
-	elif [ "$1" == "vim" ]; then
+	elif [ "$port" == "vim" ]; then
 
 		printf "Setting up %s syntax file(s) and style file(s) for Mac OSX Vim.\\n" "$2"
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
@@ -197,12 +242,12 @@ if  [ "$(uname)" == "Darwin" ]; then
 		FILE=".vim"
 
 	# gedit currently not supported for mac
-	#elif [ "$1" == "gedit" ]; then
+	#elif [ "$port" == "gedit" ]; then
 	#	printf "Setting up %s lang file(s) and bioSyntax theme for Mac OSX Gedit.\\n" "$2"
 	#	FPATH=/
 	#	TPATH=/
 
-	elif [ "$1" == "less" ]; then
+	elif [ "$port" == "less" ]; then
 
 		printf "Installing/updating brew and source-highlight for Less and setting up %s lang file(s) and style file(s) for Mac OSX Less.\\n" "$2"
 		# CHECKS IF BREW IS INSTALLED. IF IT IS, UPDATES IT, IF NOT, INSTALLS IT
@@ -289,7 +334,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		FILES=(`find "${BIOSYNTAX}/less/" -name "*.lang" -print`)
 		FILE=".lang"
 	else
-		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$1"
+		printf "ERROR: %s is not a valid/supported editor for MacOS. Currently, bioSyntax is available for sublime, less, and vim for MacOS.\\n" "$port"
 		exit 1
 	fi
 
@@ -297,7 +342,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$1" == "less" || "$1" == "gedit" ]; then
+		if [ "$port" == "less" || "$port" == "gedit" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
 				chmod 0644 "${FILES[${f}]}"
 				sudo cp "${FILES[${f}]}" "${FPATH}"
@@ -308,7 +353,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 				cp "${FILES[${f}]}" "${FPATH}"
 			done
 		fi
-	elif [ "$1" == "less" || "$1" == "gedit" ]; then
+	elif [ "$port" == "less" || "$port" == "gedit" ]; then
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	else
@@ -319,7 +364,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 # Linux Ubuntu - Available for: Sublime Text 3, Gedit, Vim, Less
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	if [ "$1" == "sublime" ]; then
+	if [ "$port" == "sublime" ]; then
 
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Linux Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
@@ -340,7 +385,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		FILES=(`find "${BIOSYNTAX}/sublime/" -name "*" -print`)
 		FILE=".sublime-syntax"
 
-	elif [ "$1" == "gedit" ]; then
+	elif [ "$port" == "gedit" ]; then
 
 		printf "Setting up %s lang file(s) and bioSyntax theme for Linux Gedit.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
@@ -357,7 +402,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		FILES=(`find "${BIOSYNTAX}/gedit/" -name "*.lang" -print`)
 		FILE=".lang"
 
-	elif [ "$1" == "vim" ]; then
+	elif [ "$port" == "vim" ]; then
 
 		printf "Setting up %s syntax file(s) and style file(s) for Linux vim.\\n" "$2"
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
@@ -405,7 +450,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		FILES=(`find "${BIOSYNTAX}/vim/syntax/" -name "*.vim" -print`)
 		FILE=".vim"
 
-	elif [ "$1" == "less" ]; then
+	elif [ "$port" == "less" ]; then
 
 		printf "Installing/updating source-highlight for Less and setting up %s lang file(s) and style file(s) for Linux Less.\\n" "$2"
 		# UPDATES APPS AND UPDATES/INSTALLS SOURCE-HIGHLIGHT
@@ -460,7 +505,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		FILES=(`find "${BIOSYNTAX}/less/" -name "*.lang" -print`)
 		FILE=".lang"
 	else
-		printf "ERROR: %s is not a valid/supported editor for Linux Ubuntu. Currently, bioSyntax is available for sublime, gedit, vim, and less for Linux Ubuntu.\\n" "$1"
+		printf "ERROR: %s is not a valid/supported editor for Linux Ubuntu. Currently, bioSyntax is available for sublime, gedit, vim, and less for Linux Ubuntu.\\n" "$port"
 		exit 1
 	fi
 
@@ -468,7 +513,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$1" == "less" || "$1" == "gedit" ]; then
+		if [ "$port" == "less" || "$port" == "gedit" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
 				chmod 0644 "${FILES[${f}]}"
 				sudo cp "${FILES[${f}]}" "${FPATH}"
@@ -479,7 +524,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 				cp "${FILES[${f}]}" "${FPATH}"
 			done
 		fi
-	elif [ "$1" == "less" || "$1" == "gedit" ]; then
+	elif [ "$port" == "less" || "$port" == "gedit" ]; then
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	else
@@ -491,7 +536,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 # Windows - Available for: Sublime Text 3, Gedit, Vim
 else
-	if [ "$1" == "sublime" ]; then
+	if [ "$port" == "sublime" ]; then
 
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Windows Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
@@ -511,7 +556,7 @@ else
 		FILES=(`find "${BIOSYNTAX}/sublime/" -name "*.sublime-syntax" -print`)
 		FILE=".sublime-syntax"
 
-	elif [ "$1" == "gedit" ]; then
+	elif [ "$port" == "gedit" ]; then
 
 		printf "Setting up %s lang file(s) and bioSyntax theme for Windows Gedit.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
@@ -528,7 +573,7 @@ else
 		FILES=(`find "${BIOSYNTAX}/gedit/" -name "*.lang" -print`)
 		FILE=".lang"
 
-	elif [ "$1" == "vim" ]; then
+	elif [ "$port" == "vim" ]; then
 
 		printf "Setting up %s syntax file(s) and style file(s) for Windows vim.\\n" "$2"
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
@@ -576,7 +621,7 @@ else
 		FILES=(`find "${BIOSYNTAX}/vim/" -name "*.vim" -print`)
 		FILE=".vim"
 
-	#elif [ "$1" == "less" ]; then
+	#elif [ "$port" == "less" ]; then
 
 		#printf "Installing/updating source-highlight for Less and setting up %s lang file(s) and style file(s) for Windows Less.\\n" "$2"
 		#	FPATH=/
@@ -599,6 +644,6 @@ else
 
 fi
 
-printf "Installation successful. Restart %s and you will now have pretty %s formats! Thank you for your support!\\n" "$1" "$2"
+printf "Installation successful. Restart %s and you will now have pretty %s formats! Thank you for your support!\\n" "$port" "$2"
 exit 0
 
