@@ -342,7 +342,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$port" == "less" || "$port" == "gedit" ]; then
+		if [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
 				chmod 0644 "${FILES[${f}]}"
 				sudo cp "${FILES[${f}]}" "${FPATH}"
@@ -353,7 +353,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 				cp "${FILES[${f}]}" "${FPATH}"
 			done
 		fi
-	elif [ "$port" == "less" || "$port" == "gedit" ]; then
+	elif [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	else
@@ -513,7 +513,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$port" == "less" || "$port" == "gedit" ]; then
+		if [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
 				chmod 0644 "${FILES[${f}]}"
 				sudo cp "${FILES[${f}]}" "${FPATH}"
@@ -524,15 +524,13 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 				cp "${FILES[${f}]}" "${FPATH}"
 			done
 		fi
-	elif [ "$port" == "less" || "$port" == "gedit" ]; then
+	elif [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	else
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	fi
-
-
 
 # Windows - Available for: Sublime Text 3, Gedit, Vim
 else
