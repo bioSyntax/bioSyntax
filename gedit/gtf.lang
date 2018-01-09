@@ -18,12 +18,14 @@ in CLUSTAL format
 
   <styles>
     <style id="chrom"             _name="Chrom"             map-to="biosyntax:chr"/>
-    <style id="coord"             _name="Coord"             map-to="biosyntax:chrStart"/>
-    <style id="software"          _name="Software"          map-to="biosyntax:software"/>
+    <style id="coord"             _name="Coord"             map-to="biosyntax:chrStart"  />
+    <style id="coord2"            _name="Coord2"            map-to="biosyntax:chrStart2" />
+    <style id="software"          _name="Software"          map-to="biosyntax:software"  />
     
     <!-- Gene Model -->
-    <style id="featureExon"       _name="FeatureExon"       map-to="biosyntax:exonLevel"/>
+    <style id="featureGene"       _name="FeatureGene"       map-to="biosyntax:geneLevel"/>
     <style id="featureTranscript" _name="FeatureTranscript" map-to="biosyntax:transcriptLevel"/>
+    <style id="featureExon"       _name="FeatureExon"       map-to="biosyntax:exonLevel"/>
     <style id="featureCDS"        _name="FeatureCDS"        map-to="biosyntax:cds"/>
     <style id="featureStartCodon" _name="FeatureStartCodon" map-to="biosyntax:start_codon"/>
     <style id="featureStopCodon"  _name="FeatureStopCodon"  map-to="biosyntax:stop_codon"/>
@@ -34,7 +36,7 @@ in CLUSTAL format
     <style id="framedot"          _name="FrameDot"          map-to="biosyntax:comment"/>
     
     <!-- Gene Features -->
-    <style id="attributeName"     _name="AttName"           map-to="biosyntax:string"/>
+    <style id="attributeName"         _name="AttName"       map-to="biosyntax:string"/>
     <style id="attributeValueString"  _name="AttString"     map-to="biosyntax:string"/>
     <style id="attributeValueNumber"  _name="AttNum"        map-to="biosyntax:numeric"/>
     <style id="attributeSemiColon"    _name="AttSemiColon"  map-to="biosyntax:comment"/>
@@ -119,22 +121,37 @@ in CLUSTAL format
                 </context>
 
 <!-- Start and End Coordinates -->
-                <context id="c1" style-ref="coord">
+                <context id="chrStart" style-ref="coord">
                   <start>\t</start>
                   <end>(?=$)</end>              
-                  
                   <include>
+                    <context id="chrStart2" style-ref="coord2">
+                      <match>[0-9\.](?=\d{2}\t)</match>
+                    </context>
+                    <context id="chrStart5" style-ref="coord2">
+                      <match>[0-9\.](?=\d{5}\t)</match>
+                    </context>
+                    <context id="chrStart8" style-ref="coord2">
+                      <match>[0-9\.](?=\d{8}\t)</match>
+                    </context>
 
-                    <context id="c2" style-ref="coord">
+                    <context id="chrEnd" style-ref="coord">
                       <start>\t</start>
                       <end>(?=$)</end>
-                          
                       <include>
+                        <context id="chrEnd2" style-ref="coord2">
+                          <match>[0-9\.](?=\d{2}\t)</match>
+                        </context>
+                        <context id="chrEnd5" style-ref="coord2">
+                          <match>[0-9\.](?=\d{5}\t)</match>
+                        </context>
+                        <context id="chrEnd8" style-ref="coord2">
+                          <match>[0-9\.](?=\d{8}\t)</match>
+                        </context>
 
                         <context id="c3" style-ref="coord">
                           <start>\t</start>
                           <end>(?=$)</end>
-                              
                           <include>
                               
 <!-- Gradient Coloring for Score -->

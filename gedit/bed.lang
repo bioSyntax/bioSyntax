@@ -19,6 +19,7 @@ in BED format
   <styles>
     <style id="chrom"   _name="Chrom"    map-to="biosyntax:chr"       />
     <style id="coords"  _name="Chrom"    map-to="biosyntax:chrStart"  />
+    <style id="coord2"  _name="Chrom"    map-to="biosyntax:chrStart2" />
     <style id="bedID"   _name="BedID"    map-to="biosyntax:string"    />
 
     <style id="strandPlus"   _name="StrandPlus"  map-to="biosyntax:strandPlus"    />
@@ -46,19 +47,41 @@ in BED format
        <context id="1_chr" end-at-line-end="true" style-ref="chrom">
           <start>^</start>
           <end>$</end>
-          <include>           
+          <include>         
+
             <context id="2_coords_start" style-ref="coords">
               <start>\t</start>
               <end>(?=$)</end>              
               <include>
+              	<context id="chrStart2" style-ref="coord2">
+					<match>[0-9\.](?=\d{2}\t)</match>
+				</context>
+				<context id="chrStart5" style-ref="coord2">
+					<match>[0-9\.](?=\d{5}\t)</match>
+				</context>
+				<context id="chrStart8" style-ref="coord2">
+					<match>[0-9\.](?=\d{8}\t)</match>
+				</context>
+
                 <context id="3_coords_end" style-ref="coords">
                   <start>\t</start>
                   <end>(?=$)</end>              
                   <include>
+                  	<context id="chrEnd2" style-ref="coord2">
+						<match>[0-9\.](?=\d{2}\t)</match>
+					</context>
+					<context id="chrEnd5" style-ref="coord2">
+						<match>[0-9\.](?=\d{5}\t)</match>
+					</context>
+					<context id="chrEnd8" style-ref="coord2">
+						<match>[0-9\.](?=\d{8}\t)</match>
+					</context>
+
                     <context id="4_name" style-ref="bedID">
                       <start>\t</start>
                       <end>(?=$)</end>              
                       <include>
+
                         <context id="5_score">
                           <start>\t</start>
                           <end>(?=$)</end>              
@@ -115,7 +138,7 @@ in BED format
                             </context>
                             <context id="score10" style-ref="score10">
                               <match extended="true">
-                                (8\d{2}|8\d{2}\.\d+)(?=\t)
+                                (9\d{2}|9\d{2}\.\d+)(?=\t)
                               </match>
                             </context>
                             <context id="score11" style-ref="score10">
@@ -123,6 +146,7 @@ in BED format
                                 [1-9]\d{3,}
                               </match>
                             </context>
+                            
                             <context id="6_strand">
                               <start>\t</start>
                               <end>$</end>

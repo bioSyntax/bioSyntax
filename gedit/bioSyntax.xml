@@ -29,11 +29,13 @@
   <style name="biosyntax:keyword5"      foreground="#AE81FF" />
   <style name="biosyntax:keyword6"      foreground="#af8700" />
   <style name="biosyntax:header"        foreground="#E6DB74" background="#3E3D32" bold="false" />
-  <style name="biosyntax:headerNoBw"        foreground="#E6DB74" bold="false" />
+  <style name="biosyntax:headerNoBw"    foreground="#E6DB74" bold="false" />
   <style name="biosyntax:headerbw"      foreground="#BDB691" background="#47453E" />
   <style name="biosyntax:genome"        foreground="#1E8449" bold="false" />
   <style name="biosyntax:chr"           foreground="#1E8449" bold="true" />
   <style name="biosyntax:chrStart"      foreground="#1E8449" italic="true" bold="false" />
+  <style name="biosyntax:chrStart2"     foreground="#00d75f" italic="true" bold="false" />
+
   <style name="biosyntax:chrEnd"        foreground="#1E8449" />
   <style name="biosyntax:strandPlus"    foreground="#000000" background="#4192FF" />
   <style name="biosyntax:strandMinus"   foreground="#000000" background="#F09000" />
