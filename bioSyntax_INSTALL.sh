@@ -452,7 +452,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 	elif [ "$port" == "less" ]; then
 
-		printf "Installing/updating source-highlight for Less and setting up %s lang file(s) and style file(s) for Linux Less.\\n" "$2"
+		printf "Installing/updating source-highlight for Less and setting up\\n"
+		printf "%s lang file(s) and style file(s) for Linux Less.\\n" "$2"
 		# UPDATES APPS AND UPDATES/INSTALLS SOURCE-HIGHLIGHT
 		# PROMPT MOVED UPSTREAM
 		sudo apt-get update
@@ -485,10 +486,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		sudo cp "/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
-		chmod 755 "${TPATH}/src-hilite-lesspipe.sh"
-		sudo cp "/less/biosyntax.outlang" "${TPATH}"
-		sudo cp "/less/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
+		sudo chmod 755 "${TPATH}/src-hilite-lesspipe.sh"
+		sudo cp "${BIOSYNTAX}/less/bioSyntax.outlang" "${TPATH}"
+		sudo cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
 
 		THEMES=(`find "${BIOSYNTAX}/less/" -name "*.style" -print`)
 		if [ -z "$2" ]; then
