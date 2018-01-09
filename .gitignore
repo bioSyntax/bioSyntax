@@ -4,4 +4,5 @@ local/*
 .Rhistory
 .swp
 *.swp
+*.sublime-project
 examples/vcf/test_1000genomes.vcf
