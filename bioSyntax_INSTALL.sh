@@ -31,7 +31,7 @@ if [ -z "$1" ]; then
 	printf "\\n"
 	printf " $LOGO version 0.1-beta3 \\n"
 	printf " ---------------------------------\\n"
-	printf " install script -- v0.1-beta\\n"
+	printf " install script -- v0.1-beta2\\n"
 	printf "\\n"
 	printf " Usage: \\n"
 	printf " bash bioSyntax_SETUP.sh <text_editor> <file_format (optional)> \\n"
