@@ -1,7 +1,9 @@
 ![bioSyntax Logo](bioSyntax_logo.png)
 ![Fasta Banner](http://biosyntax.org/images/fa-banner.png)
 
-Syntax highlighting for computational biology to bring you intuitively close to your data. Support in **vim**, **less**, **sublime3** & **gedit** for `.sam`, `.vcf`, `.fasta`, `.pdb`, `.gtf` files [& more](https://biosyntax.org/man#supported-file-formats).
+Syntax highlighting for computational biology to bring you intuitively close to your data.
+
+Support in **vim**, **less**, **sublime3** & **gedit** for `.sam`, `.flagstat`, `.vcf`, `.fasta`, `.fastq`, `.faidx`, `.clustal`, `.pdb`, `.gtf`, `.bed` files & more.
 
 # [bioSyntax.org](http://biosyntax.org/)
 
