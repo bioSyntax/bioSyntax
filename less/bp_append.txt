@@ -31,6 +31,7 @@ alias fq-less='source-highlight -f esc --lang-def=fastq.lang --outlang-def=bioSy
 alias gtf-less='source-highlight -f esc --lang-def=gtf.lang --outlang-def=bioSyntax-vcf.outlang --style-file=vcf.style | less'
 alias pdb-less='source-highlight -f esc --lang-def=pdb.lang --outlang-def=bioSyntax-vcf.outlang --style-file=pdb.style | less'
 alias sam-less='source-highlight -f esc --lang-def=sam.lang --outlang-def=bioSyntax.outlang --style-file=sam.style | less'
+alias bam-less='sam-less'
 alias vcf-less='source-highlight -f esc --lang-def=vcf.lang --outlang-def=bioSyntax-vcf.outlang --style-file=vcf.style | less'
 
 
