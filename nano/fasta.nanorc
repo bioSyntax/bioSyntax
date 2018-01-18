@@ -1,0 +1,17 @@
+## Fasta Syntax Definition File
+## Language: fasta
+## Filetypes: .fasta .fas .fa
+## Maintainer: bioSyntax (info <at> bioSyntax.org)
+## Version: v0.1
+
+syntax "fasta" "\.fa|fas|fasta$"
+magic "fasta file"
+
+## Row 2: Nucleotides colors
+icolor black,blue   "[A]"
+icolor black,green  "[T]"
+icolor black,red    "[C]"
+icolor black,yellow "[G]"
+
+## Row 1: Coloring headers
+color brightyellow,black  "^>.*$" 

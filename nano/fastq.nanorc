@@ -1,0 +1,23 @@
+## Nano/pico Syntax Definition File
+## Language: fastq
+## Filetypes: .fastq .fq
+## Maintainer: bioSyntax (info<at>bioSyntax.org)
+## Version: v0.1
+
+
+syntax "fastq" "\.fq|fastq$"
+magic "fastq file"
+
+## Row 2: nucleotides
+icolor black,blue   "[A]"
+icolor black,green  "[T]"
+icolor black,red    "[C]"
+icolor black,yellow "[G]"
+
+## Row 3: comment
+color black start="^\+" end="^@S"
+
+## Row 1: header
+color brightyellow,black  "^@S.*$"
+
+## Row 4: PHRED color are not attribuate because of colours numbers.
