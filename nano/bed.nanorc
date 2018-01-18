@@ -1,0 +1,40 @@
+## nano/pico Syntax File
+## Language: bed
+## Filetypes: .bed
+## Maintainer: bioSyntax.org
+## Version: v0.1
+
+## Color Scheme for multiple sequence alignment
+## in BED format
+
+syntax "bed" "\.bed$"
+magic "bed file"
+
+
+## Row 2, 3 and 5
+
+color green start="[[:digit:]]" end="[[:digit:]]"
+
+## Row 4
+
+color red "[[:upper:]]+[_[:alnum:]]+"
+color red "\([[:upper:]]+[_[:alnum:]]+"
+color red "\([[:upper:]]+[_[:alnum:]]+\)+[_[:alnum:]]"
+
+
+## Row 1
+
+color brightgreen start="^" end="[[:blank:]]"
+
+
+## Row 5
+
+color magenta "[[:digit:]]+[[:blank:]](\+|\-)"
+
+## Row 6
+
+color black,cyan "\+"
+color black,yellow "\-"
+
+## Finishing coloring Row 4
+color red "[[:upper:]]+\-+[_[:alnum:]]+"
