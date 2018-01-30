@@ -222,19 +222,19 @@ if  [ "$(uname)" == "Darwin" ]; then
 			mkdir ~/.vim/colors/;
 		fi
 
-		chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
+		sudo chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
+		sudo cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				chmod 0644 "${THEMES[${t}]}"
-				cp "${THEMES[${t}]}" "${TPATH}"
+				sudo chmod 0644 "${THEMES[${t}]}"
+				sudo cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
-			cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
+			sudo chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
+			sudo cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -253,7 +253,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# CHECKS IF BREW IS INSTALLED. IF IT IS, UPDATES IT, IF NOT, INSTALLS IT
 		which -s brew
 		if [[ $? != 0 ]] ; then
-			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Homebrew is not currently installed on your system. Install brew now?\\n"
+			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Homebrew is not currently installed on your system. Install brew now? (y/n)\\n"
 			read ans
 			if echo "$ans" | grep -iq "^y"; then
 				ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -262,7 +262,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 				exit 0
 			fi
 		else
-			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Update brew now?\\n"
+			printf "bioSyntax for less is dependent on the source-highlight package, which needs to be installed via Homebrew. Update brew now? (y/n)\\n"
 			read ans
 			if echo "$ans" | grep -iq "^y"; then
 				brew update
@@ -271,13 +271,13 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# CHECKS IF SOURCE-HIGHLIGHT PACKAGE IS INSTALLED. IF IT IS, UPDATES IT, IF NOT, INSTALLS IT
 		if [[ ! -z `brew ls --versions "source-highlight"` ]]; then
-			printf "source-highlight is installed in your system. Update now?\\n"
+			printf "source-highlight is installed in your system. Update now? (y/n)\\n"
 			read ans
 			if echo "$ans" | grep -iq "^y"; then
 				brew upgrade source-highlight
 			fi
 		else
-			printf "source-highlight needs to be installed in your system for bioSyntax to function. Install now?\\n"
+			printf "source-highlight needs to be installed in your system for bioSyntax to function. Install now? (y/n)\\n"
 			read ans
 			if echo "$ans" | grep -iq "^y"; then
 				brew install source-highlight
@@ -342,23 +342,13 @@ if  [ "$(uname)" == "Darwin" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
-			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				sudo cp "${FILES[${f}]}" "${FPATH}"
-			done
-		else
-			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
-			done
-		fi
-	elif [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
-		chmod 0644 "${SOURCE}/${2}${FILE}"
-		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+		for ((f=0; f<${#FILES[@]}; f++)); do
+			sudo chmod 0644 "${FILES[${f}]}"
+			sudo cp "${FILES[${f}]}" "${FPATH}"
+		done
 	else
-		chmod 0644 "${SOURCE}/${2}${FILE}"
-		cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+		sudo chmod 0644 "${SOURCE}/${2}${FILE}"
+		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	fi
 
 
