@@ -177,11 +177,11 @@ if  [ "$(uname)" == "Darwin" ]; then
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Mac OSX Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
-		FPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
+		FPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then
 			sudo mkdir "${FPATH}";
 		fi
-		TPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
+		TPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/bioSyntax/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
@@ -359,11 +359,11 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Linux Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
-		FPATH=~/.config/sublime-text-3/Packages/User/
+		FPATH=~/.config/sublime-text-3/Packages/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then
 			mkdir "${FPATH}";
 		fi
-		TPATH=~/.config/sublime-text-3/Packages/User/
+		TPATH=~/.config/sublime-text-3/Packages/bioSyntax/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
@@ -530,11 +530,11 @@ else
 		printf "Setting up %s syntax file(s) and bioSyntax Color Scheme for Windows Sublime Text 3.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/sublime/"
-		FPATH=~/AppData/Roaming/Sublime\ Text\ 3/Packages/User/
+		FPATH=~/AppData/Roaming/Sublime\ Text\ 3/Packages/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then
 			mkdir "${FPATH}";
 		fi
-		TPATH=~/AppData/Roaming/Sublime\ Text\ 3/Packages/User/
+		TPATH=~/AppData/Roaming/Sublime\ Text\ 3/Packages/bioSyntax/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
