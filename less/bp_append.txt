@@ -10,7 +10,7 @@
 ## to enable source-highlight for less and add
 ## bioSyntax pipe capability on your command line
 ##
-
+export HIGHLIGHT="/usr/local/opt/source-highlight/share/source-highlight"
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
