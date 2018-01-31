@@ -132,9 +132,7 @@ elif [ "$port" == "less" ]; then
 	printf "\n"
 	printf " Note:\n"
 	printf "\t- less installation requires source-highlight\n"
-	printf "\t  it will be installed or updated.\n"
-	printf "\t- Writing to the source-highlight folder will then require\n"
-	printf "\t  sudo commands.\n"
+	printf "\t  it will be installed or updated. (requires sudo)\n"
 	read -p "  Enter: " yn
 	case $yn in
 		[Yy]*)
@@ -150,9 +148,6 @@ elif [ "$port" == "gedit" ]; then
 	printf "  (y): Install bioSyntax for gedit / GTK sourceview 3.0\n"
 	printf "  (n): exit\n"
 	printf "\n"
-	printf " Note:\n"
-	printf "\t- gedit installation requires sudo commands to add syntax\n"
-	printf "\t  files to the gtk-sourceview folder\n"
 	read -p "  Enter: " yn
 	case $yn in
 		[Yy]*)
@@ -314,7 +309,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe_BIO.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
+		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe-bio.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
 		sudo chmod 755 "/usr/local/bin/src-hilite-lesspipe.sh"
 		sudo cp "${BIOSYNTAX}/less/biosyntax.outlang" "${TPATH}"
 		sudo cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
@@ -451,6 +446,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		printf "Installing/updating source-highlight for Less and setting up\\n"
 		printf "%s lang file(s) and style file(s) for Linux Less.\\n" "$2"
+		printf "Run:\\n"
+		printf "  sudo apt-get update\\n"
+		printf "  sudo apt-get install source-highlight\\n"
 		# UPDATES APPS AND UPDATES/INSTALLS SOURCE-HIGHLIGHT
 		# PROMPT MOVED UPSTREAM
 		sudo apt-get update
@@ -458,8 +456,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/less/"
-		FPATH=/usr/share/source-highlight/
-		TPATH=/usr/share/source-highlight/
+		HIGHLIGHT="$HOME/.local/share/source-highlight"
+		FPATH=$HIGHLIGHT
+		TPATH=$HIGHLIGHT
+		mkdir -p $HIGHLIGHT
 
 		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
 		if [ `echo $SHELL` == "/bin/bash" ]; then
@@ -483,10 +483,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe_BIO.sh" "${TPATH}/src-hilite-lesspipe.sh"
-		sudo chmod 755 "${TPATH}/src-hilite-lesspipe.sh"
-		sudo cp "${BIOSYNTAX}/less/bioSyntax.outlang" "${TPATH}"
-		sudo cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
+		cp "${BIOSYNTAX}/less/src-hilite-lesspipe-bio.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
+		chmod 755 "${TPATH}/src-hilite-lesspipe-bio.sh"
+		cp "${BIOSYNTAX}/less/bioSyntax.outlang" "${TPATH}"
+		cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
 
 		THEMES=(`find "${BIOSYNTAX}/less/" -name "*.style" -print`)
 		if [ -z "$2" ]; then
@@ -647,6 +647,7 @@ else
 
 fi
 
-printf "Installation successful. Restart %s and you will now have pretty %s formats! Thank you for your support!\\n" "$port" "$2"
+printf "Installation successful. Restart %s and you will now have pretty %s formats!\\n"
+printf "Thank you for your support!\\n" "$port" "$2"
 exit 0
 
