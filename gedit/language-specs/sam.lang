@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+gedit Syntax Definition File
+Language: Sequence Alignment Map
+Filetypes: .sam / .bam 
+Maintainer: bioSyntax (info@bioSyntax.org)
+Version: v0.1
+   
+* Requires use of "bioSyntax" theme   
+-->
+
+<language id="sam" _name="SAM" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/sam</property>
+    <property name="globs">*.sam</property>
+  </metadata>
+
+  <styles>
+    <!-- General Styles -->
+    <style id="headerNB"          _name="HeaderNB"          map-to="biosyntax:headerNoBw"/>
+    <style id="chrom"             _name="Chrom"             map-to="biosyntax:chr"/>
+    <style id="coord"             _name="Coord"             map-to="biosyntax:chrStart"/>
+    <style id="str"               _name="Str"               map-to="biosyntax:string"/>
+    <style id="num"               _name="Num"               map-to="biosyntax:numeric"/>
+    <style id="num2"              _name="Num2"              map-to="biosyntax:numeric2"/>
+    <style id="com"               _name="Com"               map-to="biosyntax:comment"/>
+    <style id="key"               _name="Key"               map-to="biosyntax:keyword"/>
+
+    <style id="software"          _name="Software"          map-to="biosyntax:software"/>
+    <style id="lib"               _name="Library"           map-to="biosyntax:library"/>
+    <style id="plat"              _name="Platform"          map-to="biosyntax:platform"/>
+    <style id="command"           _name="Command"           map-to="biosyntax:command"/>
+
+    <style id="bon"               _name="Bon"               map-to="biosyntax:bon"/>
+    <style id="mal"               _name="Mal"               map-to="biosyntax:mal"/>
+
+    <!-- CIG -->
+    <style id="cigMat"            _name="CigMat"            map-to="biosyntax:cigMat"/>
+    <style id="cigMis"            _name="CigMis"            map-to="biosyntax:cigMis"/>
+    <style id="cigIns"            _name="CigIns"            map-to="biosyntax:cigIns"/>
+    <style id="cigDel"            _name="CigDel"            map-to="biosyntax:cigDel"/>
+    <style id="cigN"              _name="CigN"              map-to="biosyntax:cigN"/>
+    <style id="cigClip"           _name="CigClip"           map-to="biosyntax:cigClip"/>
+
+    <style id="nta"               _name="NTA"               map-to="biosyntax:ntA"/>
+    <style id="ntc"               _name="NTC"               map-to="biosyntax:ntC"/>
+    <style id="ntg"               _name="NTG"               map-to="biosyntax:ntG"/>
+    <style id="ntt"               _name="NTT"               map-to="biosyntax:ntT"/>
+    <style id="ntn"               _name="NTN"               map-to="biosyntax:ntN"/>    
+
+    <!-- Color Gradient -->
+    <style id="score0"            _name="Score0"            map-to="biosyntax:grad0"/>
+    <style id="score1"            _name="Score1"            map-to="biosyntax:grad1"/>
+    <style id="score2"            _name="Score2"            map-to="biosyntax:grad2"/>
+    <style id="score3"            _name="Score3"            map-to="biosyntax:grad3"/>
+    <style id="score4"            _name="Score4"            map-to="biosyntax:grad4"/>
+    <style id="score5"            _name="Score5"            map-to="biosyntax:grad5"/>
+    <style id="score6"            _name="Score6"            map-to="biosyntax:grad6"/>
+    <style id="score7"            _name="Score7"            map-to="biosyntax:grad7"/>
+    <style id="score8"            _name="Score8"            map-to="biosyntax:grad8"/>
+    <style id="score9"            _name="Score9"            map-to="biosyntax:grad9"/>
+    <style id="score10"           _name="Score10"           map-to="biosyntax:grad10"/>
+    <style id="score11"           _name="Score11"           map-to="biosyntax:grad10"/>
+
+    <!-- Color Gradient Grayscale-->
+    <style id="scoreBw0"          _name="Score0"            map-to="biosyntax:gradbw0"/>
+    <style id="scoreBw1"          _name="Score1"            map-to="biosyntax:gradbw1"/>
+    <style id="scoreBw2"          _name="Score2"            map-to="biosyntax:gradbw2"/>
+    <style id="scoreBw3"          _name="Score3"            map-to="biosyntax:gradbw3"/>
+    <style id="scoreBw4"          _name="Score4"            map-to="biosyntax:gradbw4"/>
+    <style id="scoreBw5"          _name="Score5"            map-to="biosyntax:gradbw5"/>
+    <style id="scoreBw6"          _name="Score6"            map-to="biosyntax:gradbw6"/>
+    <style id="scoreBw7"          _name="Score7"            map-to="biosyntax:gradbw7"/>
+    <style id="scoreBw8"          _name="Score8"            map-to="biosyntax:gradbw8"/>
+    <style id="scoreBw9"          _name="Score9"            map-to="biosyntax:gradbw9"/>
+    <style id="scoreBw10"         _name="Score10"           map-to="biosyntax:gradbw10"/>
+  </styles>
+
+  <definitions>
+    <context id="sam">
+      <include>
+
+        <!-- Header Section -->
+        <context id="Header_HD_Block" end-at-line-end="true" style-ref="headerNB">
+          <start>^@HD</start>
+          <end>$</end>
+          <include>
+            <context id="Header_HD_Content_Key" style-ref="str">
+              <match extended="true">
+                \s[A-Z]{2}:
+              </match>
+            </context>
+            <context id="Header_Content_HD_Quote" style-ref="str">
+              <match extended="true">
+                (?&lt;=[A-Z]{2}:)"
+              </match>
+            </context>
+            <context id="Header_Content_HD_Numeric" style-ref="num">
+              <match extended="true">
+                (?&lt;=VN:)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_HD_Bon" style-ref="bon">
+              <match extended="true">
+                (?&lt;=SO:)(coordinate|queryname(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_HD_Mal" style-ref="mal">
+              <match extended="true">
+                (?&lt;=SO:)(unsorted|unknown(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_HD_Keyword" style-ref="key">
+              <match extended="true">
+                (?&lt;=(SO:|GO:))(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context> 
+          </include>
+        </context>
+        
+        <context id="Header_SQ_Block" end-at-line-end="true" style-ref="headerNB">
+          <start>^@SQ</start>
+          <end>$</end>
+          <include>
+            <context id="Header_SQ_Content_Key" style-ref="num">
+              <match extended="true">
+                \s[A-Z]{2}:
+              </match>
+            </context>
+            <context id="Header_Content_SQ_Quote" style-ref="num">
+              <match extended="true">
+                "\w+"
+              </match>
+            </context>
+            <context id="Header_Content_SQ_Chr" style-ref="chrom">
+              <match extended="true">
+                (?&lt;=SN:)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_SQ_ChrStart" style-ref="coord">
+              <match extended="true">
+                (?&lt;=LN:)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_SQ_keyword" style-ref="key">
+              <match extended="true">
+                (?&lt;=(AH|AN|AS|M5|SP|UR):)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>          
+          </include>
+        </context>
+
+        <context id="Header_RG_Block" end-at-line-end="true" style-ref="headerNB">
+          <start>^@RG</start>
+          <end>$</end>
+          <include>
+            <context id="Column_RG">
+              <start>\t</start>
+              <end>(?=$)</end>              
+              <include>
+                <context id="Header_RG_Content_Key" style-ref="num">
+                  <match extended="true">
+                    \s[A-Z]{2}:
+                  </match>
+                </context>
+                <context id="Header_Content_RG_Quote" style-ref="num">
+                  <match extended="true">
+                    (?&lt;=[A-Z]{2}:")"
+                  </match>
+                </context>
+                <context id="Header_Content_RG_Keyword" style-ref="key">
+                  <match extended="true">
+                    (?&lt;=(CN|DS|DT|FO|KS|PI|PM):)(.+?(?=\s+[A-Z]{2}:)|.+$)
+                  </match>
+                </context>
+                <context id="Header_Content_RG_Library" style-ref="lib">
+                  <match extended="true">
+                    (?&lt;=(ID|LB|SM):)(.+?(?=\s+[A-Z]{2}:)|.+$)
+                  </match>
+                </context>
+                <context id="Header_Content_RG_Platform" style-ref="plat">
+                  <match extended="true">
+                    (?&lt;=(PG|PL|PU):)(.+?(?=\s+[A-Z]{2}:)|.+$)
+                  </match>
+                </context>      
+              </include>
+            </context>
+          </include>
+        </context>
+
+        <context id="Header_PG_Block" end-at-line-end="true" style-ref="headerNB">
+          <start>^@PG</start>
+          <end>$</end>
+          <include>
+            <context id="Header_PG_Content_Key" style-ref="num">
+              <match extended="true">
+                \s[A-Z]{2}:
+              </match>
+            </context>
+            <context id="Header_Content_PG_Software" style-ref="software">
+              <match extended="true">
+                (?&lt;=(ID|PN|PP):)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_PG_String" style-ref="str">
+              <match extended="true">
+                (?&lt;=DS:)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_PG_Numeric" style-ref="num">
+              <match extended="true">
+                (?&lt;=VN:)(.+?(?=\s+[A-Z]{2}:)|.+$)
+              </match>
+            </context>
+            <context id="Header_Content_PG_Command" style-ref="command">
+              <match extended="true">
+                (?&lt;=CL:)(.+$)
+              </match>
+            </context>
+          </include>
+        </context>
+         
+        <context id="Header_CO_Block" end-at-line-end="true" style-ref="headerNB">
+          <start>^@CO</start>
+          <end>$</end>
+          <include>
+            <context id="Header_CO_Content_Key" style-ref="num">
+              <match extended="true">
+                \s[A-Z]{2}:
+              </match>
+            </context>
+            <context id="Header_Content_CO_Comment" style-ref="com">
+              <match extended="true">
+                "\.+
+              </match>
+            </context>
+          </include>
+        </context>
+        <!-- End of Header Section -->
+
+
+        <!-- Content (Columns) -->
+        <context id="Content_QName" end-at-line-end="true" style-ref="key">
+          <start>^</start>
+          <end>$</end>
+          <include>           
+            <context id="Column_2">
+              <start>\t</start>
+              <end>(?=$)</end>              
+              <include>
+                <context id="Cotent_Flat" style-ref="num">
+                  <match extended="true">
+                    ([0-9]{1,2}|[1-4][0-9]{1,2}|[5][0][0-9]|[5][1][01])
+                  </match>
+                </context> 
+                <context id="Column_3">
+                  <start>\t</start>
+                  <end>(?=$)</end>
+                  <include>
+                    <context id="Cotent_Chrom" style-ref="chrom">
+                      <match extended="true">
+                        chr\d+
+                      </match>
+                    </context>
+                    <context id="Column_4">
+                      <start>\t</start>
+                      <end>(?=$)</end>
+                      <include>
+                        <context id="Content_POS" style-ref="coord">
+                          <match extended="true">
+                            \d+
+                          </match>
+                        </context>
+                        <context id="Column_5">
+                          <start>\t</start>
+                          <end>(?=$)</end>
+                          <include>
+                            <context id="Content_Map_Quality_1" style-ref="score3">
+                              <match extended="true">
+                                (255|[0-9])(?=\t)
+                              </match>
+                            </context>
+                            <context id="Content_Map_Quality_2" style-ref="score5">
+                              <match extended="true">
+                                1[0-9]
+                              </match>
+                            </context>
+                            <context id="Content_Map_Quality_3" style-ref="score7">
+                              <match extended="true">
+                                2[0-9]
+                              </match>
+                            </context>
+                            <context id="Content_Map_Quality_4" style-ref="score10">
+                              <match extended="true">
+                                3[0-9]
+                              </match>
+                            </context>
+                            <context id="Content_Map_Quality_5" style-ref="score10">
+                              <match extended="true">
+                                4[0-9]
+                              </match>
+                            </context>
+                            <context id="Content_Map_Quality_6" style-ref="score10">
+                              <match extended="true">
+                                [\S]+
+                              </match>
+                            </context>
+                            <context id="Column_6">
+                              <start>\t</start>
+                              <end>(?=$)</end>
+                              <include>
+                                <context id="Content_Cigar_Clip" style-ref="cigClip">
+                                  <match extended="true">
+                                    \d+[NSHP]
+                                  </match>
+                                </context>
+                                <context id="Content_Cigar_Mat" style-ref="cigMat">
+                                  <match extended="true">
+                                    \d+[M=]
+                                  </match>
+                                </context>
+                                <context id="Content_Cigar_Mis" style-ref="cigMis">
+                                  <match extended="true">
+                                    \d+[X]
+                                  </match>
+                                </context>
+                                <context id="Content_Cigar_Del" style-ref="cigDel">
+                                  <match extended="true">
+                                    \d+[D]
+                                  </match>
+                                </context>
+                                <context id="Content_Cigar_Ins" style-ref="cigIns">
+                                  <match extended="true">
+                                    \d+[I]
+                                  </match>
+                                </context>
+                                <context id="Content_Cigar_Comment" style-ref="com">
+                                  <match extended="true">
+                                    [\S]+(?=\t)
+                                  </match>
+                                </context>
+
+                                <context id="Column_7_1" style-ref="coord">
+                                  <start>\t[\=|0-9]</start>
+                                  <end>(?=$)</end>
+                                  <include>                                    
+                                    <context id="Column_8_1">
+                                      <start>\t</start>
+                                      <end>(?=$)</end>
+                                      <include>
+                                        <context id="Content_Pnext_1" style-ref="coord">
+                                          <match extended="true">
+                                            [\S]*(?=\t)
+                                          </match>
+                                        </context> 
+                                        <context id="Column_9_1">
+                                          <start>\t</start>
+                                          <end>(?=$)</end>
+                                          <include>
+                                            <context id="Content_Tlen_1" style-ref="com">
+                                              <match extended="true">
+                                                [\S]*(?=\t)
+                                              </match>
+                                            </context>
+                                            <context id="Column_10_1">
+                                              <start>\t</start>
+                                              <end>(?=$)</end>
+                                              <include>
+                                                <context id="Content_SEQ_A_1" style-ref="nta">
+                                                  <match extended="true">
+                                                    A
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_C_1" style-ref="ntc">
+                                                  <match extended="true">
+                                                    C
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_G_1" style-ref="ntg">
+                                                  <match extended="true">
+                                                    G
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_T_1" style-ref="ntt">
+                                                  <match extended="true">
+                                                    T
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_N_1" style-ref="ntn">
+                                                  <match extended="true">
+                                                    N
+                                                  </match>
+                                                </context>
+                                                <context id="Column_11_1">
+                                                  <start>\t</start>
+                                                  <end>(?=$)</end>
+                                                  <include>
+                                                    <context id="Content_Qual_0_1" style-ref="scoreBw0">
+                                                      <match extended="true">
+                                                        [\!|\#|\$]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_1_1" style-ref="scoreBw1">
+                                                      <match extended="true">
+                                                        [\%|\'|&amp;|\(]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_2_1" style-ref="scoreBw2">
+                                                      <match extended="true">
+                                                        [\)|\*|\+|\,]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_3_1" style-ref="scoreBw3">
+                                                      <match extended="true">
+                                                        [\-|\.|0]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_4_1" style-ref="scoreBw4">
+                                                      <match extended="true">
+                                                        [1-4]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_5_1" style-ref="scoreBw5">
+                                                      <match extended="true">
+                                                        [5-8]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_6_1" style-ref="scoreBw6">
+                                                      <match extended="true">
+                                                        [9|\:|\;|&lt;]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_7_1" style-ref="scoreBw7">
+                                                      <match extended="true">
+                                                        [\=|\>|\?|\@]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_8_1" style-ref="scoreBw8">
+                                                      <match extended="true">
+                                                        [ABCD]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_9_1" style-ref="scoreBw9">
+                                                      <match extended="true">
+                                                        [EFGHIJ]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_10_1" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [K-Z|(\[)]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_11_1" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [(\])|\^|\_|\'|a-f]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_12_1" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [g-p]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_13_1" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [q-z]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_14_1" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [\{|\||\}|\~]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Column_12_1">
+                                                      <start>\t</start>
+                                                      <end>(?=$)</end>
+                                                      <include>
+                                                        <context id="Content_Datatag_String_1" style-ref="str">
+                                                          <match extended="true">
+                                                            [A-Z]{2}
+                                                          </match>
+                                                        </context>
+                                                        <context id="Content_Datatag_Comment_1" style-ref="com">
+                                                          <match extended="true">
+                                                            [AifZHB]:
+                                                          </match>
+                                                        </context>
+                                                        <context id="Content_Datatag_Numeric_1" style-ref="num">
+                                                          <match extended="true">
+                                                            (?&lt;=[ifH]:)(.+?(?=\t)|.+$)
+                                                          </match>
+                                                        </context>
+                                                        <context id="Content_Datatag_Numeric2_1" style-ref="num2">
+                                                          <match extended="true">
+                                                            (?&lt;=[AZB]:)(.+?(?=\t)|.+$)
+                                                          </match>
+                                                        </context>
+                                                      </include>
+                                                    </context>
+                                                  </include>
+                                                </context>
+                                              </include>
+                                            </context>
+                                          </include>
+                                        </context>
+                                      </include>
+                                    </context>
+                                  </include>
+                                </context>
+
+                                <context id="Column_7_2" style-ref="key">
+                                  <start>\t[\*|\S]</start>
+                                  <end>(?=$)</end>
+                                  <include> 
+                                    <context id="Column_8_2">
+                                      <start>\t</start>
+                                      <end>(?=$)</end>
+                                      <include>
+                                        <context id="Content_Pnext_2" style-ref="key">
+                                          <match extended="true">
+                                            [\S]*(?=\t)
+                                          </match>
+                                        </context> 
+                                        <context id="Column_9_2">
+                                          <start>\t</start>
+                                          <end>(?=$)</end>
+                                          <include>
+                                            <context id="Content_Tlen_2" style-ref="com">
+                                              <match extended="true">
+                                                [\S]*(?=\t)
+                                              </match>
+                                            </context>
+                                            <context id="Column_10_2">
+                                              <start>\t</start>
+                                              <end>(?=$)</end>
+                                              <include>
+                                                <context id="Content_SEQ_A_2" style-ref="nta">
+                                                  <match extended="true">
+                                                    A
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_C_2" style-ref="ntc">
+                                                  <match extended="true">
+                                                    C
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_G_2" style-ref="ntg">
+                                                  <match extended="true">
+                                                    G
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_T_2" style-ref="ntt">
+                                                  <match extended="true">
+                                                    T
+                                                  </match>
+                                                </context>
+                                                <context id="Content_SEQ_N_2" style-ref="ntn">
+                                                  <match extended="true">
+                                                    N
+                                                  </match>
+                                                </context>
+                                                <context id="Column_11_2">
+                                                  <start>\t</start>
+                                                  <end>(?=$)</end>
+                                                  <include>
+                                                    <context id="Content_Qual_0_2" style-ref="scoreBw0">
+                                                      <match extended="true">
+                                                        [\!|\#|\$]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_1_2" style-ref="scoreBw1">
+                                                      <match extended="true">
+                                                        [\%|\'|&amp;|\(]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_2_2" style-ref="scoreBw2">
+                                                      <match extended="true">
+                                                        [\)|\*|\+|\,]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_3_2" style-ref="scoreBw3">
+                                                      <match extended="true">
+                                                        [\-|\.|0]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_4_2" style-ref="scoreBw4">
+                                                      <match extended="true">
+                                                        [1-4]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_5_2" style-ref="scoreBw5">
+                                                      <match extended="true">
+                                                        [5-8]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_6_2" style-ref="scoreBw6">
+                                                      <match extended="true">
+                                                        [9|\:|\;|&lt;]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_7_2" style-ref="scoreBw7">
+                                                      <match extended="true">
+                                                        [\=|\>|\?|\@]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_8_2" style-ref="scoreBw8">
+                                                      <match extended="true">
+                                                        [ABCD]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_9_2" style-ref="scoreBw9">
+                                                      <match extended="true">
+                                                        [EFGHIJ]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_10_2" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [K-Z|(\[)]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_11_2" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [(\])|\^|\_|\'|a-f]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_12_2" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [g-p]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_13_2" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [q-z]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Content_Qual_14_2" style-ref="scoreBw10">
+                                                      <match extended="true">
+                                                        [\{|\||\}|\~]
+                                                      </match>
+                                                    </context>
+                                                    <context id="Column_12_2">
+                                                      <start>\t</start>
+                                                      <end>(?=$)</end>
+                                                      <include>
+                                                        <context id="Content_Datatag_String_2" style-ref="str">
+                                                          <match extended="true">
+                                                            [A-Z]{2}
+                                                          </match>
+                                                        </context>
+                                                        <context id="Content_Datatag_Comment_2" style-ref="com">
+                                                          <match extended="true">
+                                                            [AifZHB]:
+                                                          </match>
+                                                        </context>
+                                                        <context id="Content_Datatag_Numeric_2" style-ref="num">
+                                                          <match extended="true">
+                                                            (?&lt;=[ifH]:)(.+?(?=\t)|.+$)
+                                                          </match>
+                                                        </context>
+                                                        <context id="Content_Datatag_Numeric2_2" style-ref="num2">
+                                                          <match extended="true">
+                                                            (?&lt;=[AZB]:)(.+?(?=\t)|.+$)
+                                                          </match>
+                                                        </context>
+                                                      </include>
+                                                    </context>
+                                                  </include>
+                                                </context>
+                                              </include>
+                                            </context>
+                                          </include>
+                                        </context>
+                                      </include>
+                                    </context>
+                                  </include>
+                                </context>
+
+                              </include>
+                            </context>
+                          </include>
+                        </context>
+                      </include>           
+                    </context>
+                  </include>
+                </context>
+              </include>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+  </definitions>
+</language>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: Fasta AA Taylor
+Filetypes: .faa
+Maintainer: bioSyntax.org
+Version: v0.1
+
+Color Scheme for amino acid fasta files
+with Taylor color theme
+-->
+
+<language id="fastay" _name="Fasta-taylor" version="2.0" _section="Scientific">
+
+  <metadata>
+    <property name="mimetypes">text/fastay</property>
+    <property name="globs"></property>
+  </metadata>
+
+  <styles>
+    <style id="header"   _name="Header_" map-to="biosyntax:header"   />
+    <style id="tyA"      _name="A_"     map-to="biosyntax:taylorA"    />
+    <style id="tyB"      _name="B_"     map-to="biosyntax:taylorB"    />
+    <style id="tyC"      _name="C_"     map-to="biosyntax:taylorC"    />
+    <style id="tyD"      _name="D_"     map-to="biosyntax:taylorD"    />
+    <style id="tyE"      _name="E_"     map-to="biosyntax:taylorE"    />
+    <style id="tyF"      _name="F_"     map-to="biosyntax:taylorF"    />
+    <style id="tyG"      _name="G_"     map-to="biosyntax:taylorG"    />
+    <style id="tyH"      _name="H_"     map-to="biosyntax:taylorH"    />
+    <style id="tyI"      _name="I_"     map-to="biosyntax:taylorI"    />
+    <style id="tyK"      _name="K_"     map-to="biosyntax:taylorK"    />
+    <style id="tyL"      _name="L_"     map-to="biosyntax:taylorL"    />
+    <style id="tyM"      _name="M_"     map-to="biosyntax:taylorM"    />
+    <style id="tyN"      _name="N_"     map-to="biosyntax:taylorN"    />
+    <style id="tyP"      _name="P_"     map-to="biosyntax:taylorP"    />
+    <style id="tyQ"      _name="Q_"     map-to="biosyntax:taylorQ"    />
+    <style id="tyR"      _name="R_"     map-to="biosyntax:taylorR"    />
+    <style id="tyS"      _name="S_"     map-to="biosyntax:taylorS"    />
+    <style id="tyT"      _name="T_"     map-to="biosyntax:taylorT"    />
+    <style id="tyV"      _name="V_"     map-to="biosyntax:taylorV"    />
+    <style id="tyW"      _name="W_"     map-to="biosyntax:taylorW"    />
+    <style id="tyY"      _name="Y_"     map-to="biosyntax:taylorY"    />
+    <style id="tyZ"      _name="Z_"     map-to="biosyntax:taylorZ"    />
+    <style id="tyX"      _name="X_"     map-to="biosyntax:taylorX"    />
+    <style id="Stop"     _name="stop"   map-to="biosyntax:taylorX"    />
+    <style id="Indel"    _name="indel"  map-to="biosyntax:ntGap"     />
+  </styles>
+
+  <definitions>
+    <context id="fastay">
+      <include>
+
+       <context id="Header" style-ref="header">
+         <start>^\></start>
+         <end>$</end>
+       </context>
+       
+       <context id="a" style-ref="tyA">
+         <match>[Aa]++</match>
+       </context>
+       
+       <context id="b" style-ref="tyB">
+         <match>[Bb]++</match>
+       </context>
+       
+       <context id="c" style-ref="tyC">
+         <match>[Cc]++</match>
+       </context>
+       
+       <context id="d" style-ref="tyD">
+         <match>[Dd]++</match>
+       </context>
+       
+       <context id="e" style-ref="tyE">
+         <match>[Ee]++</match>
+       </context>
+       
+       <context id="f" style-ref="tyF">
+         <match>[Ff]++</match>
+       </context>
+       
+       <context id="g" style-ref="tyG">
+         <match>[Gg]++</match>
+       </context>
+       
+       <context id="h" style-ref="tyH">
+         <match>[Hh]++</match>
+       </context>
+       
+       <context id="i" style-ref="tyI">
+         <match>[Ii]++</match>
+       </context>
+       
+       <context id="k" style-ref="tyK">
+         <match>[Kk]++</match>
+       </context>
+       
+       <context id="l" style-ref="tyL">
+         <match>[Ll]++</match>
+       </context>
+       
+       <context id="m" style-ref="tyM">
+         <match>[Mm]++</match>
+       </context>
+       
+       <context id="n" style-ref="tyN">
+         <match>[Nn]++</match>
+       </context>
+       
+       <context id="p" style-ref="tyP">
+         <match>[Pp]++</match>
+       </context>
+       
+       <context id="q" style-ref="tyQ">
+         <match>[Qq]++</match>
+       </context>
+       
+       <context id="r" style-ref="tyR">
+         <match>[Rr]++</match>
+       </context>
+       
+       <context id="s" style-ref="tyS">
+         <match>[Ss]++</match>
+       </context>
+       
+       <context id="t" style-ref="tyT">
+         <match>[Tt]++</match>
+       </context>
+       
+       <context id="v" style-ref="tyV">
+         <match>[Vv]++</match>
+       </context>
+       
+       <context id="w" style-ref="tyW">
+         <match>[Ww]++</match>
+       </context>
+       
+       <context id="y" style-ref="tyY">
+         <match>[Yy]++</match>
+       </context>
+       
+       <context id="z" style-ref="tyZ">
+         <match>[Zz]++</match>
+       </context>
+       
+       <context id="x" style-ref="tyX">
+         <match>[Xx]++</match>
+       </context>
+       
+       <context id="stop" style-ref="Stop">
+         <match>\*</match>
+       </context>
+       
+       <context id="indel" style-ref="Indel">
+         <match>[\-\.]</match>
+       </context>
+       
+      </include>
+    </context>
+  </definitions>
+</language>

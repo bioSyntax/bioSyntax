@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax Definition File
+Language: fastq
+Filetypes: .fastq .fq
+Maintainer: bioSyntax (info@bioSyntax.org)
+Version: v0.1
+
+* Requires use of "bioSyntax" theme
+-->
+<language id="vcf" _name="VCF" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/vcf</property>
+    <property name="globs">*.vcf</property>
+  </metadata>
+
+  <styles>
+    <style id="comment" _name="Comment"        map-to="biosyntax:comment" />
+    <style id="info"    _name="INFO"           map-to="biosyntax:keyword6" />
+    <style id="id_info" _name="ID_INFO"        map-to="biosyntax:keyword6" />
+    <style id="numeric" _name="Numeric"        map-to="biosyntax:numeric" />
+    <style id="string"  _name="String"         map-to="biosyntax:string" />
+    <style id="float"   _name="Float"          map-to="biosyntax:numeric2" />
+    <style id="flag"    _name="Flag"           map-to="biosyntax:keyword" />
+    <style id="description"   _name="Description"    map-to="biosyntax:quoteString" />
+    <style id="headers" _name="Headers"        map-to="biosyntax:header" />
+    <style id="alt"     _name="Alt"            map-to="biosyntax:string" />
+    <style id="form"    _name="Format"         map-to="biosyntax:keyword5" />
+    <style id="chr"     _name="RefName"        map-to="biosyntax:chr" />
+    <style id="chrStart"      _name="ChrStart" map-to="biosyntax:chrStart"   />
+    <style id="ntA"     _name="A_nucleotide"   map-to="biosyntax:ntA"   />
+    <style id="ntT"     _name="T_nucleotide"   map-to="biosyntax:ntT"   />
+    <style id="ntG"     _name="G_nucleotide"   map-to="biosyntax:ntG"   />
+    <style id="ntC"     _name="C_nucleotide"   map-to="biosyntax:ntC"   />
+  </styles>
+
+  <definitions>
+    <context id="vcf">
+      <include>
+<!-- Start VCF Regex -->
+        <context id="fileformat" style-ref="headers">
+          <start>fileformat=</start>
+          <end>$</end>
+          <include>
+            <context id="h_string" style-ref="string">
+              <match>(?&lt;=).*</match>
+            </context>
+          </include>
+        </context>
+
+        <context id="filedate" style-ref="headers">
+          <start>fileDate=</start>
+          <end>$</end>
+          <include>
+            <context ref="h_string" />
+          </include>
+        </context>
+
+        <context id="source" style-ref="headers">
+          <start>source=</start>
+          <end>$</end>
+          <include>
+            <context ref="h_string" />
+          </include>
+        </context>
+
+        <context id="reference" style-ref="headers">
+          <start>reference=</start>
+          <end>$</end>
+          <include>
+            <context ref="h_string" />
+          </include>
+        </context>
+
+        <context id="phasing" style-ref="headers">
+          <start>phasing=</start>
+          <end>$</end>
+          <include>
+            <context ref="h_string" />
+          </include>
+        </context> 
+
+        <context id="comment_hash" style-ref="comment">
+          <match>##</match>
+        </context>
+
+        <context id="INFO" style-ref="info">
+          <start>INFO=</start>
+          <end>$</end>
+          <include>
+
+            <context id="id_inf" style-ref="id_info">
+              <start>(?&lt;=ID=)</start>
+              <end>(?=,)</end>
+            </context>
+
+            <context id="type_info">
+              <start>(?&lt;=Type=)</start>
+              <end>(?=,)</end>
+              <include>
+
+                <context id="type_integer" style-ref="numeric">
+                  <match>Integer</match>
+                </context>
+
+                <context id="type_string" style-ref="string">
+                  <match>String</match>
+                </context>
+
+                <context id="type_float" style-ref="float">
+                  <match>Float</match>
+                </context>
+   
+                <context id="type_flag" style-ref="flag">
+                  <match>Flag</match>
+                </context>
+ 
+              </include> 
+            </context>
+            
+            <context id="descr" style-ref="description">
+              <start>(?&lt;=Description=)</start>
+              <end>"(?=>)</end>
+            </context> 
+          </include>
+        </context> <!-- End INFO -->
+
+        <context id="ALT" style-ref="alt">
+          <start>ALT=</start>
+          <end>$</end>
+          <include>
+
+            <context ref="id_inf" />
+            
+            <context ref="descr" />
+                         
+          </include>
+        </context> <!-- End ALT -->
+
+        <context id="form" style-ref="form">
+          <start>FORMAT=</start>
+          <end>$</end>
+          <include>
+
+            <context ref="id_inf" />
+
+            <context ref="type_info" />
+            
+            <context ref="descr" />
+                         
+          </include>
+        </context> <!-- End form -->
+
+
+<context id="Column1Chrom" end-at-line-end="true" style-ref="chr">
+          <start>^</start>
+          <end>$</end>
+          <include>
+            <context id="Column2Pos" style-ref="chrStart">
+              <start>\t</start>
+              <end>(?=$)</end>
+              <include>
+                <context id="Column3ID" style-ref="string">
+                  <start>\t</start>
+                  <end>(?=$)</end>
+                  <include>
+                    <context id="Column4REF">
+                      <start>\t</start>
+                      <end>(?=$)</end>
+                      <include>
+                        
+                        <context id="A" style-ref="ntA">
+                          <match>A</match>
+                        </context>
+                        <context id="T" style-ref="ntT">
+                          <match>T</match>
+                        </context>
+                        <context id="G" style-ref="ntG">
+                           <match>G</match>
+                        </context>
+                        <context id="C" style-ref="ntC">
+                           <match>C</match>
+                        </context>
+                        <context id="Column5Alt">
+                          <start>\t</start>
+                          <end>(?=$)</end>
+                          <include>
+                            <context ref="A" />
+                            <context ref="T" />
+                            <context ref="G" />
+                            <context ref="C" />                                
+                            <context id="Column6Qual">
+                              <start>\t</start>
+                              <end>(?=$)</end>
+                              <include>
+                                <context id="dot" style-ref="comment">
+                                  <match>\.</match>
+                                </context>     
+                                <context id="low_qual" style-ref="comment">
+                                  <match>[0-9](?=\s)</match>
+                                </context>
+                                <context id="high_qual" style-ref="numeric">
+                                  <match>[0-9]+</match>
+                                </context>
+                                <context id="Column7Filter" style-ref="comment">
+                                  <start>\t</start>
+                                  <end>(?=$)</end>
+                                  <include>
+                                    <context id="pass" style-ref="info">
+                                      <match>PASS</match>
+                                    </context>
+                                    <context ref="dot" /> 
+                                    <context id="Column8Info">
+                                      <start>\t</start>
+                                      <end>(?=$)</end>
+                                      <include>
+                                        <context id="variables" style-ref="info">
+                                          <match>\w+=</match>
+                                        </context>
+                                        <context id="value1" style-ref="numeric">
+                                          <match>[\d\\.\\-]+(?=(;|\t|,|$|\|))</match>
+                                        </context>
+                                        <context id="value2" style-ref="string">
+                                          <match>[\d\w\\-]+(?=(;|\t|:))</match>
+                                        </context>
+                                        <context id="value3" style-ref="numeric">
+                                          <match>[\w\d\\.\\-]+(?=(;|\t|,))</match>
+                                        </context>
+
+                                        <context id="Column9Format">
+                                          <start>\t</start>
+                                          <end>(?=$)</end>
+                                          <include>
+                                            <context id="form_column" style-ref="float">
+                                              <match>[A-Za-z]+</match>
+                                            </context>
+                                            <context id="semi_col" style-ref="comment">
+                                              <match>:</match>
+                                            </context>
+                                            <context id="Column10Data">
+                                              <start>\t</start>
+                                              <end>(?=$)</end>
+                                              <include>
+                                                <context id="fcl" style-ref="float">
+                                                  <match>[A-Za-z]+</match>
+                                                </context>
+                                                <context id="fcm" style-ref="comment">
+                                                  <match>(\.|:|;)</match>
+                                                </context>
+                                                <context id="fnum" style-ref="numeric">
+                                                  <match>[0-9]+</match>
+                                                  </context>
+                                                </include>
+                                              </context>
+                                            </include>
+                                          </context>
+                                        </include>
+                                      </context>
+                                    </include>
+                                  </context>
+                                </include>
+                              </context>
+                            </include>
+                          </context>
+                        </include>
+                      </context>
+                    </include>
+                  </context>
+                </include>
+              </context>
+            </include>
+          </context>
+
+        <context id="chrom_line" style-ref="headers">
+          <start>#CHROM</start>
+          <end>$</end>
+        </context>
+
+      </include>  <!-- end global VCF -->
+    </context>
+  </definitions>
+</language>

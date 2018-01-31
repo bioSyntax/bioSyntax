@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: common workflow language
+Filetypes: .cwl
+License: GPLv3
+Maintainer: bioSyntax.org
+Version: v0.1
+
+Common Lanugage Workflow Syntax Highlighting
+
+-->
+<language id="cwl" _name="CWL" _section="Scientific" version="2.0">
+  <metadata>
+    <property name="mimetypes">application/cwl</property>
+    <property name="globs">*.cwl</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
+    
+  <styles>
+    <style id="version"   _name="Version"         map-to="def:shebang"/>
+    <style id="keyword"    _name="Key"            map-to="def:statement"/>
+    <style id="class"      _name="Class"          map-to="def:note"/>
+    <style id="id"         _name="ID"             map-to="c:preprocessor"/>
+    <style id="type"       _name="Type"           map-to="def:decimal"/>
+    <style id="run"        _name="Run"            map-to="def:type"/>
+
+    <style id="string"     _name="String"         map-to="def:string"/>
+    <style id="comment"   _name="Comment"         map-to="def:comment"/> 
+  </styles>
+  
+  <definitions>
+<!-- Generics -->
+    <context id="comment" style-ref="comment">
+      <match>(?&lt;=^|\s)#.*$</match>
+    </context>
+
+    <context id="quote" end-at-line-end="true" style-ref="string" >
+      <start>'</start>
+      <end>'</end>
+    </context>
+
+    <context id="doublequote" end-at-line-end="true" style-ref="string" >
+      <start>"</start>
+      <end>"</end>
+    </context>
+
+<!-- CWL Specific -->
+    <context id="cwlVersion" style-ref="version" end-at-line-end="true">
+      <start>cwlVersion</start>
+    </context>
+
+    <context id="cwlClass" style-ref="version" end-at-line-end="true">
+      <start>class</start>
+      <end>$</end>
+      <include>
+        <context id="classList" style-ref="class">
+        <!-- TODO: Add color-rainbow for each class-type -->
+          <keyword>CommandLineTool</keyword>
+          <keyword>ExpressionTool</keyword>
+          <keyword>Workflow</keyword>
+          <keyword>InlineJavascriptRequirement</keyword>
+          <keyword>SchemaDefRequirement</keyword>
+          <keyword>DockerRequirement</keyword>
+          <keyword>SoftwareRequirement</keyword>
+          <keyword>InitialWorkDirRequirement</keyword>
+          <keyword>EnvVarRequirement</keyword>
+          <keyword>ShellCommandRequirement</keyword>
+          <keyword>ResourceRequirement</keyword>
+        </context>
+      </include>
+    </context>
+
+    <context id="keywordList" style-ref="keyword">
+      <keyword>dockerPull</keyword>
+      <keyword>inputs</keyword>
+      <keyword>outputs</keyword>
+      <keyword>steps</keyword>
+      <keyword>id</keyword>
+      <keyword>requirements</keyword>
+      <keyword>hints</keyword>
+      <keyword>label</keyword>
+      <keyword>doc</keyword>
+      <keyword>secondaryFiles</keyword>
+      <keyword>streamable</keyword>
+      <keyword>outputBinding</keyword>
+      <keyword>format</keyword>
+      <keyword>outputSource</keyword>
+      <keyword>linkMerge</keyword>
+      <keyword>type</keyword>
+      <keyword>glob</keyword>
+      <keyword>loadContents</keyword>
+      <keyword>outputEval</keyword>
+      <keyword>merge_nested</keyword>
+      <keyword>merge_flattened</keyword>
+      <keyword>location</keyword>
+      <keyword>path</keyword>
+      <keyword>basename</keyword>
+      <keyword>dirname</keyword>
+      <keyword>nameroot</keyword>
+      <keyword>nameext</keyword>
+      <keyword>checksum</keyword>
+      <keyword>size</keyword>
+      <keyword>format</keyword>
+      <keyword>contents</keyword>
+      <keyword>listing</keyword>
+      <keyword>fields</keyword>
+      <keyword>symbols</keyword>
+      <keyword>items</keyword>
+      <keyword>in</keyword>
+      <keyword>out</keyword>
+      <keyword>run</keyword>
+      <keyword>scatter</keyword>
+      <keyword>scatterMethod</keyword>
+      <keyword>source</keyword>
+      <keyword>default</keyword>
+      <keyword>valueFrom</keyword>
+      <keyword>expressionLib</keyword>
+      <keyword>types</keyword>
+      <keyword>linkMerge</keyword>
+      <keyword>inputBinding</keyword>
+      <keyword>position</keyword>
+      <keyword>prefix</keyword>
+      <keyword>separate</keyword>
+      <keyword>itemSeparator</keyword>
+      <keyword>valueFrom</keyword>
+      <keyword>shellQuote</keyword>
+      <keyword>packages</keyword>
+      <keyword>package</keyword>
+      <keyword>version</keyword>
+      <keyword>specs</keyword>
+      <keyword>entry</keyword>
+      <keyword>entryname</keyword>
+      <keyword>writable</keyword>
+      <keyword>baseCommand</keyword>
+      <keyword>arguments</keyword>
+      <keyword>stdin</keyword>
+      <keyword>stderr</keyword>
+      <keyword>stdout</keyword>
+      <keyword>successCodes</keyword>
+      <keyword>temporaryFailCodes</keyword>
+      <keyword>permanentFailCodes</keyword>
+      <keyword>dockerLoad</keyword>
+      <keyword>dockerFile</keyword>
+      <keyword>dockerImport</keyword>
+      <keyword>dockerImageId</keyword>
+      <keyword>dockerOutputDirectory</keyword>
+      <keyword>envDef</keyword>
+      <keyword>envName</keyword>
+      <keyword>envValue</keyword>
+      <keyword>coresMin</keyword>
+      <keyword>coresMax</keyword>
+      <keyword>ramMin</keyword>
+      <keyword>ramMax</keyword>
+      <keyword>tmpdirMin</keyword>
+      <keyword>tmpdirMax</keyword>
+      <keyword>outdirMin</keyword>
+      <keyword>outdirMax</keyword>
+    </context>
+
+    <context id="idEntry" style-ref="id">
+      <match>(?&lt;=id:).*$</match>
+    </context>
+
+    <context id="runEntry" style-ref="run">
+      <match>(?&lt;=run:).*$</match>
+    </context>
+
+    <context id="typeEntry">
+        <start>(?&lt;=type:)</start>
+        <end>$</end>
+        <include>
+          <context ref="quote"/>
+          <context ref="doublequote"/>
+          <context id="typeList" style-ref="type">
+            <keyword>null</keyword>
+            <keyword>boolean</keyword>
+            <keyword>int</keyword>
+            <keyword>long</keyword>
+            <keyword>float</keyword>
+            <keyword>double</keyword>
+            <keyword>string</keyword>
+            <keyword>File</keyword>
+            <keyword>Directory</keyword>
+          </context>
+        </include>
+    </context>
+
+<!-- CWL Context Entries -->
+    <context id="cwl" class="no-spell-check">
+      <include>
+        <context ref="comment"/>
+        <context ref="quote"/>
+        <context ref="doublequote"/>
+
+        <context ref="cwlVersion"/>
+        <context ref="cwlClass"/>
+        <context ref="keywordList"/>
+
+        <context ref="idEntry"/>
+        <context ref="typeEntry"/>
+        <context ref="runEntry"/>
+      </include>
+    </context>
+
+  </definitions>  
+</language>

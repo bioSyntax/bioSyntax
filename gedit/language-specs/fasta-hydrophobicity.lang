@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: Fasta AA Hydrophobicity
+Filetypes: .faa
+Maintainer: bioSyntax.org
+Version: v0.1
+
+Color Scheme for amino acid fasta files
+with Hydrophobicity color theme
+-->
+
+<language id="fasthy" _name="Fasta-hydrophobicity" version="2.0" _section="Scientific">
+
+  <metadata>
+    <property name="mimetypes">text/fasthy</property>
+    <property name="globs"></property>
+  </metadata>
+
+  <styles>
+    <style id="header"   _name="Header_" map-to="biosyntax:header"   />
+    <style id="hyA"      _name="A_"     map-to="biosyntax:hydroA"    />
+    <style id="hyB"      _name="B_"     map-to="biosyntax:hydroB"    />
+    <style id="hyC"      _name="C_"     map-to="biosyntax:hydroC"    />
+    <style id="hyD"      _name="D_"     map-to="biosyntax:hydroD"    />
+    <style id="hyE"      _name="E_"     map-to="biosyntax:hydroE"    />
+    <style id="hyF"      _name="F_"     map-to="biosyntax:hydroF"    />
+    <style id="hyG"      _name="G_"     map-to="biosyntax:hydroG"    />
+    <style id="hyH"      _name="H_"     map-to="biosyntax:hydroH"    />
+    <style id="hyI"      _name="I_"     map-to="biosyntax:hydroI"    />
+    <style id="hyK"      _name="K_"     map-to="biosyntax:hydroK"    />
+    <style id="hyL"      _name="L_"     map-to="biosyntax:hydroL"    />
+    <style id="hyM"      _name="M_"     map-to="biosyntax:hydroM"    />
+    <style id="hyN"      _name="N_"     map-to="biosyntax:hydroN"    />
+    <style id="hyP"      _name="P_"     map-to="biosyntax:hydroP"    />
+    <style id="hyQ"      _name="Q_"     map-to="biosyntax:hydroQ"    />
+    <style id="hyR"      _name="R_"     map-to="biosyntax:hydroR"    />
+    <style id="hyS"      _name="S_"     map-to="biosyntax:hydroS"    />
+    <style id="hyT"      _name="T_"     map-to="biosyntax:hydroT"    />
+    <style id="hyV"      _name="V_"     map-to="biosyntax:hydroV"    />
+    <style id="hyW"      _name="W_"     map-to="biosyntax:hydroW"    />
+    <style id="hyY"      _name="Y_"     map-to="biosyntax:hydroY"    />
+    <style id="hyZ"      _name="Z_"     map-to="biosyntax:hydroZ"    />
+    <style id="hyX"      _name="X_"     map-to="biosyntax:hydroX"    />
+    <style id="Stop"     _name="stop"   map-to="biosyntax:hydroX"    />
+    <style id="Indel"    _name="indel"  map-to="biosyntax:ntGap"     />
+  </styles>
+
+  <definitions>
+    <context id="fasthy">
+      <include>
+
+       <context id="Header" style-ref="header">
+         <start>^\></start>
+         <end>$</end>
+       </context>
+       
+       <context id="a" style-ref="hyA">
+         <match>[Aa]++</match>
+       </context>
+       
+       <context id="b" style-ref="hyB">
+         <match>[Bb]++</match>
+       </context>
+       
+       <context id="c" style-ref="hyC">
+         <match>[Cc]++</match>
+       </context>
+       
+       <context id="d" style-ref="hyD">
+         <match>[Dd]++</match>
+       </context>
+       
+       <context id="e" style-ref="hyE">
+         <match>[Ee]++</match>
+       </context>
+       
+       <context id="f" style-ref="hyF">
+         <match>[Ff]++</match>
+       </context>
+       
+       <context id="g" style-ref="hyG">
+         <match>[Gg]++</match>
+       </context>
+       
+       <context id="h" style-ref="hyH">
+         <match>[Hh]++</match>
+       </context>
+       
+       <context id="i" style-ref="hyI">
+         <match>[Ii]++</match>
+       </context>
+       
+       <context id="k" style-ref="hyK">
+         <match>[Kk]++</match>
+       </context>
+       
+       <context id="l" style-ref="hyL">
+         <match>[Ll]++</match>
+       </context>
+       
+       <context id="m" style-ref="hyM">
+         <match>[Mm]++</match>
+       </context>
+       
+       <context id="n" style-ref="hyN">
+         <match>[Nn]++</match>
+       </context>
+       
+       <context id="p" style-ref="hyP">
+         <match>[Pp]++</match>
+       </context>
+       
+       <context id="q" style-ref="hyQ">
+         <match>[Qq]++</match>
+       </context>
+       
+       <context id="r" style-ref="hyR">
+         <match>[Rr]++</match>
+       </context>
+       
+       <context id="s" style-ref="hyS">
+         <match>[Ss]++</match>
+       </context>
+       
+       <context id="t" style-ref="hyT">
+         <match>[Tt]++</match>
+       </context>
+       
+       <context id="v" style-ref="hyV">
+         <match>[Vv]++</match>
+       </context>
+       
+       <context id="w" style-ref="hyW">
+         <match>[Ww]++</match>
+       </context>
+       
+       <context id="y" style-ref="hyY">
+         <match>[Yy]++</match>
+       </context>
+       
+       <context id="z" style-ref="hyZ">
+         <match>[Zz]++</match>
+       </context>
+       
+       <context id="x" style-ref="hyX">
+         <match>[Xx]++</match>
+       </context>
+       
+       <context id="stop" style-ref="Stop">
+         <match>\*</match>
+       </context>
+       
+       <context id="indel" style-ref="Indel">
+         <match>[\-\.]</match>
+       </context>
+       
+      </include>
+    </context>
+  </definitions>
+</language>

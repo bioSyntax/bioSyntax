@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+bioSyntax - 2017 11 19
+
+Place holder syntax - not in use
+
+-->
+<language id="biosyntax" _name="bioSyntax" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/biosyntax</property>
+    <property name="globs">*.biosyntax</property>
+  </metadata>
+
+  <styles>
+    <style id="chr"       _name="RefName"  map-to="bed:chrom"      />
+    <style id="chrStart"  _name="Coords"   map-to="bed:coords"   />
+    <style id="numeric"   _name="Numeric"  map-to="def:constant"    />
+    <style id="comment"   _name="Comment"  map-to="def:comment"    />
+  </styles>
+
+  <definitions>
+    <context id="faidx">
+      <include>
+
+	    <context id="Column1" end-at-line-end="true" style-ref="chr">
+        <start>^</start>
+	      <end>$</end>
+
+        <include>
+          <context id="Column2" style-ref="chrStart">
+            <start>\t</start>
+            <end>(?=$)</end>
+
+            <include>
+              <context id="Column3" style-ref="numeric">
+                <start>\t</start>
+                <end>(?=$)</end>
+
+                <include>
+                  <context id="Column45" style-ref="comment">
+                    <start>\t</start>
+                    <end>(?=$)</end>
+                  </context>
+                </include>
+
+              </context>
+            </include>
+
+          </context>
+        </include>
+
+      </context>
+       <!-- 
+        <context id="a" style-ref="clA">
+         <match>^[Aa](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
+       </context>
+       
+       <context id="b" style-ref="clB">
+         <match>[Bb]*</match>
+       </context>
+       
+       <context id="c" style-ref="clC">
+         <match>^[Cc](?=([AaGgCcTtNnXx-]*[^>\\sAaGgCcTtNnXx-]+))</match>
+       </context>
+       -->
+      </include>
+    </context>
+  </definitions>
+</language>

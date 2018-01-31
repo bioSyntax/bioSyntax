@@ -379,17 +379,24 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		printf "Setting up %s lang file(s) and bioSyntax theme for Linux Gedit.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
-		SOURCE="${BIOSYNTAX}/gedit/"
-		FPATH=/usr/share/gtksourceview-3.0/language-specs/
-		TPATH=/usr/share/gtksourceview-3.0/styles/
+		SOURCE="${BIOSYNTAX}/gedit"
+		FPATH="$HOME/.local/share/gtksourceview-3.0/language-specs"
+		TPATH="$HOME/.local/share/gtksourceview-3.0"
 
-		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
-		THEME="bioSyntax.xml"
-		chmod 0644 "${SOURCE}/${THEME}"
-		sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		# MAKE DIR IF IT DOESN'T EXIST
+		mkdir -p $TPATH
+		mkdir -p $TPATH/styles
+		mkdir -p $FPATH
+
+		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
+		THEME="styles/bioSyntax.xml"
+
+		chmod 0644 ${SOURCE}/${THEME}
+		cp ${SOURCE}/${THEME} ${TPATH}/${THEME}
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find "${BIOSYNTAX}/gedit/" -name "*.lang" -print`)
+		FILES=(`find ${BIOSYNTAX}/gedit/language-specs/ -name "*.lang" -print`)
+		echo $FILES
 		FILE=".lang"
 
 	elif [ "$port" == "vim" ]; then
@@ -504,7 +511,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
+		if [ "$port" == "less" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
 				chmod 0644 "${FILES[${f}]}"
 				sudo cp "${FILES[${f}]}" "${FPATH}"
@@ -515,7 +522,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 				cp "${FILES[${f}]}" "${FPATH}"
 			done
 		fi
-	elif [ "$port" == "less" ] || [ "$port" == "gedit" ]; then
+	elif [ "$port" == "less" ]; then
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	else
@@ -547,20 +554,27 @@ else
 
 	elif [ "$port" == "gedit" ]; then
 
-		printf "Setting up %s lang file(s) and bioSyntax theme for Windows Gedit.\\n" "$2"
+		printf "Setting up %s lang file(s) and bioSyntax theme for Linux Gedit.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
-		SOURCE="${BIOSYNTAX}/gedit/"
-		FPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/language-specs/
-		TPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/styles/
+		SOURCE="${BIOSYNTAX}/gedit"
+		FPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/language-specs
+		TPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0
+
+		# MAKE DIR IF IT DOESN'T EXIST
+		mkdir -p $TPATH
+		mkdir -p $TPATH/styles
+		mkdir -p $FPATH
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
-		THEME="bioSyntax.xml"
-		chmod 0644 "${SOURCE}/${THEME}"
-		cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		THEME="styles/bioSyntax.xml"
+
+		chmod 0644 ${SOURCE}/${THEME}
+		cp ${SOURCE}/${THEME} ${TPATH}/${THEME}
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find "${BIOSYNTAX}/gedit/" -name "*.lang" -print`)
+		FILES=(`find ${FPATH} -name "*.lang" -print`)
 		FILE=".lang"
+
 
 	elif [ "$port" == "vim" ]; then
 

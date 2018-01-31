@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: wig
+Filetypes: .wig
+Maintainer: bioSyntax
+Version: v0
+
+Color Scheme for multiple sequence alignment
+in WIG format
+-->
+
+<language id="wig" _name="WIG" version="2.0" _section="Scientific">
+
+  <metadata>
+    <property name="mimetypes">text/wig</property>
+    <property name="globs">*.wig</property>
+  </metadata>
+
+  <styles>
+    <style id="fixedStep"         _name="FixedStep"         map-to="biosyntax:keyword"/>
+    <style id="variableStep"      _name="VariableStep"      map-to="biosyntax:keyword2"/>
+    <style id="chrom"             _name="Chrom"             map-to="biosyntax:chr"/>
+    <style id="start"             _name="Start"             map-to="biosyntax:chrStart"/>
+    <style id="step"              _name="Step"              map-to="biosyntax:numeric"/>
+    <style id="span"              _name="Span"              map-to="biosyntax:numeric"/>
+    <style id="variableCStart"    _name="VariableCStart"    map-to="biosyntax:comment"/>
+
+    <!-- Color Gradient -->
+    <style id="score0"            _name="Score0"            map-to="biosyntax:grad0"/>
+    <style id="score1"            _name="Score1"            map-to="biosyntax:grad1"/>
+    <style id="score2"            _name="Score2"            map-to="biosyntax:grad2"/>
+    <style id="score3"            _name="Score3"            map-to="biosyntax:grad3"/>
+    <style id="score4"            _name="Score4"            map-to="biosyntax:grad4"/>
+    <style id="score5"            _name="Score5"            map-to="biosyntax:grad5"/>
+    <style id="score6"            _name="Score6"            map-to="biosyntax:grad6"/>
+    <style id="score7"            _name="Score7"            map-to="biosyntax:grad7"/>
+    <style id="score8"            _name="Score8"            map-to="biosyntax:grad8"/>
+    <style id="score9"            _name="Score9"            map-to="biosyntax:grad9"/>
+    <style id="score10"           _name="Score10"           map-to="biosyntax:grad10"/>
+    <style id="score11"           _name="Score11"           map-to="biosyntax:grad10"/>
+
+  </styles>
+
+  <definitions>
+    <context id="wig">
+      <include>
+
+        <!--  FixedStep -->
+        <context id="fixedStep" style-ref="fixedStep">
+          <match extended="true">
+            fixedStep
+          </match>
+        </context>
+
+        <!--  VariableStep -->
+        <context id="variableStep" style-ref="variableStep">
+          <match extended="true">
+            variableStep
+          </match>
+        </context>
+
+        <!--  Name of Chromosome for both FixedStep and VariableStep -->
+        <context id="chrom" style-ref="chrom">
+          <match extended="true">
+            ((?&lt;=chrom=)\S+ )
+          </match>
+        </context>   
+
+        <!--  Starting Point of FixedStep -->   
+        <context id="start" style-ref="start">
+          <match extended="true">
+            ((?&lt;=start=)\S+ )
+          </match>
+        </context>
+
+        <!--  Step for FixedStep -->
+        <context id="step" style-ref="step">
+          <match extended="true">
+            ((?&lt;=step=)\S+ )
+          </match>
+        </context>
+
+        <!--  Span for VariableStep -->
+        <context id="span" style-ref="span">
+          <match extended="true">
+            ((?&lt;=span=)\S+ )
+          </match>
+        </context>
+
+        <!--  Point of Value of VariableStep -->
+        <context id="variableCStart" style-ref="variableCStart">
+          <match extended="true">
+            (?=\d+\s\d+)(\d+)
+          </match>
+        </context>
+
+        <!-- Colored Values for VariableStep -->
+        <context id="variableColor11" style-ref="score11">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)[1-9]\d{3,}
+          </match>
+        </context>
+        <context id="variableColor10" style-ref="score10">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)9\d{2}
+          </match>
+        </context>
+        <context id="variableColor9" style-ref="score9">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)8\d{2}
+          </match>
+        </context>
+        <context id="variableColor8" style-ref="score8">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)7\d{2}
+          </match>
+        </context>
+        <context id="variableColor7" style-ref="score7">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)6\d{2}
+          </match>
+        </context>
+        <context id="variableColor6" style-ref="score6">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)5\d{2}
+          </match>
+        </context>  
+        <context id="variableColor5" style-ref="score5">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)4\d{2}
+          </match>
+        </context>  
+        <context id="variableColor4" style-ref="score4">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)3\d{2}
+          </match>
+        </context>          
+        <context id="variableColor3" style-ref="score3">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)2\d{2}
+          </match>
+        </context>  
+        <context id="variableColor2" style-ref="score2">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)1\d{2}
+          </match>
+        </context>  
+        <context id="variableColor1" style-ref="score1">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)[1-9]\d
+          </match>
+        </context>         
+        <context id="variableColor0" style-ref="score0">
+          <match extended="true">
+            (?![\r\n|\r|\n]).(?&lt;=\d\s)\d
+          </match>
+        </context>
+
+
+        <!-- Colored Values for FixedStep -->
+        <context id="fixedColor11" style-ref="score11">
+          <match extended="true">
+            ^[1-9]\d{3,}(?![" "])
+          </match>
+        </context>
+        <context id="fixedColor10" style-ref="score10">
+          <match extended="true">
+            ^9\d{2}(?![" "]) 
+          </match>
+        </context>
+        <context id="fixedColor9" style-ref="score9">
+          <match extended="true">
+            ^8\d{2}(?![" "]) 
+          </match>
+        </context>
+        <context id="fixedColor8" style-ref="score8">
+          <match extended="true">
+            ^7\d{2}(?![" "]) 
+          </match>
+        </context>
+        <context id="fixedColor7" style-ref="score7">
+          <match extended="true">
+            ^6\d{2}(?![" "]) 
+          </match>
+        </context>
+        <context id="fixedColor6" style-ref="score6">
+          <match extended="true">
+            ^5\d{2}(?![" "]) 
+          </match>
+        </context>  
+        <context id="fixedColor5" style-ref="score5">
+          <match extended="true">
+            ^4\d{2}(?![" "]) 
+          </match>
+        </context>  
+        <context id="fixedColor4" style-ref="score4">
+          <match extended="true">
+            ^3\d{2}(?![" "]) 
+          </match>
+        </context>          
+        <context id="fixedColor3" style-ref="score3">
+          <match extended="true">
+            ^2\d{2}(?![" "]) 
+          </match>
+        </context>  
+        <context id="fixedColor2" style-ref="score2">
+          <match extended="true">
+            ^1\d{2}(?![" "]) 
+          </match>
+        </context>  
+        <context id="fixedColor1" style-ref="score1">
+          <match extended="true">
+            ^[1-9]\d(?![" "])
+          </match>
+        </context>         
+        <context id="fixedColor0" style-ref="score0">
+          <match extended="true">
+            ^\d(?![" "])
+          </match>
+        </context>
+                            
+      </include>
+    </context>
+  </definitions>
+</language>

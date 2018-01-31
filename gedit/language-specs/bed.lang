@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+gedit Syntax File
+Language: bed
+Filetypes: .bed
+Maintainer: bioSyntax.org
+Version: v0.1
+
+Color Scheme for multiple sequence alignment
+in BED format
+
+-->
+<language id="bed" _name="Bed" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="mimetypes">text/bed</property>
+    <property name="globs">*.bed</property>
+  </metadata>
+
+  <styles>
+    <style id="chrom"   _name="Chrom"    map-to="biosyntax:chr"       />
+    <style id="coords"  _name="Chrom"    map-to="biosyntax:chrStart"  />
+    <style id="coord2"  _name="Chrom"    map-to="biosyntax:chrStart2" />
+    <style id="bedID"   _name="BedID"    map-to="biosyntax:string"    />
+
+    <style id="strandPlus"   _name="StrandPlus"  map-to="biosyntax:strandPlus"    />
+    <style id="strandMinus"  _name="StrandMinus" map-to="biosyntax:strandMinus"   />
+    <style id="strandNone"   _name="StrandNone"  map-to="biosyntax:strandNone"    />
+
+    <!-- Color Gradient -->
+    <style id="score0"            _name="Score0"            map-to="biosyntax:grad0"/>
+    <style id="score1"            _name="Score1"            map-to="biosyntax:grad1"/>
+    <style id="score2"            _name="Score2"            map-to="biosyntax:grad2"/>
+    <style id="score3"            _name="Score3"            map-to="biosyntax:grad3"/>
+    <style id="score4"            _name="Score4"            map-to="biosyntax:grad4"/>
+    <style id="score5"            _name="Score5"            map-to="biosyntax:grad5"/>
+    <style id="score6"            _name="Score6"            map-to="biosyntax:grad6"/>
+    <style id="score7"            _name="Score7"            map-to="biosyntax:grad7"/>
+    <style id="score8"            _name="Score8"            map-to="biosyntax:grad8"/>
+    <style id="score9"            _name="Score9"            map-to="biosyntax:grad9"/>
+    <style id="score10"           _name="Score10"           map-to="biosyntax:grad10"/>
+    <style id="score11"           _name="Score11"           map-to="biosyntax:grad10"/>
+  </styles>
+
+  <definitions>
+    <context id="bed">
+      <include>
+       <context id="1_chr" end-at-line-end="true" style-ref="chrom">
+          <start>^</start>
+          <end>$</end>
+          <include>         
+
+            <context id="2_coords_start" style-ref="coords">
+              <start>\t</start>
+              <end>(?=$)</end>              
+              <include>
+              	<context id="chrStart2" style-ref="coord2">
+					<match>[0-9\.](?=\d{2}\t)</match>
+				</context>
+				<context id="chrStart5" style-ref="coord2">
+					<match>[0-9\.](?=\d{5}\t)</match>
+				</context>
+				<context id="chrStart8" style-ref="coord2">
+					<match>[0-9\.](?=\d{8}\t)</match>
+				</context>
+
+                <context id="3_coords_end" style-ref="coords">
+                  <start>\t</start>
+                  <end>(?=$)</end>              
+                  <include>
+                  	<context id="chrEnd2" style-ref="coord2">
+						<match>[0-9\.](?=\d{2}\t)</match>
+					</context>
+					<context id="chrEnd5" style-ref="coord2">
+						<match>[0-9\.](?=\d{5}\t)</match>
+					</context>
+					<context id="chrEnd8" style-ref="coord2">
+						<match>[0-9\.](?=\d{8}\t)</match>
+					</context>
+
+                    <context id="4_name" style-ref="bedID">
+                      <start>\t</start>
+                      <end>(?=$)</end>              
+                      <include>
+
+                        <context id="5_score">
+                          <start>\t</start>
+                          <end>(?=$)</end>              
+                          <include>
+                            <context id="score0" style-ref="score0">
+                              <match extended="true">
+                                \d(?=\t)
+                              </match>
+                            </context>
+                            <context id="score1" style-ref="score1">
+                              <match extended="true">
+                                [1-9]\d(?=\t)
+                              </match>
+                            </context>
+                            <context id="score2" style-ref="score2">
+                              <match extended="true">
+                                (1\d{2}|1\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score3" style-ref="score3">
+                              <match extended="true">
+                                (2\d{2}|2\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score4" style-ref="score4">
+                              <match extended="true">
+                                (3\d{2}|3\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score5" style-ref="score5">
+                              <match extended="true">
+                                (4\d{2}|4\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score6" style-ref="score6">
+                              <match extended="true">
+                                (5\d{2}|5\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score7" style-ref="score7">
+                              <match extended="true">
+                                (6\d{2}|6\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score8" style-ref="score8">
+                              <match extended="true">
+                                (7\d{2}|7\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score9" style-ref="score9">
+                              <match extended="true">
+                                (8\d{2}|8\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score10" style-ref="score10">
+                              <match extended="true">
+                                (9\d{2}|9\d{2}\.\d+)(?=\t)
+                              </match>
+                            </context>
+                            <context id="score11" style-ref="score10">
+                              <match extended="true">
+                                [1-9]\d{3,}
+                              </match>
+                            </context>
+                            
+                            <context id="6_strand">
+                              <start>\t</start>
+                              <end>$</end>
+                              <include>
+                                <context id="strand_plus" style-ref="strandPlus">
+                                  <match extended="true">
+                                    [\+]
+                                  </match>
+                                </context>
+                                <context id="strand_minus" style-ref="strandMinus">
+                                  <match extended="true">
+                                    [\-]
+                                  </match>
+                                </context>
+                                <context id="strand_none" style-ref="strandNone">
+                                  <match extended="true">
+                                    [\.]
+                                  </match>
+                                </context>
+                              </include>
+                            </context>
+                          </include>
+                        </context>
+                      </include>
+                    </context>
+                  </include>
+                </context>
+              </include>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+  </definitions>
+</language>
