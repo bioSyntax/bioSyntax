@@ -13,7 +13,7 @@ vardef STRINGTAG = '(\w+=)' # all others
 # Header Area -------------------------------
 state comment start '^#[#]?' begin
   endline = '$' exit
- 
+
   # fileformat
   state header = 'fileformat=' begin
    header = '\S++' exitall
@@ -205,9 +205,10 @@ state chr = '^[^#]' begin
             state push8 = '\t' begin
               drop = '(?=$)' exitall
               keyword6= '\A\w+='
-              numeric = '\A[\d\\.\\-]+(?=(;|\t))'
-              string = '\A[\w]+(?=(;|\t))'
+              numeric = '\A[\d\\:\\|\\.\-\\_e]+(?=($|,|;|\t))'
+              string  = '\A[\w\\:\\|\\.\-\\_]+(?=($|,|;|\t))'
               null = '\A;'
+              null = '\A,'
 
               # Column 9: FORMAT
               state push9 = '\t' begin
@@ -220,7 +221,7 @@ state chr = '^[^#]' begin
                 # and prevents backtracking
                 # otherwise read times are exponential+
                 # with column width
-                state ntA = '\A(?=\t?)' begin
+                state push10 = '\A(?=\t?)' begin
                   drop = '\A(?=$)' exitall
 
                   # To prevent DATA highlighting

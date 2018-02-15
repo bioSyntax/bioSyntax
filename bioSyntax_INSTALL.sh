@@ -491,12 +491,12 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		THEMES=(`find "${BIOSYNTAX}/less/" -name "*.style" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo chmod 0644 "${THEMES[${t}]}"
-				sudo cp "${THEMES[${t}]}" "${TPATH}"
+				chmod 0644 "${THEMES[${t}]}"
+				cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo chmod 0644 "${BIOSYNTAX}/less/${2}.style"
-			sudo cp "${BIOSYNTAX}/less/${2}.style" "${TPATH}"
+			chmod 0644 "${BIOSYNTAX}/less/${2}.style"
+			cp "${BIOSYNTAX}/less/${2}.style" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILES
@@ -514,7 +514,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ "$port" == "less" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
 				chmod 0644 "${FILES[${f}]}"
-				sudo cp "${FILES[${f}]}" "${FPATH}"
+				cp "${FILES[${f}]}" "${FPATH}"
 			done
 		else
 			for ((f=0; f<${#FILES[@]}; f++)); do
@@ -524,7 +524,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 	elif [ "$port" == "less" ]; then
 		chmod 0644 "${SOURCE}/${2}${FILE}"
-		sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+		cp "${SOURCE}/${2}${FILE}" "${FPATH}"
 	else
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		cp "${SOURCE}/${2}${FILE}" "${FPATH}"
