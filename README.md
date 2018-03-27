@@ -23,7 +23,11 @@ To gain the most insight from your data, read our brief [bioSyntax Manual](http:
 
 *************************************************
 
-### [Collaborate](http://biosyntax.org/dev)
+### Code of Conduct
+
+This project is participating in the Mozilla Festival 2018, and as such, respects Mozilla's [community participation guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/). This serves as a guideline for the behaviour of all participants, remote or local, as well as project leads, facilitators, staff, volunteers, vendors, and anyone else involved in making the Mozilla Global Sprint possible.
+
+### [Collaborate](CONTRIBUTING.md)
 
 Dev Team: [Artem Babaian](https://github.com/ababaian) | [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Jasper Wong](https://github.com/Jwong684)
 
