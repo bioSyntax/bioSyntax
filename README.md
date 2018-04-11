@@ -7,6 +7,8 @@ Support in **vim**, **less**, **sublime3** & **gedit** for `.sam`, `.flagstat`, 
 
 # [bioSyntax.org](http://biosyntax.org/)
 
+### We'd like to know how bioSyntax can be developed to help your workflow. [Tell us what you think! (~5m)](https://goo.gl/forms/YO89fEPw71JpH3Ac2)
+
 ## Usage
 bioSyntax integrates seamlessly with your text editor, recognizing data-type by the file extension or streamed into `less`.
 

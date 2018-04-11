@@ -133,6 +133,10 @@ elif [ "$port" == "less" ]; then
 	printf " Note:\n"
 	printf "\t- less installation requires source-highlight\n"
 	printf "\t  it will be installed or updated. (requires sudo)\n"
+	printf "\t"
+	printf "\t- 'less' will be aliased to 'less -NSi -#10' for readability."
+    printf "\t   To unset this, edit your '~/.bashrc' file after install." 
+
 	read -p "  Enter: " yn
 	case $yn in
 		[Yy]*)
