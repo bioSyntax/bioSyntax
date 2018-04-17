@@ -11,12 +11,37 @@ The objective of bioSyntax is to bring you closer to your data, giving you an [i
 3. [Supported Formats](#supported-file-formats)
 4. [Developing New Formats & Themes](#collaborate)
 
+## bioSyntax Installation
+
+bioSyntax comes with a handy installation script. Simply run:
+
+```
+	# Install bioSyntax
+	bash bioSyntax_INSTALL.sh
+```
+
+**Note**: Installer script requires super-user permissions at the moment. If you don't have permissions simply follow the Manual Installation instructions below.
+
+[For detailed instructions, see: \<Installing bioSyntax\>](https://biosyntax.org/install)
+
+
+## Forking bioSyntax for development
+
+For installing bioSyntax, download the [\<latest zip release\>](https://biosyntax.org/release).
+
+To clone/fork the complete bioSyntax repository with development files and submodules, use:
+
+```
+	# Fork bioSyntax
+	git clone --recursive https://github.com/bioSyntax/bioSyntax.git
+
+	# Or if you've already cloned the repo
+	git submodule update --init
+```
+
 # Getting Started
 
-### [See: Installing bioSyntax](https://biosyntax.org/install)
-
-bioSyntax integreates seamlessly with **vim** *(Linux / Mac / Win)*, **sublime** *(Linux / Mac / Win)*, **gedit** *(Linux / Win)*, & **less** *(Linux / Mac)*. After installing bioSyntax files will automatically detected by file-extension.
-
+bioSyntax integrates seamlessly with **vim**, **sublime**, **gedit** & **less**. Upon installation files are automatically detected by file-extension.
 
 ### Reading large-data
 
@@ -35,7 +60,7 @@ For very large data sets, it's often slow to open them in a text editor. It's be
   less hg19.fa
 ```
 
-#### Streaming your data directly into **less** with pipes `|`
+#### Streaming your data directly into **less** with pipes
   
 ```
   # If your file is compressed, you can 'pipe' the data 
@@ -94,13 +119,13 @@ When available, bioSyntax will highlight [PHRED quality scores](https://en.wikip
 
 ### CIGAR Strings
 
-In `.sam` files the Query:Reference alignment is summarized efficiently but illegibly as a [CIGAR String](https://genome.sph.umich.edu/wiki/SAM#What_is_a_CIGAR.3F). With a little bit of highlighting these become much easier to read (Figure 4).
+In `.sam` files the Query:Reference alignment is summarized efficiently but illegibly as a [\<CIGAR String\>](https://genome.sph.umich.edu/wiki/SAM#What_is_a_CIGAR.3F). With a little bit of highlighting these become much easier to read (Figure 4).
 
 ![ CIGAR strings colouring](images/less-CIGAR.png)
 
 ### Amino Acid Color Schemes
 
-You can choose from several color-schemes for amino-acid fasta files. The `Fasta Clustal` (Default) syntax colors amino acids based on their [physiochemical properties](http://www.jalview.org/help/html/colourSchemes/clustal.html), so does `Fasta Hydrophobicity`, or you may prefer better discrimination of each amino acids with `Fasta Zappo` or `Fasta Taylor`.
+You can choose from several color-schemes for amino-acid fasta files. The `Fasta Clustal` (Default) syntax colors amino acids based on their [\<physiochemical properties\>](http://www.jalview.org/help/html/colourSchemes/clustal.html), so does `Fasta Hydrophobicity`, or you may prefer better discrimination of each amino acids with `Fasta Zappo` or `Fasta Taylor`.
 
 
 # Support 
@@ -124,7 +149,7 @@ Please Include:
 
 bioSyntax is a community-oriented project for scientific syntax highlighting. We encourage you to change and customize it to suit your needs.
 
-Check out the [Development](https://bioSyntax.org/dev) page to create syntax-highlighting for custom file-formats and for other ways to help out.
+Check out the [\<Development\>](https://bioSyntax.org/dev) page to create syntax-highlighting for custom file-formats and for other ways to help out.
 
 # Supported File Formats
 
@@ -159,4 +184,4 @@ File format and software compatibility matrix for bioSyntax.
 | .nexus      |  Phylogenetics data         |    -    |  X  |   -   | -    |
 | .pml        | Pymol Script Language       |    X    |  X  |   -   | -    |
 
-See Also: [Alternative/User Syntax Definitions](https://github.com/bioSyntax/bioSyntax/tree/master/alt-syntax)
+See Also: [\<Alternative/User Syntax Definitions\>](https://github.com/bioSyntax/bioSyntax/tree/master/alt-syntax)

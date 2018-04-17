@@ -1,5 +1,5 @@
 # bioSyntax Makefile
-# 
+#
 # packages the bioSyntax release from the
 # git repository.
 
@@ -7,6 +7,7 @@
 SHELL =/bin/bash
 SOURCEDIR = $(PWD)
 ZIP = tar -zcvf
+PANDOC = pandoc
 
 CD = cd
 MKDIR_P = mkdir -p
@@ -72,13 +73,14 @@ alt:
 
 man:
 	# scripts + manuals -----------------------------------
-	$(CP_R) README.md $(release)
 	$(CP_R) INSTALL.md $(release)
 	$(CP_R) bioSyntax_INSTALL.sh $(release)
 	$(CP_R) LICENSE.md $(release)
-	$(CP_R) man.pdf $(release)
+	$(CD) dev/man/ ;\
+	$(PANDOC) man_pdf.md -f markdown -t latex -o ../../$(release)/man.pdf
+	$(CP_R) dev/man/man_pdf.md $(release)/README.md
 	#
 
 zip:
-	# Create zip of release 
+	# Create zip of release
 	$(ZIP) $(release).tar.gz $(release)
