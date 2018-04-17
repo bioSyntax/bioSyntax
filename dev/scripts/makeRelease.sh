@@ -8,18 +8,23 @@
 # Must be run from the main biosyntax directory
 #
 
-NAME='biosyntax'
-VERSION='v0.1-alpha'
+NAME='bioSyntax'
+VERSION='0.1.beta4'
 
 
 # Create a .zip file release
 
-zip -r $NAME.$VERSION.zip \
+zip -r ${NAME}-${VERSION}.zip \
+  alt-syntax/ \
   examples/ \
   gedit/ \
   less/ \
   sublime/ \
   vim/ \
-  bioSyntax_SETUP.sh \
+  bioSyntax_INSTALL.sh \
+  bioSyntax_logo.png \
+  bioSyntax_UNINSTALL.sh \
   LICENSE.md \
-  README.md 
+  INSTALL.md \
+  README.md \
+  man.pdf
