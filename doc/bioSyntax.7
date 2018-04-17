@@ -1,0 +1,53 @@
+.\"
+.TH bioSyntax 7 "April 2018" "0.1"
+.SH NAME
+bioSyntax \- Syntax Highlighting for Computational Biology.
+.SH DESCRIPTION
+Syntax highlighting for computational biology to bring you intuitively close to your data.
+.br
+BioSyntax provides plugins for gedit, less, sublime and vim.
+.br
+BioSyntax supports .sam, .flagstat, .vcf, .fasta, .fastq, .faidx, .clustal, .pdb, .gtf, .bed files & more.
+.br
+.SH Debian-based OS
+Plugins are not enabled per default.
+
+.TP
+\fBgedit
+.br
+Go into the gedit preferences:
+
+  Edit > Preferences > Font & Color > bioSyntax
+
+.TP
+\fBless
+.br
+First, check your shell:
+
+  echo $SHELL
+
+ # Outputs:
+ '          $SHELL            $RCFILE '
+ #         /bin/zsh    -->   ~/.zshrc
+ #         /bin/sh     -->   ~/.shrc
+ #         /bin/bash   -->   ~/.bashrc
+
+Then, append the rc_append.txt file to your corresponding shell configuration file (rc file).
+
+  cat /usr/share/doc/biosyntax-less/rc_append.txt >> ~/.zshrc
+
+.TP
+\fBvim
+.br
+To enable it for your user account just execute:
+
+  vim-addons install biosyntax
+
+Similarly, to enable it for all users of this system just execute (as root):
+
+  vim-addons -w install biosyntax
+
+vim-addons is provided by the vim-addon-manager package, have a look at its manpage for more information.
+
+.SH SEE ALSO
+.BR https://biosyntax.org/

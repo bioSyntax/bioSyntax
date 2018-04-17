@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>org.biosyntax.bioSyntax.gedit</id>
+  ​<extends>org.gnome.gedit.desktop</extends>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>bioSyntax</name>
+  <summary>Syntax Highlighting for Computational Biology</summary>
+  <description>
+    <p>
+      Syntax highlighting for computational biology to bring you intuitively close
+      to your data. BioSyntax supports .sam, .flagstat, .vcf, .fasta, .fastq, .faidx,
+       .clustal, .pdb, .gtf, .bed files and more. This is a gedit plugin.
+    </p>
+  </description>
+  <url type="homepage">https://biosyntax.org/</url>
+  <url type="help">https://biosyntax.org/man</url>
+  <url type="bugtracker">https://github.com/bioSyntax/bioSyntax/issues</url>
+</component>
