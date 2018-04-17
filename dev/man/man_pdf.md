@@ -130,9 +130,9 @@ Check out the [Development](https://bioSyntax.org/dev) page to create syntax-hig
 
 File format and software compatibility matrix for bioSyntax.
 
-## Core bioSyntax
+## Core Syntaxes
 
-  File Format | Description                 | sublime | vim | gedit | less |
+| File Format | Description                 | sublime | vim | gedit | less |
 |:------------|:----------------------------|:-------:|:---:|:-----:|:----:|
 | .fasta      | Generic nt/aa sequence      |    X    |  X  |   X   |   X  |
 | .fastq      | Fasta + PHRED quality       |    X    |  X  |   X   |   X  |
@@ -154,11 +154,9 @@ File format and software compatibility matrix for bioSyntax.
 | -           | Hydrophobicity              |    X    |  -  |   X   | -    |
 | .fai        | Fasta Index (faidx)         |    X    |  X  |   X   | X    |
 | .flagstat   | samtools flag summary       |    X    |  X  |   X   | X    |
+| .cwl        | Common Workflow Language    |    X    |  X  |   X   | -    |
 | .wig        | Wiggle data                 |    -    |  -  |   X   | -    |
-| .pdbx       | Protein Structure (large)   |    -    |  -  |   -   | -    |
-| .phylip     | Multiple Sequence Alignment |    -    |  -  |   -   | -    |
-| .newick     | Tree Format                 |    -    |  -  |   -   | -    |
-| [.nexus](http://informatics.nescent.org/wiki/NEXUS_Specification) |  Phylogenetics data | - | X | - | - |
-| .cwl        | Common Workflow Language    |    -    |  -  |   -   | -    |
+| .nexus      |  Phylogenetics data         |    -    |  X  |   -   | -    |
+| .pml        | Pymol Script Language       |    X    |  X  |   -   | -    |
 
 See Also: [Alternative/User Syntax Definitions](https://github.com/bioSyntax/bioSyntax/tree/master/alt-syntax)
