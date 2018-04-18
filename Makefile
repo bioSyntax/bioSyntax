@@ -1,7 +1,11 @@
 # bioSyntax Makefile
-#
 # packages the bioSyntax release from the
 # git repository.
+#
+# For a new release be sure to update the release download link
+# https://www.bioSyntax.org/release
+#   (on github/biosyntax/biosyntax-site
+#   --> `release.md` line 4 )
 
 #-- System Config            --
 SHELL =/bin/bash

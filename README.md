@@ -14,7 +14,7 @@ bioSyntax integrates seamlessly with your text editor, recognizing data-type by 
 
 To gain the most insight from your data, read our brief [bioSyntax Manual](http://bioSyntax.org/man).
 
-## [Download Latest Release](https://github.com/bioSyntax/bioSyntax/releases/download/v0.1-beta4/bioSyntax-0.1.beta4.zip)
+## [Download Latest Release](https://www.bioSyntax.com/release)
 
 ## [Install](http://bioSyntax.org/install)
 
