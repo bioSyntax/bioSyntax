@@ -17,7 +17,7 @@
 
 2) Copy this file to `/usr/share/nano/` and to `~/.nano/syntax/` (the first path should also contains  `.nanorc` files by default for others languages such as php, perl, etc., they don't need to be copied to `~/.nanorc/` file but the following step should be done to see colors). 
 
-3) Add this path to these files by creating/editing `~/.nanorc` doing `nano ~/.nanorc` and add `include /usr/share/nano/*.nanorc`.  
+3) Add this path to these files by creating/editing `~/.nanorc` doing `echo "include /usr/share/nano/*.nanorc" >> ~/.nanorc`.  
 
 4) After that you will be able to see colors in your nano/pico editor.
 
