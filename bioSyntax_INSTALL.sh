@@ -29,12 +29,12 @@ BIOSYNTAX="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -z "$1" ]; then
 	printf "\\n"
-	printf " $LOGO version 0.1-beta3 \\n"
+	printf " $LOGO version 0.1.0 \\n"
 	printf " ---------------------------------\\n"
-	printf " install script -- v0.1-beta2\\n"
+	printf " install script -- v0.1.0\\n"
 	printf "\\n"
 	printf " Usage: \\n"
-	printf " bash bioSyntax_SETUP.sh <text_editor> <file_format (optional)> \\n"
+	printf " bash bioSyntax_INSTALL.sh <text_editor> <file_format (optional)> \\n"
 	printf "\\n"
 	printf " <text_editor> = vim || less || gedit || sublime \\n"
 	printf " <file_format> = (blank for all) || fasta || fastq || sam || vcf || pdb ... \\n"
@@ -45,6 +45,8 @@ if [ -z "$1" ]; then
 	printf " Notes: \\n "
 	printf "   -- auto-installation requires some commands to be run as root \\n"
 	printf "   -- installer script requires bash/zsh \\n"
+	printf "   -- avoid running script in paths with whitespaces \\n"
+	printf "   -- less installation requires bioSyntax folder to be placed in and run from root\\n"
 	printf "\\n"
 	printf " For detailed install instructions, visit bioSyntax.org/install \\n"
 	printf "\\n"
@@ -80,7 +82,7 @@ printf "\n"
 if [ "$port" == "sublime" ]; then
 
 	printf " Installing sublime-bioSyntax...\n\n"
-	printf "  (Y): Install manually with script.\n"
+	printf "  (Y): Install manually with script (may require sudo depending on OS).\n"
 	printf "  (N): Install via sublime Package Control.\n"
 	printf "\n"
 	printf "\t- Open Sublime.\n"
@@ -131,11 +133,12 @@ elif [ "$port" == "less" ]; then
 	printf "  (n): exit\n"
 	printf "\n"
 	printf " Note:\n"
+	printf "\t- less installation requires bioSyntax folder to be placed in and run from the root directory\n"
 	printf "\t- less installation requires source-highlight\n"
 	printf "\t  it will be installed or updated. (requires sudo)\n"
 	printf "\t"
 	printf "\t- 'less' will be aliased to 'less -NSi -#10' for readability."
-    printf "\t   To unset this, edit your '~/.bashrc' file after install." 
+    printf "\t   To unset this, edit your '~/.bashrc' file after install."
 
 	read -p "  Enter: " yn
 	case $yn in
@@ -184,11 +187,11 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
-		chmod 0644 "${SOURCE}/${THEME}"
-		cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		sudo chmod 0644 "${SOURCE}/${THEME}"
+		sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find "${BIOSYNTAX}/sublime/" -name "*.sublime-syntax" -print`)
+		FILES=(`find "${SOURCE}" -name "*.sublime-syntax" -print`)
 		FILE=".sublime-syntax"
 
 	elif [ "$port" == "vim" ]; then
@@ -288,8 +291,9 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME FILE(S), LESSPIPE SCRIPT AND SYNTAX FILE(S)
 		SOURCE="${BIOSYNTAX}/less/"
-		FPATH=/usr/local/opt/source-highlight/share/source-highlight/
-		TPATH=/usr/local/opt/source-highlight/share/source-highlight/
+		HIGHLIGHT="/usr/local/opt/source-highlight/share/source-highlight/"
+		FPATH=$HIGHLIGHT
+		TPATH=$HIGHLIGHT
 
 		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
 		if [ `echo $SHELL` == "/bin/bash" ]; then
@@ -315,8 +319,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
 		sudo cp "${BIOSYNTAX}/less/src-hilite-lesspipe-bio.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
 		sudo chmod 755 "/usr/local/bin/src-hilite-lesspipe.sh"
-		sudo cp "${BIOSYNTAX}/less/biosyntax.outlang" "${TPATH}"
+		sudo cp "${BIOSYNTAX}/less/bioSyntax.outlang" "${TPATH}"
+		sudo chmod 755 "${TPATH}/bioSyntax.outlang"
 		sudo cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo chmod 755 "${TPATH}/bioSyntax-vcf.outlang"
 
 		THEMES=(`find "${BIOSYNTAX}/less/" -name "*.style" -print`)
 		if [ -z "$2" ]; then
@@ -339,7 +345,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
-	# LESS/GEDIT INSTALLATION REQUIRES SUDO
+	# SUBLIME (MANUAL, as of MacOS High Sierra Update)/LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
 		for ((f=0; f<${#FILES[@]}; f++)); do
 			sudo chmod 0644 "${FILES[${f}]}"
@@ -371,7 +377,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find "${BIOSYNTAX}/sublime/" -name "*" -print`)
+		FILES=(`find "${SOURCE}" -name "*" -print`)
 		FILE=".sublime-syntax"
 
 	elif [ "$port" == "gedit" ]; then
@@ -380,22 +386,20 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/gedit"
 		FPATH="$HOME/.local/share/gtksourceview-3.0/language-specs"
-		TPATH="$HOME/.local/share/gtksourceview-3.0"
+		TPATH="$HOME/.local/share/gtksourceview-3.0/styles"
 
 		# MAKE DIR IF IT DOESN'T EXIST
 		mkdir -p $TPATH
-		mkdir -p $TPATH/styles
 		mkdir -p $FPATH
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
-		THEME="styles/bioSyntax.xml"
+		THEME="bioSyntax.xml"
 
-		chmod 0644 ${SOURCE}/${THEME}
-		cp ${SOURCE}/${THEME} ${TPATH}/${THEME}
+		chmod 0644 "${SOURCE}/styles/${THEME}"
+		cp "${SOURCE}/styles/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find ${BIOSYNTAX}/gedit/language-specs/ -name "*.lang" -print`)
-		echo $FILES
+		FILES=(`find ${SOURCE}/language-specs/ -name "*.lang" -print`)
 		FILE=".lang"
 
 	elif [ "$port" == "vim" ]; then
@@ -427,23 +431,23 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ ! -d ~/.vim/colors/ ]; then
 			mkdir ~/.vim/colors/;
 		fi
-		chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" ~/.vim/colors/
+		chmod 0644 "${SOURCE}/colors/bioSyntax.vim"
+		cp "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
-		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
+		THEMES=(`find "${SOURCE}/ftdetect/" -name "*.vim" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				chmod 0644 "${THEMES[${t}]}"
 				cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
-			cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
+			chmod 0644 "${SOURCE}/ftdetect/{$2}.vim"
+			cp "${SOURCE}/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
-		FILES=(`find "${BIOSYNTAX}/vim/syntax/" -name "*.vim" -print`)
+		FILES=(`find "${SOURCE}/syntax/" -name "*.vim" -print`)
 		FILE=".vim"
 
 	elif [ "$port" == "less" ]; then
@@ -468,43 +472,45 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
 		if [ `echo $SHELL` == "/bin/bash" ]; then
 			if ! grep -q "bioSyntax" ~/.bash_profile; then
-				cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bash_profile;
+				cat ${SOURCE}/rc_append.txt >> ~/.bash_profile;
 			fi
 			if ! grep -q "bioSyntax" ~/.bashrc; then
-				cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.bashrc;
+				cat ${SOURCE}/rc_append.txt >> ~/.bashrc;
 			fi
 		elif [ `echo $SHELL` == "/bin/zsh" ]; then
 			if ! grep -q "bioSyntax" ~/.zprofile; then
-				cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zprofile;
+				cat ${SOURCE}/rc_append.txt >> ~/.zprofile;
 			fi
 			if ! grep -q "bioSyntax" ~/.zshrc; then
-				cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.zshrc;
+				cat ${SOURCE}/rc_append.txt >> ~/.zshrc;
 			fi
 		else
 			if ! grep -q "bioSyntax" ~/.profile; then
-				cat ${BIOSYNTAX}/less/rc_append.txt >> ~/.profile;
+				cat ${SOURCE}/rc_append.txt >> ~/.profile;
 			fi
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		cp "${BIOSYNTAX}/less/src-hilite-lesspipe-bio.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
+		cp "${SOURCE}/src-hilite-lesspipe-bio.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
 		chmod 755 "${TPATH}/src-hilite-lesspipe-bio.sh"
-		cp "${BIOSYNTAX}/less/bioSyntax.outlang" "${TPATH}"
-		cp "${BIOSYNTAX}/less/bioSyntax-vcf.outlang" "${TPATH}"
+		cp "${SOURCE}/bioSyntax.outlang" "${TPATH}"
+		sudo chmod 755 "${TPATH}/bioSyntax.outlang"
+		cp "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo chmod 755 "${TPATH}/bioSyntax-vcf.outlang"
 
-		THEMES=(`find "${BIOSYNTAX}/less/" -name "*.style" -print`)
+		THEMES=(`find "${SOURCE}" -name "*.style" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				chmod 0644 "${THEMES[${t}]}"
 				cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${BIOSYNTAX}/less/${2}.style"
-			cp "${BIOSYNTAX}/less/${2}.style" "${TPATH}"
+			chmod 0644 "${SOURCE}/${2}.style"
+			cp "${SOURCE}/${2}.style" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find "${BIOSYNTAX}/less/" -name "*.lang" -print`)
+		FILES=(`find "${SOURCE}" -name "*.lang" -print`)
 		FILE=".lang"
 	else
 		printf "ERROR: %s is not a valid/supported editor for Linux Ubuntu. Currently, bioSyntax is available for sublime, gedit, vim, and less for Linux Ubuntu.\\n" "$port"
@@ -515,20 +521,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 	# LESS/GEDIT INSTALLATION REQUIRES SUDO
 	if [ -z "$2" ]; then
-		if [ "$port" == "less" ]; then
-			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
-			done
-		else
-			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
-			done
-		fi
-	elif [ "$port" == "less" ]; then
-		chmod 0644 "${SOURCE}/${2}${FILE}"
-		cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+		for ((f=0; f<${#FILES[@]}; f++)); do
+			chmod 0644 "${FILES[${f}]}"
+			cp "${FILES[${f}]}" "${FPATH}"
+		done
 	else
 		chmod 0644 "${SOURCE}/${2}${FILE}"
 		cp "${SOURCE}/${2}${FILE}" "${FPATH}"
@@ -553,27 +549,26 @@ else
 		cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
-		FILES=(`find "${BIOSYNTAX}/sublime/" -name "*.sublime-syntax" -print`)
+		FILES=(`find "${SOURCE}" -name "*.sublime-syntax" -print`)
 		FILE=".sublime-syntax"
 
 	elif [ "$port" == "gedit" ]; then
 
-		printf "Setting up %s lang file(s) and bioSyntax theme for Linux Gedit.\\n" "$2"
+		printf "Setting up %s lang file(s) and bioSyntax theme for Windows Gedit.\\n" "$2"
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/gedit"
 		FPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/language-specs
-		TPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0
+		TPATH=/c/Program\ Files/gedit/share/gtksourceview-3.0/styles
 
 		# MAKE DIR IF IT DOESN'T EXIST
 		mkdir -p $TPATH
-		mkdir -p $TPATH/styles
 		mkdir -p $FPATH
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
-		THEME="styles/bioSyntax.xml"
+		THEME="bioSyntax.xml"
 
-		chmod 0644 ${SOURCE}/${THEME}
-		cp ${SOURCE}/${THEME} ${TPATH}/${THEME}
+		chmod 0644 "${SOURCE}/styles/${THEME}"
+		cp "${SOURCE}/styles/${THEME}" "${TPATH}/styles/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILES=(`find ${FPATH} -name "*.lang" -print`)
@@ -609,23 +604,23 @@ else
 		if [ ! -d $HOME/vimfiles/colors/ ]; then
 			mkdir $HOME/vimfiles/colors;
 		fi
-		chmod 0644 "${BIOSYNTAX}/vim/colors/bioSyntax.vim"
-		cp "${BIOSYNTAX}/vim/colors/bioSyntax.vim" $HOME/vimfiles/colors/
+		chmod 0644 "${SOURCE}/colors/bioSyntax.vim"
+		cp "${SOURCE}/colors/bioSyntax.vim" $HOME/vimfiles/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
-		THEMES=(`find "${BIOSYNTAX}/vim/ftdetect/" -name "*.vim" -print`)
+		THEMES=(`find "${SOURCE}/ftdetect/" -name "*.vim" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				chmod 0644 "${THEMES[${t}]}"
 				cp "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${BIOSYNTAX}/vim/ftdetect/{$2}.vim"
-			cp "${BIOSYNTAX}/vim/ftdetect/{$2}.vim" "${TPATH}"
+			chmod 0644 "${SOURCE}/ftdetect/{$2}.vim"
+			cp "${SOURCE}/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
-		FILES=(`find "${BIOSYNTAX}/vim/" -name "*.vim" -print`)
+		FILES=(`find "${SOURCE}/syntax/" -name "*.vim" -print`)
 		FILE=".vim"
 
 	#elif [ "$port" == "less" ]; then
@@ -654,4 +649,3 @@ fi
 printf "Installation successful. Restart %s and you will now have pretty %s formats!\\n"
 printf "Thank you for your support!\\n" "$port" "$2"
 exit 0
-
