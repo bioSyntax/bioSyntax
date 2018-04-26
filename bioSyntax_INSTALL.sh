@@ -187,8 +187,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
-		sudo chmod 0644 "${SOURCE}/${THEME}"
-		sudo cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		sudo install --mode=0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".sublime-syntax"
@@ -224,8 +223,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 			mkdir ~/.vim/colors/;
 		fi
 
-		sudo chmod 0644 "${SOURCE}/colors/bioSyntax.vim"
-		sudo cp "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
+		sudo install --mode=0644 "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEME=".vim"
@@ -233,12 +231,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo chmod 0644 "${THEMES[${t}]}"
-				sudo cp "${THEMES[${t}]}" "${TPATH}"
+				sudo install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo chmod 0644 "${SOURCE}/ftdetect/{$2}.vim"
-			sudo cp "${SOURCE}/ftdetect/{$2}.vim" "${TPATH}"
+			sudo install --mode=0644 "${SOURCE}/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -249,12 +245,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# SUBLIME (MANUAL, as of MacOS High Sierra Update)/LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				sudo chmod 0644 "${FILES[${f}]}"
-				sudo cp "${FILES[${f}]}" "${FPATH}"
+				sudo install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			sudo chmod 0644 "${SOURCE}/syntax/${2}${FILE}"
-			sudo cp "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
+			sudo install --mode=0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
 		fi
 
 
@@ -332,24 +326,19 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		sudo cp "${SOURCE}/src-hilite-lesspipe-bio.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
-		sudo chmod 755 "/usr/local/bin/src-hilite-lesspipe.sh"
-		sudo cp "${SOURCE}/bioSyntax.outlang" "${TPATH}"
-		sudo chmod 755 "${TPATH}/bioSyntax.outlang"
-		sudo cp "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
-		sudo chmod 755 "${TPATH}/bioSyntax-vcf.outlang"
+		sudo install --mode=0755 "${SOURCE}/src-hilite-lesspipe-bio.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
+		sudo install --mode=0755 "${SOURCE}/bioSyntax.outlang" "${TPATH}"
+		sudo install --mode=0755 "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
 
 		THEME=".style"
 		THEMES=(`find "${SOURCE}" -name "*${THEME}" -print`)
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo chmod 0644 "${THEMES[${t}]}"
-				sudo cp "${THEMES[${t}]}" "${TPATH}"
+				sudo install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo chmod 0644 "${SOURCE}/${2}${THEME}"
-			sudo cp "${SOURCE}/${2}${THEME}" "${TPATH}"
+			sudo install --mode=0644 "${SOURCE}/${2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILES
@@ -360,12 +349,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# SUBLIME (MANUAL, as of MacOS High Sierra Update)/LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				sudo chmod 0644 "${FILES[${f}]}"
-				sudo cp "${FILES[${f}]}" "${FPATH}"
+				sudo install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			sudo chmod 0644 "${SOURCE}/${2}${FILE}"
-			sudo cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+			sudo install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 	else
@@ -389,8 +376,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
 
-		chmod 0644 "${SOURCE}/${THEME}"
-		cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		install --mode=0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".sublime-syntax"
@@ -400,12 +386,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/${2}${FILE}"
-			cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "gedit" ]; then
@@ -423,8 +407,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		THEME="bioSyntax.xml"
 
-		chmod 0644 "${SOURCE}/styles/${THEME}"
-		cp "${SOURCE}/styles/${THEME}" "${TPATH}/${THEME}"
+		install --mode=0644 "${SOURCE}/styles/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".lang"
@@ -434,12 +417,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/language-specs/${2}${FILE}"
-			cp "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "vim" ]; then
@@ -471,8 +452,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ ! -d ~/.vim/colors/ ]; then
 			mkdir ~/.vim/colors/;
 		fi
-		chmod 0644 "${SOURCE}/colors/bioSyntax.vim"
-		cp "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
+		install --mode=0644 "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEME=".vim"
@@ -480,12 +460,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				chmod 0644 "${THEMES[${t}]}"
-				cp "${THEMES[${t}]}" "${TPATH}"
+				install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/ftdetect/{$2}${THEME}"
-			cp "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
+			install --mode=0644 "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -496,12 +474,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/syntax/${2}${FILE}"
-			cp "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
 		fi
 
 
@@ -546,24 +522,19 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		cp "${SOURCE}/src-hilite-lesspipe-bio.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
-		chmod 755 "${TPATH}/src-hilite-lesspipe-bio.sh"
-		cp "${SOURCE}/bioSyntax.outlang" "${TPATH}"
-		sudo chmod 755 "${TPATH}/bioSyntax.outlang"
-		cp "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
-		sudo chmod 755 "${TPATH}/bioSyntax-vcf.outlang"
+		install --mode=0755 "${SOURCE}/src-hilite-lesspipe-bio.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
+		sudo install --mode=0755 "${SOURCE}/bioSyntax.outlang" "${TPATH}"
+		sudo install --mode=0755 "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
 
 		THEME=".style"
 		THEMES=(`find "${SOURCE}" -name "*${THEME}" -print`)
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				chmod 0644 "${THEMES[${t}]}"
-				cp "${THEMES[${t}]}" "${TPATH}"
+				install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/${2}${THEME}"
-			cp "${SOURCE}/${2}${THEME}" "${TPATH}"
+			install --mode=0644 "${SOURCE}/${2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILES
@@ -574,12 +545,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/${2}${FILE}"
-			cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 
@@ -603,8 +572,7 @@ else
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
-		chmod 0644 "${SOURCE}/${THEME}"
-		cp "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		install --mode=0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".sublime-syntax"
@@ -613,12 +581,10 @@ else
 		# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/${2}${FILE}"
-			cp "${SOURCE}/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "gedit" ]; then
@@ -636,8 +602,7 @@ else
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.xml"
 
-		chmod 0644 "${SOURCE}/styles/${THEME}"
-		cp "${SOURCE}/styles/${THEME}" "${TPATH}/styles/${THEME}"
+		install --mode=0644 "${SOURCE}/styles/${THEME}" "${TPATH}/styles/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".lang"
@@ -646,12 +611,10 @@ else
 		# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/language-specs/${2}${FILE}"
-			cp "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "vim" ]; then
@@ -683,20 +646,17 @@ else
 		if [ ! -d $HOME/vimfiles/colors/ ]; then
 			mkdir $HOME/vimfiles/colors;
 		fi
-		chmod 0644 "${SOURCE}/colors/bioSyntax.vim"
-		cp "${SOURCE}/colors/bioSyntax.vim" $HOME/vimfiles/colors/
+		install --mode=0644 "${SOURCE}/colors/bioSyntax.vim" $HOME/vimfiles/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEME=".vim"
 		THEMES=(`find "${SOURCE}/ftdetect/" -name "*${THEME}" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				chmod 0644 "${THEMES[${t}]}"
-				cp "${THEMES[${t}]}" "${TPATH}"
+				install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/ftdetect/{$2}${THEME}"
-			cp "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
+			install --mode=0644 "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -706,12 +666,10 @@ else
 		# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				chmod 0644 "${FILES[${f}]}"
-				cp "${FILES[${f}]}" "${FPATH}"
+				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			chmod 0644 "${SOURCE}/syntax/${2}${FILE}"
-			cp "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
+			install --mode=0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
 		fi
 
 	#elif [ "$port" == "less" ]; then
