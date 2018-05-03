@@ -73,13 +73,16 @@ fi
 if  [ "$(uname)" == "Darwin" ]; then
 
 	if [ "$port" == "sublime" ]; then
+
 		# SETS PATHS WHERE SYNTAX/THEME FILES ARE LOCATED
 		SOURCE="${BIOSYNTAX}/sublime/"
 		FPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/bioSyntax/
 		TPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/bioSyntax/
+		#TPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/bioSyntax/
 
 		# REMOVES BIOSYNTAX COLOR SCHEME
 		THEME="bioSyntax.tmTheme"
+		#THEME="bioSyntax.sublime-package"
 		sudo rm "${TPATH}/${THEME}"
 
 		# REMOVES ALL BIOSYNTAX SYNTAX FILES OR THE ONE SPECIFIED
@@ -91,7 +94,23 @@ if  [ "$(uname)" == "Darwin" ]; then
 			printf "bioSyntax support for %s in Sublime Text 3 MacOS has uninstalled successfully.\\n" "$2"
 		fi
 
-	elif [ "$1" == "vim" ]; then
+	elif [ "$port" == "vim" ]; then
+
+		# CHECKS IF VIM WAS INSTALLED VIA PATHOGEN, REMOVES bioSyntax-vim REPO IF TRUE
+		printf " Was bioSyntax for vim MacOS installed via Pathogen? (y/n)\\n"
+
+		read -p "  Enter: " yn
+		case $yn in
+			[Yy]*)
+				sudo rm -r ~/.vim/bundle/bioSyntax-vim
+				printf "bioSyntax for vim MacOS has uninstalled successfully.\\n"
+				exit 0
+				;;
+			*)
+				printf "\n" # continue
+				;;
+		esac
+
 		# SETS PATHS WHERE SYNTAX/THEME FILES ARE LOCATED
 		SOURCE="${BIOSYNTAX}/vim/"
 		FPATH=~/.vim/syntax/
@@ -106,6 +125,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				sudo rm "${TPATH}/${THEMES[${t}]}"
+			done
+			for ((t=0; t<${#FILES[@]}; t++)); do
 				sudo rm "${FPATH}/${FILES[${t}]}"
 			done
 			printf "bioSyntax for vim MacOS has uninstalled successfully.\\n"
@@ -133,6 +154,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				sudo rm "${TPATH}/${THEMES[${t}]}"
+			done
+			for ((t=0; t<${#FILES[@]}; t++)); do
 				sudo rm "${FPATH}/${FILES[${t}]}"
 			done
 			printf "bioSyntax for less MacOS has uninstalled successfully.\\n"
@@ -172,6 +195,21 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 	elif [ "$port" == "vim" ]; then
+		# CHECKS IF VIM WAS INSTALLED VIA PATHOGEN, REMOVES bioSyntax-vim REPO IF TRUE
+		printf " Was bioSyntax for Linux vim installed via Pathogen? (y/n)\\n"
+
+		read -p "  Enter: " yn
+		case $yn in
+			[Yy]*)
+				sudo rm -r ~/.vim/bundle/bioSyntax-vim
+				printf "bioSyntax for Linux vim has uninstalled successfully.\\n"
+				exit 0
+				;;
+			*)
+				printf "\n" # continue
+				;;
+		esac
+
 		# SETS PATHS WHERE SYNTAX/THEME FILES ARE LOCATED, LISTS FILES TO BE REMOVED
 		SOURCE="${BIOSYNTAX}/vim/"
 		FPATH=~/.vim/syntax/
@@ -186,7 +224,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				rm "${TPATH}/${THEMES[${t}]}"
-				rm "${FPATH}/${FILES[${t}]}"
+			done
+			for ((t=0; t<${#FILES[@]}; t++)); do
+				sudo rm "${FPATH}/${FILES[${t}]}"
 			done
 			printf "bioSyntax for Linux vim has uninstalled successfully.\\n"
 		else
@@ -234,6 +274,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				sudo rm "${TPATH}/${THEMES[${t}]}"
+			done
+			for ((t=0; t<${#FILES[@]}; t++)); do
 				sudo rm "${FPATH}/${FILES[${t}]}"
 			done
 			printf "bioSyntax for Linux less has uninstalled successfully.\\n"
@@ -273,6 +315,21 @@ else
 		fi
 
 	elif [ "$port" == "vim" ]; then
+		# CHECKS IF VIM WAS INSTALLED VIA PATHOGEN, REMOVES bioSyntax-vim REPO IF TRUE
+		printf " Was bioSyntax for Windows vim installed via Pathogen? (y/n)\\n"
+
+		read -p "  Enter: " yn
+		case $yn in
+			[Yy]*)
+				sudo rm -r $HOME/bundle/bioSyntax-vim
+				printf "bioSyntax for Windows vim has uninstalled successfully.\\n"
+				exit 0
+				;;
+			*)
+				printf "\n" # continue
+				;;
+		esac
+
 		# SETS PATHS WHERE SYNTAX/THEME FILES ARE LOCATED, LISTS FILES TO BE REMOVED
 		SOURCE="${BIOSYNTAX}/vim/"
 		FPATH=$HOME/vimfiles/syntax/
@@ -287,7 +344,9 @@ else
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
 				rm "${TPATH}/${THEMES[${t}]}"
-				rm "${FPATH}/${FILES[${t}]}"
+			done
+			for ((t=0; t<${#FILES[@]}; t++)); do
+				sudo rm "${FPATH}/${FILES[${t}]}"
 			done
 			printf "bioSyntax for Windows vim has uninstalled successfully.\\n"
 		else

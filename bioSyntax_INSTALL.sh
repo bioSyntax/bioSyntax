@@ -82,11 +82,11 @@ printf "\n"
 if [ "$port" == "sublime" ]; then
 
 	printf " Installing sublime-bioSyntax...\n\n"
-	printf "  (Y): Install manually with script (may require sudo depending on OS).\n"
-	printf "  (N): Install via sublime Package Control.\n"
+	printf "  (Y): Install manually with script (may require sudo/admin privileges depending on OS).\n"
+	printf "  (N): Install via sublime Package Control (if installed, recommended).\n"
 	printf "\n"
 	printf "\t- Open Sublime.\n"
-	printf "\t- Open command line: ctrl+shift+p\n"
+	printf "\t- Open command line: ctrl/cmd+shift+p\n"
 	printf "\t- 'Package Control:bioSyntax'\n"
 	printf ""
 
@@ -103,33 +103,22 @@ if [ "$port" == "sublime" ]; then
 elif [ "$port" == "vim" ]; then
 
 	printf " Installing vim-bioSyntax...\n\n"
-	printf "  (1): Install manually with script.\n"
-	printf "  (2): Install via Pathogen (if installed).\n"
+	printf "  (1): Install manually with script (may require sudo/admin privileges depending on OS).\n"
+	printf "  (2): Install via Pathogen (if installed, recommended).\n"
 	printf "\n"
-	printf "\tcd ~/.vim/bundle &&\n"
-	printf "\tgit clone https://github.com/bioSyntax/bioSyntax-vim.git\n"
+	printf "\t(sudo) git clone https://github.com/bioSyntax/bioSyntax-vim.git <vim-bundle-path>\n"
+	printf "\tMac/Linux Path: ~/.vim/bundle\n"
+	printf "\tWindows Path: \$HOME/vimfiles\n"
 	printf "\n"
 	printf "  (3): exit\n"
 	printf "\n"
 
 	read -p "  Enter: " yn
-	case $yn in
-		[1]*)
-			printf "\n" # continue
-			;;
-		[2]*)
-			cd ~/.vim/bundle &&
-			git clone https://github.com/bioSyntax/bioSyntax-vim.git &&
-			exit 0
-			;;
-		*)
-			exit 1
-			;;
-	esac
+
 elif [ "$port" == "less" ]; then
 
 	printf " Installing less-bioSyntax...\n\n"
-	printf "  (y): Install source highlight + bioSyntax\n"
+	printf "  (y): Install source highlight + bioSyntax (may require sudo/admin privileges depending on OS)\n"
 	printf "  (n): exit\n"
 	printf "\n"
 	printf " Note:\n"
@@ -138,7 +127,7 @@ elif [ "$port" == "less" ]; then
 	printf "\t  it will be installed or updated. (requires sudo)\n"
 	printf "\t"
 	printf "\t- 'less' will be aliased to 'less -NSi -#10' for readability."
-    printf "\t   To unset this, edit your '~/.bashrc' file after install."
+  printf "\t   To unset this, edit your '~/.bashrc' file after install."
 
 	read -p "  Enter: " yn
 	case $yn in
@@ -181,21 +170,31 @@ if  [ "$(uname)" == "Darwin" ]; then
 		SOURCE="${BIOSYNTAX}/sublime/"
 		FPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/bioSyntax/
 		if [ ! -d "${FPATH}" ]; then
-			sudo mkdir "${FPATH}";
+			sudo mkdir -p "${FPATH}";
 		fi
 		TPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Packages/bioSyntax/
+		#TPATH=~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/bioSyntax/
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
-		sudo install --mode=0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		#THEME="bioSyntax.sublime-package"
+
+		sudo install -m 0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".sublime-syntax"
 		FILES=(`find "${SOURCE}" -name "*${FILE}" -print`)
 
-	elif [ "$port" == "vim" ]; then
+		# SUBLIME (MANUAL, as of MacOS High Sierra Update)/LESS/GEDIT INSTALLATION REQUIRES SUDO
+		if [ -z "$2" ]; then
+			for ((f=0; f<${#FILES[@]}; f++)); do
+				sudo install -m 0644 "${FILES[${f}]}" "${FPATH}"
+			done
+		else
+			sudo install -m 0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
+		fi
 
-		printf "Setting up %s syntax file(s) and style file(s) for Mac OSX Vim.\\n" "$2"
+	elif [ "$port" == "vim" ]; then
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
 		if [ ! -e ~/.vimrc ]; then
 			touch ~/.vimrc;
@@ -203,6 +202,24 @@ if  [ "$(uname)" == "Darwin" ]; then
 		if ! grep -q ":syntax enable" ~/.vimrc; then
 			echo ":syntax enable" >> ~/.vimrc;
 		fi
+
+		# CHECKS IF USER WANTS INSTALLATION VIA PATHOGEN
+		case $yn in
+			[1]*)
+				printf "\n" # continue
+				;;
+			[2]*)
+				sudo git clone https://github.com/bioSyntax/bioSyntax-vim.git ~/.vim/bundle/bioSyntax-vim &&
+				printf "Installation successful. Restart vim and you will now have pretty formats!\\n"
+				printf "Thank you for your support!\\n"
+				exit 0
+				;;
+			*)
+				exit 1
+				;;
+		esac
+
+		printf "Setting up %s syntax file(s) and style file(s) for Mac OSX Vim.\\n" "$2"
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/vim/"
@@ -223,7 +240,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 			mkdir ~/.vim/colors/;
 		fi
 
-		sudo install --mode=0644 "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
+		sudo install -m 0644 "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEME=".vim"
@@ -231,10 +248,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
+				sudo install -m 0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo install --mode=0644 "${SOURCE}/ftdetect/{$2}.vim" "${TPATH}"
+			sudo install -m 0644 "${SOURCE}/ftdetect/{$2}.vim" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -245,10 +262,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# SUBLIME (MANUAL, as of MacOS High Sierra Update)/LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				sudo install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				sudo install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			sudo install --mode=0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
+			sudo install -m 0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
 		fi
 
 
@@ -301,8 +318,8 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME FILE(S), LESSPIPE SCRIPT AND SYNTAX FILE(S)
 		SOURCE="${BIOSYNTAX}/less/"
 		HIGHLIGHT="/usr/local/opt/source-highlight/share/source-highlight/"
-		FPATH=$HIGHLIGHT
-		TPATH=$HIGHLIGHT
+		FPATH="/usr/local/opt/source-highlight/share/source-highlight/"
+		TPATH="/usr/local/opt/source-highlight/share/source-highlight/"
 
 		# DETECTS DEFAULT SHELL AND APPENDS LESSPIPE TO APPROPRIATE RC FILE
 		if [ `echo $SHELL` == "/bin/bash" ]; then
@@ -326,19 +343,19 @@ if  [ "$(uname)" == "Darwin" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		sudo install --mode=0755 "${SOURCE}/src-hilite-lesspipe-bio.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
-		sudo install --mode=0755 "${SOURCE}/bioSyntax.outlang" "${TPATH}"
-		sudo install --mode=0755 "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
+		sudo install -m 0755 "${SOURCE}/src-hilite-lesspipe-bio-MAC.sh" "/usr/local/bin/src-hilite-lesspipe.sh"
+		sudo install -m 0755 "${SOURCE}/bioSyntax.outlang" "${TPATH}"
+		sudo install -m 0755 "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
 
 		THEME=".style"
 		THEMES=(`find "${SOURCE}" -name "*${THEME}" -print`)
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				sudo install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
+				sudo install -m 0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			sudo install --mode=0644 "${SOURCE}/${2}${THEME}" "${TPATH}"
+			sudo install -m 0644 "${SOURCE}/${2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILES
@@ -349,10 +366,10 @@ if  [ "$(uname)" == "Darwin" ]; then
 		# SUBLIME (MANUAL, as of MacOS High Sierra Update)/LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				sudo install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				sudo install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			sudo install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
+			sudo install -m 0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 	else
@@ -424,8 +441,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 	elif [ "$port" == "vim" ]; then
-
-		printf "Setting up %s syntax file(s) and style file(s) for Linux vim.\\n" "$2"
 		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
 		if [ ! -e ~/.vimrc ]; then
 			touch ~/.vimrc;
@@ -433,12 +448,31 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if ! grep -q "syntax enable" ~/.vimrc; then
 			echo "syntax enable" >> ~/.vimrc;
 		fi
-		if [ ! -d ~/.vim/ ]; then
-			mkdir ~/.vim/;
-		fi
+
+		# CHECKS IF USER WANTS INSTALLATION VIA PATHOGEN
+		case $yn in
+			[1]*)
+				printf "\n" # continue
+				;;
+			[2]*)
+				git clone https://github.com/bioSyntax/bioSyntax-vim.git ~/.vim/bundle/bioSyntax-vim &&
+				printf "Installation successful. Restart vim and you will now have pretty formats!\\n"
+				printf "Thank you for your support!\\n"
+				exit 0
+				;;
+			*)
+				exit 1
+				;;
+		esac
+
+		printf "Setting up %s syntax file(s) and style file(s) for Linux vim.\\n" "$2"
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/vim/"
+
+		if [ ! -d ~/.vim/ ]; then
+			mkdir ~/.vim/;
+		fi
 		FPATH=~/.vim/syntax/
 		if [ ! -d "${FPATH}" ]; then
 			mkdir "${FPATH}";
@@ -522,7 +556,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		fi
 
 		# COPIES LESSPIPE SCRIPT AND THEME FILE(S) TO RIGHT PATHS, CHANGES LESSPIPE SCRIPT TO EXECUTABLE AND THE REST TO READ-ONLY
-		install --mode=0755 "${SOURCE}/src-hilite-lesspipe-bio.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
+		install --mode=0755 "${SOURCE}/src-hilite-lesspipe-bio-LINUX.sh" "${TPATH}/src-hilite-lesspipe-bio.sh"
 		sudo install --mode=0755 "${SOURCE}/bioSyntax.outlang" "${TPATH}"
 		sudo install --mode=0755 "${SOURCE}/bioSyntax-vcf.outlang" "${TPATH}"
 
@@ -618,21 +652,38 @@ else
 		fi
 
 	elif [ "$port" == "vim" ]; then
-
-		printf "Setting up %s syntax file(s) and style file(s) for Windows vim.\\n" "$2"
-		# CREATES/SETS .vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
+		# CREATES/SETS _vimrc FILE AND ENABLES AUTOMATIC SYNTAX HIGHLIGHTING
 		if [ ! -e $HOME/_vimrc ]; then
 			touch $HOME/_vimrc;
 		fi
 		if ! grep -q ":syntax enable" $HOME/_vimrc; then
 			echo ":syntax enable" >> $HOME/_vimrc;
 		fi
-		if [ ! -d $HOME/vimfiles/ ]; then
-			mkdir $HOME/vimfiles/;
-		fi
+
+		# CHECKS IF USER WANTS INSTALLATION VIA PATHOGEN
+		case $yn in
+			[1]*)
+				printf "\n" # continue
+				;;
+			[2]*)
+				git clone https://github.com/bioSyntax/bioSyntax-vim.git $HOME/vimfiles/bundle/bioSyntax-vim &&
+				printf "Installation successful. Restart vim and you will now have pretty formats!\\n"
+				printf "Thank you for your support!\\n"
+				exit 0
+				;;
+			*)
+				exit 1
+				;;
+		esac
+
+		printf "Setting up %s syntax file(s) and style file(s) for Windows vim.\\n" "$2"
 
 		# SETS/CREATES PATHS & VARIABLES FOR PLACING THEME AND SYNTAX FILES
 		SOURCE="${BIOSYNTAX}/vim/"
+
+		if [ ! -d $HOME/vimfiles/ ]; then
+			mkdir $HOME/vimfiles/;
+		fi
 		FPATH=$HOME/vimfiles/syntax/
 		if [ ! -d "${FPATH}" ]; then
 			mkdir "${FPATH}";
@@ -684,6 +735,6 @@ else
 
 fi
 
-printf "Installation successful. Restart %s and you will now have pretty %s formats!\\n"
-printf "Thank you for your support!\\n" "$port" "$2"
+printf "Installation successful. Restart %s and you will now have pretty formats!\\n" "$port"
+printf "Thank you for your support!\\n"
 exit 0
