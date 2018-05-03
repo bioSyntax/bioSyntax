@@ -393,7 +393,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
 
-		install --mode=0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		install -m 0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".sublime-syntax"
@@ -403,10 +403,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "gedit" ]; then
@@ -424,7 +424,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGES IT TO READ-ONLY
 		THEME="bioSyntax.xml"
 
-		install --mode=0644 "${SOURCE}/styles/${THEME}" "${TPATH}/${THEME}"
+		install -m 0644 "${SOURCE}/styles/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".lang"
@@ -434,10 +434,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "vim" ]; then
@@ -486,7 +486,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		if [ ! -d ~/.vim/colors/ ]; then
 			mkdir ~/.vim/colors/;
 		fi
-		install --mode=0644 "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
+		install -m 0644 "${SOURCE}/colors/bioSyntax.vim" ~/.vim/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEME=".vim"
@@ -494,10 +494,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
+				install -m 0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
+			install -m 0644 "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -508,10 +508,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
 		fi
 
 
@@ -565,10 +565,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
+				install -m 0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/${2}${THEME}" "${TPATH}"
+			install -m 0644 "${SOURCE}/${2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILES
@@ -579,10 +579,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 		# LESS/GEDIT INSTALLATION REQUIRES SUDO
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 
@@ -606,7 +606,7 @@ else
 
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.tmTheme"
-		install --mode=0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
+		install -m 0644 "${SOURCE}/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".sublime-syntax"
@@ -615,10 +615,10 @@ else
 		# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "gedit" ]; then
@@ -636,7 +636,7 @@ else
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.xml"
 
-		install --mode=0644 "${SOURCE}/styles/${THEME}" "${TPATH}/styles/${THEME}"
+		install -m 0644 "${SOURCE}/styles/${THEME}" "${TPATH}/styles/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".lang"
@@ -645,10 +645,10 @@ else
 		# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/language-specs/${2}${FILE}" "${FPATH}"
 		fi
 
 	elif [ "$port" == "vim" ]; then
@@ -697,17 +697,17 @@ else
 		if [ ! -d $HOME/vimfiles/colors/ ]; then
 			mkdir $HOME/vimfiles/colors;
 		fi
-		install --mode=0644 "${SOURCE}/colors/bioSyntax.vim" $HOME/vimfiles/colors/
+		install -m 0644 "${SOURCE}/colors/bioSyntax.vim" $HOME/vimfiles/colors/
 
 		# COPIES ALL AUTO-DETECT FILES T0 RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		THEME=".vim"
 		THEMES=(`find "${SOURCE}/ftdetect/" -name "*${THEME}" -print`)
 		if [ -z "$2" ]; then
 			for ((t=0; t<${#THEMES[@]}; t++)); do
-				install --mode=0644 "${THEMES[${t}]}" "${TPATH}"
+				install -m 0644 "${THEMES[${t}]}" "${TPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
+			install -m 0644 "${SOURCE}/ftdetect/{$2}${THEME}" "${TPATH}"
 		fi
 
 		# LISTS ALL SYNTAX FILE(S)
@@ -717,10 +717,10 @@ else
 		# COPIES SYNTAX FILE(S) TO RIGHT PATHS AND CHANGES THEM TO READ-ONLY
 		if [ -z "$2" ]; then
 			for ((f=0; f<${#FILES[@]}; f++)); do
-				install --mode=0644 "${FILES[${f}]}" "${FPATH}"
+				install -m 0644 "${FILES[${f}]}" "${FPATH}"
 			done
 		else
-			install --mode=0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
+			install -m 0644 "${SOURCE}/syntax/${2}${FILE}" "${FPATH}"
 		fi
 
 	#elif [ "$port" == "less" ]; then
