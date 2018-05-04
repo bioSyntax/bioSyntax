@@ -11,6 +11,7 @@
 SHELL =/bin/bash
 SOURCEDIR = $(PWD)
 ZIP = tar -zcvf
+ZIP_R = zip -r
 PANDOC = pandoc
 
 CD = cd
@@ -55,6 +56,10 @@ sublime:
 		cp $$TEMPLATE $$SYNTAX".sublime-settings" ;\
 	done;\
 	}
+
+	# Create sublime-package file for release
+	$(CD) $(release)/sublime;\
+	$(ZIP_R) bioSyntax.sublime-package *
 	#
 
 vim:
