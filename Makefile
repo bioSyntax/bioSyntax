@@ -20,7 +20,7 @@ MV = mv
 CP_R = cp -r
 
 #-- bioSyntax Release Config --
-version = v0.1.0
+version = v0.1.5
 release = bioSyntax_$(version)
 components = all gedit sublime vim less alt man zip
 
@@ -79,7 +79,6 @@ man:
 	# scripts + manuals -----------------------------------
 	$(CP_R) INSTALL.md $(release)
 	$(CP_R) bioSyntax_INSTALL.sh $(release)
-	$(CP_R) bioSyntax_UNINSTALL.sh $(release)
 	$(CP_R) LICENSE.md $(release)
 	$(CD) dev/man/ ;\
 	$(PANDOC) man_pdf.md -f markdown -t latex -o ../../$(release)/man.pdf
