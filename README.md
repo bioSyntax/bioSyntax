@@ -9,6 +9,15 @@ Support in **vim**, **less**, **sublime3** & **gedit** for `.sam`, `.flagstat`, 
 
 ### We'd like to know how bioSyntax can be developed to help your workflow. [Tell us what you think! (~5m)](https://goo.gl/forms/YO89fEPw71JpH3Ac2)
 
+# Mozilla Sprint 2018 Updates
+- Date: May 10 - May 11 (9:00 am - 5:00 pm PST)
+- On-Site Location: Mozilla Vancouver, #209-163 W Hastings St, Vancouver, BC V6B 1H5, Canada (NOTE: No on-site parking available)
+- Join us for the pre-Sprint [Demo Call](https://public.etherpad-mozilla.org/p/ol5-demos-b) on Tuesday, May 8, 16:00 UTC to learn more about the project!
+**CONTACT:**
+- Project Lead: Alyssa Fegen ([alyssafegen at alumni.ubc.ca](mailto:alyssafegen@alumni.ubc.ca)); will be on-site
+- [Slack Channel](https://join.slack.com/t/biosyntax/shared_invite/enQtMzU5OTAwNTc0MjI5LTIxNGU4YzQ1ODljZjg0OTE2M2Y5MDY0MjUwOTA4ZjIwMjVjYjgzNTA5ZGM1ZTliNDMwMGUxMmUzOTI3YWMwOTk) (NOTE: Invite link expires on May 13; contact dev team for invites subsequently)
+- [Discord Server](https://discord.gg/PAD6y4p) (NOTE: Invite link expires on May 13; contact dev team for invites subsequently)
+
 ## Usage
 bioSyntax integrates seamlessly with your text editor, recognizing data-type by the file extension or streamed into `less`.
 
