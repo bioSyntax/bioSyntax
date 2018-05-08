@@ -24,12 +24,12 @@ bioSyntax comes with a handy installation script. Simply download the latest rel
 ## Sublime
 **(Linux / Mac / Win)**
 
-**Via Package Control (Easiest, no admin/sudo privileges required):**
+### via Package Control (Easiest, no admin/sudo privileges required):
 - Install [Package Control for Sublime](https://packagecontrol.io/installation).
 - Once installed, in Sublime, go to `Preferences > Package Control > Package Control: Install Package` and search for `bioSyntax`, and click on it. Package Control will install the syntax files for you.
 - Pick the right file type from the drop-down menu at the bottom-right corner of the editor (e.g. fasta) and select the bioSyntax Color Scheme from `Preferences > Color Scheme > bioSyntax`.
 
-** Manual (sudo/admin privileges may be required): **
+### Manual Install (sudo/admin privileges may be required):
 
 0. Install [Sublime Text 3](http://www.sublimetext.com/).
 
@@ -64,23 +64,23 @@ bioSyntax comes with a handy installation script. Simply download the latest rel
 We're working on adding bioSyntax intallation via Sublime's Package Control. (NOT IMPLEMENTED YET)
 
 
-## gedit
+## gedit (sudo/admin privileges may be required):
 **(Linux / Win)**
 
 0. Install [Gedit](https://wiki.gnome.org/Apps/Gedit).
 1. Unzip the downloaded bioSyntax release.
 2. In bioSyntax folder copy gedit style, `$bioSyntax/gedit/bioSyntax.xml`, file to the appropriate gtksourceview styles folder.
-- **Linux**: `/usr/share/gtksourceview-3.0/styles/`
+- **Linux**: `"HOME/.local/share/gtksourceview-3.0/styles`
 - **Windows**: `/c/Program\ Files/gedit/share/gtksourceview-3.0/styles/`
 
 	```
-	sudo cp $bioSyntax/gedit/bioSyntax.xml <insert-path>
+	cp $bioSyntax/gedit/bioSyntax.xml <insert-path>
 	```
 	{: .language-bash}
 
 3. Copy the gedit `*.lang` files to the appropriate gtksourceview language-spec folder.
 - **Linux**: `$HOME/.local/share/gtksourceview-3.0/language-specs`
-- **Windows**: `$HOME/.local/share/gtksourceview-3.0/styles`
+- **Windows**: `/c/Program\ Files/gedit/share/gtksourceview-3.0/language-specs`
 
 	```
 	cp $bioSyntax/gedit/*.lang <insert-path>
@@ -96,7 +96,7 @@ We're working on adding bioSyntax intallation via Sublime's Package Control. (NO
 ## vim
 **(Linux / Mac / Win)**
 
-### via Pathogen (Easiest installation, may require sudo/admin privileges)
+### via Pathogen (Easiest installation, may require sudo/admin privileges):
 
 If you have [Pathogen](https://github.com/tpope/vim-pathogen) and [Git](https://git-scm.com/downloads) installed:
 
@@ -153,7 +153,7 @@ git clone https://github.com/bioSyntax/bioSyntax-vim.git
 5. Restart vim and you now have pretty formats!
 NOTE: Syntax-highlighting can be turned off using `:syntax off` or removing the `:syntax enable` line from the `.vimrc/_vimrc` file.
 
-## less (sudo privileges may be required)
+## less (Hardest installation, sudo privileges may be required)
 **(Linux, Mac)**
 
 0. Ensure that your applications/packages are up-to-date:
@@ -185,7 +185,7 @@ NOTE: Syntax-highlighting can be turned off using `:syntax off` or removing the 
 
 2. Unzip the downloaded bioSyntax release, `$bioSyntax`.
 
-3. In the `$bioSyntax/less/` folder, copy the `biosyntax.outlang` and `biosyntax-vcf.outlang` files to the **source-highlight** folder:
+3. In the `$bioSyntax/less/` folder, copy the `bioSyntax.outlang` and `bioSyntax-vcf.outlang` files to the **source-highlight** folder:
 - **Linux**: `$HOME/.local/share/source-highlight`
 - **Mac**: `/usr/local/opt/source-highlight/share/source-highlight/`
 
@@ -198,12 +198,12 @@ NOTE: Syntax-highlighting can be turned off using `:syntax off` or removing the 
 4. Copy the bioSyntax language definition `*.lang` and style definition `*.style` files to the paths as above:
 
 	```
-	sudo cp $bioSyntax/less/*.style <insert-path>
-	sudo cp $bioSyntax/less/*.lang <insert-path>
+	cp $bioSyntax/less/*.style <insert-path>
+	cp $bioSyntax/less/*.lang <insert-path>
 	```
 	{: .language-bash}
 
-5. Find where **source-highlight** installed its `src-hilite-lesspipe.sh` script, and replace it with `$bioSyntax/less/src-hilite-lesspipe_bio_<OS>.sh`. Make the script executable.
+5. Find where **source-highlight** installed its `src-hilite-lesspipe.sh` script, and replace it with `$bioSyntax/less/src-hilite-lesspipe-bio-<OS>.sh`. Make the script executable.
 
 	```
 	# Ubuntu
