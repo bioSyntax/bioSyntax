@@ -32,7 +32,11 @@ We invite you to try out **bioSyntax** and keep an eye out for anything that nee
 
 ## Communication Channels
 
-Currently, we do not have a forum or mailing list, so please direct any questions you may have to [info at bioSyntax.org](mailto:info@bioSyntax.org), or any of the core developers.
+Stay in the loop with us through Slack or Discord below:
+- [Slack Channel](https://join.slack.com/t/biosyntax/shared_invite/enQtMzU5OTAwNTc0MjI5LTIxNGU4YzQ1ODljZjg0OTE2M2Y5MDY0MjUwOTA4ZjIwMjVjYjgzNTA5ZGM1ZTliNDMwMGUxMmUzOTI3YWMwOTk) (NOTE: Invite link expires on May 13; contact dev team for invites subsequently)
+- [Discord Server](https://discord.gg/PAD6y4p) (NOTE: Invite link expires on May 13; contact dev team for invites subsequently)
+
+Alternatively, you may direct any questions you may have to [info at bioSyntax.org](mailto:info@bioSyntax.org), or any of the core developers.
 
 ## Developer's Certificate of Origin 1.1
 
