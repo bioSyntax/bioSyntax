@@ -12,7 +12,7 @@ This project adheres to a [code of conduct](https://www.mozilla.org/en-US/about/
 
 ## Current Goals
 
-We currently have a handful of things we would like to accomplish during the Sprint. Have a look at our [current issues](https://github.com/bioSyntax/bioSyntax/issues?q=is%3Aissue+is%3Aopen+label%3Amozsprint2018) to find out more about them.
+We currently have a handful of things we would like to accomplish during the Sprint. Have a look at our [Sprint master post](https://github.com/bioSyntax/bioSyntax/issues/38) to find out more about them.
 
 For background information to help you start building, please refer to our [manual](https://biosyntax.org/dev).
 
