@@ -10,6 +10,7 @@ Support in **vim**, **less**, **sublime3** & **gedit** for `.sam`, `.flagstat`, 
 ### We'd like to know how bioSyntax can be developed to help your workflow. [Tell us what you think! (~5m)](https://goo.gl/forms/YO89fEPw71JpH3Ac2)
 
 # [Mozilla Sprint 2018 Updates](https://www.mozillapulse.org/entry/655)
+- [Find out](https://github.com/bioSyntax/bioSyntax/issues/38) how you can contribute!
 - Date: May 10 - May 11 (9:00 am - 5:00 pm PST)
 - On-Site Location: Mozilla Vancouver, #209-163 W Hastings St, Vancouver, BC V6B 1H5, Canada (NOTE: No on-site parking available)
 - Join us for the pre-Sprint [Demo Call](https://public.etherpad-mozilla.org/p/ol5-demos-b) on Tuesday, May 8, 16:00 UTC to learn more about the project!
