@@ -2,11 +2,11 @@
     "name": "biosyntax",
     "displayName": "bioSyntax",
     "description": "bioSyntax for computational biology",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "repository": "https://github.com/liyao001/bioSyntax",
     "publisher": "reageyao",
     "engines": {
-        "vscode": "^1.23.0"
+        "vscode": "^1.0.0"
     },
     "categories": [
         "Programming Languages"
