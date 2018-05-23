@@ -1,0 +1,108 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.clustal", 
+    "name": "clustal", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "comment", 
+                    "match": "^CLUSTAL.*"
+                }, 
+                {
+                    "name": "chrStart", 
+                    "match": "/[0-9]*-[0-9]*"
+                }, 
+                {
+                    "name": "string", 
+                    "match": "^[\\w\\.\\-\\_]*(?=[/ ])"
+                }, 
+                {
+                    "name": "chrStart", 
+                    "match": "[0-9]+$"
+                }, 
+                {
+                    "name": "nothing", 
+                    "match": "\\*++"
+                }, 
+                {
+                    "name": "gradbw5", 
+                    "match": "\\:++"
+                }, 
+                {
+                    "name": "gradbw5", 
+                    "match": "\\.++"
+                }, 
+                {
+                    "name": "ntA", 
+                    "match": "[Aa]++"
+                }, 
+                {
+                    "name": "ntC", 
+                    "match": "[Cc]++"
+                }, 
+                {
+                    "name": "ntG", 
+                    "match": "[Gg]++"
+                }, 
+                {
+                    "name": "ntT", 
+                    "match": "[TtUu]++"
+                }, 
+                {
+                    "name": "ntN", 
+                    "match": "[NnXx]++"
+                }, 
+                {
+                    "name": "ntGap", 
+                    "match": "[-]++"
+                }, 
+                {
+                    "name": "ntR", 
+                    "match": "[Rr]++"
+                }, 
+                {
+                    "name": "ntY", 
+                    "match": "[Yy]++"
+                }, 
+                {
+                    "name": "ntS", 
+                    "match": "[Ss]++"
+                }, 
+                {
+                    "name": "ntW", 
+                    "match": "[Ww]++"
+                }, 
+                {
+                    "name": "ntM", 
+                    "match": "[Mm]++"
+                }, 
+                {
+                    "name": "ntK", 
+                    "match": "[Kk]++"
+                }, 
+                {
+                    "name": "ntD", 
+                    "match": "[Dd]++"
+                }, 
+                {
+                    "name": "ntB", 
+                    "match": "[Bb]++"
+                }, 
+                {
+                    "name": "ntV", 
+                    "match": "[Vv]++"
+                }, 
+                {
+                    "name": "ntH", 
+                    "match": "[Hh]++"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,116 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "fastq",
+	"patterns": [
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"strings": {
+			"patterns":[
+				{
+					"begin": "^(@[A-Za-z]{2}(.*))",
+					"end": "^(?=\\+)",
+					"name": "top_3.lines",
+					"patterns": [
+						{
+							"name": "ntA", 
+							"match": "[Aa]+"
+						}, 
+						{
+							"name": "ntG", 
+							"match": "[Gg]+"
+						}, 
+						{
+							"name": "ntC", 
+							"match": "[Cc]+"
+						}, 
+						{
+							"name": "ntT", 
+							"match": "[Tt]+"
+						}, 
+						{
+							"name": "ntU", 
+							"match": "[Uu]+"
+						},
+						{
+							"name": "comment",
+							"match": "^\\+"
+						}
+					],
+					"captures": {
+						"1": {
+							"name": "header"
+						}
+					}
+				},
+				{
+					"match": "^\\+(.*)",
+					"name": "comment"
+				},
+				{
+                    "name": "gradbw0", 
+                    "match": "[\\!\\#\\$\"]"
+                }, 
+                {
+                    "name": "gradbw1", 
+                    "match": "[%\\&\\'\\(]"
+                }, 
+                {
+                    "name": "gradbw2", 
+                    "match": "[\\)\\*\\+\\,]"
+                }, 
+                {
+                    "name": "gradbw3", 
+                    "match": "[\\-\\.\\/0]"
+                }, 
+                {
+                    "name": "gradbw4", 
+                    "match": "[1-4]"
+                }, 
+                {
+                    "name": "gradbw5", 
+                    "match": "[5-8]"
+                }, 
+                {
+                    "name": "gradbw6", 
+                    "match": "[9\\:\\;\\<]"
+                }, 
+                {
+                    "name": "gradbw7", 
+                    "match": "[\\=\\>\\?\\@]"
+                }, 
+                {
+                    "name": "gradbw8", 
+                    "match": "[ABCD]"
+                }, 
+                {
+                    "name": "gradbw9", 
+                    "match": "[EFGHIJ]"
+                }, 
+                {
+                    "name": "gradbw10", 
+                    "match": "[K-Z\\[\\\\]"
+                }, 
+                {
+                    "name": "gradbw10", 
+                    "match": "[\\]\\^\\_\\`a-f]"
+                }, 
+                {
+                    "name": "gradbw10", 
+                    "match": "[g-p]"
+                }, 
+                {
+                    "name": "gradbw10", 
+                    "match": "[q-z]"
+                }, 
+                {
+                    "name": "gradbw10", 
+                    "match": "[\\{\\|\\}\\~]"
+                }
+			]
+		}
+	},
+	"scopeName": "source.fastq"
+}

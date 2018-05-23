@@ -1,0 +1,288 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.vcf", 
+    "name": "vcf", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "begin": "^##",
+                    "end": "$",
+                    "name": "comment.vcf",
+                    "patterns": [
+                        {
+                            "begin": "INFO=<",
+                            "end": "$",
+                            "name": "entity.name.vcf",
+                            "patterns": [
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=ID=).*?(?=,)"
+                                }, 
+                                {
+                                    "name": "constant.numeric.vcf", 
+                                    "match": "(?<=Type=)Integer"
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Type=)Float"
+                                }, 
+                                {
+                                    "name": "chr.vcf", 
+                                    "match": "(?<=Type=)Character"
+                                }, 
+                                {
+                                    "name": "name.id.vcf", 
+                                    "match": "(?<=Type=)String"
+                                }, 
+                                {
+                                    "name": "chrStart.vcf", 
+                                    "match": "(?<=Description=)\".*\""
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "FILTER=<",
+                            "end": "$",
+                            "name": "aaC.vcf",
+                            "patterns": [
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=ID=).*?(?=,)"
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "FORMAT=<",
+                            "end": "$",
+                            "name": "aaG",
+                            "patterns": [
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=ID=).*?(?=,)"
+                                }, 
+                                {
+                                    "name": "constant.numeric.vcf", 
+                                    "match": "(?<=Type=)Integer"
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Type=)Float"
+                                }, 
+                                {
+                                    "name": "storage.type.vcf", 
+                                    "match": "(?<=Type=)Flag"
+                                }, 
+                                {
+                                    "name": "chr.vcf", 
+                                    "match": "(?<=Type=)Character"
+                                }, 
+                                {
+                                    "name": "name.id.vcf", 
+                                    "match": "(?<=Type=)String"
+                                }, 
+                                {
+                                    "name": "chrStart.vcf", 
+                                    "match": "(?<=Description=)\".*\""
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "ALT=<",
+                            "end": "$",
+                            "name": "aaI",
+                            "patterns": [
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=ID=).*?(?=,)"
+                                }, 
+                                {
+                                    "name": "chrStart.vcf", 
+                                    "match": "(?<=Description=)\".*\""
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }
+                            ]
+                        },
+                        {
+                            "match": "assembly=.*$",
+                            "name": "string.vcf"
+                        },
+                        {
+                            "begin": "contig=<",
+                            "end": "$",
+                            "name": "aaH.vcf",
+                            "patterns": [
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=ID=).*?(?=,)"
+                                }, 
+                                {
+                                    "name": "aaL.vcf", 
+                                    "match": "(?<=URL=).*?(?=[\\,>])"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "SAMPLE=<",
+                            "end": "$",
+                            "name": "aaM.vcf",
+                            "patterns": [
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=ID=).*?(?=,)"
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }, 
+                                {
+                                    "name": "markup.deleted.vcf", 
+                                    "match": "(?<=Description=).*?(?=[,>])"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "aaY", 
+                            "match": "PEDIGREE=.*$"
+                        }, 
+                        {
+                            "name": "aaY", 
+                            "match": "pedigreeDB=.*$"
+                        }, 
+                        {
+                            "name": "string.vcf", 
+                            "match": "reference=.*$"
+                        }, 
+                        {
+                            "name": "numeric.vcf", 
+                            "match": "(?<=fileformat=)[A-Za-z0-9\\.]+"
+                        }, 
+                        {
+                            "name": "string.vcf", 
+                            "match": "(?<=##)[A-Za-z]+="
+                        }, 
+                        {
+                            "name": "storage.type.vcf", 
+                            "match": "(?<==)[A-Za-z0-9\\-\\.]+"
+                        }
+                    ]
+                },
+                {
+                    "match": "(\\#CHROM)(\\s+\\w*)+$",
+                    "name": "entity.name"
+                },
+                {
+                    "match": "^([\\w]+)\\s([\\S]*)\\s([\\S]*)\\s([\\S]*)\\s([\\S]*)\\s(.*)",
+                    "captures": {
+                        "1": {
+                            "name": "chr.vcf"
+                        },
+                        "2": {
+                            "name": "chrStart.vcf"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "match": "\\.",
+                                    "name": "chrStart.vcf"
+                                },
+                                {
+                                    "match": "rs[0-9]+",
+                                    "name": "comment.vcf"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "name": "ntA", 
+                                    "match": "A"
+                                }, 
+                                {
+                                    "name": "ntG", 
+                                    "match": "G"
+                                }, 
+                                {
+                                    "name": "ntC", 
+                                    "match": "C"
+                                }, 
+                                {
+                                    "name": "ntT", 
+                                    "match": "(U|T)"
+                                }
+                            ]
+                        },
+                        "5": {
+                            "patterns": [
+                                {
+                                    "name": "ntA", 
+                                    "match": "A"
+                                }, 
+                                {
+                                    "name": "ntG", 
+                                    "match": "G"
+                                }, 
+                                {
+                                    "name": "ntC", 
+                                    "match": "C"
+                                }, 
+                                {
+                                    "name": "ntT", 
+                                    "match": "(U|T)"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "chrStart.vcf",
+                            "patterns": [
+                                {
+                                    "begin": "(?<=[\\s\t;])[A-Za-z0-9]+=",
+                                    "end": "[\t\\s;]",
+                                    "name": "string.vcf",
+                                    "patterns": [
+                                        {
+                                            "match": "(?<=)[A-Za-z0-9\\-\\.,]+(?=[;\t\\s])",
+                                            "name": "storage.type.vcf"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "match": "\b[0-9]\b",
+                    "name": "invalid"
+                },
+                {
+                    "match": "\\s.\\;",
+                    "name": "invalid"
+                }
+            ]
+        }
+    }
+}

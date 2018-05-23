@@ -1,0 +1,321 @@
+{
+    "name": "biosyntax",
+    "displayName": "bioSyntax",
+    "description": "bioSyntax for computational biology",
+    "version": "0.0.1",
+    "repository": "https://github.com/liyao001/bioSyntax",
+    "publisher": "reageyao",
+    "engines": {
+        "vscode": "^1.23.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "bed",
+                "aliases": [
+                    "bed"
+                ],
+                "extensions": [
+                    ".bed"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "clustal",
+                "aliases": [
+                    "clustal",
+                    "aln"
+                ],
+                "extensions": [
+                    ".clustal",
+                    ".aln"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "cwl",
+                "aliases": [
+                    "cwl"
+                ],
+                "extensions": [
+                    ".cwl"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "faidx",
+                "aliases": [
+                    "faidx"
+                ],
+                "extensions": [
+                    ".fai"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta",
+                "aliases": [
+                    "fasta",
+                    "fasta"
+                ],
+                "extensions": [
+                    ".fasta",
+                    ".fa"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta-clustal",
+                "aliases": [
+                    "fasta-clustal",
+                    "fasta"
+                ],
+                "extensions": [
+                    ".fastaa",
+                    ".faa"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta-hc",
+                "aliases": [
+                    "fasta-hc",
+                    "fasta"
+                ],
+                "extensions": [
+                    ".fas",
+                    ".mfa"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta-hydro",
+                "aliases": [
+                    "fasta-hydro"
+                ],
+                "extensions": [
+                    ".fastahydro"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta-nt",
+                "aliases": [
+                    "fasta-nt"
+                ],
+                "extensions": [],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta-taylor",
+                "aliases": [
+                    "fasta-taylor"
+                ],
+                "extensions": [
+                    ".fastaylor"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fasta-zappo",
+                "aliases": [
+                    "fasta-zappo"
+                ],
+                "extensions": [
+                    ".fastza"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "fastq",
+                "aliases": [
+                    "fastq"
+                ],
+                "extensions": [
+                    ".fastq",
+                    ".fq"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "flagstat",
+                "aliases": [
+                    "flagstat"
+                ],
+                "extensions": [
+                    ".flagstat"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "gtf",
+                "aliases": [
+                    "gtf"
+                ],
+                "extensions": [
+                    ".gtf",
+                    ".gff"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "pdb",
+                "aliases": [
+                    "pdb"
+                ],
+                "extensions": [
+                    ".pdb"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "pml",
+                "aliases": [
+                    "pml"
+                ],
+                "extensions": [
+                    ".pml"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "sam",
+                "aliases": [
+                    "sam"
+                ],
+                "extensions": [
+                    ".sam"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "vcf",
+                "aliases": [
+                    "vcf"
+                ],
+                "extensions": [
+                    ".vcf"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "wig",
+                "aliases": [
+                    "wig"
+                ],
+                "extensions": [
+                    ".wig"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "bed",
+                "scopeName": "source.bed",
+                "path": "./syntaxes/bed.tmLanguage.json"
+            },
+            {
+                "language": "clustal",
+                "scopeName": "source.clustal",
+                "path": "./syntaxes/clustal.tmLanguage.json"
+            },
+            {
+                "language": "cwl",
+                "scopeName": "source.cwl",
+                "path": "./syntaxes/cwl.tmLanguage.json"
+            },
+            {
+                "language": "faidx",
+                "scopeName": "source.faidx",
+                "path": "./syntaxes/faidx.tmLanguage.json"
+            },
+            {
+                "language": "fasta",
+                "scopeName": "source.fasta",
+                "path": "./syntaxes/fasta.tmLanguage.json"
+            },
+            {
+                "language": "fasta-clustal",
+                "scopeName": "source.fasta-clustal",
+                "path": "./syntaxes/fasta-clustal.tmLanguage.json"
+            },
+            {
+                "language": "fasta-hc",
+                "scopeName": "source.fasta-hc",
+                "path": "./syntaxes/fasta-hc.tmLanguage.json"
+            },
+            {
+                "language": "fasta-hydro",
+                "scopeName": "source.fasta-hydro",
+                "path": "./syntaxes/fasta-hydro.tmLanguage.json"
+            },
+            {
+                "language": "fasta-nt",
+                "scopeName": "source.fasta-nt",
+                "path": "./syntaxes/fasta-nt.tmLanguage.json"
+            },
+            {
+                "language": "fasta-taylor",
+                "scopeName": "source.fasta-taylor",
+                "path": "./syntaxes/fasta-taylor.tmLanguage.json"
+            },
+            {
+                "language": "fasta-zappo",
+                "scopeName": "source.fasta-zappo",
+                "path": "./syntaxes/fasta-zappo.tmLanguage.json"
+            },
+            {
+                "language": "fastq",
+                "scopeName": "source.fastq",
+                "path": "./syntaxes/fastq.tmLanguage.json"
+            },
+            {
+                "language": "flagstat",
+                "scopeName": "source.flagstat",
+                "path": "./syntaxes/flagstat.tmLanguage.json"
+            },
+            {
+                "language": "gtf",
+                "scopeName": "source.gtf",
+                "path": "./syntaxes/gtf.tmLanguage.json"
+            },
+            {
+                "language": "pdb",
+                "scopeName": "source.pdb",
+                "path": "./syntaxes/pdb.tmLanguage.json"
+            },
+            {
+                "language": "pml",
+                "scopeName": "source.pml",
+                "path": "./syntaxes/pml.tmLanguage.json"
+            },
+            {
+                "language": "sam",
+                "scopeName": "source.sam",
+                "path": "./syntaxes/sam.tmLanguage.json"
+            },
+            {
+                "language": "vcf",
+                "scopeName": "source.vcf",
+                "path": "./syntaxes/vcf.tmLanguage.json"
+            },
+            {
+                "language": "wig",
+                "scopeName": "source.wig",
+                "path": "./syntaxes/wig.tmLanguage.json"
+            }
+        ],
+        "themes": [
+            {
+                "label": "bioSyntax",
+                "id": "bioSyntax",
+                "uiTheme": "vs-dark",
+                "path": "./themes/bioSyntax.json"
+            }
+        ]
+    }
+}

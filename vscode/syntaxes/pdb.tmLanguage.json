@@ -1,0 +1,333 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.pdb", 
+    "name": "pdb", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "invalid.pdb", 
+                    "match": "^HEADER.*$"
+                }, 
+                {
+                    "name": "constant.character.pdb", 
+                    "match": "^TITLE.*$"
+                }, 
+                {
+                    "name": "markup.deleted.pdb", 
+                    "match": "^COMPND.*$"
+                }, 
+                {
+                    "name": "constant.language.pdb", 
+                    "match": "^SOURCE.*$"
+                }, 
+                {
+                    "name": "entity.name.pdb", 
+                    "match": "^KEYWDS.*$"
+                }, 
+                {
+                    "name": "storage.type.pdb", 
+                    "match": "^EXPDTA.*$"
+                }, 
+                {
+                    "name": "string.pdb", 
+                    "match": "^AUTHOR.*$"
+                }, 
+                {
+                    "name": "constant.character.pdb", 
+                    "match": "^REVDAT.*$"
+                },
+                {
+                    "begin": "^JRNL",
+                    "end": "$",
+                    "name": "string.pdb", 
+                    "patterns": [
+                        {
+                            "match": "[\\s\t]+TITL.*",
+                            "name": "entity.name.pdb"
+                        }
+                    ]
+                },
+                {
+                    "begin": "^REMARK[\\s\t]+[0-9]+",
+                    "end": "$",
+                    "name": "constant.character.pdb", 
+                    "patterns": [
+                        {
+                            "match": "[\\s\t]+RESOLUTION.*$",
+                            "name": "entity.name.pdb"
+                        },
+                        {
+                            "begin": ".*(?=:)",
+                            "end": "$",
+                            "name": "constant.character.pdb",
+                            "patterns":[
+                                {
+                                    "name": "markup.deleted.pdb",
+                                    "begin": ":[\\s\t]+NULL",
+                                    "end": "$",
+                                    "patterns": [
+                                        {
+                                            "match": "[\\s\t]?;[\\s\t]?",
+                                            "name": "constant.language.pdb"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "entity.name.pdb",
+                                    "begin": ":",
+                                    "end": "$",
+                                    "patterns": [
+                                        {
+                                            "match": "[\\s\t]?;[\\s\t]?",
+                                            "name": "constant.language.pdb"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "^SEQRES",
+                    "end": "$",
+                    "name": "constant.character.pdb",
+                    "patterns": [
+                        {
+                            "name": "ntA.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[AP].*"
+                        }, 
+                        {
+                            "name": "ntT.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[BQ].*"
+                        }, 
+                        {
+                            "name": "ntG.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[CR].*"
+                        }, 
+                        {
+                            "name": "ntC.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[DS].*"
+                        }, 
+                        {
+                            "name": "ntU.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[ET].*"
+                        }, 
+                        {
+                            "name": "ntR.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[FU].*"
+                        }, 
+                        {
+                            "name": "ntY.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[GV].*"
+                        }, 
+                        {
+                            "name": "ntS.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[HW].*"
+                        }, 
+                        {
+                            "name": "ntW.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[IX].*"
+                        }, 
+                        {
+                            "name": "ntM.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[JY].*"
+                        }, 
+                        {
+                            "name": "ntK.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[KZ].*"
+                        }, 
+                        {
+                            "name": "ntD.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[L].*"
+                        }, 
+                        {
+                            "name": "ntB.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[M].*"
+                        }, 
+                        {
+                            "name": "ntV.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[N].*"
+                        }, 
+                        {
+                            "name": "ntH.pdb", 
+                            "match": "[\\s\\t]+[0-9]+[\\s\\t]+[O].*"
+                        }
+                    ]
+                },
+                {
+                    "match": "^HELIX.*$",
+                    "name": "storage.type.pdb"
+                },
+                {
+                    "name": "entity.name.tag.pdb", 
+                    "match": "^SHEET.*$"
+                }, 
+                {
+                    "name": "string.pdb", 
+                    "match": "^SITE.*$"
+                }, 
+                {
+                    "begin": "^(ATOM|ANISOU)[\\s\t]+[0-9]+[\\s\t]+[A-Z0-9]+",
+                    "end": "$",
+                    "name": "constant.character.pdb",
+                    "patterns": [
+                        {
+                            "name": "storage.type.pdb", 
+                            "match": "(?<=[A-Z])[\\s\\t]+[0-9]+"
+                        }, 
+                        {
+                            "name": "aaA", 
+                            "match": "[\\s\\t]+ALA"
+                        }, 
+                        {
+                            "name": "aaR", 
+                            "match": "[\\s\\t]+ARG"
+                        }, 
+                        {
+                            "name": "aaN", 
+                            "match": "[\\s\\t]+ASN"
+                        }, 
+                        {
+                            "name": "aaD", 
+                            "match": "[\\s\\t]+ASP"
+                        }, 
+                        {
+                            "name": "aaC", 
+                            "match": "[\\s\\t]+CYS"
+                        }, 
+                        {
+                            "name": "aaQ", 
+                            "match": "[\\s\\t]+GLN"
+                        }, 
+                        {
+                            "name": "aaE", 
+                            "match": "[\\s\\t]+GLU"
+                        }, 
+                        {
+                            "name": "aaG", 
+                            "match": "[\\s\\t]+GLY"
+                        }, 
+                        {
+                            "name": "aaH", 
+                            "match": "[\\s\\t]+HIS"
+                        }, 
+                        {
+                            "name": "aaI", 
+                            "match": "[\\s\\t]+ILE"
+                        }, 
+                        {
+                            "name": "aaL", 
+                            "match": "[\\s\\t]+LEU"
+                        }, 
+                        {
+                            "name": "aaK", 
+                            "match": "[\\s\\t]+LYS"
+                        }, 
+                        {
+                            "name": "aaM", 
+                            "match": "[\\s\\t]+MET"
+                        }, 
+                        {
+                            "name": "aaF", 
+                            "match": "[\\s\\t]+PHE"
+                        }, 
+                        {
+                            "name": "aaP", 
+                            "match": "[\\s\\t]+PRO"
+                        }, 
+                        {
+                            "name": "aaS", 
+                            "match": "[\\s\\t]+SER"
+                        }, 
+                        {
+                            "name": "aaT", 
+                            "match": "[\\s\\t]+THR"
+                        }, 
+                        {
+                            "name": "aaW", 
+                            "match": "[\\s\\t]+TRP"
+                        }, 
+                        {
+                            "name": "aaY", 
+                            "match": "[\\s\\t]+TYR"
+                        }, 
+                        {
+                            "name": "aaV", 
+                            "match": "[\\s\\t]+VAL"
+                        }, 
+                        {
+                            "name": "ntA.pdb", 
+                            "match": "(?<=[\\s\\t])[AP](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntT.pdb", 
+                            "match": "(?<=[\\s\\t])[BQ](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntG.pdb", 
+                            "match": "(?<=[\\s\\t])[CR](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntC.pdb", 
+                            "match": "(?<=[\\s\\t])[DS](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntU.pdb", 
+                            "match": "(?<=[\\s\\t])[ET](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntR.pdb", 
+                            "match": "(?<=[\\s\\t])[FU](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntY.pdb", 
+                            "match": "(?<=[\\s\\t])[GV](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntS.pdb", 
+                            "match": "(?<=[\\s\\t])[HW](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntW.pdb", 
+                            "match": "(?<=[\\s\\t])[IX](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntM.pdb", 
+                            "match": "(?<=[\\s\\t])[JY](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntK.pdb", 
+                            "match": "(?<=[\\s\\t])[KZ](?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntD.pdb", 
+                            "match": "(?<=[\\s\\t])L(?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntB.pdb", 
+                            "match": "(?<=[\\s\\t])M(?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntV.pdb", 
+                            "match": "(?<=[\\s\\t])N(?=[\\s\\t]+[0-9])"
+                        }, 
+                        {
+                            "name": "ntH.pdb", 
+                            "match": "(?<=[\\s\\t])O(?=[\\s\\t]+[0-9])"
+                        }
+                    ]
+                }, 
+                {
+                    "name": "markup.deleted.pdb", 
+                    "match": "^HETATM.*$"
+                }
+            ]
+        }
+    }
+}
