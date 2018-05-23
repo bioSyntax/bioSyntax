@@ -10,7 +10,7 @@
 		"strings": {
 			"patterns":[
 				{
-					"begin": "^(@[A-Za-z]{2}(.*))",
+					"begin": "^(@[A-Za-z]{1,5}[0-9]{1,5}(.*))",
 					"end": "^(?=\\+)",
 					"name": "top_3.lines",
 					"patterns": [
