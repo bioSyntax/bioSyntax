@@ -20,7 +20,7 @@ To gain the most insight from your data, read our brief [bioSyntax Manual](http:
 
 ## Note
 
-As described [here](https://github.com/Microsoft/vscode/issues/3429), VS Code currently does not provide direct support for background styling in its themes. But the developers think they might add this feature in the future. So here, I use TypeScript to implement the background highlight, but there will be a delay when rendering the colors. After the VS Code team provides official support I will update the plugin.
+As described [here](https://github.com/Microsoft/vscode/issues/3429), VS Code currently does not provide direct support for background styling in its themes. But the developers think they might add this feature in the future. So here, I use TypeScript to implement the background highlight for fasta, fastq, clustal and sam files, but there will be a delay when rendering the colors. After the VS Code team provides official support I will update the plugin.
 
 *************************************************
 
