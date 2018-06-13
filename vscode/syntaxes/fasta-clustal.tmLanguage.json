@@ -1,0 +1,120 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.fasta-clustal", 
+    "name": "fasta-clustal", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "string", 
+                    "match": "^>.*"
+                }, 
+                {
+                    "name": "aaA", 
+                    "match": "[Aa]++"
+                }, 
+                {
+                    "name": "aaB", 
+                    "match": "[Bb]++"
+                }, 
+                {
+                    "name": "aaC", 
+                    "match": "[Cc]++"
+                }, 
+                {
+                    "name": "aaD", 
+                    "match": "[Dd]++"
+                }, 
+                {
+                    "name": "aaE", 
+                    "match": "[Ee]++"
+                }, 
+                {
+                    "name": "aaF", 
+                    "match": "[Ff]++"
+                }, 
+                {
+                    "name": "aaG", 
+                    "match": "[Gg]++"
+                }, 
+                {
+                    "name": "aaH", 
+                    "match": "[Hh]++"
+                }, 
+                {
+                    "name": "aaI", 
+                    "match": "[Ii]++"
+                }, 
+                {
+                    "name": "aaK", 
+                    "match": "[Kk]++"
+                }, 
+                {
+                    "name": "aaL", 
+                    "match": "[Ll]++"
+                }, 
+                {
+                    "name": "aaM", 
+                    "match": "[Mm]++"
+                }, 
+                {
+                    "name": "aaN", 
+                    "match": "[Nn]++"
+                }, 
+                {
+                    "name": "aaP", 
+                    "match": "[Pp]++"
+                }, 
+                {
+                    "name": "aaQ", 
+                    "match": "[Qq]++"
+                }, 
+                {
+                    "name": "aaR", 
+                    "match": "[Rr]++"
+                }, 
+                {
+                    "name": "aaS", 
+                    "match": "[Ss]++"
+                }, 
+                {
+                    "name": "aaT", 
+                    "match": "[Tt]++"
+                }, 
+                {
+                    "name": "aaV", 
+                    "match": "[Vv]++"
+                }, 
+                {
+                    "name": "aaW", 
+                    "match": "[Ww]++"
+                }, 
+                {
+                    "name": "aaY", 
+                    "match": "[Yy]++"
+                }, 
+                {
+                    "name": "aaZ", 
+                    "match": "[Zz]++"
+                }, 
+                {
+                    "name": "zappo.X", 
+                    "match": "[Xx]++"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "\\*"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "[-]++"
+                }
+            ]
+        }
+    }
+}

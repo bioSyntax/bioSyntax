@@ -1,0 +1,88 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.fasta-hc", 
+    "name": "fasta-hc", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "header", 
+                    "match": "^>.*"
+                }, 
+                {
+                    "name": "ntA", 
+                    "match": "[Aa]++"
+                }, 
+                {
+                    "name": "ntC", 
+                    "match": "[Cc]++"
+                }, 
+                {
+                    "name": "ntG", 
+                    "match": "[Gg]++"
+                }, 
+                {
+                    "name": "ntT", 
+                    "match": "[Tt]++"
+                }, 
+                {
+                    "name": "ntU", 
+                    "match": "[Uu]++"
+                }, 
+                {
+                    "name": "ntN", 
+                    "match": "[NnXx]++"
+                }, 
+                {
+                    "name": "ntGap", 
+                    "match": "[-]"
+                }, 
+                {
+                    "name": "ntR", 
+                    "match": "[Rr]++"
+                }, 
+                {
+                    "name": "ntY", 
+                    "match": "[Yy]++"
+                }, 
+                {
+                    "name": "ntS", 
+                    "match": "[Ss]++"
+                }, 
+                {
+                    "name": "ntW", 
+                    "match": "[Ww]++"
+                }, 
+                {
+                    "name": "ntM", 
+                    "match": "[Mm]++"
+                }, 
+                {
+                    "name": "ntK", 
+                    "match": "[Kk]++"
+                }, 
+                {
+                    "name": "ntD", 
+                    "match": "[Dd]++"
+                }, 
+                {
+                    "name": "ntB", 
+                    "match": "[Bb]++"
+                }, 
+                {
+                    "name": "ntV", 
+                    "match": "[Vv]++"
+                }, 
+                {
+                    "name": "ntH", 
+                    "match": "[Hh]++"
+                }
+            ]
+        }
+    }
+}

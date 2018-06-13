@@ -1,0 +1,52 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.flagstat", 
+    "name": "flagstat", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "numeric", 
+                    "match": "QC-passed reads"
+                }, 
+                {
+                    "name": "numeric", 
+                    "match": "^\\d+"
+                }, 
+                {
+                    "name": "numeric", 
+                    "match": "[\\d\\.]+%(?=:)"
+                }, 
+                {
+                    "name": "numeric", 
+                    "match": "-?nan%(?=:)"
+                }, 
+                {
+                    "name": "numeric2", 
+                    "match": "QC-failed reads"
+                }, 
+                {
+                    "name": "numeric2", 
+                    "match": "(?<=\\+) \\d+"
+                }, 
+                {
+                    "name": "numeric2", 
+                    "match": "(?<=:)[\\d\\.]+%"
+                }, 
+                {
+                    "name": "numeric2", 
+                    "match": "(?<=:)-?nan%"
+                }, 
+                {
+                    "name": "string", 
+                    "match": "mapQ>=\\d+"
+                }
+            ]
+        }
+    }
+}

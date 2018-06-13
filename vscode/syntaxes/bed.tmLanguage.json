@@ -1,0 +1,123 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "bed",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"strings": {
+			"match": "^([\\S]*)\t([\\.|\\d+]\\d+)\t([\\.|\\d+]\\d+)\t([\\S]*)\t([\\S]*)\t([\\S]*)",
+			"captures": {
+				"1": {
+					"name": "chr.bed"
+				},
+				"2": {
+					"name": "chrStart.bed"
+				},
+				"3": {
+					"name": "chrStart.bed"
+				},
+				"4": {
+					"name": "string.bed"
+				},
+				"5": {
+					"name": "score.bed",
+					"patterns": [
+						{
+							"match": "\\.",
+							"name": "comment.bed"
+						},
+						{
+							"match": "([0-9][0-9][0-9][0-9])\\b",
+							"name": "grad10.bed"
+						},
+						{
+							"match": "1[0-9][0-9]\\b",
+							"name": "grad2.bed"
+						},
+						{
+							"match": "2[0-9][0-9]\\b",
+							"name": "grad3.bed"
+						},
+						{
+							"match": "3[0-9][0-9]\\b",
+							"name": "grad4.bed"
+						},
+						{
+							"match": "4[0-9][0-9]\\b",
+							"name": "grad5.bed"
+						},
+						{
+							"match": "5[0-9][0-9]\\b",
+							"name": "grad6.bed"
+						},
+						{
+							"match": "6[0-9][0-9]\\b",
+							"name": "grad7.bed"
+						},
+						{
+							"match": "7[0-9][0-9]\\b",
+							"name": "grad8.bed"
+						},
+						{
+							"match": "8[0-9][0-9]\\b",
+							"name": "grad9.bed"
+						},
+						{
+							"match": "9[0-9][0-9]\\b",
+							"name": "grad10.bed"
+						},
+						{
+							"match": "([0-9])\\b",
+							"name": "grad1.bed"
+						},
+						{
+							"match": "([1-9][0-9])\\b",
+							"name": "grad1.bed"
+						}
+					]
+				},
+				"6":{
+					"name": "strand.bed",
+					"patterns": [
+						{
+							"name": "strandPlus.bed",
+							"match": "\\+$"
+						},
+						{
+							"name": "strandMinus.bed",
+							"match": "\\-$"
+						},
+						{
+							"name": "strandNone.bed",
+							"match": "\\.$"
+						}]
+				}
+			},
+			"name": "line.bed",
+			"patterns": []
+		},
+		"keywordsd": {
+			"patterns": [
+			{
+				"name": "strandPlus.bed",
+				"match": "\\+$"
+			},
+			{
+				"name": "strandMinus.bed",
+				"match": "\\-$"
+			},
+			{
+				"name": "strandNone.bed",
+				"match": "\\.$"
+			}
+		]
+		}
+	},
+	"scopeName": "source.bed"
+}

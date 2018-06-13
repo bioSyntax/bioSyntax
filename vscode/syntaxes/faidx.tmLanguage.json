@@ -1,0 +1,34 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.faidx", 
+    "name": "faidx", 
+    "repository": {
+        "structure": {
+            "match": "^([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)$",
+            "captures":
+            {
+                "1": {
+                    "name": "chr.faidx"
+                },
+                "2": {
+                    "name": "chrStart.faidx"
+                },
+                "3": {
+                    "name": "numeric.faidx"
+                },
+                "4": {
+                    "name": "comment.faidx"
+                },
+                "5": {
+                    "name": "comment.faidx"
+                }
+            },
+            "patterns": []
+        }
+    }
+}

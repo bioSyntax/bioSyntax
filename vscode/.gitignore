@@ -1,0 +1,5 @@
+out/test/*
+out/*/*.map
+node_modules
+.vscode-test/
+*.vsix

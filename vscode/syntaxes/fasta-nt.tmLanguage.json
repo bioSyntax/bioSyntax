@@ -1,0 +1,48 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.fasta-nt", 
+    "name": "fasta-nt", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "string", 
+                    "match": "^>.*"
+                }, 
+                {
+                    "name": "ntA", 
+                    "match": "[Aa]"
+                }, 
+                {
+                    "name": "ntC", 
+                    "match": "[Cc]"
+                }, 
+                {
+                    "name": "ntG", 
+                    "match": "[Gg]"
+                }, 
+                {
+                    "name": "ntT", 
+                    "match": "[Tt]"
+                }, 
+                {
+                    "name": "ntU", 
+                    "match": "[Uu]"
+                }, 
+                {
+                    "name": "ntN", 
+                    "match": "[NnXx]"
+                }, 
+                {
+                    "name": "ntGap", 
+                    "match": "[-]"
+                }
+            ]
+        }
+    }
+}

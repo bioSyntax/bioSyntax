@@ -1,0 +1,120 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.fasta-hydro", 
+    "name": "fasta-hydro", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "string", 
+                    "match": "^>.*"
+                }, 
+                {
+                    "name": "hydroA", 
+                    "match": "[Aa]"
+                }, 
+                {
+                    "name": "hydroB", 
+                    "match": "[Bb]"
+                }, 
+                {
+                    "name": "hydroC", 
+                    "match": "[Cc]"
+                }, 
+                {
+                    "name": "hydroD", 
+                    "match": "[Dd]"
+                }, 
+                {
+                    "name": "hydroE", 
+                    "match": "[Ee]"
+                }, 
+                {
+                    "name": "hydroF", 
+                    "match": "[Ff]"
+                }, 
+                {
+                    "name": "hydroG", 
+                    "match": "[Gg]"
+                }, 
+                {
+                    "name": "hydroH", 
+                    "match": "[Hh]"
+                }, 
+                {
+                    "name": "hydroI", 
+                    "match": "[Ii]"
+                }, 
+                {
+                    "name": "hydroK", 
+                    "match": "[Kk]"
+                }, 
+                {
+                    "name": "hydroL", 
+                    "match": "[Ll]"
+                }, 
+                {
+                    "name": "hydroM", 
+                    "match": "[Mm]"
+                }, 
+                {
+                    "name": "hydroN", 
+                    "match": "[Nn]"
+                }, 
+                {
+                    "name": "hydroP", 
+                    "match": "[Pp]"
+                }, 
+                {
+                    "name": "hydroQ", 
+                    "match": "[Qq]"
+                }, 
+                {
+                    "name": "hydroR", 
+                    "match": "[Rr]"
+                }, 
+                {
+                    "name": "hydroS", 
+                    "match": "[Ss]"
+                }, 
+                {
+                    "name": "hydroT", 
+                    "match": "[Tt]"
+                }, 
+                {
+                    "name": "hydroV", 
+                    "match": "[Vv]"
+                }, 
+                {
+                    "name": "hydroW", 
+                    "match": "[Ww]"
+                }, 
+                {
+                    "name": "hydroY", 
+                    "match": "[Yy]"
+                }, 
+                {
+                    "name": "hydroZ", 
+                    "match": "[Zz]"
+                }, 
+                {
+                    "name": "hydroX", 
+                    "match": "[Xx]"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "\\*"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "[-]"
+                }
+            ]
+        }
+    }
+}

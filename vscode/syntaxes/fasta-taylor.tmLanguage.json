@@ -1,0 +1,120 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.fasta-taylor", 
+    "name": "fasta-taylor", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "string", 
+                    "match": "^>.*"
+                }, 
+                {
+                    "name": "taylorA", 
+                    "match": "[Aa]"
+                }, 
+                {
+                    "name": "taylorB", 
+                    "match": "[Bb]"
+                }, 
+                {
+                    "name": "taylorC", 
+                    "match": "[Cc]"
+                }, 
+                {
+                    "name": "taylorD", 
+                    "match": "[Dd]"
+                }, 
+                {
+                    "name": "taylorE", 
+                    "match": "[Ee]"
+                }, 
+                {
+                    "name": "taylorF", 
+                    "match": "[Ff]"
+                }, 
+                {
+                    "name": "taylorG", 
+                    "match": "[Gg]"
+                }, 
+                {
+                    "name": "taylorH", 
+                    "match": "[Hh]"
+                }, 
+                {
+                    "name": "taylorI", 
+                    "match": "[Ii]"
+                }, 
+                {
+                    "name": "taylorK", 
+                    "match": "[Kk]"
+                }, 
+                {
+                    "name": "taylorL", 
+                    "match": "[Ll]"
+                }, 
+                {
+                    "name": "taylorM", 
+                    "match": "[Mm]"
+                }, 
+                {
+                    "name": "taylorN", 
+                    "match": "[Nn]"
+                }, 
+                {
+                    "name": "taylorP", 
+                    "match": "[Pp]"
+                }, 
+                {
+                    "name": "taylorQ", 
+                    "match": "[Qq]"
+                }, 
+                {
+                    "name": "taylorR", 
+                    "match": "[Rr]"
+                }, 
+                {
+                    "name": "taylorS", 
+                    "match": "[Ss]"
+                }, 
+                {
+                    "name": "taylorT", 
+                    "match": "[Tt]"
+                }, 
+                {
+                    "name": "taylorV", 
+                    "match": "[Vv]"
+                }, 
+                {
+                    "name": "taylorW", 
+                    "match": "[Ww]"
+                }, 
+                {
+                    "name": "taylorY", 
+                    "match": "[Yy]"
+                }, 
+                {
+                    "name": "taylorZ", 
+                    "match": "[Zz]"
+                }, 
+                {
+                    "name": "taylorX", 
+                    "match": "[Xx]"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "\\*"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "[-]"
+                }
+            ]
+        }
+    }
+}
