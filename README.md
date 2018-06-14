@@ -42,7 +42,7 @@ This project is participating in the Mozilla Festival 2018, and as such, respect
 
 ### [Collaborate](CONTRIBUTING.md)
 
-Dev Team: [Artem Babaian](https://github.com/ababaian) | [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Jasper Wong](https://github.com/Jwong684)
+Dev Team: [Artem Babaian](https://github.com/ababaian) | [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Li Yao](https://github.com/liyao001) | [Jasper Wong](https://github.com/Jwong684)
 
 Contact us: [info[AT]biosyntax.org](mailto:info@biosyntax.org)
 
