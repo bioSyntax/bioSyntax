@@ -365,7 +365,7 @@ else
 
 		# REMOVES BIOSYNTAX COLOR SCHEME
 		THEME="bioSyntax.xml"
-		sudo rm "${TPATH}/${THEME}"
+		rm "${TPATH}/${THEME}"
 
 		# REMOVES ALL BIOSYNTAX SYNTAX FILES OR THE ONE SPECIFIED
 		if [ -z "$2" ]; then

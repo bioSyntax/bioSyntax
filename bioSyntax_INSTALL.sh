@@ -636,7 +636,7 @@ else
 		# COPIES THEME FILE TO RIGHT PATH AND CHANGESG IT TO READ-ONLY
 		THEME="bioSyntax.xml"
 
-		install -m 0644 "${SOURCE}/styles/${THEME}" "${TPATH}/styles/${THEME}"
+		install -m 0644 "${SOURCE}/styles/${THEME}" "${TPATH}/${THEME}"
 
 		# LISTS ALL SYNTAX FILES
 		FILE=".lang"

@@ -1,0 +1,500 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.sam", 
+    "name": "sam", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "begin": "^@HD",
+                    "name": "header.sam",
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "begin": "(?<=[A-Z]{2}:)\"",
+                            "end": "$",
+                            "name": "invalid.sam",
+                            "patterns": [
+                                {
+                                    "match": "\"",
+                                    "name": "variable.parameter.sam"
+                                }
+                            ]
+                        },
+                        {
+                            "match": "'(?<=VN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)'",
+                            "name": "numeric.sam"
+                        },
+                        {
+                            "match": "(?<=VN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)",
+                            "name": "numeric.sam"
+                        },
+                        {
+                            "name": "bon.sam", 
+                            "match": "(?<=SO:)(coordinate|queryname(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "mal.sam", 
+                            "match": "(?<=SO:)(unsorted|unknown(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=SO:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        },
+                        {
+                            "match": "(VN|SO):",
+                            "name": "string.sam"
+                        }
+                    ]
+                },
+                {
+                    "begin": "^@SQ",
+                    "end": "$",
+                    "name": "header.sam",
+                    "patterns": [
+                        {
+                            "begin": "(?<=[A-Z]{2}:)\"",
+                            "end": "$",
+                            "name": "invalid.sam",
+                            "patterns": [
+                                {
+                                    "match": "\"",
+                                    "name": "variable.parameter.sam"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "chr.sam", 
+                            "match": "(?<=SN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "chrStart.sam", 
+                            "match": "(?<=LN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=AH:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=AN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=AS:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=M5:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=SP:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=UR:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        },
+                        {
+                            "match": "(SN|LN|AH|AN|AS|M5|SP|UR):",
+                            "name": "string.sam"
+                        }
+                    ]
+                },
+                {
+                    "begin": "^@RG",
+                    "end": "$",
+                    "name": "header.sam",
+                    "patterns": [
+                        {
+                            "begin": "(?<=[A-Z]{2}:)\"",
+                            "end": "$",
+                            "name": "invalid.sam",
+                            "patterns": [
+                                {
+                                    "match": "\"",
+                                    "name": "variable.parameter.sam"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "library.sam", 
+                            "match": "(?<=ID:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "library.sam", 
+                            "match": "(?<=LB:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=CN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=DS:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=DT:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=FO:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=KS:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "platform.sam", 
+                            "match": "(?<=PG:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=PI:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "platform.sam", 
+                            "match": "(?<=PL:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "keyword.sam", 
+                            "match": "(?<=PM:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "platform.sam", 
+                            "match": "(?<=PU:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "library.sam", 
+                            "match": "(?<=SM:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        },
+                        {
+                            "match": "(ID|LB|CN|DS|DT|FO|KS|PG|PI|PL|PM|PU|SM):",
+                            "name": "string.sam"
+                        }
+                    ]
+                },
+                {
+                    "begin": "^@PG",
+                    "end": "$",
+                    "name": "header.sam",
+                    "patterns": [
+                        {
+                            "begin": "(?<=[A-Z]{2}:)\"",
+                            "end": "$",
+                            "name": "invalid.sam",
+                            "patterns": [
+                                {
+                                    "match": "\"",
+                                    "name": "variable.parameter.sam"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "software.sam", 
+                            "match": "(?<=ID:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "software.sam", 
+                            "match": "(?<=PN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "command.sam", 
+                            "match": "(?<=CL:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "software.sam", 
+                            "match": "(?<=PP:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "string.sam", 
+                            "match": "(?<=DS:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "name": "numeric.sam", 
+                            "match": "(?<=VN:)(.+?(?=\\s+[A-Z]{2}:)|.+$)"
+                        }, 
+                        {
+                            "match": "(ID|PN|CL|PP|DS|VN):",
+                            "name": "string.sam"
+                        }
+                    ]
+                },
+                {
+                    "begin": "^@CO",
+                    "end": "$",
+                    "name": "header.sam",
+                    "patterns": [
+                        {
+                            "begin": "(?<=[A-Z]{2}:)\"",
+                            "end": "$",
+                            "name": "comment.am",
+                            "patterns": [
+                                {
+                                    "match": "\"",
+                                    "name": "variable.parameter.sam"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "match": "^([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t([\\S]*)\t(.*)$",
+                    "name": "keyword.sam",
+                    "captures": {
+                        "2":
+                        {
+                            "patterns": [
+                                {
+                                    "name": "numeric.sam", 
+                                    "match": "[0-9]{1,2}\\b"
+                                }, 
+                                {
+                                    "name": "numeric.sam", 
+                                    "match": "[1-4][0-9]{1,2}\\b"
+                                }, 
+                                {
+                                    "name": "numeric.sam", 
+                                    "match": "[5][0][0-9]\\b"
+                                }, 
+                                {
+                                    "name": "numeric.sam", 
+                                    "match": "[5][1][01]\\b"
+                                }, 
+                                {
+                                    "name": "ntC.sam", 
+                                    "match": "[5][1][01]\\b"
+                                }, 
+                                {
+                                    "name": "ntC.sam", 
+                                    "match": "[\\S]*"
+                                }
+                            ]
+                        },
+                        "3":
+                        {
+                            "name": "chr.sam"
+                        },
+                        "4":
+                        {
+                            "name": "chrStart.sam"
+                        },
+                        "5": {
+                            "patterns": [
+                                {
+                                    "name": "gradbw1", 
+                                    "match": "(255|[0-9])\\b"
+                                }, 
+                                {
+                                    "name": "gradbw3", 
+                                    "match": "1[0-9]\\b"
+                                }, 
+                                {
+                                    "name": "gradbw5", 
+                                    "match": "2[0-9]\\b"
+                                }, 
+                                {
+                                    "name": "gradbw7", 
+                                    "match": "3[0-9]\\b"
+                                }, 
+                                {
+                                    "name": "gradbw9", 
+                                    "match": "4[0-9]\\b"
+                                }, 
+                                {
+                                    "name": "gradbw9", 
+                                    "match": "[\\S]*"
+                                }
+                            ]
+                        },
+                        "6":
+                        {
+                            "name": "test.sam",
+                            "patterns": [
+                                {
+                                    "name": "cigClip.sam", 
+                                    "match": "\\d+[NSHP]"
+                                }, 
+                                {
+                                    "name": "cigMat.sam", 
+                                    "match": "\\d+[M=]"
+                                }, 
+                                {
+                                    "name": "cigMis.sam", 
+                                    "match": "\\d+[X]"
+                                }, 
+                                {
+                                    "name": "cigDel.sam", 
+                                    "match": "\\d+[D]"
+                                }, 
+                                {
+                                    "name": "cigIns.sam", 
+                                    "match": "\\d+[I]"
+                                }, 
+                                {
+                                    "name": "comment.sam", 
+                                    "match": "[\\S]*"
+                                }
+                            ]
+                        },
+                        "7":
+                        {
+                            "patterns": [
+                                {
+                                    "name": "chr.sam", 
+                                    "match": "="
+                                },
+                                {
+                                    "name": "chrStart.sam", 
+                                    "match": "[0-9]*"
+                                },
+                                {
+                                    "name": "keyword.sam", 
+                                    "match": "\\*"
+                                },
+                                {
+                                    "name": "keyword.sam", 
+                                    "match": "[\\S]*"
+                                }
+                            ]
+                        },
+                        "8":
+                        {
+                            "patterns": [
+                                {
+                                    "match": "[\\S]*",
+                                    "name": "chrStart.sam"
+                                }
+                            ]
+                        },
+                        "9":
+                        {
+                            "patterns": [
+                                {
+                                    "match": "[\\S]*",
+                                    "name": "comment.sam"
+                                }
+                            ]
+                        },
+                        "10":
+                        {
+                            "patterns": [
+                                {
+                                    "match": "A",
+                                    "name": "ntA.sam"
+                                },
+                                {
+                                    "match": "C",
+                                    "name": "ntC.sam"
+                                },
+                                {
+                                    "match": "G",
+                                    "name": "ntG.sam"
+                                },
+                                {
+                                    "match": "T",
+                                    "name": "ntT.sam"
+                                },
+                                {
+                                    "match": "N",
+                                    "name": "ntN.sam"
+                                }
+                            ]
+                        },
+                        "11":
+                        {
+                            "patterns": [
+                                {
+                                    "name": "gradbw0", 
+                                    "match": "[\\!\\#\\$]"
+                                }, 
+                                {
+                                    "name": "gradbw1", 
+                                    "match": "[%\\&\\'\\(]"
+                                }, 
+                                {
+                                    "name": "gradbw2", 
+                                    "match": "[\\)\\*\\+\\,]"
+                                }, 
+                                {
+                                    "name": "gradbw3", 
+                                    "match": "[\\-\\.\\/0]"
+                                }, 
+                                {
+                                    "name": "gradbw4", 
+                                    "match": "[1-4]"
+                                }, 
+                                {
+                                    "name": "gradbw5", 
+                                    "match": "[5-8]"
+                                }, 
+                                {
+                                    "name": "gradbw6", 
+                                    "match": "[9\\:\\;\\<]"
+                                }, 
+                                {
+                                    "name": "gradbw7", 
+                                    "match": "[\\=\\>\\?\\@]"
+                                }, 
+                                {
+                                    "name": "gradbw8", 
+                                    "match": "[ABCD]"
+                                }, 
+                                {
+                                    "name": "gradbw9", 
+                                    "match": "[EFGHIJ]"
+                                }, 
+                                {
+                                    "name": "gradbw10", 
+                                    "match": "[K-Z\\[\\\\]"
+                                }, 
+                                {
+                                    "name": "gradbw10", 
+                                    "match": "[\\]\\^\\_\\`a-f]"
+                                }, 
+                                {
+                                    "name": "gradbw10", 
+                                    "match": "[g-p]"
+                                }, 
+                                {
+                                    "name": "gradbw10", 
+                                    "match": "[q-z]"
+                                }, 
+                                {
+                                    "name": "gradbw10", 
+                                    "match": "[\\{\\|\\}\\~]"
+                                }
+                            ]
+                        },
+                        "12": {
+                            "patterns":[
+                                {
+                                    "name": "string.sam", 
+                                    "match": "[A-Z]{2}(?=:)"
+                                }, 
+                                {
+                                    "name": "comment.sam", 
+                                    "match": "(?<=:)[AifZHB]:"
+                                }, 
+                                {
+                                    "name": "numeric.sam", 
+                                    "match": "(?<=[ifH]:)(.+?(?=\t)|.+$)"
+                                }, 
+                                {
+                                    "name": "numeric2.sam", 
+                                    "match": "(?<=[AZB]:)(.+?(?=\t)|.+$)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

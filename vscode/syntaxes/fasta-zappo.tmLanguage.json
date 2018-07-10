@@ -1,0 +1,120 @@
+{
+    "patterns": [
+        {
+            "include": "#structure"
+        }
+    ], 
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json", 
+    "scopeName": "source.fasta-zappo", 
+    "name": "fasta-zappo", 
+    "repository": {
+        "structure": {
+            "patterns": [
+                {
+                    "name": "string", 
+                    "match": "^>.*"
+                }, 
+                {
+                    "name": "zappoA", 
+                    "match": "[Aa]"
+                }, 
+                {
+                    "name": "zappoB", 
+                    "match": "[Bb]"
+                }, 
+                {
+                    "name": "zappoC", 
+                    "match": "[Cc]"
+                }, 
+                {
+                    "name": "zappoD", 
+                    "match": "[Dd]"
+                }, 
+                {
+                    "name": "zappoE", 
+                    "match": "[Ee]"
+                }, 
+                {
+                    "name": "zappoF", 
+                    "match": "[Ff]"
+                }, 
+                {
+                    "name": "zappoG", 
+                    "match": "[Gg]"
+                }, 
+                {
+                    "name": "zappoH", 
+                    "match": "[Hh]"
+                }, 
+                {
+                    "name": "zappoI", 
+                    "match": "[Ii]"
+                }, 
+                {
+                    "name": "zappoK", 
+                    "match": "[Kk]"
+                }, 
+                {
+                    "name": "zappoL", 
+                    "match": "[Ll]"
+                }, 
+                {
+                    "name": "zappoM", 
+                    "match": "[Mm]"
+                }, 
+                {
+                    "name": "zappoN", 
+                    "match": "[Nn]"
+                }, 
+                {
+                    "name": "zappoP", 
+                    "match": "[Pp]"
+                }, 
+                {
+                    "name": "zappoQ", 
+                    "match": "[Qq]"
+                }, 
+                {
+                    "name": "zappoR", 
+                    "match": "[Rr]"
+                }, 
+                {
+                    "name": "zappoS", 
+                    "match": "[Ss]"
+                }, 
+                {
+                    "name": "zappoT", 
+                    "match": "[Tt]"
+                }, 
+                {
+                    "name": "zappoV", 
+                    "match": "[Vv]"
+                }, 
+                {
+                    "name": "zappoW", 
+                    "match": "[Ww]"
+                }, 
+                {
+                    "name": "zappoY", 
+                    "match": "[Yy]"
+                }, 
+                {
+                    "name": "zappoZ", 
+                    "match": "[Zz]"
+                }, 
+                {
+                    "name": "zappoX", 
+                    "match": "[Xx]"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "\\*"
+                }, 
+                {
+                    "name": "comment", 
+                    "match": "[-]"
+                }
+            ]
+        }
+    }
+}
