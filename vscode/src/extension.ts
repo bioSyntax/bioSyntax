@@ -8,6 +8,9 @@ export function activate(context: vscode.ExtensionContext) {
         updateDecorations();
     }
 
+    // update theme
+    vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
+    
     vscode.window.onDidChangeActiveTextEditor(editor => {
 		activeEditor = editor;
 		if (editor) {

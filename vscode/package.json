@@ -12,8 +12,18 @@
         "Programming Languages"
     ],
     "activationEvents": [
+        "onLanguage:bed",
         "onLanguage:clustal",
-        "onLanguage:fasta"
+        "onLanguage:cwl",
+        "onLanguage:faidx",
+        "onLanguage:fasta",
+        "onLanguage:fastq",
+        "onLanguage:flagstat",
+        "onLanguage:gtf",
+        "onLanguage:pdf",
+        "onLanguage:sam",
+        "onCommand:vcf",
+        "onCommand:wig"
     ],
     "main": "./out/extension",
     "contributes": {

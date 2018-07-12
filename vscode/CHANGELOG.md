@@ -2,6 +2,15 @@
 
 ## [Uneleased]
 
+## [0.0.8] - 2018-07-12
+Automatically activate the theme settings.
+
+## [0.0.7] - 2018-06-02
+Background highlight for sam files.
+
+## [0.0.6] - 2018-06-02
+Background highlight for fasta and fastq files.
+
 ## [0.0.5] - 2018-05-26
 Update CHANGELOG
 
