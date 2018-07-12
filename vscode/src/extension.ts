@@ -2,14 +2,13 @@
 import * as vscode from 'vscode';
 import * as style from "./decorations";
 
+let beforeTheme = vscode.workspace.getConfiguration().get("workbench.colorTheme");
+
 export function activate(context: vscode.ExtensionContext) {
     let activeEditor = vscode.window.activeTextEditor;
     if(activeEditor){
         updateDecorations();
     }
-
-    // update theme
-    vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
     
     vscode.window.onDidChangeActiveTextEditor(editor => {
 		activeEditor = editor;
@@ -89,6 +88,16 @@ export function activate(context: vscode.ExtensionContext) {
             }else if(key==="-" || key==="."){
                 ntGaps.push(decoration);
             }
+        }
+
+        if (lang === "sam" || lang === "flagstat" || lang === "vcf" || 
+            lang === "fasta" || lang === "fastq" || lang === "faidx" || 
+            lang === "clustal" || lang === "pdb" || lang === "gtf" || 
+            lang === "bed") {
+            // update theme
+            vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
+        }else{
+            vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
         }
         
         if (lang === "clustal") {

@@ -2,7 +2,7 @@
 
 ## [Uneleased]
 
-## [0.0.8] - 2018-07-12
+## [0.0.8], [0.0.9] - 2018-07-12
 Automatically activate the theme settings.
 
 ## [0.0.7] - 2018-06-02
