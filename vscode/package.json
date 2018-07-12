@@ -3,7 +3,7 @@
     "displayName": "bioSyntax",
     "description": "bioSyntax for computational biology",
     "repository": "https://github.com/liyao001/bioSyntax",
-    "version": "0.0.5",
+    "version": "0.0.9",
     "publisher": "reageyao",
     "engines": {
         "vscode": "^1.0.0"
@@ -12,8 +12,7 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onLanguage:clustal",
-        "onLanguage:fasta"
+        "*",
     ],
     "main": "./out/extension",
     "contributes": {
