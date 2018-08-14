@@ -27,7 +27,7 @@ To gain the most insight from your data, read our brief [bioSyntax Manual](http:
 
 ### [Collaborate](CONTRIBUTING.md)
 
-Dev Team: [Artem Babaian](https://github.com/ababaian) | [Dylan Aissi](https://github.com/Dybian) [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Li Yao](https://github.com/liyao001) | [Jasper Wong](https://github.com/Jwong684)
+Dev Team: [Artem Babaian](https://github.com/ababaian) | [Dylan Aïssi](https://github.com/daissi) | [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Li Yao](https://github.com/liyao001) | [Jasper Wong](https://github.com/Jwong684)
 
 Contact us: [info[AT]biosyntax.org](mailto:info@biosyntax.org)
 
