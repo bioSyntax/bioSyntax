@@ -16,7 +16,7 @@ To gain the most insight from your data, read our brief [bioSyntax Manual](http:
 1. Open `Extensions` (`Ctrl`+`Shift`+`X` for Windows and `⇧`+`⌘`+`X` for Mac)
 2. Search `bioSyntax`
 3. Click `Install`
-4. **Change your theme to `bioSyntax`** (`Ctrl`+`K` `Ctrl`+`T` for Windows and `⌘`+`K` `⌘`+`T` for Mac)
+4. In most cases, when you open a support file, the theme will be switched to `bioSyntax`. However, if it doesn't change, you can manually **change your theme to `bioSyntax`** (`Ctrl`+`K` `Ctrl`+`T` for Windows and `⌘`+`K` `⌘`+`T` for Mac).
 
 ## Note
 
