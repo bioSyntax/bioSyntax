@@ -200,6 +200,7 @@ if  [ "$(uname)" == "Darwin" ]; then
 			touch ~/.vimrc;
 		fi
 		if ! grep -q ":syntax enable" ~/.vimrc; then
+			echo 'Adding the line ":syntax enable" to your .vimrc file'
 			echo ":syntax enable" >> ~/.vimrc;
 		fi
 
@@ -446,6 +447,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 			touch ~/.vimrc;
 		fi
 		if ! grep -q "syntax enable" ~/.vimrc; then
+			echo 'Adding the line ":syntax enable" to your .vimrc file'
 			echo "syntax enable" >> ~/.vimrc;
 		fi
 
@@ -657,6 +659,7 @@ else
 			touch $HOME/_vimrc;
 		fi
 		if ! grep -q ":syntax enable" $HOME/_vimrc; then
+			echo 'Adding the line ":syntax enable" to your .vimrc file'
 			echo ":syntax enable" >> $HOME/_vimrc;
 		fi
 
