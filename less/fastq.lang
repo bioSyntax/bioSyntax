@@ -7,7 +7,7 @@
 environment header = '^.+' begin # Header line
 
   # Row 2: nt Seq
-  environment ntSeq = '^(?=[ATCGatcg])' begin
+  environment ntSeq = '^(?=[ATCGatcgNnXx])' begin
     ntA = '[Aa]++'
     ntT = '[Tt]++'
     ntG = '[Gg]++'
