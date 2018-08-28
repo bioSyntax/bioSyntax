@@ -2,7 +2,7 @@
 // bioSyntax v0.1
 
 // Header
-header black b ;
+header yellow b ;
 comment gray i ;
 
 // Nucleotide Coloring

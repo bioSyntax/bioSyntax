@@ -10,7 +10,7 @@ color "$style"
 
 colormap
 # Nucleotide Colors
-"black" "30;48;5:253"      # header
+"black" "30;48;5;253"      # header
 "darkgreen" "30;48;5;10"   # A
 "darkred" "30;48;5;09"     # C
 "darkblue" "30;48;5;33"    # G
