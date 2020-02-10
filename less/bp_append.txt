@@ -37,3 +37,9 @@ alias bam-less='sam-less'
 # Auxillary syntaxes (uncomment to activate)
 alias fai-less='source-highlight      -f esc --lang-def=faidx.lang    --outlang-def=bioSyntax.outlang   --style-file=sam.style   | less'
 alias flagstat-less='source-highlight -f esc --lang-def=flagstat.lang --outlang-def=bioSyntax.outlang   --style-file=sam.style   | less'
+
+
+# Include the user .bashrc if it exists
+if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+fi
