@@ -5,14 +5,15 @@
     "repository": "https://github.com/liyao001/bioSyntax",
     "version": "0.0.9",
     "publisher": "reageyao",
+    "license": "GPL-3.0",
     "engines": {
-        "vscode": "^1.0.0"
+        "vscode": "^1.45.1"
     },
     "categories": [
         "Programming Languages"
     ],
     "activationEvents": [
-        "*",
+        "*"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -325,15 +326,16 @@
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+        "watch": "tsc -watch -p ./"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
+        "typescript": "^3.9.4",
+        "vscode-test": "^1.4.1",
         "tslint": "^5.8.0",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "mocha": "6.2.3",
+        "glob": "^7.1.6",
+        "@types/vscode": "^1.45.1",
+        "@types/node": "^16.4.6",
+        "@types/mocha": "^5.2.7"
     }
 }
