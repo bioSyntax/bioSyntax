@@ -17,6 +17,18 @@
     ],
     "main": "./out/extension",
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "BioSyntax",
+            "properties": {
+                "BioSyntax.nonBioTheme": {
+                    "type": "string",
+                    "scope": "resource",
+                    "default": "Default Dark+",
+                    "description": "The theme to use when not viewing a BioSyntax document. Most people will want to set this to be the same as their 'workbench.colorTheme' setting"
+                }
+            }
+        },
         "languages": [
             {
                 "id": "bed",
