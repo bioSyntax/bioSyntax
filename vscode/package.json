@@ -26,6 +26,12 @@
                     "scope": "resource",
                     "default": "Default Dark+",
                     "description": "The theme to use when not viewing a BioSyntax document. Most people will want to set this to be the same as their 'workbench.colorTheme' setting"
+                },
+                "BioSyntax.autoSwitchTheme": {
+                    "type": "boolean",
+                    "scope": "resource",
+                    "default": true,
+                    "description": "Enable automatically switching to BioSyntax's color theme when opening a BioSyntax-compatible file"
                 }
             }
         },

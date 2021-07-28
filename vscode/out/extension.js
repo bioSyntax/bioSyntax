@@ -5,6 +5,7 @@ const vscode = require("vscode");
 const style = require("./decorations");
 let beforeTheme = vscode.workspace.getConfiguration().get("BioSyntax.nonBioTheme");
 function activate(context) {
+    let autoTheme = vscode.workspace.getConfiguration().get("BioSyntax.autoSwitchTheme");
     let activeEditor = vscode.window.activeTextEditor;
     if (activeEditor) {
         updateDecorations();
@@ -101,15 +102,17 @@ function activate(context) {
                 ntGaps.push(decoration);
             }
         }
-        if (lang === "sam" || lang === "flagstat" || lang === "vcf" ||
-            lang === "fasta" || lang === "fastq" || lang === "faidx" ||
-            lang === "clustal" || lang === "pdb" || lang === "gtf" ||
-            lang === "bed") {
-            // update theme
-            vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
-        }
-        else {
-            vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
+        if (autoTheme) {
+            if (lang === "sam" || lang === "flagstat" || lang === "vcf" ||
+                lang === "fasta" || lang === "fastq" || lang === "faidx" ||
+                lang === "clustal" || lang === "pdb" || lang === "gtf" ||
+                lang === "bed") {
+                // update theme
+                vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
+            }
+            else {
+                vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
+            }
         }
         if (lang === "clustal") {
             let lines = text.split("\n");

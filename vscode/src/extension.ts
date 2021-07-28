@@ -5,6 +5,8 @@ import * as style from "./decorations";
 let beforeTheme = vscode.workspace.getConfiguration().get("BioSyntax.nonBioTheme");
 
 export function activate(context: vscode.ExtensionContext) {
+    let autoTheme = vscode.workspace.getConfiguration().get("BioSyntax.autoSwitchTheme");
+
     let activeEditor = vscode.window.activeTextEditor;
     if(activeEditor){
         updateDecorations();
@@ -90,14 +92,16 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }
 
-        if (lang === "sam" || lang === "flagstat" || lang === "vcf" ||
-            lang === "fasta" || lang === "fastq" || lang === "faidx" ||
-            lang === "clustal" || lang === "pdb" || lang === "gtf" ||
-            lang === "bed") {
-            // update theme
-            vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
-        }else{
-            vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
+        if (autoTheme) {
+            if (lang === "sam" || lang === "flagstat" || lang === "vcf" ||
+                lang === "fasta" || lang === "fastq" || lang === "faidx" ||
+                lang === "clustal" || lang === "pdb" || lang === "gtf" ||
+                lang === "bed") {
+                // update theme
+                vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
+            }else{
+                vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
+            }
         }
 
         if (lang === "clustal") {
