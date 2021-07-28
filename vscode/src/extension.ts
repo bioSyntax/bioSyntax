@@ -2,14 +2,14 @@
 import * as vscode from 'vscode';
 import * as style from "./decorations";
 
-let beforeTheme = vscode.workspace.getConfiguration().get("workbench.colorTheme");
+let beforeTheme = vscode.workspace.getConfiguration().get("BioSyntax.nonBioTheme");
 
 export function activate(context: vscode.ExtensionContext) {
     let activeEditor = vscode.window.activeTextEditor;
     if(activeEditor){
         updateDecorations();
     }
-    
+
     vscode.window.onDidChangeActiveTextEditor(editor => {
 		activeEditor = editor;
 		if (editor) {
@@ -30,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
         let lang = activeEditor.document.languageId;
         let regEx: RegExp;
         const text = activeEditor.document.getText();
-        
+
         const ntAs: vscode.DecorationOptions[] = [];
         const ntTs: vscode.DecorationOptions[] = [];
         const ntCs: vscode.DecorationOptions[] = [];
@@ -90,16 +90,16 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }
 
-        if (lang === "sam" || lang === "flagstat" || lang === "vcf" || 
-            lang === "fasta" || lang === "fastq" || lang === "faidx" || 
-            lang === "clustal" || lang === "pdb" || lang === "gtf" || 
+        if (lang === "sam" || lang === "flagstat" || lang === "vcf" ||
+            lang === "fasta" || lang === "fastq" || lang === "faidx" ||
+            lang === "clustal" || lang === "pdb" || lang === "gtf" ||
             lang === "bed") {
             // update theme
             vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
         }else{
             vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
         }
-        
+
         if (lang === "clustal") {
             let lines = text.split("\n");
             let offset: number = 0;

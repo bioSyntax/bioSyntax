@@ -1,7 +1,9 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const style = require("./decorations");
+let beforeTheme = vscode.workspace.getConfiguration().get("BioSyntax.nonBioTheme");
 function activate(context) {
     let activeEditor = vscode.window.activeTextEditor;
     if (activeEditor) {
@@ -98,6 +100,16 @@ function activate(context) {
             else if (key === "-" || key === ".") {
                 ntGaps.push(decoration);
             }
+        }
+        if (lang === "sam" || lang === "flagstat" || lang === "vcf" ||
+            lang === "fasta" || lang === "fastq" || lang === "faidx" ||
+            lang === "clustal" || lang === "pdb" || lang === "gtf" ||
+            lang === "bed") {
+            // update theme
+            vscode.workspace.getConfiguration().update("workbench.colorTheme", "bioSyntax", true);
+        }
+        else {
+            vscode.workspace.getConfiguration().update("workbench.colorTheme", beforeTheme, true);
         }
         if (lang === "clustal") {
             let lines = text.split("\n");

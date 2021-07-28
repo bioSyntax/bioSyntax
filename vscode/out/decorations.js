@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ntGapDecorationType = exports.ntXDecorationType = exports.ntNDecorationType = exports.ntHDecorationType = exports.ntVDecorationType = exports.ntBDecorationType = exports.ntDDecorationType = exports.ntKDecorationType = exports.ntMDecorationType = exports.ntWDecorationType = exports.ntSDecorationType = exports.ntYDecorationType = exports.ntRDecorationType = exports.ntUDecorationType = exports.ntCDecorationType = exports.ntGDecorationType = exports.ntTDecorationType = exports.ntADecorationType = void 0;
 const vscode = require("vscode");
 exports.ntADecorationType = vscode.window.createTextEditorDecorationType({
     backgroundColor: 'rgb(71,255,25)',
