@@ -3,7 +3,7 @@
     "displayName": "bioSyntax",
     "description": "bioSyntax for computational biology",
     "repository": "https://github.com/liyao001/bioSyntax",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "publisher": "reageyao",
     "license": "GPL-3.0",
     "engines": {
