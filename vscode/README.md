@@ -19,6 +19,19 @@ To gain the most insight from your data, read our brief [bioSyntax Manual](http:
 4. In most cases, when you open a support file, the theme will be switched to `bioSyntax`. However, if it doesn't change, you can manually **change your theme to `bioSyntax`** (`Ctrl`+`K` `Ctrl`+`T` for Windows and `⌘`+`K` `⌘`+`T` for Mac).
 
 ## Note
+A lot of users mentioned that there's a side effect from bioSyntax for VS Code that it overrides users' choice of themes. Now a new fix is available (see changelog): 
+* Locate the settings for bioSyntax by clicking: 
+    1. Extensions
+    2. bioSyntax (Manage)
+    3. Extension Settings
+    
+    ![](https://github.com/liyao001/bioSyntax/raw/vscode/vscode/resources/bioSyntax_setting.png)
+    
+* Change the value of `BioSyntax.nonBioTheme` to the name of the theme that you want to use for all other file types (for example, `Monokai`)
+
+    ![](https://github.com/liyao001/bioSyntax/raw/vscode/vscode/resources/bioSyntax_non_bio_theme.png)
+    
+* Restart VS Code to make the changes effective.
 
 As described [here](https://github.com/Microsoft/vscode/issues/3429), VS Code currently does not provide direct support for background styling in its themes. But the developers think they might add this feature in the future. So here, I use TypeScript to implement the background highlight for fasta, fastq, clustal and sam files, but there will be a delay when rendering the colors. After the VS Code team provides official support I will update the plugin.
 
@@ -26,9 +39,7 @@ As described [here](https://github.com/Microsoft/vscode/issues/3429), VS Code cu
 
 ### [Collaborate](http://biosyntax.org/dev)
 
-The original bioSyntax is developed by: [Artem Babaian](https://github.com/ababaian) | [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Jasper Wong](https://github.com/Jwong684)
-
-And this plugin is developed by [Li Yao](https://github.com/liyao001)
+Dev Team: [Artem Babaian](https://github.com/ababaian) | [Anicet Ebou](https://github.com/ebedthan) | [Alyssa Fegen](https://github.com/alyeffy) | [Jeffrey Kam](https://github.com/lazypanda10117) | [Gherman Novakovskiy](https://github.com/fransilvion) | [Li Yao](https://www.yaobio.com) | [Jasper Wong](https://github.com/Jwong684)
 
 Contact us: [info[AT]biosyntax.org](mailto:info@biosyntax.org)
 

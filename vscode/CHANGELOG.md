@@ -1,6 +1,7 @@
 # Change Log
 
-## [Uneleased]
+## [0.0.10] - 2021-07-29
+Incorporated commits from @MillironX and changed the default behavior of bioSyntax for VS Code: now the extension only gets activated when users editing certain file types (sam, bed, etc.); for other file types, users' choice will be respected.
 
 ## [0.0.8], [0.0.9] - 2018-07-12
 Automatically activate the theme settings.
